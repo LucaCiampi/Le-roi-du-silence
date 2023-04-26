@@ -1,6 +1,5 @@
 import * as THREE from "three";
 
-
 export default class Floor {
     constructor(_options) {
         this.scene = _options.scene;
@@ -11,12 +10,25 @@ export default class Floor {
     }
 
     setFloor() {
-        // const geometry = new THREE.PlaneGeometry(5, 10);
+        this.scene.add(this.resources.items.floor.scene)
 
-        // const material = new THREE.MeshBasicMaterial({map: this.resources.items.foreground, transparent: false})
-        // const mesh = new THREE.Mesh(geometry, material); 
-        // mesh.renderOrder = 5;
-        this.scene.add(this.resources.items.floor.scenes[0])
+        //TODO: comment this
+        this.resources.items.floor.scene.traverse(child => {
+
+            if (child.isMesh) {
+
+                child.castShadow = true;
+                child.receiveShadow = true;
+
+                if (child.material.map) {
+
+                    child.material.map.anisotropy = 4;
+
+                }
+
+            }
+
+        });
     }
 
 }

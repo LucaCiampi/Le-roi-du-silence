@@ -1,2 +1,5 @@
-# WebGL
-Projet de M1 à GOBELINS
+# WebGL Project
++ Luca Ciampi
++ Mathilde Deveaux
++ Valentine Guillaume
++ Marius Proton

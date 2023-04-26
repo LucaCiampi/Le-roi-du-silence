@@ -1,19 +1,45 @@
-.DS_Store
-*.swp
+# compiled output
+/dist
+/tmp
+/out-tsc
+
+# Only exists if Bazel was run
+/bazel-out
+
+# dependencies
+/node_modules
+
+# profiling files
+chrome-profiler-events*.json
+speed-measure-plugin*.json
+
+# IDEs and editors
+/.idea
 .project
-.idea/
-.vscode/
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
 npm-debug.log
-.jshintrc
-.vs/
+yarn-error.log
+testem.log
+/typings
 
-test/unit/build
-test/treeshake/index.bundle.js
-test/treeshake/index.bundle.min.js
-test/treeshake/index-src.bundle.min.js
-test/treeshake/three.module.min.js
-test/treeshake/stats.html
-test/e2e/chromium
-test/e2e/output-screenshots
-
-**/node_modules
+# System Files
+.DS_Store
+Thumbs.db

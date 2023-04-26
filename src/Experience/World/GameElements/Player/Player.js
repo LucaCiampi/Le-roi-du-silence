@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import Controller from './Controller';
+// import { Capsule } from 'three/addons/math/Capsule.js';
 
 export default class Player {
     constructor(_options) {
@@ -46,8 +47,8 @@ export default class Player {
 
     setColliders() {
         // Create colliders for the player
-        const box = new THREE.Box3().setFromObject(this.player);
-        this.collider = box;
+        // this.collider = new Capsule(new THREE.Vector3(0, 0.35, 0), new THREE.Vector3(0, 1, 0), 0.35);
+        this.collider = new THREE.Box3().setFromObject(this.player);
     }
 
     updatePlayer(deltaT) {

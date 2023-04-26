@@ -9,7 +9,6 @@ export default class Player {
         this.parameter = _options.parameter;
 
         this.setPlayer();
-        console.log(this)
 
         this.controller = new Controller({
             player: this.player
@@ -54,8 +53,6 @@ export default class Player {
     updatePlayer(deltaT) {
         // Move the player according to the controller
         const movement = this.controller.getMovement(deltaT);
-
-        console.log(movement.x)
 
         this.player.position.x = this.player.position.x + movement.x
         this.player.position.z = this.player.position.z + movement.z

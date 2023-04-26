@@ -27,7 +27,6 @@ export default class Layout {
     }
 
     setForeground(){
-        console.log('setForeground')
         const geometry = new THREE.PlaneGeometry(5, 10);
 
         const material = new THREE.MeshBasicMaterial({map: this.resources.items.foreground, transparent: false})

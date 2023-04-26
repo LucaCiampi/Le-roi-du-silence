@@ -3,6 +3,8 @@ import * as THREE from "three";
 import GlobalParameter from "./GlobalParameter";
 
 import Layout from "./GameElements/Layout";
+import Floor from "./GameElements/Floor";
+import Light from "./GameElements/Light";
 import Player from "./GameElements/Player/Player";
 import CollisionChecker from "./CollisionChecker";
 
@@ -20,6 +22,18 @@ export default class World {
 
     ready() {
         this.layout = new Layout({
+            scene: this.scene,
+            resources: this.resources,
+            parameter: this.parameter
+        })
+        
+        this.floor = new Floor({
+            scene: this.scene,
+            resources: this.resources,
+            parameter: this.parameter
+        })
+        
+        this.light = new Light({
             scene: this.scene,
             resources: this.resources,
             parameter: this.parameter

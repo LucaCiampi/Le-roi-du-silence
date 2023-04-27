@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { PointerLockControls } from 'three/addons/controls/PointerLockControls.js';
+// import { PointerLockControls } from 'three/addons/controls/PointerLockControls.js';
 
 export default class Camera {
     constructor(_options) {
@@ -27,6 +27,7 @@ export default class Camera {
     }
 
     setControl() {
+        // TODO: remove this
         this.controls = new PointerLockControls(this.instance, this.canvas);
 
         this.controls.addEventListener('lock', () => {
@@ -54,9 +55,10 @@ export default class Camera {
         // console.log(this.controls)
         // console.log(this)
         // this.controls.update();
-        if (this.resources.playerPosition) {
-            this.instance.position.copy(this.resources.playerPosition)
-        }
+
+        // if (this.resources.playerPosition) {
+        //     this.instance.position.copy(this.resources.playerPosition)
+        // }
     }
 
 }

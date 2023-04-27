@@ -21,6 +21,10 @@ export default class Event extends EventEmitter{
         this.trigger('Dead');
     }
 
+    end(){
+        this.trigger('End');
+    }
+
     startTimer(){
         this.trigger('StartTimer');
     }

@@ -1,8 +1,6 @@
 import * as THREE from 'three';
 import Controller from './Controller';
 // import { Capsule } from 'three/addons/math/Capsule.js';
-import { PointerLockControls } from 'three/addons/controls/PointerLockControls.js';
-import { FirstPersonControls } from 'three/addons/controls/FirstPersonControls.js';
 
 export default class Player {
     constructor(_options) {
@@ -19,10 +17,11 @@ export default class Player {
 
     init() {
         this.controller = new Controller({
-            player: this,
+            // player: this,
             canvas: this.canvas,
             camera: this.camera,
-            scene: this.scene
+            scene: this.scene,
+            resources: this.resources
         })
 
         // console.log(this.controller.controls.getObject().instance)
@@ -94,7 +93,7 @@ export default class Player {
         // this.player.position.x = this.player.position.x + movement.x
         // this.player.position.z = this.player.position.z + movement.z
 
-        this.resources.playerPosition = this.player.position
+        // this.resources.playerPosition = this.player.position
 
         // Update collider position
         this.collider.setFromObject(this.player);

@@ -59,7 +59,6 @@ export default class World {
         })
 
         this.isReady = true;
-        this.event.start();
     }
 
     update(deltaT) {

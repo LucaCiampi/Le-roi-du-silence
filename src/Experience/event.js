@@ -5,16 +5,16 @@ export default class Event extends EventEmitter{
         super();
     }
 
+    ready(){
+        this.trigger('Ready');
+    }
+
     start(){
         this.trigger('Start');
     }
 
     reset(){
         this.trigger('Reset');
-    }
-
-    ready(){
-        this.trigger('Ready');
     }
 
     dead(){

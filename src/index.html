@@ -27,7 +27,7 @@
     <!-- <meta property="og:image" content="https://lucaciampi.com/social/share-1200x630.png"> -->
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=5, viewport-fit=cover" />
-    <meta name="robots" content="index, follow"></meta>
+    <meta name="robots" content="index, follow" />
 
     <!-- 
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
@@ -40,10 +40,24 @@
     <meta name="application-name" content="WebGL">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
-    <canvas class="webgl no-select"></canvas>
+    <div id="blocker" class="blocker d-none">
+        <div id="instructions" class="instructions">
+            <p style="font-size:36px">
+                Click to play
+            </p>
+            <p>
+                Move: WASD<br/>
+                Jump: SPACE<br/>
+                Look: MOUSE
+            </p>
+        </div>
+    </div>
+    <canvas class="webgl"></canvas>
+    <script type="module" src="./script.js"></script>
 </body>
 
 </html>

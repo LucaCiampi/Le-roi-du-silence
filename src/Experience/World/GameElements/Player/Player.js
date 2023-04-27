@@ -1,6 +1,8 @@
 import * as THREE from 'three';
 import Controller from './Controller';
 // import { Capsule } from 'three/addons/math/Capsule.js';
+import { PointerLockControls } from 'three/addons/controls/PointerLockControls.js';
+import { FirstPersonControls } from 'three/addons/controls/FirstPersonControls.js';
 
 export default class Player {
     constructor(_options) {
@@ -8,16 +10,35 @@ export default class Player {
         this.scene = _options.scene;
         this.resources = _options.resources;
         this.parameter = _options.parameter;
+        this.canvas = _options.canvas;
+        this.camera = _options.camera;
 
-        this.setPlayer();
-
-        this.controller = new Controller({
-            player: this.player
-        })
+        this.init();
+        this.eventReciever();
     }
 
-    setPlayer() {
+    init() {
+        this.controller = new Controller({
+            player: this,
+            canvas: this.canvas,
+            camera: this.camera,
+            scene: this.scene
+        })
+
+        // console.log(this.controller.controls.getObject().instance)
+
+        // const object3D = new THREE.Object3D();
+        // object3D.add(this.controller.controls.getObject());
+        // this.scene.add(object3D);
+
+        // this.scene.add(this.controller.controls.getObject())
         this.setMesh();
+    }
+
+    eventReciever() {
+        this.event.on('Start', () => {
+            this.controller.allowMovement();
+        });
     }
 
     setMesh() {
@@ -28,9 +49,20 @@ export default class Player {
 
         this.setAssets(this.playerGeometry);
 
+        this.setPosition()
+        this.setHelper()
         this.setColliders()
 
         this.scene.add(this.player)
+    }
+
+    setPosition() {
+        this.player.position.y = 2
+    }
+
+    setHelper() {
+        this.player.helper = new THREE.BoxHelper(this.player, 0xffff00);
+        this.scene.add(this.player.helper);
     }
 
     setAssets(geometry) {
@@ -51,19 +83,20 @@ export default class Player {
         this.collider = new THREE.Box3().setFromObject(this.player);
     }
 
-    updatePlayer(deltaT) {
-        // Move the player according to the controller
-        const movement = this.controller.getMovement(deltaT);
-
-        this.player.position.x = this.player.position.x + movement.x
-        this.player.position.z = this.player.position.z + movement.z
-
-        // Update collider position
-        this.collider.setFromObject(this.player);
-    }
-
     update(deltaT) {
         this.updatePlayer(deltaT);
     }
 
+    updatePlayer(deltaT) {
+        // Move the player according to the controller
+        this.controller.getMovement(deltaT);
+
+        // this.player.position.x = this.player.position.x + movement.x
+        // this.player.position.z = this.player.position.z + movement.z
+
+        this.resources.playerPosition = this.player.position
+
+        // Update collider position
+        this.collider.setFromObject(this.player);
+    }
 }

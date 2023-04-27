@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js"
+import { PointerLockControls } from 'three/addons/controls/PointerLockControls.js';
 
 export default class Camera {
     constructor(_options) {
@@ -7,43 +7,56 @@ export default class Camera {
         this.canvas = _options.canvas;
         this.scene = _options.scene;
         this.sizes = _options.sizes;
-        this.player = _options.player;
+        this.resources = _options.resources;
+        
+        this.instance = null;
+        this.controls = null;
 
+        this.init();
+    }
+
+    init() {
         this.setInstance();
-        this.setOrbitControl();
-
-        // TODO: clean this
-        document.body.addEventListener( 'mousemove', ( event ) => {
-
-            if ( document.pointerLockElement === document.body ) {
-    
-              camera.rotation.y -= event.movementX / 500;
-              camera.rotation.x -= event.movementY / 500;
-    
-            }
-    
-          } );
+        // this.setControl();
     }
 
     setInstance() {
-        this.instance = new THREE.PerspectiveCamera(35, this.sizes.width / this.sizes.height, 0.1, 100);
-        this.instance.position.set(0, 0, 15);
+        this.instance = new THREE.PerspectiveCamera(60, this.sizes.width / this.sizes.height, 1, 1000);
+        this.instance.position.set(0, 0, 10);
         this.scene.add(this.instance);
     }
 
-    setOrbitControl() {
-        this.controls = new OrbitControls(this.instance, this.canvas);
-        this.controls.enableDamping = true;
+    setControl() {
+        this.controls = new PointerLockControls(this.instance, this.canvas);
+
+        this.controls.addEventListener('lock', () => {
+            this.player.controlsEnabled = true;
+            console.log('lock')
+        });
+        this.controls.addEventListener('unlock', () => {
+            this.player.controlsEnabled = false;
+            console.log('unlock')
+        });
+
+        console.log(this.instance)
+        console.log(this.controls)
+
+        this.scene.add(this.controls.getObject())
     }
 
     resize() {
+        this.controls.handleResize();
         this.instance.aspect = this.sizes.width / this.sizes.height;
         this.instance.updateProjectionMatrix();
     }
 
     update() {
+        // console.log(this.controls)
+        // console.log(this)
         // this.controls.update();
-        this.position.copy( this.player );
+        if (this.resources.playerPosition) {
+            this.instance.position.copy(this.resources.playerPosition)
+        }
     }
 
 }

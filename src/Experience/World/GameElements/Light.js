@@ -7,6 +7,10 @@ export default class Floor {
         this.resources = _options.resources;
         this.parameter = _options.parameter;
 
+        this.init();
+    }
+
+    init() {
         this.setWorldColor();
         this.setLight();
         this.setFog();

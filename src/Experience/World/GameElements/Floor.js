@@ -6,6 +6,10 @@ export default class Floor {
         this.resources = _options.resources;
         this.parameter = _options.parameter;
 
+        this.init();
+    }
+
+    init() {
         this.setFloor();
     }
 
@@ -29,6 +33,8 @@ export default class Floor {
             }
 
         });
+
+        // this.scene.position.y = 0
     }
 
 }

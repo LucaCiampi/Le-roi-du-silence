@@ -6,14 +6,35 @@ export default class Layout {
         this.scene = _options.scene;
         this.resources = _options.resources;
         this.parameter = _options.parameter;
+        this.event = _options.event;
 
-        this.setLayout();
+        this.blocker = null;
+        this.introUI = null;
 
+        this.init();
+        this.eventReceiver();
     }
 
-    setLayout(){
-        this.setBackground();
+    init(){
+        this.blocker = document.getElementById('blocker')
+        this.introUI = document.getElementById('instructions')
+
+        this.introUI.addEventListener('click', () => {
+            this.event.start();
+        })
+
+        // this.setBackground();
         // this.setForeground();
+    }
+
+    eventReceiver(){
+        this.event.on('Ready', () => {
+            this.displayIntroUI()
+        })
+    }
+
+    displayIntroUI() {
+        this.blocker.classList.remove('d-none')
     }
 
     setBackground(){
@@ -27,12 +48,12 @@ export default class Layout {
     }
 
     setForeground(){
-        const geometry = new THREE.PlaneGeometry(5, 10);
+        // const geometry = new THREE.PlaneGeometry(5, 10);
 
-        const material = new THREE.MeshBasicMaterial({map: this.resources.items.foreground, transparent: false})
-        const mesh = new THREE.Mesh(geometry, material); 
-        mesh.renderOrder = 5;
-        this.scene.add(mesh)
+        // const material = new THREE.MeshBasicMaterial({map: this.resources.items.foreground, transparent: false})
+        // const mesh = new THREE.Mesh(geometry, material); 
+        // mesh.renderOrder = 5;
+        // this.scene.add(mesh)
     }
 
 }

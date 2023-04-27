@@ -6,13 +6,16 @@ import Layout from "./GameElements/Layout";
 import Floor from "./GameElements/Floor";
 import Light from "./GameElements/Light";
 import Player from "./GameElements/Player/Player";
-import CollisionChecker from "./CollisionChecker";
+import TestCube from "./GameElements/TestCube";
 
 export default class World {
     constructor(_options) {
         this.event = _options.event;
         this.scene = _options.scene;
         this.resources = _options.resources;
+        this.camera = _options.camera;
+        this.canvas = _options.canvas;
+        this.player = _options.player;
 
         this.parameter = new GlobalParameter({
             event: this.event,
@@ -24,16 +27,11 @@ export default class World {
         this.layout = new Layout({
             scene: this.scene,
             resources: this.resources,
-            parameter: this.parameter
+            parameter: this.parameter,
+            event: this.event
         })
         
         this.floor = new Floor({
-            scene: this.scene,
-            resources: this.resources,
-            parameter: this.parameter
-        })
-        
-        this.light = new Light({
             scene: this.scene,
             resources: this.resources,
             parameter: this.parameter
@@ -43,13 +41,21 @@ export default class World {
             event: this.event,
             scene: this.scene,
             resources: this.resources,
+            parameter: this.parameter,
+            canvas: this.canvas,
+            camera: this.camera
+        })
+        
+        this.light = new Light({
+            scene: this.scene,
+            resources: this.resources,
             parameter: this.parameter
         })
 
-        this.collisionChecker = new CollisionChecker({
-            event: this.event,
-            parameter: this.parameter,
-            player: this.player,
+        this.testCube = new TestCube({
+            scene: this.scene,
+            resources: this.resources,
+            parameter: this.parameter
         })
 
         this.isReady = true;
@@ -59,8 +65,25 @@ export default class World {
     update(deltaT) {
         if (this.isReady && this.parameter.canUpdate) {
             this.player.update(deltaT)
-            this.collisionChecker.update();
+            // this.collisionChecker.update();
         }
+    }
+
+    destroy() {
+        this.layout.destroy()
+        this.layout = null
+        
+        this.floor.destroy()
+        this.floor = null
+        
+        this.light.destroy()
+        this.light = null
+
+        this.player.destroy()
+        this.player = null
+
+        // this.collisionChecker.destroy()
+        // this.collisionChecker = null
     }
 
 }

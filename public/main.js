@@ -1,280 +1,310 @@
-import { PointerLockControls } from 'three/addons/controls/PointerLockControls'
+import * as THREE from 'three';
+import Stats from 'three/addons/libs/stats.module.js';
 
-let camera, scene, renderer, controls;
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { MD2CharacterComplex } from 'three/addons/misc/MD2CharacterComplex.js';
+import { Gyroscope } from 'three/addons/misc/Gyroscope.js';
 
-const objects = [];
+let SCREEN_WIDTH = window.innerWidth/2;
+let SCREEN_HEIGHT = window.innerHeight/2;
 
-let raycaster;
+let container, stats;
+let camera, scene, renderer;
+let zoneStatus = false
 
-let moveForward = false;
-let moveBackward = false;
-let moveLeft = false;
-let moveRight = false;
-let canJump = false;
+const characters = [];
+let nCharacters = 0;
 
-let prevTime = performance.now();
-const velocity = new THREE.Vector3();
-const direction = new THREE.Vector3();
-const vertex = new THREE.Vector3();
-const color = new THREE.Color();
+let cameraControls;
 
-init();
-animate();
+const controls = {
+
+  moveForward: false,
+  moveBackward: false,
+  moveLeft: false,
+  moveRight: false
+
+};
+
+const clock = new THREE.Clock();
+
+setTimeout(() => {
+  init();
+  animate();
+}, 300);
 
 function init() {
-  camera = new THREE.PerspectiveCamera(
-    75,
-    window.innerWidth / window.innerHeight,
-    1,
-    1000
-  );
-  camera.position.y = 10;
+
+  container = document.getElementById('container')
+  document.body.appendChild( container );
+
+  // CAMERA
+
+  camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 4000 );
+  camera.position.set( 0, 150, 1300 );
+
+  // SCENE
 
   scene = new THREE.Scene();
-  scene.background = new THREE.Color(0xffffff);
-  scene.fog = new THREE.Fog(0xffffff, 0, 750);
+  scene.background = new THREE.Color( 0xffffff );
+  scene.fog = new THREE.Fog( 0xffffff, 1000, 4000 );
 
-  const light = new THREE.HemisphereLight(0xeeeeff, 0x777788, 0.75);
-  light.position.set(0.5, 1, 0.75);
-  scene.add(light);
+  scene.add( camera );
 
-  controls = new PointerLockControls(camera, document.body);
+  // LIGHTS
 
-  const blocker = document.getElementById("blocker");
-  const instructions = document.getElementById("instructions");
+  scene.add( new THREE.AmbientLight( 0x666666 ) );
 
-  instructions.addEventListener("click", function () {
-    controls.lock();
-  });
+  const light = new THREE.DirectionalLight( 0xffffff, 2.25 );
+  light.position.set( 200, 450, 500 );
 
-  controls.addEventListener("lock", function () {
-    instructions.style.display = "none";
-    blocker.style.display = "none";
-  });
+  light.castShadow = true;
 
-  controls.addEventListener("unlock", function () {
-    blocker.style.display = "block";
-    instructions.style.display = "";
-  });
+  light.shadow.mapSize.width = 1024;
+  light.shadow.mapSize.height = 512;
 
-  scene.add(controls.getObject());
+  light.shadow.camera.near = 100;
+  light.shadow.camera.far = 1200;
 
-  const onKeyDown = function (event) {
-    switch (event.code) {
-      case "ArrowUp":
-      case "KeyW":
-        moveForward = true;
-        break;
+  light.shadow.camera.left = - 1000;
+  light.shadow.camera.right = 1000;
+  light.shadow.camera.top = 350;
+  light.shadow.camera.bottom = - 350;
 
-      case "ArrowLeft":
-      case "KeyA":
-        moveLeft = true;
-        break;
+  scene.add( light );
+  // scene.add( new THREE.CameraHelper( light.shadow.camera ) );
 
-      case "ArrowDown":
-      case "KeyS":
-        moveBackward = true;
-        break;
 
-      case "ArrowRight":
-      case "KeyD":
-        moveRight = true;
-        break;
+  //  GROUND
 
-      case "Space":
-        if (canJump === true) velocity.y += 350;
-        canJump = false;
-        break;
-    }
-  };
+  const gt = new THREE.TextureLoader().load( 'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/terrain/grasslight-big.jpg' );
+  const gg = new THREE.PlaneGeometry( 16000, 16000 );
+  const gm = new THREE.MeshPhongMaterial( { color: 0xffffff, map: gt } );
 
-  const onKeyUp = function (event) {
-    switch (event.code) {
-      case "ArrowUp":
-      case "KeyW":
-        moveForward = false;
-        break;
+  const ground = new THREE.Mesh( gg, gm );
+  ground.rotation.x = - Math.PI / 2;
+  ground.material.map.repeat.set( 64, 64 );
+  ground.material.map.wrapS = THREE.RepeatWrapping;
+  ground.material.map.wrapT = THREE.RepeatWrapping;
+  ground.material.map.colorSpace = THREE.SRGBColorSpace;
+  // note that because the ground does not cast a shadow, .castShadow is left false
+  ground.receiveShadow = true;
 
-      case "ArrowLeft":
-      case "KeyA":
-        moveLeft = false;
-        break;
+  scene.add( ground );
 
-      case "ArrowDown":
-      case "KeyS":
-        moveBackward = false;
-        break;
+  //ZONE
 
-      case "ArrowRight":
-      case "KeyD":
-        moveRight = false;
-        break;
-    }
-  };
+  const geometry = new THREE.BoxGeometry( 500, 50, 500 );
+  const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+  const zone = new THREE.Mesh( geometry, material );
+  zone.position.x = 1000
+  scene.add( zone );
 
-  document.addEventListener("keydown", onKeyDown);
-  document.addEventListener("keyup", onKeyUp);
+  // RENDERER
 
-  raycaster = new THREE.Raycaster(
-    new THREE.Vector3(),
-    new THREE.Vector3(0, -1, 0),
-    0,
-    10
-  );
-
-  // floor
-
-  let floorGeometry = new THREE.PlaneGeometry(2000, 2000, 100, 100);
-  floorGeometry.rotateX(-Math.PI / 2);
-
-  // vertex displacement
-
-  let position = floorGeometry.attributes.position;
-
-  for (let i = 0, l = position.count; i < l; i++) {
-    vertex.fromBufferAttribute(position, i);
-
-    vertex.x += Math.random() * 20 - 10;
-    vertex.y += Math.random() * 2;
-    vertex.z += Math.random() * 20 - 10;
-
-    position.setXYZ(i, vertex.x, vertex.y, vertex.z);
-  }
-
-  floorGeometry = floorGeometry.toNonIndexed(); // ensure each face has unique vertices
-
-  position = floorGeometry.attributes.position;
-  const colorsFloor = [];
-
-  for (let i = 0, l = position.count; i < l; i++) {
-    color.setHSL(
-      Math.random() * 0.3 + 0.5,
-      0.75,
-      Math.random() * 0.25 + 0.75,
-      THREE.SRGBColorSpace
-    );
-    colorsFloor.push(color.r, color.g, color.b);
-  }
-
-  floorGeometry.setAttribute(
-    "color",
-    new THREE.Float32BufferAttribute(colorsFloor, 3)
-  );
-
-  const floorMaterial = new THREE.MeshBasicMaterial({ vertexColors: true });
-
-  const floor = new THREE.Mesh(floorGeometry, floorMaterial);
-  scene.add(floor);
-
-  // objects
-
-  const boxGeometry = new THREE.BoxGeometry(20, 20, 20).toNonIndexed();
-
-  position = boxGeometry.attributes.position;
-  const colorsBox = [];
-
-  for (let i = 0, l = position.count; i < l; i++) {
-    color.setHSL(
-      Math.random() * 0.3 + 0.5,
-      0.75,
-      Math.random() * 0.25 + 0.75,
-      THREE.SRGBColorSpace
-    );
-    colorsBox.push(color.r, color.g, color.b);
-  }
-
-  boxGeometry.setAttribute(
-    "color",
-    new THREE.Float32BufferAttribute(colorsBox, 3)
-  );
-
-  for (let i = 0; i < 500; i++) {
-    const boxMaterial = new THREE.MeshPhongMaterial({
-      specular: 0xffffff,
-      flatShading: true,
-      vertexColors: true,
-    });
-    boxMaterial.color.setHSL(
-      Math.random() * 0.2 + 0.5,
-      0.75,
-      Math.random() * 0.25 + 0.75,
-      THREE.SRGBColorSpace
-    );
-
-    const box = new THREE.Mesh(boxGeometry, boxMaterial);
-    box.position.x = Math.floor(Math.random() * 20 - 10) * 20;
-    box.position.y = Math.floor(Math.random() * 20) * 20 + 10;
-    box.position.z = Math.floor(Math.random() * 20 - 10) * 20;
-
-    scene.add(box);
-    objects.push(box);
-  }
+  renderer = new THREE.WebGLRenderer( { antialias: true } );
+  renderer.setPixelRatio( window.devicePixelRatio );
+  renderer.setSize( SCREEN_WIDTH, SCREEN_HEIGHT );
+  container.appendChild( renderer.domElement );
 
   //
 
-  renderer = new THREE.WebGLRenderer({ antialias: true });
-  renderer.setPixelRatio(window.devicePixelRatio);
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  document.body.appendChild(renderer.domElement);
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
-  //
+  // STATS
 
-  window.addEventListener("resize", onWindowResize);
+  stats = new Stats();
+  // container.appendChild( stats.dom );
+
+  // EVENTS
+
+  window.addEventListener( 'resize', onWindowResize );
+  document.addEventListener( 'keydown', onKeyDown );
+  document.addEventListener( 'keyup', onKeyUp );
+
+  // CONTROLS
+
+  cameraControls = new OrbitControls( camera, renderer.domElement );
+  cameraControls.target.set( 0, 50, 0 );
+  cameraControls.update();
+
+  // CHARACTER
+
+  const configOgro = {
+
+    baseUrl: 'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/models/md2/ogro/',
+
+    body: 'ogro.md2',
+    skins: [ 'grok.jpg'],
+    weapons: [[ 'weapon.md2', 'weapon.jpg' ]],
+    animations: {
+      move: 'run',
+      idle: 'stand',
+      jump: 'jump',
+      attack: 'attack',
+      crouchMove: 'cwalk',
+      crouchIdle: 'cstand',
+      crouchAttach: 'crattack'
+    },
+
+    walkSpeed: 600,
+    crouchSpeed: 175
+
+  };
+
+  const nRows = 1;
+  const nSkins = configOgro.skins.length;
+
+  nCharacters = nSkins * nRows;
+
+  for ( let i = 0; i < nCharacters; i ++ ) {
+
+    const character = new MD2CharacterComplex();
+    character.scale = 3;
+    character.controls = controls;
+    characters.push( character );
+
+  }
+
+  const baseCharacter = new MD2CharacterComplex();
+  baseCharacter.scale = 3;
+
+  baseCharacter.onLoadComplete = function () {
+
+    let k = 0;
+
+    for ( let j = 0; j < nRows; j ++ ) {
+
+      for ( let i = 0; i < nSkins; i ++ ) {
+
+        const cloneCharacter = characters[ k ];
+
+        cloneCharacter.shareParts( baseCharacter );
+
+        // cast and receive shadows
+        cloneCharacter.enableShadows( true );
+
+        cloneCharacter.setWeapon( 0 );
+        cloneCharacter.setSkin( i );
+
+        cloneCharacter.root.position.x = ( i - nSkins / 2 ) * 150;
+        cloneCharacter.root.position.z = j * 250;
+
+        scene.add( cloneCharacter.root );
+
+        k ++;
+
+      }
+
+    }
+
+    const gyro = new Gyroscope();
+    gyro.add( camera );
+    gyro.add( light, light.target );
+
+    characters[ Math.floor( nSkins / 2 ) ].root.add( gyro );
+
+  };
+
+  baseCharacter.loadParts( configOgro );
+
 }
+
+// EVENT HANDLERS
 
 function onWindowResize() {
-  camera.aspect = window.innerWidth / window.innerHeight;
+
+  SCREEN_WIDTH = window.innerWidth;
+  SCREEN_HEIGHT = window.innerHeight;
+
+  renderer.setSize( SCREEN_WIDTH, SCREEN_HEIGHT );
+
+  camera.aspect = SCREEN_WIDTH / SCREEN_HEIGHT;
   camera.updateProjectionMatrix();
 
-  renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
-function animate() {
-  requestAnimationFrame(animate);
+function onKeyDown( event ) {
 
-  const time = performance.now();
+  switch ( event.code ) {
 
-  if (controls.isLocked === true) {
-    raycaster.ray.origin.copy(controls.getObject().position);
-    raycaster.ray.origin.y -= 10;
+    case 'ArrowUp':
+    case 'KeyW': controls.moveForward = true; break;
 
-    const intersections = raycaster.intersectObjects(objects, false);
+    case 'ArrowDown':
+    case 'KeyS': controls.moveBackward = true; break;
 
-    const onObject = intersections.length > 0;
+    case 'ArrowLeft':
+    case 'KeyA': controls.moveLeft = true; break;
 
-    const delta = (time - prevTime) / 1000;
+    case 'ArrowRight':
+    case 'KeyD': controls.moveRight = true; break;
 
-    velocity.x -= velocity.x * 10.0 * delta;
-    velocity.z -= velocity.z * 10.0 * delta;
+    case 'KeyC': controls.crouch = true; break;
+    case 'Space': controls.jump = true; break;
+    case 'ControlLeft':
+    case 'ControlRight': controls.attack = true; break;
 
-    velocity.y -= 9.8 * 100.0 * delta; // 100.0 = mass
-
-    direction.z = Number(moveForward) - Number(moveBackward);
-    direction.x = Number(moveRight) - Number(moveLeft);
-    direction.normalize(); // this ensures consistent movements in all directions
-
-    if (moveForward || moveBackward) velocity.z -= direction.z * 400.0 * delta;
-    if (moveLeft || moveRight) velocity.x -= direction.x * 400.0 * delta;
-
-    if (onObject === true) {
-      velocity.y = Math.max(0, velocity.y);
-      canJump = true;
-    }
-
-    controls.moveRight(-velocity.x * delta);
-    controls.moveForward(-velocity.z * delta);
-
-    controls.getObject().position.y += velocity.y * delta; // new behavior
-
-    if (controls.getObject().position.y < 10) {
-      velocity.y = 0;
-      controls.getObject().position.y = 10;
-
-      canJump = true;
-    }
   }
 
-  prevTime = time;
+}
 
-  renderer.render(scene, camera);
+function onKeyUp( event ) {
+
+  switch ( event.code ) {
+
+    case 'ArrowUp':
+    case 'KeyW': controls.moveForward = false; break;
+
+    case 'ArrowDown':
+    case 'KeyS': controls.moveBackward = false; break;
+
+    case 'ArrowLeft':
+    case 'KeyA': controls.moveLeft = false; break;
+
+    case 'ArrowRight':
+    case 'KeyD': controls.moveRight = false; break;
+
+    case 'KeyC': controls.crouch = false; break;
+    case 'Space': controls.jump = false; break;
+    case 'ControlLeft':
+    case 'ControlRight': controls.attack = false; break;
+
+  }
+
+}
+
+//
+
+function animate() {
+
+  requestAnimationFrame( animate );
+  render();
+
+  stats.update();
+
+}
+
+function render() {
+
+  const delta = clock.getDelta();
+
+  for ( let i = 0; i < nCharacters; i ++ ) {
+
+    if (characters[i].root.position.x > 800 && characters[i].root.position.x < 1200 && characters[i].root.position.z < 220 && characters[i].root.position.z > -200){
+      if (!zoneStatus) {
+        console.log("msg");
+      }
+      zoneStatus = true
+    }else{
+      zoneStatus = false
+    }
+    //x 800 1200 z 220 -200
+    characters[ i ].update( delta );
+
+  }
+
+  renderer.render( scene, camera );
+
 }

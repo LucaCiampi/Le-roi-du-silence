@@ -1,6 +1,5 @@
 import * as THREE from 'three';
 import Stats from 'three/addons/libs/stats.module.js';
-
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { MD2CharacterComplex } from 'three/addons/misc/MD2CharacterComplex.js';
 import { Gyroscope } from 'three/addons/misc/Gyroscope.js';
@@ -33,10 +32,9 @@ setTimeout(() => {
   animate();
 }, 300);
 
-function init() {
+export function init() {
 
   container = document.getElementById('container')
-  document.body.appendChild( container );
 
   // CAMERA
 

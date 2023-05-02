@@ -8,7 +8,7 @@ import sources from "./AssetsSources.js";
 import Debug from "./Utils/Debug.js";
 
 // Experience
-import Event from "./Event.js";
+import Event from "./Events.js";
 import Camera from "./Camera.js"
 import Renderer from "./Renderer.js";
 

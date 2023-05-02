@@ -27,4 +27,9 @@ export default class Zone {
         
         return false
     }
+
+    startZoneActions() {
+        console.log('Action : send message')
+        console.log('Action : launch sound')
+    }
 }

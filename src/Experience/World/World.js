@@ -87,18 +87,19 @@ export default class World {
             this.controls.update(deltaT)
 
             if (!this.parameter.gameEnded) {
-                this.checkZone(this.parameter.currentZone)
+                this.checkNextZoneEntrance(this.parameter.currentZone)
             }
         }
     }
 
-    checkZone(zoneID) {
+    checkNextZoneEntrance(zoneId) {
 
         // TODO: once the player has been in the zone, remove the listener and listen to the next zone (for loop)
 
-        if (this.zones[zoneID].hasPlayerInZone(this.controls.playerCollider.end)) {
-            console.log('zone ' + this.zones[zoneID].name + ' reached')
+        if (this.zones[zoneId].hasPlayerInZone(this.controls.playerCollider.end)) {
+            console.log('zone ' + this.zones[zoneId].name + ' entered')
             this.parameter.incrementCurrentZone();
+            this.zones[zoneId].startZoneActions();
         }
 
         // zone.on('in', (_data) => {

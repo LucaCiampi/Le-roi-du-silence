@@ -1,6 +1,5 @@
 import * as THREE from "three";
 
-
 export default class TestCube {
     constructor(_options) {
         this.scene = _options.scene;

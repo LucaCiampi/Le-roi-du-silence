@@ -23,7 +23,6 @@ export default class Floor {
     setLight() {
         // Ambient light
         const ambientLight = new THREE.AmbientLight(0xffffff, 1)
-        // gui.add(ambientLight, "intensity").min(0).max(1).name("Ambient intensity")
         this.scene.add(ambientLight)
     }
 

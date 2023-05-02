@@ -6,8 +6,6 @@ export default class Controls {
     constructor(_options) {
         this.canvas = _options.canvas;
         this.camera = _options.camera;
-        this.scene = _options.scene;
-        this.resources = _options.resources;
         this.event = _options.event;
         this.floor = _options.floor;
 
@@ -18,7 +16,7 @@ export default class Controls {
 
         this.keyStates = {};
 
-        this.GRAVITY = 30;
+        this.GRAVITY = 50;
 
         this.init();
     }
@@ -28,9 +26,6 @@ export default class Controls {
         this.playerVelocity = new THREE.Vector3();
         this.playerDirection = new THREE.Vector3();
         this.playerCollider = new Capsule(new THREE.Vector3(0, 0.35, 0), new THREE.Vector3(0, 1, 0), 0.35);
-        this.DISTANCE_THRESHOLD = 0.5
-
-        this.camera.instance.rotation.order = 'YXZ';
 
         this.eventReciever();
 
@@ -43,6 +38,7 @@ export default class Controls {
     //     this.teleportPlayerIfOob();
     // }
 
+    // TODO: merge with local 'Time' class
     update() {
         const deltaTime = Math.min(0.05, this.clock.getDelta()) / 5;
 
@@ -61,6 +57,9 @@ export default class Controls {
 
     }
 
+    /**
+     * Listens for the 'Start' event triggered by the 'Event' class
+     */
     eventReciever() {
         // Wait until the "Start" event from eventEmitter to allow movement
         this.event.on('Start', () => {
@@ -82,6 +81,9 @@ export default class Controls {
         });
     }
 
+    /**
+     * Allows the player to move if the game is ready
+     */
     allowPlayerMovement() {
         this.controls.lock();
 
@@ -94,6 +96,10 @@ export default class Controls {
         });
     }
 
+    /**
+     * Listens for user keyboard input at every deltaTime
+     * @param {number} deltaTime 
+     */
     controlsKeyBindings(deltaTime) {
 
         // gives a bit of air control
@@ -134,6 +140,10 @@ export default class Controls {
         }
     }
 
+    /**
+     * 
+     * @returns {THREE.Vector3} player forward vector
+     */
     getForwardVector() {
 
         this.camera.instance.getWorldDirection(this.playerDirection);
@@ -144,6 +154,10 @@ export default class Controls {
 
     }
 
+    /**
+     * 
+     * @returns {THREE.Vector3} player side vector
+     */
     getSideVector() {
 
         this.camera.instance.getWorldDirection(this.playerDirection);
@@ -155,7 +169,12 @@ export default class Controls {
 
     }
 
+    /**
+     * Updates the player position
+     * @param {number} deltaTime 
+     */
     updatePlayer(deltaTime) {
+
         let damping = Math.exp(- 4 * deltaTime) - 1;
 
         if (!this.playerOnFloor) {
@@ -175,14 +194,17 @@ export default class Controls {
         this.playerCollisions();
 
         this.camera.instance.position.copy(this.playerCollider.end);
+
     }
 
+    /**
+     * Checks if the player capsule collides with the world octree map
+     */
     playerCollisions() {
+
         const result = this.floor.worldOctree.capsuleIntersect(this.playerCollider);
 
         this.playerOnFloor = false;
-
-        // console.log(result)
 
         if (result) {
 
@@ -197,8 +219,12 @@ export default class Controls {
             this.playerCollider.translate(result.normal.multiplyScalar(result.depth));
 
         }
+
     }
 
+    /**
+     * Teleports player to origin if he falls below -25 height unit
+     */
     teleportPlayerIfOob() {
 
         if (this.camera.instance.position.y <= - 25) {

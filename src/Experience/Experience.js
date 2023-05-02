@@ -4,11 +4,11 @@ import * as THREE from "three";
 import Sizes from "./Utils/Sizes.js";
 import Time from "./Utils/Time.js";
 import Resources from "./Utils/Resources.js";
-import sources from "./sources.js";
+import sources from "./AssetsSources.js";
 import Debug from "./Utils/Debug.js";
 
 // Experience
-import Event from "./event.js";
+import Event from "./Event.js";
 import Camera from "./Camera.js"
 import Renderer from "./Renderer.js";
 
@@ -49,10 +49,8 @@ export default class Experience {
         this.event = new Event()
 
         this.camera = new Camera({
-            canvas: this.canvas,
             scene: this.scene,
             sizes: this.sizes,
-            resources: this.resources
         });
 
         this.renderer = new Renderer({
@@ -100,7 +98,7 @@ export default class Experience {
     }
 
     update() {
-        this.camera.update();
+        // this.camera.update();
         this.renderer.update();
 
         this.world.update(this.time.deltaTime);

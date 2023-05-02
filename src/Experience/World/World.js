@@ -1,13 +1,9 @@
-import * as THREE from "three";
-
 import GlobalParameter from "./GlobalParameter";
-
-import Layout from "./GameElements/Layout";
+import UserInterface from "./UserInterface";
 import Floor from "./GameElements/Floor";
 import Light from "./GameElements/Light";
 import TestCube from "./GameElements/TestCube";
 import Controls from "./Controls";
-import CollisionChecker from "./CollisionChecker";
 
 export default class World {
     constructor(_options) {
@@ -24,7 +20,7 @@ export default class World {
     }
 
     ready() {
-        this.layout = new Layout({
+        this.userInterface = new UserInterface({
             scene: this.scene,
             resources: this.resources,
             parameter: this.parameter,
@@ -40,8 +36,6 @@ export default class World {
         this.controls = new Controls({
             canvas: this.canvas,
             camera: this.camera,
-            scene: this.scene,
-            resources: this.resources,
             event: this.event,
             floor: this.floor,
         })
@@ -58,36 +52,24 @@ export default class World {
             parameter: this.parameter
         })
 
-        // this.collisionChecker = new CollisionChecker({
-        //     event: this.event,
-        //     parameter: this.parameter,
-        //     camera: this.camera,
-        //     controls: this.controls,
-        //     floor: this.floor,
-        // })
-
         this.isReady = true;
     }
 
     update(deltaT) {
         if (this.isReady && this.parameter.canUpdate) {
             this.controls.update(deltaT)
-            // this.collisionChecker.update(deltaT);
         }
     }
 
     destroy() {
-        this.layout.destroy()
-        this.layout = null
+        this.userInterface.destroy()
+        this.userInterface = null
 
         this.floor.destroy()
         this.floor = null
 
         this.light.destroy()
         this.light = null
-
-        // this.collisionChecker.destroy()
-        // this.collisionChecker = null
     }
 
 }

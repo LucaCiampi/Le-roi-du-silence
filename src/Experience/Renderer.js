@@ -8,10 +8,10 @@ export default class Renderer
         this.sizes = _options.sizes;
         this.camera = _options.camera;
 
-        this.setInstance();
+        this.init();
     }
 
-    setInstance(){
+    init(){
         this.instance = new THREE.WebGLRenderer({
             canvas: this.canvas
         });

@@ -7,7 +7,6 @@ export default class GlobalParameter {
 
         this.sounds = new Sounds();
 
-
         this.eventReceiver();
         this.reset();
     }

@@ -36,14 +36,8 @@ export default class Controls {
         this.raycaster = new THREE.Raycaster(new THREE.Vector3(), new THREE.Vector3(0, - 1, 0), 0, 10);
 
         this.eventReciever();
-
-        //
-        const blocker = document.getElementById('blocker');
-        const instructions = document.getElementById('instructions');
-
-
     }
-
+    
     eventReciever() {
         // Wait until the "Start" event from eventEmitter to allow movement
         this.event.on('Start', () => {
@@ -51,6 +45,9 @@ export default class Controls {
         });
 
         // Wait for user to click on UI to allow pointer control
+        const blocker = document.getElementById('blocker');
+        const instructions = document.getElementById('instructions');
+
         this.controls.addEventListener('lock', function () {
             instructions.style.display = 'none';
             blocker.style.display = 'none';
@@ -75,12 +72,10 @@ export default class Controls {
     }
 
     update(deltaT) {
-        this.updatePlayer(deltaT);
+        this.updatePlayerMovement(deltaT);
     }
 
-    updatePlayer(deltaT) {
-        // Move the player according to the controller
-        this.getMovement(deltaT);
+    updatePlayerMovement(deltaT) {
 
         // this.player.position.x = this.player.position.x + movement.x
         // this.player.position.z = this.player.position.z + movement.z
@@ -89,6 +84,53 @@ export default class Controls {
 
         // Update collider position
         // this.collider.setFromObject(this.player);
+
+        if (this.controls.isLocked === true) {
+
+            this.raycaster.ray.origin.copy(this.controls.getObject().position);
+            this.raycaster.ray.origin.y -= 10;
+
+            const intersections = this.raycaster.intersectObjects(this.objects, false);
+
+            const onObject = intersections.length > 0;
+
+            const deltaMovement = deltaT / 1000;
+
+            this.velocity.x -= this.velocity.x * 10.0 * deltaMovement;
+            this.velocity.z -= this.velocity.z * 10.0 * deltaMovement;
+
+            this.velocity.y -= 9.8 * 100.0 * deltaMovement; // 100.0 = mass
+
+            this.direction.z = Number(this.movement.moveForward) - Number(this.movement.moveBackward);
+            this.direction.x = Number(this.movement.moveRight) - Number(this.movement.moveLeft);
+            this.direction.normalize(); // this ensures consistent movement in all this.directions
+
+            if (this.movement.moveForward || this.movement.moveBackward) this.velocity.z -= this.direction.z * 400.0 * deltaMovement;
+            if (this.movement.moveLeft || this.movement.moveRight) this.velocity.x -= this.direction.x * 400.0 * deltaMovement;
+
+            if (onObject === true) {
+
+                this.velocity.y = Math.max(0, this.velocity.y);
+                this.movement.canJump = true;
+
+            }
+
+            this.controls.moveRight(- this.velocity.x * deltaMovement);
+            this.controls.moveForward(- this.velocity.z * deltaMovement);
+
+            this.controls.getObject().position.y += (this.velocity.y * deltaMovement); // new behavior
+
+            // if (this.controls.getObject().position.y < 10) {
+            if (this.controls.getObject().position.y < 0) {
+
+                this.velocity.y = 0;
+                // this.controls.getObject().position.y = 10;
+                this.controls.getObject().position.y = 0;
+
+                this.movement.canJump = true;
+
+            }
+        }
     }
 
     onKeyDown(event) {
@@ -150,54 +192,4 @@ export default class Controls {
 
         }
     };
-
-    getMovement(deltaT) {
-
-        if (this.controls.isLocked === true) {
-
-            this.raycaster.ray.origin.copy(this.controls.getObject().position);
-            this.raycaster.ray.origin.y -= 10;
-
-            const intersections = this.raycaster.intersectObjects(this.objects, false);
-
-            const onObject = intersections.length > 0;
-
-            const deltaMovement = deltaT / 1000;
-
-            this.velocity.x -= this.velocity.x * 10.0 * deltaMovement;
-            this.velocity.z -= this.velocity.z * 10.0 * deltaMovement;
-
-            this.velocity.y -= 9.8 * 100.0 * deltaMovement; // 100.0 = mass
-
-            this.direction.z = Number(this.movement.moveForward) - Number(this.movement.moveBackward);
-            this.direction.x = Number(this.movement.moveRight) - Number(this.movement.moveLeft);
-            this.direction.normalize(); // this ensures consistent movement in all this.directions
-
-            if (this.movement.moveForward || this.movement.moveBackward) this.velocity.z -= this.direction.z * 400.0 * deltaMovement;
-            if (this.movement.moveLeft || this.movement.moveRight) this.velocity.x -= this.direction.x * 400.0 * deltaMovement;
-
-            if (onObject === true) {
-
-                this.velocity.y = Math.max(0, this.velocity.y);
-                this.movement.canJump = true;
-
-            }
-
-            this.controls.moveRight(- this.velocity.x * deltaMovement);
-            this.controls.moveForward(- this.velocity.z * deltaMovement);
-
-            console.log(this)
-
-            this.controls.getObject().position.y += (this.velocity.y * deltaMovement); // new behavior
-
-            if (this.controls.getObject().position.y < 10) {
-
-                this.velocity.y = 0;
-                this.controls.getObject().position.y = 10;
-
-                this.movement.canJump = true;
-
-            }
-        }
-    }
 }  

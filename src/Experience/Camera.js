@@ -22,7 +22,7 @@ export default class Camera {
 
     setInstance() {
         this.instance = new THREE.PerspectiveCamera(60, this.sizes.width / this.sizes.height, 1, 1000);
-        this.instance.position.set(0, 0, 10);
+        this.instance.position.set(0, 0, 0);
         this.scene.add(this.instance);
     }
 
@@ -43,7 +43,7 @@ export default class Camera {
     }
 
     resize() {
-        this.controls.handleResize();
+        // this.controls.handleResize();
         this.instance.aspect = this.sizes.width / this.sizes.height;
         this.instance.updateProjectionMatrix();
     }
@@ -56,6 +56,8 @@ export default class Camera {
         // if (this.resources.playerPosition) {
         //     this.instance.position.copy(this.resources.playerPosition)
         // }
+
+        // console.log(this.instance.position)
     }
 
 }

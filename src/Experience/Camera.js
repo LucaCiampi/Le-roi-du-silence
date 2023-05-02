@@ -26,22 +26,6 @@ export default class Camera {
         this.scene.add(this.instance);
     }
 
-    setControl() {
-        // TODO: remove this
-        this.controls = new PointerLockControls(this.instance, this.canvas);
-
-        this.controls.addEventListener('lock', () => {
-            this.player.controlsEnabled = true;
-            console.log('lock')
-        });
-        this.controls.addEventListener('unlock', () => {
-            this.player.controlsEnabled = false;
-            console.log('unlock')
-        });
-
-        this.scene.add(this.controls.getObject())
-    }
-
     resize() {
         // this.controls.handleResize();
         this.instance.aspect = this.sizes.width / this.sizes.height;
@@ -50,7 +34,6 @@ export default class Camera {
 
     update() {
         // console.log(this.controls)
-        // console.log(this)
         // this.controls.update();
 
         // if (this.resources.playerPosition) {

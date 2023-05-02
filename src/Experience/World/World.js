@@ -42,7 +42,8 @@ export default class World {
             camera: this.camera,
             scene: this.scene,
             resources: this.resources,
-            event: this.event
+            event: this.event,
+            floor: this.floor,
         })
 
         this.light = new Light({
@@ -57,11 +58,13 @@ export default class World {
             parameter: this.parameter
         })
 
-        this.collisionChecker = new CollisionChecker({
-            event: this.event,
-            parameter: this.parameter,
-            floor: this.floor,
-        })
+        // this.collisionChecker = new CollisionChecker({
+        //     event: this.event,
+        //     parameter: this.parameter,
+        //     camera: this.camera,
+        //     controls: this.controls,
+        //     floor: this.floor,
+        // })
 
         this.isReady = true;
     }
@@ -69,7 +72,7 @@ export default class World {
     update(deltaT) {
         if (this.isReady && this.parameter.canUpdate) {
             this.controls.update(deltaT)
-            this.collisionChecker.update();
+            // this.collisionChecker.update(deltaT);
         }
     }
 

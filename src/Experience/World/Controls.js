@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import { PointerLockControls } from 'three/addons/controls/PointerLockControls.js';
+import { Capsule } from 'three/addons/math/Capsule.js';
 
 export default class Controls {
     constructor(_options) {
@@ -8,40 +9,62 @@ export default class Controls {
         this.scene = _options.scene;
         this.resources = _options.resources;
         this.event = _options.event;
+        this.floor = _options.floor;
 
         this.controls = null;
-        this.velocity = null;
-        this.direction = null;
-        this.vertex = null;
-        this.raycaster = null;
-        this.movement = {
-            moveForward: false,
-            moveBackward: false,
-            moveLeft: false,
-            moveRight: false,
-            canJump: false,
-        };
+        this.playerVelocity = null;
+        this.playerDirection = null;
+        this.playerOnFloor = false;
 
-        // TODO: remove this below
-        this.objects = []
+        this.keyStates = {};
+
+        this.GRAVITY = 30;
 
         this.init();
     }
 
     init() {
         this.controls = new PointerLockControls(this.camera.instance, document.body);
-        this.velocity = new THREE.Vector3();
-        this.direction = new THREE.Vector3();
-        this.vertex = new THREE.Vector3();
-        this.raycaster = new THREE.Raycaster(new THREE.Vector3(), new THREE.Vector3(0, - 1, 0), 0, 10);
+        this.playerVelocity = new THREE.Vector3();
+        this.playerDirection = new THREE.Vector3();
+        this.playerCollider = new Capsule(new THREE.Vector3(0, 0.35, 0), new THREE.Vector3(0, 1, 0), 0.35);
+        this.DISTANCE_THRESHOLD = 0.5
+
+        this.camera.instance.rotation.order = 'YXZ';
 
         this.eventReciever();
+
+        this.clock = new THREE.Clock();
     }
-    
+
+    // update(deltaT) {
+    //     this.controlsKeyBindings(deltaT)
+    //     this.updatePlayer(deltaT);
+    //     this.teleportPlayerIfOob();
+    // }
+
+    update() {
+        const deltaTime = Math.min(0.05, this.clock.getDelta()) / 5;
+
+        // we look for collisions in substeps to mitigate the risk of
+        // an object traversing another too quickly for detection.
+
+        for (let i = 0; i < 5; i++) {
+
+            this.controlsKeyBindings(deltaTime);
+
+            this.updatePlayer(deltaTime);
+
+            this.teleportPlayerIfOob();
+
+        }
+
+    }
+
     eventReciever() {
         // Wait until the "Start" event from eventEmitter to allow movement
         this.event.on('Start', () => {
-            this.allowMovement();
+            this.allowPlayerMovement();
         });
 
         // Wait for user to click on UI to allow pointer control
@@ -59,137 +82,134 @@ export default class Controls {
         });
     }
 
-    allowMovement() {
+    allowPlayerMovement() {
         this.controls.lock();
 
         document.addEventListener('keydown', (event) => {
-            this.onKeyDown(event)
+            this.keyStates[event.code] = true;
         });
 
         document.addEventListener('keyup', (event) => {
-            this.onKeyUp(event)
+            this.keyStates[event.code] = false;
         });
     }
 
-    update(deltaT) {
-        this.updatePlayerMovement(deltaT);
-    }
+    controlsKeyBindings(deltaTime) {
 
-    updatePlayerMovement(deltaT) {
+        // gives a bit of air control
+        const speedDelta = deltaTime * (this.playerOnFloor ? 25 : 8);
 
-        // this.player.position.x = this.player.position.x + movement.x
-        // this.player.position.z = this.player.position.z + movement.z
+        if (this.keyStates['KeyW']) {
 
-        // this.resources.playerPosition = this.player.position
+            this.playerVelocity.add(this.getForwardVector().multiplyScalar(speedDelta));
 
-        // Update collider position
-        // this.collider.setFromObject(this.player);
+        }
 
-        if (this.controls.isLocked === true) {
+        if (this.keyStates['KeyS']) {
 
-            this.raycaster.ray.origin.copy(this.controls.getObject().position);
-            this.raycaster.ray.origin.y -= 10;
+            this.playerVelocity.add(this.getForwardVector().multiplyScalar(- speedDelta));
 
-            const intersections = this.raycaster.intersectObjects(this.objects, false);
+        }
 
-            const onObject = intersections.length > 0;
+        if (this.keyStates['KeyA']) {
 
-            const deltaMovement = deltaT / 1000;
+            this.playerVelocity.add(this.getSideVector().multiplyScalar(- speedDelta));
 
-            this.velocity.x -= this.velocity.x * 10.0 * deltaMovement;
-            this.velocity.z -= this.velocity.z * 10.0 * deltaMovement;
+        }
 
-            this.velocity.y -= 9.8 * 100.0 * deltaMovement; // 100.0 = mass
+        if (this.keyStates['KeyD']) {
 
-            this.direction.z = Number(this.movement.moveForward) - Number(this.movement.moveBackward);
-            this.direction.x = Number(this.movement.moveRight) - Number(this.movement.moveLeft);
-            this.direction.normalize(); // this ensures consistent movement in all this.directions
+            this.playerVelocity.add(this.getSideVector().multiplyScalar(speedDelta));
 
-            if (this.movement.moveForward || this.movement.moveBackward) this.velocity.z -= this.direction.z * 400.0 * deltaMovement;
-            if (this.movement.moveLeft || this.movement.moveRight) this.velocity.x -= this.direction.x * 400.0 * deltaMovement;
+        }
 
-            if (onObject === true) {
+        if (this.playerOnFloor) {
 
-                this.velocity.y = Math.max(0, this.velocity.y);
-                this.movement.canJump = true;
+            if (this.keyStates['Space']) {
+
+                this.playerVelocity.y = 15;
 
             }
 
-            this.controls.moveRight(- this.velocity.x * deltaMovement);
-            this.controls.moveForward(- this.velocity.z * deltaMovement);
-
-            this.controls.getObject().position.y += (this.velocity.y * deltaMovement); // new behavior
-
-            // if (this.controls.getObject().position.y < 10) {
-            if (this.controls.getObject().position.y < 0) {
-
-                this.velocity.y = 0;
-                // this.controls.getObject().position.y = 10;
-                this.controls.getObject().position.y = 0;
-
-                this.movement.canJump = true;
-
-            }
         }
     }
 
-    onKeyDown(event) {
+    getForwardVector() {
 
-        switch (event.code) {
+        this.camera.instance.getWorldDirection(this.playerDirection);
+        this.playerDirection.y = 0;
+        this.playerDirection.normalize();
 
-            case 'ArrowUp':
-            case 'KeyW':
-                this.movement.moveForward = true;
-                break;
+        return this.playerDirection;
 
-            case 'ArrowLeft':
-            case 'KeyA':
-                this.movement.moveLeft = true;
-                break;
+    }
 
-            case 'ArrowDown':
-            case 'KeyS':
-                this.movement.moveBackward = true;
-                break;
+    getSideVector() {
 
-            case 'ArrowRight':
-            case 'KeyD':
-                this.movement.moveRight = true;
-                break;
+        this.camera.instance.getWorldDirection(this.playerDirection);
+        this.playerDirection.y = 0;
+        this.playerDirection.normalize();
+        this.playerDirection.cross(this.camera.instance.up);
 
-            case 'Space':
-                if (this.movement.canJump === true) this.velocity.y += 350;
-                this.movement.canJump = false;
-                break;
+        return this.playerDirection;
+
+    }
+
+    updatePlayer(deltaTime) {
+        let damping = Math.exp(- 4 * deltaTime) - 1;
+
+        if (!this.playerOnFloor) {
+
+            this.playerVelocity.y -= this.GRAVITY * deltaTime;
+
+            // small air resistance
+            damping *= 0.1;
+
+        }
+
+        this.playerVelocity.addScaledVector(this.playerVelocity, damping);
+
+        const deltaPosition = this.playerVelocity.clone().multiplyScalar(deltaTime);
+        this.playerCollider.translate(deltaPosition);
+
+        this.playerCollisions();
+
+        this.camera.instance.position.copy(this.playerCollider.end);
+    }
+
+    playerCollisions() {
+        const result = this.floor.worldOctree.capsuleIntersect(this.playerCollider);
+
+        this.playerOnFloor = false;
+
+        // console.log(result)
+
+        if (result) {
+
+            this.playerOnFloor = result.normal.y > 0;
+
+            if (!this.playerOnFloor) {
+
+                this.playerVelocity.addScaledVector(result.normal, - result.normal.dot(this.playerVelocity));
+
+            }
+
+            this.playerCollider.translate(result.normal.multiplyScalar(result.depth));
+
+        }
+    }
+
+    teleportPlayerIfOob() {
+
+        if (this.camera.instance.position.y <= - 25) {
+
+            this.playerCollider.start.set(0, 0.35, 0);
+            this.playerCollider.end.set(0, 1, 0);
+            this.playerCollider.radius = 0.35;
+            this.camera.instance.position.copy(this.playerCollider.end);
+            this.camera.instance.rotation.set(0, 0, 0);
 
         }
 
-    };
-
-    onKeyUp(event) {
-
-        switch (event.code) {
-
-            case 'ArrowUp':
-            case 'KeyW':
-                this.movement.moveForward = false;
-                break;
-
-            case 'ArrowLeft':
-            case 'KeyA':
-                this.movement.moveLeft = false;
-                break;
-
-            case 'ArrowDown':
-            case 'KeyS':
-                this.movement.moveBackward = false;
-                break;
-
-            case 'ArrowRight':
-            case 'KeyD':
-                this.movement.moveRight = false;
-                break;
-
-        }
-    };
+    }
 }  

@@ -5,7 +5,11 @@ export default class CollisionChecker {
     constructor(_options) {
         this.event = _options.event;
         this.parameter = _options.parameter;
+        this.camera = _options.camera;
+        this.controls = _options.controls;
         this.floor = _options.floor;
+
+        this.playerCollider = null;
 
         this.init()
     }
@@ -13,45 +17,42 @@ export default class CollisionChecker {
     init() {
         this.playerCollider = new Capsule( new THREE.Vector3( 0, 0.35, 0 ), new THREE.Vector3( 0, 1, 0 ), 0.35 );
         this.DISTANCE_THRESHOLD = 0.5
-        this.playerOnFloor = false;
     }
 
-    update() {
+    update(deltaT) {
+        this.updatePlayer(deltaT);
+    }
+    
+    updatePlayer(deltaT) {
+        const deltaPosition = this.controls.playerVelocity.clone().multiplyScalar( deltaT );
+        this.playerCollider.translate( deltaPosition );
+        
         this.checkPlayerOctreeCollision();
+
+        this.camera.instance.position.copy( this.playerCollider.end );
+
+        // console.log(this.camera.instance.position)
     }
 
     checkPlayerOctreeCollision() {
         const result = this.floor.worldOctree.capsuleIntersect(this.playerCollider);
 
-        this.playerOnFloor = false;
+        this.controls.playerOnFloor = false;
+
+        // console.log(result)
 
         if (result) {
 
-            this.playerOnFloor = result.normal.y > 0;
+            this.controls.playerOnFloor = result.normal.y > 0;
 
-            if (!this.playerOnFloor) {
+            if (!this.controls.playerOnFloor) {
 
-                playerVelocity.addScaledVector(result.normal, - result.normal.dot(playerVelocity));
+                this.controls.playerVelocity.addScaledVector(result.normal, - result.normal.dot(this.controls.playerVelocity));
 
             }
 
             this.playerCollider.translate(result.normal.multiplyScalar(result.depth));
 
         }
-    }
-
-    addPoint(item) {
-        if (item.name == 'good') {
-            this.parameter.score += 1;
-        } else if (item.name == 'bad') {
-            if (this.parameter.score > 0) {
-                this.parameter.score -= 1;
-            }
-            this.parameter.multiplier = 1;
-        } else {
-            this.parameter.score += 5 * this.parameter.multiplier;
-            this.parameter.multiplier += 1
-        }
-        this.event.updateScoreIndicator();
     }
 }

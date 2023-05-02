@@ -66,7 +66,7 @@ export default class Floor {
             this.setHelper();
         })
 
-        // this.scene.position.y = 0
+        // this.scene.position.y = -200;
     }
 
     setHelper() {

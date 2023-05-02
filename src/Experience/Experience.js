@@ -43,14 +43,13 @@ export default class Experience {
         this.time = new Time();
         this.scene = new THREE.Scene();
         this.resources = new Resources(sources);
-        this.debug = new Debug();
 
         // Setup
         this.event = new Event()
 
         this.camera = new Camera({
             scene: this.scene,
-            sizes: this.sizes,
+            sizes: this.sizes
         });
 
         this.renderer = new Renderer({
@@ -63,6 +62,7 @@ export default class Experience {
         this.world = new World({
             event: this.event,
             scene: this.scene,
+            debug: this.debug,
             resources: this.resources,
             canvas: this.canvas,
             camera: this.camera,
@@ -90,6 +90,10 @@ export default class Experience {
     ready() {
         this.world.ready();
         this.event.ready();
+        
+        this.debug = new Debug({
+            world: this.world
+        });
     }
 
     resize() {

@@ -8,6 +8,7 @@ import Controls from "./Controls";
 export default class World {
     constructor(_options) {
         this.event = _options.event;
+        this.debug = _options.debug;
         this.scene = _options.scene;
         this.resources = _options.resources;
         this.camera = _options.camera;
@@ -34,7 +35,6 @@ export default class World {
         })
 
         this.controls = new Controls({
-            canvas: this.canvas,
             camera: this.camera,
             event: this.event,
             floor: this.floor,

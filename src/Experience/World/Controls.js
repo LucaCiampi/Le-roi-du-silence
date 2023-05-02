@@ -4,7 +4,6 @@ import { Capsule } from 'three/addons/math/Capsule.js';
 
 export default class Controls {
     constructor(_options) {
-        this.canvas = _options.canvas;
         this.camera = _options.camera;
         this.event = _options.event;
         this.floor = _options.floor;

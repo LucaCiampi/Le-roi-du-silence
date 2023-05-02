@@ -1,6 +1,3 @@
-import { OctreeHelper } from 'three/addons/helpers/OctreeHelper.js';
-import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
-
 export default class Layout {
     constructor(_options) {
         this.scene = _options.scene;

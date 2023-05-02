@@ -5,8 +5,8 @@ import GlobalParameter from "./GlobalParameter";
 import Layout from "./GameElements/Layout";
 import Floor from "./GameElements/Floor";
 import Light from "./GameElements/Light";
-import Player from "./GameElements/Player/Player";
 import TestCube from "./GameElements/TestCube";
+import Controls from "./Controls";
 
 export default class World {
     constructor(_options) {
@@ -15,7 +15,6 @@ export default class World {
         this.resources = _options.resources;
         this.camera = _options.camera;
         this.canvas = _options.canvas;
-        this.player = _options.player;
 
         this.parameter = new GlobalParameter({
             event: this.event,
@@ -30,22 +29,21 @@ export default class World {
             parameter: this.parameter,
             event: this.event
         })
-        
+
         this.floor = new Floor({
             scene: this.scene,
             resources: this.resources,
             parameter: this.parameter
         })
 
-        this.player = new Player({
-            event: this.event,
+        this.controls = new Controls({
+            canvas: this.canvas,
+            camera: this.camera,
             scene: this.scene,
             resources: this.resources,
-            parameter: this.parameter,
-            canvas: this.canvas,
-            camera: this.camera
+            event: this.event
         })
-        
+
         this.light = new Light({
             scene: this.scene,
             resources: this.resources,
@@ -63,7 +61,7 @@ export default class World {
 
     update(deltaT) {
         if (this.isReady && this.parameter.canUpdate) {
-            this.player.update(deltaT)
+            this.controls.update(deltaT)
             // this.collisionChecker.update();
         }
     }
@@ -71,15 +69,12 @@ export default class World {
     destroy() {
         this.layout.destroy()
         this.layout = null
-        
+
         this.floor.destroy()
         this.floor = null
-        
+
         this.light.destroy()
         this.light = null
-
-        this.player.destroy()
-        this.player = null
 
         // this.collisionChecker.destroy()
         // this.collisionChecker = null

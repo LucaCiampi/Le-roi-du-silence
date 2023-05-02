@@ -1,13 +1,13 @@
 import * as THREE from "three";
 import { PointerLockControls } from 'three/addons/controls/PointerLockControls.js';
 
-export default class Controller {
+export default class Controls {
     constructor(_options) {
-        // this.player = _options.player;
         this.canvas = _options.canvas;
         this.camera = _options.camera;
         this.scene = _options.scene;
         this.resources = _options.resources;
+        this.event = _options.event;
 
         this.controls = null;
         this.velocity = null;
@@ -35,23 +35,30 @@ export default class Controller {
         this.vertex = new THREE.Vector3();
         this.raycaster = new THREE.Raycaster(new THREE.Vector3(), new THREE.Vector3(0, - 1, 0), 0, 10);
 
+        this.eventReciever();
 
         //
         const blocker = document.getElementById('blocker');
         const instructions = document.getElementById('instructions');
 
-        this.controls.addEventListener('lock', function () {
 
+    }
+
+    eventReciever() {
+        // Wait until the "Start" event from eventEmitter to allow movement
+        this.event.on('Start', () => {
+            this.allowMovement();
+        });
+
+        // Wait for user to click on UI to allow pointer control
+        this.controls.addEventListener('lock', function () {
             instructions.style.display = 'none';
             blocker.style.display = 'none';
-
         });
 
         this.controls.addEventListener('unlock', function () {
-
             blocker.style.display = 'block';
             instructions.style.display = '';
-
         });
     }
 
@@ -65,6 +72,23 @@ export default class Controller {
         document.addEventListener('keyup', (event) => {
             this.onKeyUp(event)
         });
+    }
+
+    update(deltaT) {
+        this.updatePlayer(deltaT);
+    }
+
+    updatePlayer(deltaT) {
+        // Move the player according to the controller
+        this.getMovement(deltaT);
+
+        // this.player.position.x = this.player.position.x + movement.x
+        // this.player.position.z = this.player.position.z + movement.z
+
+        // this.resources.playerPosition = this.player.position
+
+        // Update collider position
+        // this.collider.setFromObject(this.player);
     }
 
     onKeyDown(event) {
@@ -154,8 +178,8 @@ export default class Controller {
 
             if (onObject === true) {
 
-            this.velocity.y = Math.max(0, this.velocity.y);
-            this.movement.canJump = true;
+                this.velocity.y = Math.max(0, this.velocity.y);
+                this.movement.canJump = true;
 
             }
 

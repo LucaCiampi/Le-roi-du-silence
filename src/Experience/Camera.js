@@ -39,9 +39,6 @@ export default class Camera {
             console.log('unlock')
         });
 
-        console.log(this.instance)
-        console.log(this.controls)
-
         this.scene.add(this.controls.getObject())
     }
 

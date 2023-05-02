@@ -7,6 +7,7 @@ import Floor from "./GameElements/Floor";
 import Light from "./GameElements/Light";
 import TestCube from "./GameElements/TestCube";
 import Controls from "./Controls";
+import CollisionChecker from "./CollisionChecker";
 
 export default class World {
     constructor(_options) {
@@ -56,13 +57,19 @@ export default class World {
             parameter: this.parameter
         })
 
+        this.collisionChecker = new CollisionChecker({
+            event: this.event,
+            parameter: this.parameter,
+            floor: this.floor,
+        })
+
         this.isReady = true;
     }
 
     update(deltaT) {
         if (this.isReady && this.parameter.canUpdate) {
             this.controls.update(deltaT)
-            // this.collisionChecker.update();
+            this.collisionChecker.update();
         }
     }
 

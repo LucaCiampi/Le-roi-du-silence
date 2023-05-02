@@ -74,5 +74,4 @@ export default class Floor {
         helper.visible = true;
         this.scene.add(helper);
     }
-
 }

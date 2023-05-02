@@ -14,6 +14,7 @@ export default class Layout {
     init() {
         this.introMenu = document.getElementById('introMenu');
         this.pauseMenu = document.getElementById('pauseMenu');
+        this.endMenu = document.getElementById('endMenu');
 
         this.eventReceiver();
         this.eventListener();
@@ -31,6 +32,9 @@ export default class Layout {
         })
         this.event.on('Continue', () => {
             this.hidePauseMenu()
+        })
+        this.event.on('End', () => {
+            this.showEndMenu()
         })
     }
 
@@ -58,6 +62,14 @@ export default class Layout {
 
     hidePauseMenu() {
         this.pauseMenu.classList.add('d-none')
+    }
+    
+    showEndMenu() {
+        this.endMenu.classList.remove('d-none')
+    }
+
+    hideEndMenu() {
+        this.endMenu.classList.add('d-none')
     }
 
 }

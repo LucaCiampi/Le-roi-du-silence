@@ -9,6 +9,7 @@ export default class GlobalParameter {
         this.counterOn = false;
         this.canUpdate = false;
         this.currentZone = null;
+        this.gameEnded = false;
 
         this.NUMBER_OF_ZONES = 4;
 
@@ -55,7 +56,8 @@ export default class GlobalParameter {
             this.currentZone += 1
         }
         else {
-            console.log("all zones reached")
+            this.event.end();
+            this.gameEnded = true;
         }
     }
 

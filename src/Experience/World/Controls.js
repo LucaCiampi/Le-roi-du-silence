@@ -5,6 +5,7 @@ import { Capsule } from 'three/addons/math/Capsule.js';
 export default class Controls {
     constructor(_options) {
         this.camera = _options.camera;
+        this.parameter = _options.parameter;
         this.userInterface = _options.userInterface;
         this.event = _options.event;
         this.floor = _options.floor;
@@ -70,6 +71,10 @@ export default class Controls {
         this.event.on('Continue', () => {
             this.allowPlayerMovement();
         })
+
+        this.event.on('End', () => {
+            this.controls.unlock();
+        })
     }
 
     /**
@@ -78,7 +83,9 @@ export default class Controls {
      */
     setPointerLockControlsEventListeners() {
         this.controls.addEventListener('unlock', () => {
-            this.event.pause();
+            if (!this.parameter.gameEnded) {
+                this.event.pause();
+            }
         });
     }
 

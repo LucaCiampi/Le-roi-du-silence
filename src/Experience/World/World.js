@@ -38,6 +38,7 @@ export default class World {
 
         this.controls = new Controls({
             camera: this.camera,
+            parameter: this.parameter,
             userInterface: this.userInterface,
             event: this.event,
             floor: this.floor,
@@ -84,7 +85,10 @@ export default class World {
     update(deltaT) {
         if (this.isReady && this.parameter.canUpdate) {
             this.controls.update(deltaT)
-            this.checkZone(this.parameter.currentZone)
+
+            if (!this.parameter.gameEnded) {
+                this.checkZone(this.parameter.currentZone)
+            }
         }
     }
 

@@ -38,6 +38,7 @@ export default class World {
 
         this.controls = new Controls({
             camera: this.camera,
+            userInterface: this.userInterface,
             event: this.event,
             floor: this.floor,
         })
@@ -57,23 +58,23 @@ export default class World {
         this.zones = [
             new Zone({
                 name: "zone1",
-                startPosition: new Vector2(0, 0),
+                startPosition: new Vector2(1, 1),
                 endPosition: new Vector2(20, 20),
             }),
             new Zone({
                 name: "zone2",
                 startPosition: new Vector2(-20, -20),
-                endPosition: new Vector2(0, 0),
+                endPosition: new Vector2(-1, -1),
             }),
             new Zone({
                 name: "zone3",
-                startPosition: new Vector2(-20, 0),
-                endPosition: new Vector2(0, 20),
+                startPosition: new Vector2(-20, -1),
+                endPosition: new Vector2(1, 20),
             }),
             new Zone({
                 name: "zone4",
-                startPosition: new Vector2(0, -20),
-                endPosition: new Vector2(20, 0),
+                startPosition: new Vector2(-1, -20),
+                endPosition: new Vector2(20, 1),
             }),
         ]
 
@@ -83,28 +84,26 @@ export default class World {
     update(deltaT) {
         if (this.isReady && this.parameter.canUpdate) {
             this.controls.update(deltaT)
-            this.checkZone()
+            this.checkZone(this.parameter.currentZone)
         }
     }
 
-    checkZone() {
+    checkZone(zoneID) {
 
         // TODO: once the player has been in the zone, remove the listener and listen to the next zone (for loop)
 
-        this.zones.forEach((zone) => {
-            if (zone.playerInZone(this.controls.playerCollider.end)) {
-                console.log('in zone :' + zone.name)
-            }
+        if (this.zones[zoneID].hasPlayerInZone(this.controls.playerCollider.end)) {
+            console.log('zone ' + this.zones[zoneID].name + ' reached')
+            this.parameter.incrementCurrentZone();
+        }
 
-            // zone.on('in', (_data) => {
-            //     this.camera.angle.set(_data.cameraAngle)
-            // })
+        // zone.on('in', (_data) => {
+        //     this.camera.angle.set(_data.cameraAngle)
+        // })
 
-            // zone.on('out', () => {
-            //     this.camera.angle.set('default')
-            // })
-        })
-
+        // zone.on('out', () => {
+        //     this.camera.angle.set('default')
+        // })
     }
 
     destroy() {

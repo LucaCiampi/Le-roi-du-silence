@@ -5,15 +5,15 @@ export default class Layout {
         this.parameter = _options.parameter;
         this.event = _options.event;
 
-        this.blocker = null;
-        this.introUI = null;
+        this.introMenu = null;
+        this.pauseMenu = null;
 
         this.init();
     }
 
     init() {
-        this.blocker = document.getElementById('blocker')
-        this.introUI = document.getElementById('instructions')
+        this.introMenu = document.getElementById('introMenu');
+        this.pauseMenu = document.getElementById('pauseMenu');
 
         this.eventReceiver();
         this.eventListener();
@@ -21,17 +21,43 @@ export default class Layout {
 
     eventReceiver() {
         this.event.on('Ready', () => {
-            this.displayIntroUI()
+            this.showIntroMenu()
+        })
+        this.event.on('Start', () => {
+            this.hideIntroMenu()
+        })
+        this.event.on('Pause', () => {
+            this.showPauseMenu()
+        })
+        this.event.on('Continue', () => {
+            this.hidePauseMenu()
         })
     }
 
     eventListener() {
-        this.introUI.addEventListener('click', () => {
+        this.introMenu.addEventListener('click', () => {
             this.event.start();
+        })
+
+        this.pauseMenu.addEventListener('click', () => {
+            this.event.continue();
         })
     }
 
-    displayIntroUI() {
-        this.blocker.classList.remove('d-none')
+    showIntroMenu() {
+        this.introMenu.classList.remove('d-none')
     }
+
+    hideIntroMenu() {
+        this.introMenu.classList.add('d-none')
+    }
+    
+    showPauseMenu() {
+        this.pauseMenu.classList.remove('d-none')
+    }
+
+    hidePauseMenu() {
+        this.pauseMenu.classList.add('d-none')
+    }
+
 }

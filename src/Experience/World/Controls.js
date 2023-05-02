@@ -5,12 +5,14 @@ import { Capsule } from 'three/addons/math/Capsule.js';
 export default class Controls {
     constructor(_options) {
         this.camera = _options.camera;
+        this.userInterface = _options.userInterface;
         this.event = _options.event;
         this.floor = _options.floor;
 
         this.controls = null;
         this.playerVelocity = null;
         this.playerDirection = null;
+        this.playerCollider = null;
         this.playerOnFloor = false;
 
         this.keyStates = {};
@@ -25,10 +27,9 @@ export default class Controls {
         this.playerVelocity = new THREE.Vector3();
         this.playerDirection = new THREE.Vector3();
         this.playerCollider = new Capsule(new THREE.Vector3(0, 0.35, 0), new THREE.Vector3(0, 1, 0), 0.35);
+        this.clock = new THREE.Clock();
 
         this.eventReciever();
-
-        this.clock = new THREE.Clock();
     }
 
     // update(deltaT) {
@@ -63,20 +64,21 @@ export default class Controls {
         // Wait until the "Start" event from eventEmitter to allow movement
         this.event.on('Start', () => {
             this.allowPlayerMovement();
+            this.setPointerLockControlsEventListeners();
         });
 
-        // Wait for user to click on UI to allow pointer control
-        const blocker = document.getElementById('blocker');
-        const instructions = document.getElementById('instructions');
+        this.event.on('Continue', () => {
+            this.allowPlayerMovement();
+        })
+    }
 
-        this.controls.addEventListener('lock', function () {
-            instructions.style.display = 'none';
-            blocker.style.display = 'none';
-        });
-
-        this.controls.addEventListener('unlock', function () {
-            blocker.style.display = 'block';
-            instructions.style.display = '';
+    /**
+     * Event listeners related to pointer lock control
+     * If user presses escape, pauses the game
+     */
+    setPointerLockControlsEventListeners() {
+        this.controls.addEventListener('unlock', () => {
+            this.event.pause();
         });
     }
 

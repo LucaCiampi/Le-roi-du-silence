@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
 
@@ -44,17 +45,13 @@
 </head>
 
 <body>
-    <div id="blocker" class="blocker d-none">
-        <div id="instructions" class="instructions">
-            <p style="font-size:36px">
-                Click to play
-            </p>
-            <p>
-                Move: WASD<br/>
-                Jump: SPACE<br/>
-                Look: MOUSE
-            </p>
-        </div>
+    <div id="introMenu" class="menu intro-menu d-none">
+        <h1>Bienvenue</h1>
+        <p>Vous allez être projetés dans la tête de machin mes couilles sur un plateau.</p>
+        <p>Bonne découverte.</p>
+    </div>
+    <div id="pauseMenu" class="menu pause-menu d-none">
+        <h2>PAUSE</h2>
     </div>
     <canvas class="webgl"></canvas>
     <script type="module" src="./script.js"></script>

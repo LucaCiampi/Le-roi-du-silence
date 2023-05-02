@@ -20,7 +20,7 @@ export default class Zone {
         this.boundingBox = new THREE.Box2(this.startPosition, this.endPosition);
     }
 
-    playerInZone(playerPosition) {
+    hasPlayerInZone(playerPosition) {
         if(this.boundingBox.containsPoint(new THREE.Vector2(playerPosition.x, playerPosition.z))) {
             return true
         }

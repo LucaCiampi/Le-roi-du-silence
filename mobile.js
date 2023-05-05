@@ -3,28 +3,35 @@ let ul = document.createElement('ul')
 container.appendChild(ul)
 let sessionId = null
 
-export async function createMobileInterface(id){
+export function createMobileInterface(id, data){
+    console.log('data', data)
+    let h2 = document.createElement('h2')
     if (id.charAt(0) !== "?"){
-        console.log("erreur 404");
+        h2.textContent = "Erreur 404"
     }else {
         console.log(id);
         sessionId = id.slice(1)
 
-        //DEBUG display session
-        let h2 = document.createElement('h2')
         h2.textContent = sessionId.slice(17)
-        container.appendChild(h2)
     }
+    container.appendChild(h2)
 }
 
 export function displayList(list){
     while (ul.firstChild){
         ul.removeChild(ul.firstChild);
     }
-    Object.values(list[sessionId]?.messages).map((item) => {
+    if (list[sessionId]){
+        Object.values(list[sessionId]?.messages).map((item) => {
+            let msg = document.createElement('li')
+            msg.classList.add("msg")
+            msg.textContent = item.msg
+            ul.appendChild(msg)
+        })
+    }else{
         let msg = document.createElement('li')
-        msg.classList.add("msg")
-        msg.textContent = item.msg
-        ul.appendChild(msg)
-    })
+            msg.classList.add("msg")
+            msg.textContent = "404"
+            ul.appendChild(msg)
+    }
 }

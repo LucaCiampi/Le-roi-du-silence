@@ -22,54 +22,54 @@ export default class Floor {
     }
 
     setFloor() {
-        // this.scene.add(this.resources.items.floor.scene)
+        // TODO : remove loader from here
+        // TODO : only add octree from desired models
+        // (apparently the code belows adds octree to every model of the scene)
+        const loader = new GLTFLoader();
 
-        // //TODO: comment this
-        // this.resources.items.floor.scene.traverse(child => {
+        const models = ['collision-world.glb', 'zone-1.glb', 'escalier-1.glb', 'escalier-2.glb'];
+        const promises = models.map(model => loader.loadAsync('./Environment/' + model));
+        Promise.all(promises).then(gltfs => {
 
-        //     if (child.isMesh) {
+            // Ajouter chaque modèle à la scène
+            gltfs.forEach(gltf => {
+                const mesh = gltf.scene.children[0];
+                this.scene.add(mesh);
+            });
 
-        //         child.castShadow = true;
-        //         child.receiveShadow = true;
+            // Créer un Octree global et ajouter les modèles
+            this.scene.traverse(mesh => {
+                if (mesh instanceof THREE.Mesh) {
+                    this.worldOctree.fromGraphNode(mesh);
+                }
+            });
+        })
 
-        //         if (child.material.map) {
+        // loader.load('./Environment/collision-world.glb', (gltf) => {
 
-        //             child.material.map.anisotropy = 4;
+        //     this.scene.add(gltf.scene);
+
+        //     this.worldOctree.fromGraphNode(gltf.scene);
+
+        //     gltf.scene.traverse(child => {
+
+        //         if (child.isMesh) {
+
+        //             child.castShadow = true;
+        //             child.receiveShadow = true;
+
+        //             if (child.material.map) {
+
+        //                 child.material.map.anisotropy = 4;
+
+        //             }
 
         //         }
 
-        //     }
+        //     });
 
-        // });
-
-        //TODO : remove loader from here
-        const loader = new GLTFLoader();
-
-        loader.load('./Environment/collision-world.glb', (gltf) => {
-
-            this.scene.add(gltf.scene);
-
-            this.worldOctree.fromGraphNode(gltf.scene);
-
-            gltf.scene.traverse(child => {
-
-                if (child.isMesh) {
-
-                    child.castShadow = true;
-                    child.receiveShadow = true;
-
-                    if (child.material.map) {
-
-                        child.material.map.anisotropy = 4;
-
-                    }
-
-                }
-
-            });
-
-            this.setHelper()
-        })
+        //     this.setHelper()
+        // })
     }
 
     setHelper() {

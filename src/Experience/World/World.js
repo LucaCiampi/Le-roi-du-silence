@@ -4,6 +4,7 @@ import Controls from "./Controls";
 import Floor from "./GameElements/Floor";
 import Light from "./GameElements/Light";
 import TestCube from "./GameElements/TestCube";
+import Room from "./GameElements/Room";
 import Zone from './GameElements/Zone'
 import { Vector2 } from "three";
 
@@ -34,6 +35,13 @@ export default class World {
             scene: this.scene,
             resources: this.resources,
             parameter: this.parameter
+        })
+
+        this.room1 = new Room({
+            scene: this.scene,
+            resources: this.resources,
+            parameter: this.parameter,
+            name: 'zone-1',
         })
 
         this.controls = new Controls({

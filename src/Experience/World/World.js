@@ -17,6 +17,8 @@ export default class World {
         this.camera = _options.camera;
         this.canvas = _options.canvas;
 
+        this.ambientSound = null;
+
         this.parameter = new GlobalParameter({
             event: this.event,
             scene: this.scene
@@ -69,25 +71,30 @@ export default class World {
                 name: "zone1",
                 startPosition: new Vector2(1, 1),
                 endPosition: new Vector2(20, 20),
+                parameter: this.parameter,
             }),
             new Zone({
                 name: "zone2",
                 startPosition: new Vector2(-20, -20),
                 endPosition: new Vector2(-1, -1),
+                parameter: this.parameter,
             }),
             new Zone({
                 name: "zone3",
                 startPosition: new Vector2(-20, -1),
                 endPosition: new Vector2(1, 20),
+                parameter: this.parameter,
             }),
             new Zone({
                 name: "zone4",
                 startPosition: new Vector2(-1, -20),
                 endPosition: new Vector2(20, 1),
+                parameter: this.parameter,
             }),
         ]
 
         this.isReady = true;
+        this.startAmbientWorldSound();
     }
 
     update(deltaT) {
@@ -117,6 +124,10 @@ export default class World {
         // zone.on('out', () => {
         //     this.camera.angle.set('default')
         // })
+    }
+
+    startAmbientWorldSound() {
+        this.parameter.sounds.playLoop('wind')
     }
 
     destroy() {

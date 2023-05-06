@@ -6,6 +6,7 @@ import { OctreeHelper } from 'three/addons/helpers/OctreeHelper.js';
 export default class Floor {
     constructor(_options) {
         this.scene = _options.scene;
+        this.debug = _options.debug;
         this.resources = _options.resources;
         this.parameter = _options.parameter;
 
@@ -43,6 +44,14 @@ export default class Floor {
                     this.worldOctree.fromGraphNode(mesh);
                 }
             });
+
+            this.setHelper();
+
+            this.debug.gui.add(this.octreeHelper, 'visible')
+                .onChange((value) => {
+                    this.octreeHelper.visible = value;
+                    console.log(this.octreeHelper.visible)
+                });
         })
 
         // loader.load('./Environment/collision-world.glb', (gltf) => {

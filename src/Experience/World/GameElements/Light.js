@@ -1,7 +1,7 @@
 import * as THREE from "three";
 
 
-export default class Floor {
+export default class Light {
     constructor(_options) {
         this.scene = _options.scene;
         this.resources = _options.resources;
@@ -13,7 +13,7 @@ export default class Floor {
     init() {
         this.setWorldColor();
         this.setLight();
-        this.setFog();
+        // this.setFog();
     }
 
     setWorldColor() {
@@ -27,7 +27,7 @@ export default class Floor {
     }
 
     setFog() {
-        this.scene.fog = new THREE.Fog(0x88ccee, 0, 50);
+        this.scene.fog = new THREE.Fog(0x666666, 10, 20);
     }
 
 }

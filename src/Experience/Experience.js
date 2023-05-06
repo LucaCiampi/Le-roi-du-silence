@@ -40,6 +40,7 @@ export default class Experience {
     init() {
         // options
         this.sizes = new Sizes();
+        this.debug = new Debug();
         this.time = new Time();
         this.scene = new THREE.Scene();
         this.resources = new Resources(sources);
@@ -90,10 +91,6 @@ export default class Experience {
     ready() {
         this.world.ready();
         this.event.ready();
-        
-        this.debug = new Debug({
-            world: this.world
-        });
     }
 
     resize() {

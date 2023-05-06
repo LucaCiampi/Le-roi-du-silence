@@ -36,7 +36,8 @@ export default class World {
         this.floor = new Floor({
             scene: this.scene,
             resources: this.resources,
-            parameter: this.parameter
+            parameter: this.parameter,
+            debug: this.debug
         })
 
         this.room1 = new Room({

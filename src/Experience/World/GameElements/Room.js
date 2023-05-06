@@ -74,8 +74,6 @@ export default class Room {
 
             });
 
-            console.log(this)
-
             this.setHelper()
         })
     }

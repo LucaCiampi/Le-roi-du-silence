@@ -45,13 +45,10 @@ export default class Floor {
                 }
             });
 
-            this.setHelper();
+            if (this.debug.active) {
+                this.addDebugOption();
+            }
 
-            this.debug.gui.add(this.octreeHelper, 'visible')
-                .onChange((value) => {
-                    this.octreeHelper.visible = value;
-                    console.log(this.octreeHelper.visible)
-                });
         })
 
         // loader.load('./Environment/collision-world.glb', (gltf) => {
@@ -81,6 +78,22 @@ export default class Floor {
         // })
     }
 
+    /**
+     * Adds the octree map helper visibility toggle to the debug GUI options
+     */
+    addDebugOption() {
+        this.setHelper();
+
+        this.debug.gui.add(this.octreeHelper, 'visible')
+            .onChange((value) => {
+                this.octreeHelper.visible = value;
+                console.log(this.octreeHelper.visible)
+            });
+    }
+
+    /**
+     * Creates an Octree map helper
+     */
     setHelper() {
         this.octreeHelper = new OctreeHelper(this.worldOctree);
         this.octreeHelper.visible = false;

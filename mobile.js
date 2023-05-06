@@ -1,6 +1,7 @@
 let container = document.getElementById('mobile')
 let ul = document.createElement('ul')
 container.appendChild(ul)
+
 let sessionId = null
 
 export function createMobileInterface(id, data){
@@ -22,9 +23,13 @@ export function displayList(list){
         ul.removeChild(ul.firstChild);
     }
     if (list[sessionId]){
-        Object.values(list[sessionId]?.messages).map((item) => {
+        let data = Object.values(list[sessionId]?.messages)
+        data.map((item, i) => {
             let msg = document.createElement('li')
             msg.classList.add("msg")
+            if (i == data.length-1){
+                msg.classList.add("last")
+            }
             msg.textContent = item.msg
             ul.appendChild(msg)
         })

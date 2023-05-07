@@ -9,6 +9,7 @@ export default class Floor {
         this.debug = _options.debug;
         this.resources = _options.resources;
         this.parameter = _options.parameter;
+        this.models = _options.models;
 
         this.worldOctree = null;
         this.octreeHelper = null;
@@ -28,7 +29,8 @@ export default class Floor {
         // (apparently the code belows adds octree to every model of the scene)
         const loader = new GLTFLoader();
 
-        const models = ['collision-world.glb', 'zone-1.glb', 'escalier-1.glb', 'escalier-2.glb'];
+        // const models = ['collision-world.glb', 'zone-1.glb', 'escalier-1.glb', 'escalier-2.glb'];
+        const models = ['collision-world.glb'];
         const promises = models.map(model => loader.loadAsync('./Environment/' + model));
         Promise.all(promises).then(gltfs => {
 

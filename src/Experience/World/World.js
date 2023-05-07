@@ -34,18 +34,19 @@ export default class World {
             event: this.event
         })
 
-        this.floor = new Floor({
-            scene: this.scene,
-            resources: this.resources,
-            parameter: this.parameter,
-            debug: this.debug
-        })
-
         this.room1 = new Room({
             scene: this.scene,
             resources: this.resources,
             parameter: this.parameter,
             name: 'zone-1',
+        })
+
+        this.floor = new Floor({
+            scene: this.scene,
+            resources: this.resources,
+            parameter: this.parameter,
+            models: [this.room1],
+            debug: this.debug
         })
 
         this.controls = new Controls({
@@ -113,6 +114,10 @@ export default class World {
         }
     }
 
+    /**
+     * Checks if the player has entered the zone
+     * @param {Number} zoneId - the ID of the zone to check in the array
+     */
     checkNextZoneEntrance(zoneId) {
 
         // TODO: once the player has been in the zone, remove the listener and listen to the next zone (for loop)
@@ -132,6 +137,9 @@ export default class World {
         // })
     }
 
+    /**
+     * Starts the ambient sound that will loop throughout the experience
+     */
     startAmbientWorldSound() {
         this.parameter.sounds.playLoop('wind')
     }

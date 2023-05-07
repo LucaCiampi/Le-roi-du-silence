@@ -47,18 +47,30 @@ body {
     display: none;
 }
 
+.button {
+    cursor: pointer;
+    background: #fff;
+    padding: 0.4em 1em;
+    border: solid 1px #000;
+    margin: 1em;
+    font-size: 1.2rem;
+}
+
 ul{
     padding: 0;
     margin-top: 70px;
 }
+
 #mobile>h2{
     position: absolute;
     top: 0;
     font-family: Arial, Helvetica, sans-serif;
 }
+
 #mobile>h2::before{
     content: "Messages de : "
 }
+
 .msg{
     list-style: none;
     background: linear-gradient(#16A1F6, #1631F6);
@@ -69,9 +81,11 @@ ul{
     color: white;
     font-family: Arial, Helvetica, sans-serif;
 }
+
 .msg.last{
     animation: fadeIn 0.3s;
 }
+
 @keyframes fadeIn {
     from {
         transform: translateY(5px);

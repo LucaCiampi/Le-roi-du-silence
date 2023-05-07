@@ -6,6 +6,7 @@ export default class Layout {
         this.event = _options.event;
 
         this.introMenu = null;
+        this.introMenuStartButton = null;
         this.pauseMenu = null;
 
         this.init();
@@ -13,6 +14,7 @@ export default class Layout {
 
     init() {
         this.introMenu = document.getElementById('introMenu');
+        this.introMenuStartButton = this.introMenu.querySelector('#startButton');
         this.pauseMenu = document.getElementById('pauseMenu');
         this.endMenu = document.getElementById('endMenu');
 
@@ -39,7 +41,7 @@ export default class Layout {
     }
 
     eventListener() {
-        this.introMenu.addEventListener('click', () => {
+        this.introMenuStartButton.addEventListener('click', () => {
             this.event.start();
         })
 

@@ -16,6 +16,7 @@ export default class World {
         this.resources = _options.resources;
         this.camera = _options.camera;
         this.canvas = _options.canvas;
+        this.zoneEvent = _options.zoneEvent;
 
         this.ambientSound = null;
 
@@ -72,7 +73,7 @@ export default class World {
                 name: "zone1",
                 startPosition: new Vector2(1, 1),
                 endPosition: new Vector2(20, 20),
-                parameter: this.parameter,
+                event: () => this.zoneEvent("green zone")
             }),
             new Zone({
                 name: "zone2",

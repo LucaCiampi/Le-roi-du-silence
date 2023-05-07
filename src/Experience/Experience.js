@@ -15,8 +15,11 @@ import Renderer from "./Renderer.js";
 // World
 import World from "./World/World.js";
 
+export function createExperience(canvas, handleDesktopEvent){
+    const experience = new Experience(canvas, handleDesktopEvent)
+}
 export default class Experience {
-    constructor(canvas) {
+    constructor(canvas, handleDesktopEvent) {
         window.experience = this;
         this.canvas = canvas;
 
@@ -26,6 +29,7 @@ export default class Experience {
         this.scene = null;
         this.resources = null;
         this.debug = null;
+        this.handleDesktopEvent = handleDesktopEvent
 
         // Setup
         this.event = null;
@@ -68,6 +72,7 @@ export default class Experience {
             canvas: this.canvas,
             camera: this.camera,
             player: this.player,
+            zoneEvent: this.handleDesktopEvent
         });
 
         // this.controls = new PointerLockControls( this.camera, document.body );

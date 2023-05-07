@@ -3,40 +3,40 @@
 
 <head>
     <meta charset="UTF-8">
-
+    
     <title>WebGL</title>
     <meta name="description"
-        content="Projet WebGL créé par Luca Ciampi, Mathilde Deveaux, Valentine Guillaume et Marius Proton dans le cadre d'un exercice de M1 à l'école GOBELINS" />
-
+    content="Projet WebGL créé par Luca Ciampi, Mathilde Deveaux, Valentine Guillaume et Marius Proton dans le cadre d'un exercice de M1 à l'école GOBELINS" />
+    
     <meta itemprop=name content="WebGL">
     <meta itemprop="description"
-        content="Projet WebGL créé par Luca Ciampi, Mathilde Deveaux, Valentine Guillaume et Marius Proton dans le cadre d'un exercice de M1 à l'école GOBELINS">
+    content="Projet WebGL créé par Luca Ciampi, Mathilde Deveaux, Valentine Guillaume et Marius Proton dans le cadre d'un exercice de M1 à l'école GOBELINS">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👼🏼</text></svg>">
     <!-- <meta itemprop="image" content=https://lucaciampi.com/social/share-1200x630.png> -->
-
+    
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="WebGL">
     <meta name="twitter:description"
-        content="Projet WebGL créé par Luca Ciampi, Mathilde Deveaux, Valentine Guillaume et Marius Proton dans le cadre d'un exercice de M1 à l'école GOBELINS">
+    content="Projet WebGL créé par Luca Ciampi, Mathilde Deveaux, Valentine Guillaume et Marius Proton dans le cadre d'un exercice de M1 à l'école GOBELINS">
     <!-- <meta name="twitter:image" content="https://lucaciampi.com/social/share-1200x600.png"> -->
-
+    
     <meta property="og:site_name" content="WebGL">
     <meta property="og:type" content="website">
     <!-- <meta property="og:url" content="https://lucaciampi.com"> -->
     <meta property="og:title" content="WebGL">
     <meta property="og:description"
-        content="Projet WebGL créé par Luca Ciampi, Mathilde Deveaux, Valentine Guillaume et Marius Proton dans le cadre d'un exercice de M1 à l'école GOBELINS">
+    content="Projet WebGL créé par Luca Ciampi, Mathilde Deveaux, Valentine Guillaume et Marius Proton dans le cadre d'un exercice de M1 à l'école GOBELINS">
     <!-- <meta property="og:image" content="https://lucaciampi.com/social/share-1200x630.png"> -->
-
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=5, viewport-fit=cover" />
     <meta name="robots" content="index, follow" />
-
+    
     <!-- 
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png"> 
-    <link rel="manifest" href="/favicon/site.webmanifest">
-    <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#ff8908">
+        <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png"> 
+        <link rel="manifest" href="/favicon/site.webmanifest">
+        <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#ff8908">
     -->
     <meta name="apple-mobile-web-app-title" content="WebGL">
     <meta name="application-name" content="WebGL">
@@ -46,18 +46,22 @@
 </head>
 
 <body>
-    <div id="introMenu" class="menu intro-menu d-none">
-        <h1>Bienvenue</h1>
-        <p>Vous allez être projetés dans la tête de machin mes couilles sur un plateau.</p>
-        <p>Bonne découverte.</p>
+    <div id="mobile"></div>
+    <div id="container">
+        <div id="introMenu" class="menu intro-menu d-none">
+            <h1>Bienvenue</h1>
+            <p>Vous allez être projetés dans la tête de machin mes couilles sur un plateau.</p>
+            <p>Bonne découverte.</p>
+            <canvas id="qrcode"></canvas>
+        </div>
+        <div id="pauseMenu" class="menu pause-menu d-none">
+            <h2>PAUSE</h2>
+        </div>
+        <div id="endMenu" class="menu end-menu d-none">
+            <h2>FIN</h2>
+        </div>
+        <canvas class="webgl"></canvas>
     </div>
-    <div id="pauseMenu" class="menu pause-menu d-none">
-        <h2>PAUSE</h2>
-    </div>
-    <div id="endMenu" class="menu end-menu d-none">
-        <h2>FIN</h2>
-    </div>
-    <canvas class="webgl"></canvas>
     <script type="module" src="./script.js"></script>
 </body>
 

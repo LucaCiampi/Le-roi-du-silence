@@ -7,6 +7,8 @@ export default class Zone {
         this.name = _options.name;
         this.startPosition = _options.startPosition;
         this.endPosition = _options.endPosition;
+        this.data = _options.data;
+        this.event = _options.event;
 
         // Set up
         this.isIn = false;
@@ -29,7 +31,9 @@ export default class Zone {
     }
 
     startZoneActions() {
-        console.log('Action : send message');
+        console.log('Action : send message')
+        this.event()
+        console.log('Action : launch sound')
         this.parameter.sounds.play('swoosh1');
     }
 }

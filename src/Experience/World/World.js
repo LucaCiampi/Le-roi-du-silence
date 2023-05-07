@@ -73,25 +73,29 @@ export default class World {
                 name: "zone1",
                 startPosition: new Vector2(1, 1),
                 endPosition: new Vector2(20, 20),
-                event: () => this.zoneEvent("green zone")
+                parameter: this.parameter,
+                zoneEvent: () => this.zoneEvent("green zone")
             }),
             new Zone({
                 name: "zone2",
                 startPosition: new Vector2(-20, -20),
                 endPosition: new Vector2(-1, -1),
                 parameter: this.parameter,
+                zoneEvent: () => this.zoneEvent("zone 2")
             }),
             new Zone({
                 name: "zone3",
                 startPosition: new Vector2(-20, -1),
                 endPosition: new Vector2(1, 20),
                 parameter: this.parameter,
+                zoneEvent: () => this.zoneEvent("zone 3")
             }),
             new Zone({
                 name: "zone4",
                 startPosition: new Vector2(-1, -20),
                 endPosition: new Vector2(20, 1),
                 parameter: this.parameter,
+                zoneEvent: () => this.zoneEvent("zone 4")
             }),
         ]
 

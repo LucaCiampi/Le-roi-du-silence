@@ -22,6 +22,7 @@ export default class Experience {
     constructor(canvas, handleDesktopEvent) {
         window.experience = this;
         this.canvas = canvas;
+        this.handleDesktopEvent = handleDesktopEvent
 
         // options
         this.sizes = null;
@@ -29,7 +30,6 @@ export default class Experience {
         this.scene = null;
         this.resources = null;
         this.debug = null;
-        this.handleDesktopEvent = handleDesktopEvent
 
         // Setup
         this.event = null;

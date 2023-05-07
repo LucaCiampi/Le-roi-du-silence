@@ -6,8 +6,8 @@ export default class Controls {
     constructor(_options) {
         this.camera = _options.camera;
         this.parameter = _options.parameter;
-        this.userInterface = _options.userInterface;
         this.event = _options.event;
+        this.userInterface = _options.userInterface;
         this.worldOctree = _options.worldOctree;
 
         this.controls = null;

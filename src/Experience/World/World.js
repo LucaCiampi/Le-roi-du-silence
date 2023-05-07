@@ -46,13 +46,10 @@ export default class World {
             scene: this.scene,
             resources: this.resources,
             parameter: this.parameter,
-            models: [this.room1],
-            debug: this.debug
         })
         
         this.worldOctree = new WorldOctree({
             scene: this.scene,
-            resources: this.resources,
             debug: this.debug,
             event: this.event,
             models: [this.room1, this.floor]
@@ -61,8 +58,8 @@ export default class World {
         this.controls = new Controls({
             camera: this.camera,
             parameter: this.parameter,
-            userInterface: this.userInterface,
             event: this.event,
+            userInterface: this.userInterface,
             worldOctree: this.worldOctree,
         })
 

@@ -14,8 +14,6 @@ export default class Room {
         this.model = this.resources.items[this.name].scene;
         this.model.position.set(0, -2, 0)
 
-        console.log(this.model)
-
         this.scene.add(this.model)
     }
 }

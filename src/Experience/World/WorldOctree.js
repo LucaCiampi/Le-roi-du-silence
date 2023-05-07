@@ -5,7 +5,6 @@ import { OctreeHelper } from 'three/addons/helpers/OctreeHelper.js';
 export default class WorldOctree {
     constructor(_options) {
         this.scene = _options.scene;
-        this.resources = _options.resources;
         this.debug = _options.debug;
         this.event = _options.event;
         this.models = _options.models;
@@ -47,7 +46,6 @@ export default class WorldOctree {
         this.debug.gui.add(this.octreeHelper, 'visible')
             .onChange((value) => {
                 this.octreeHelper.visible = value;
-                console.log(this.octreeHelper.visible)
             });
     }
 

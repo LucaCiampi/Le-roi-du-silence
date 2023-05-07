@@ -28,6 +28,14 @@ export default class GlobalParameter {
         this.event.on('Start', () => {
             this.counterOn = true;
         })
+        
+        this.event.on('Pause', () => {
+            this.counterOn = false;
+        })
+        
+        this.event.on('Continue', () => {
+            this.counterOn = true;
+        })
 
         this.event.on('Reset', () => {
             this.reset();

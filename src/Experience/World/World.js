@@ -7,6 +7,7 @@ import TestCube from "./GameElements/TestCube";
 import Room from "./GameElements/Room";
 import Zone from './GameElements/Zone'
 import { Vector2 } from "three";
+import WorldOctree from "./WorldOctree";
 
 export default class World {
     constructor(_options) {
@@ -48,13 +49,21 @@ export default class World {
             models: [this.room1],
             debug: this.debug
         })
+        
+        this.worldOctree = new WorldOctree({
+            scene: this.scene,
+            resources: this.resources,
+            debug: this.debug,
+            event: this.event,
+            models: [this.room1, this.floor]
+        })
 
         this.controls = new Controls({
             camera: this.camera,
             parameter: this.parameter,
             userInterface: this.userInterface,
             event: this.event,
-            floor: this.floor,
+            worldOctree: this.worldOctree,
         })
 
         this.light = new Light({
@@ -105,7 +114,7 @@ export default class World {
     }
 
     update(deltaT) {
-        if (this.isReady && this.parameter.canUpdate) {
+        if (this.isReady && this.parameter.counterOn) {
             this.controls.update(deltaT)
 
             if (!this.parameter.gameEnded) {

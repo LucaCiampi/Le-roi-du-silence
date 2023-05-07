@@ -8,7 +8,7 @@ export default class Controls {
         this.parameter = _options.parameter;
         this.userInterface = _options.userInterface;
         this.event = _options.event;
-        this.floor = _options.floor;
+        this.worldOctree = _options.worldOctree;
 
         this.controls = null;
         this.playerVelocity = null;
@@ -16,9 +16,9 @@ export default class Controls {
         this.playerCollider = null;
         this.playerOnFloor = false;
 
-        
+
         this.keyStates = {};
-        
+
         this.PLAYER_SPEED = 15;
         this.PLAYER_SPEED_AIR = 2;
         this.GRAVITY = 50;
@@ -213,11 +213,12 @@ export default class Controls {
      */
     playerCollisions() {
 
-        const result = this.floor.worldOctree.capsuleIntersect(this.playerCollider);
+        const result = this.worldOctree.octree.capsuleIntersect(this.playerCollider);
 
         this.playerOnFloor = false;
 
         if (result) {
+
 
             this.playerOnFloor = result.normal.y > 0;
 

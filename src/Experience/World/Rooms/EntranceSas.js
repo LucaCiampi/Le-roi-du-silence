@@ -12,6 +12,10 @@ export default class EntranceSas extends Room {
         this.resources = _options.resources;
         this.zoneEvent = _options.zoneEvent;
 
+        this.name = null;
+        this.position = null;
+        this.spawnPosition = null;
+        this.entranceTriggerZone = null;
         this.model = null;
 
         this.init();
@@ -20,6 +24,8 @@ export default class EntranceSas extends Room {
     init() {
         this.name = "sas";
         this.position = new THREE.Vector3(0, 0, 0);
+        this.spawnPosition = new THREE.Vector3(0, 0, 0);
+
         this.props = [];
 
         console.log('init sas')

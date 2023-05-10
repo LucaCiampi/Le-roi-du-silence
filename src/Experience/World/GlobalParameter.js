@@ -11,6 +11,7 @@ export default class GlobalParameter {
         this.canUpdate = false;
         this.currentZone = null;
         this.gameEnded = false;
+        this.playerSpawn = null;
 
         this.NUMBER_OF_ZONES = 4;
 
@@ -20,6 +21,7 @@ export default class GlobalParameter {
     init() {
         this.sounds = new Sounds();
         this.currentZone = 0;
+        this.playerSpawn = { x: 0, y: 0, z: 0 };
 
         this.eventReceiver();
         this.reset();

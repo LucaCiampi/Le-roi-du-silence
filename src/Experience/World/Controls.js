@@ -246,8 +246,16 @@ export default class Controls {
 
         if (this.camera.instance.position.y <= - 25) {
 
-            this.playerCollider.start.set(0, 0.35, 0);
-            this.playerCollider.end.set(0, 1, 0);
+            this.playerCollider.start.set(
+                this.parameter.playerSpawn.x,
+                this.parameter.playerSpawn.y + 0.35,
+                this.parameter.playerSpawn.z
+            );
+            this.playerCollider.end.set(
+                this.parameter.playerSpawn.x,
+                this.parameter.playerSpawn.y + 1,
+                this.parameter.playerSpawn.z
+            );
             this.playerCollider.radius = 0.35;
             this.camera.instance.position.copy(this.playerCollider.end);
             this.camera.instance.rotation.set(0, 0, 0);

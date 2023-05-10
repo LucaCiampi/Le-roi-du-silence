@@ -12,8 +12,19 @@ export default class Room4 extends Room {
         this.resources = _options.resources;
         this.zoneEvent = _options.zoneEvent;
 
+        this.name = null;
+        this.position = null;
+        this.spawnPosition = null;
+        this.entranceTriggerZone = null;
+        this.model = null;
+
+        this.init();
+    }
+
+    init() {
         this.name = "room4";
         this.position = new THREE.Vector3(-14, 0, -4);
+        this.spawnPosition = new THREE.Vector3(-14, 0, -4);
         this.entranceTriggerZone = new TriggerZone({
             debug: this.debug,
             scene: this.scene,
@@ -22,10 +33,6 @@ export default class Room4 extends Room {
             zoneEvent: () => this.zoneEvent("green zone")
         });
 
-        this.init();
-    }
-
-    init() {
         this.props = [];
         console.log('init room4')
 

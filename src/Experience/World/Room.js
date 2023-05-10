@@ -15,13 +15,8 @@ export default class Room {
      * Actions related to the entrance of the player in the zone
      */
     roomEntranceActions() {
-        this.updateSpawnLocation();
         this.sendMessageToPhone();
         this.playZoneSound();
-    }
-
-    updateSpawnLocation() {
-        //TODO
     }
 
     /**

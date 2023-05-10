@@ -116,6 +116,7 @@ export default class World {
         if (this.rooms[this.parameter.currentZone + 1].hasPlayerInRoom(this.controls.playerCollider.end)) {
             this.parameter.incrementCurrentZone();
             this.rooms[this.parameter.currentZone + 1].roomEntranceActions();
+            this.updatePlayerSpawnLocation();
             this.freeUpPreviousZone();
         }
 
@@ -127,6 +128,12 @@ export default class World {
         // zone.on('out', () => {
         //     this.camera.angle.set('default')
         // })
+    }
+
+    updatePlayerSpawnLocation() {
+        this.parameter.playerSpawn.x = this.rooms[this.parameter.currentZone].spawnPosition.x;
+        this.parameter.playerSpawn.y = this.rooms[this.parameter.currentZone].spawnPosition.y;
+        this.parameter.playerSpawn.z = this.rooms[this.parameter.currentZone].spawnPosition.z;
     }
 
     /**

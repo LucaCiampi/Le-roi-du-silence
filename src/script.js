@@ -27,7 +27,7 @@ onValue(sessions, (snapshot) => {
       remove(ref(database, 'sessions/' + key))
     }
   })
-  console.log('Data modified', Object.values(data))
+  // console.log('Data modified', Object.values(data))
   
   //display msgs on mobile
   // mobile.displayList(data)

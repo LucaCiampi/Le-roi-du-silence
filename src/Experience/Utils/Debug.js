@@ -14,7 +14,7 @@ export default class Debug {
         this.active = window.location.hash === "#debug";
 
         if (this.active) {
-            console.log('debug active')
+            console.log('🪲 DEBUG active')
 
             this.stats = new Stats();
             this.stats.domElement.style.position = 'absolute';

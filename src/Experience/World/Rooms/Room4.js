@@ -2,7 +2,7 @@ import * as THREE from 'three'
 import Room from "../Room";
 import TriggerZone from '../TriggerZone'
 
-export default class Room1 extends Room {
+export default class Room4 extends Room {
     constructor(_options) {
         super(_options)
 
@@ -12,8 +12,8 @@ export default class Room1 extends Room {
         this.resources = _options.resources;
         this.zoneEvent = _options.zoneEvent;
 
-        this.name = "room1";
-        this.position = new THREE.Vector3(1, 2, -18);
+        this.name = "room4";
+        this.position = new THREE.Vector3(-14, 0, -4);
         this.entranceTriggerZone = new TriggerZone({
             debug: this.debug,
             scene: this.scene,
@@ -27,9 +27,10 @@ export default class Room1 extends Room {
 
     init() {
         this.props = [];
-        console.log('init room1')
+        console.log('init room4')
+
         
-        this.model = this.resources.items['room1'].scene;
+        this.model = this.resources.items['room4'].scene;
         this.model.position.set(this.position.x, this.position.y, this.position.z)
         
         // this.props = [];
@@ -60,7 +61,7 @@ export default class Room1 extends Room {
     }
 
     update() {
-        console.log('update room 1')
+        console.log('update room 4')
     }
 
     destroy() {

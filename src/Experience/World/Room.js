@@ -1,37 +1,62 @@
-import TriggerZone from './TriggerZone'
+import * as THREE from 'three'
 
 export default class Room {
     constructor(_options) {
-        this.parameter = _options.parameter;
-        this.debug = _options.debug;
         this.scene = _options.scene;
-        this.resources = _options.resources;
-        this.position = _options.position;
-        this.name = _options.name;
 
-        this.model = null;
-        this.entranceTriggerZone = null;
-        // this.props = null;
-        this.props = [];
-
-        this.init();
+        this.initRoom();
     }
 
-    init() {
-        this.model = this.resources.items[this.name].scene;
-        this.model.position.set(this.position.x, this.position.y, this.position.z)
-
-        // this.props = [];
-
-        this.entranceTriggerZone = new TriggerZone({
-
-        })
-
-        this.scene.add(this.model)
+    initRoom() {
+        console.log("Room : initRoom")
     }
 
-    destroy() {
-        console.log('Room destroy()')
-        this.props = null;
+    /**
+     * Actions related to the entrance of the player in the zone
+     */
+    roomEntranceActions() {
+        this.updateSpawnLocation();
+        this.sendMessageToPhone();
+        this.playZoneSound();
+    }
+
+    updateSpawnLocation() {
+        //TODO
+    }
+
+    /**
+     * Sends a message to every mobile device connected to the session
+     */
+    sendMessageToPhone() {
+        this.zoneEvent()
+    }
+
+    /**
+     * When entering a zone, plays a sound
+     */
+    playZoneSound() {
+        this.parameter.sounds.play('swoosh1');
+    }
+
+    /**
+     * 
+     * @param {THREE.Vector2} playerPosition - player's coordinates
+     * @returns {boolean} True if the player has stepped in the room
+     */
+    hasPlayerInRoom(playerPosition) {
+        return this.entranceTriggerZone.hasPlayerInZone(playerPosition);
+    }
+
+    dispose(model) {
+        console.log('Room : dispose()')
+
+        model.traverse((node) => {
+            if (node instanceof THREE.Mesh) {
+                node.geometry.dispose();
+                node.material.dispose();
+            }
+        });
+
+        this.scene.remove(model);
     }
 }

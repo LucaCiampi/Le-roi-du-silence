@@ -2,7 +2,7 @@ import * as THREE from 'three'
 import Room from "../Room";
 import TriggerZone from '../TriggerZone'
 
-export default class Room1 extends Room {
+export default class EntranceSas extends Room {
     constructor(_options) {
         super(_options)
 
@@ -12,24 +12,19 @@ export default class Room1 extends Room {
         this.resources = _options.resources;
         this.zoneEvent = _options.zoneEvent;
 
-        this.name = "room1";
-        this.position = new THREE.Vector3(1, 2, -18);
-        this.entranceTriggerZone = new TriggerZone({
-            debug: this.debug,
-            scene: this.scene,
-            startPosition: new THREE.Vector2(0, -20),
-            endPosition: new THREE.Vector2(10, -7),
-            zoneEvent: () => this.zoneEvent("green zone")
-        });
+        this.model = null;
 
         this.init();
     }
 
     init() {
+        this.name = "sas";
+        this.position = new THREE.Vector3(0, 0, 0);
         this.props = [];
-        console.log('init room1')
+
+        console.log('init sas')
         
-        this.model = this.resources.items['room1'].scene;
+        this.model = this.resources.items['sas'].scene;
         this.model.position.set(this.position.x, this.position.y, this.position.z)
         
         // this.props = [];
@@ -55,12 +50,12 @@ export default class Room1 extends Room {
         const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
         const cube = new THREE.Mesh(geometry, material);
         cube.position.set(2, 2, -2)
-        // this.props.add(cube)
-        this.props = cube
+        this.props.push(cube)
+        // this.props = cube
     }
 
     update() {
-        console.log('update room 1')
+        console.log('update sas')
     }
 
     destroy() {

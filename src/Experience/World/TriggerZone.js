@@ -4,7 +4,6 @@ import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
 export default class TriggerZone {
     constructor(_options) {
         // Options
-        this.parameter = _options.parameter;
         this.debug = _options.debug;
         this.scene = _options.scene;
         this.name = _options.name;
@@ -42,31 +41,6 @@ export default class TriggerZone {
         }
 
         return false
-    }
-
-    /**
-     * Actions related to the entrance of the player in the zone
-     */
-    startZoneActions() {
-        this.sendMessageToPhone()
-        this.playZoneSound()
-
-        if (this.actions) this.actions()
-        else console.log('no actions')
-    }
-
-    /**
-     * Sends a message to every mobile device connected to the session
-     */
-    sendMessageToPhone() {
-        this.zoneEvent()
-    }
-
-    /**
-     * When entering a zone, plays a sound
-     */
-    playZoneSound() {
-        this.parameter.sounds.play('swoosh1');
     }
 
     /**

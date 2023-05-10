@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 
-export default class Room {
+export default class Room { 
     constructor(_options) {
         this.scene = _options.scene;
 

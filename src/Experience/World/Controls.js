@@ -260,6 +260,8 @@ export default class Controls {
     * Adds controls options in case of debug
     */
     addDebugOptions() {
-        // Silence is golden...
+        // this.debug.gui.add(this.playerCollider.end, 'x');
+        // this.debug.gui.add(this.playerCollider.end, 'y');
+        // this.debug.gui.add(this.playerCollider.end, 'z');
     }
 }  

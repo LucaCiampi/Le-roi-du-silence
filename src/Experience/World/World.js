@@ -83,8 +83,8 @@ export default class World {
                 scene: this.scene,
                 debug: this.debug,
                 name: "zone1",
-                startPosition: new Vector2(2, 2),
-                endPosition: new Vector2(4, 4),
+                startPosition: new Vector2(0, -20),
+                endPosition: new Vector2(10, -7),
                 zoneEvent: () => this.zoneEvent("green zone"),
 
             }),

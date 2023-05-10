@@ -58,7 +58,7 @@ export default class EntranceSas extends Room {
     }
 
     destroy() {
-        this.dispose(this.model)
+        this.dispose(this)
         this.model = null;
     }
 }

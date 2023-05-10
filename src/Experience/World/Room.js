@@ -44,22 +44,27 @@ export default class Room {
 
     addPropsToScene(props) {
         console.log('addPropsToScene')
-        
+
         props.forEach(prop => {
             this.scene.add(prop)
         });
     }
 
-    dispose(model) {
+    dispose(room) {
         console.log('Room : dispose()')
 
-        model.traverse((node) => {
+        room.props.forEach((prop) => {
+            prop.geometry.dispose();
+            prop.material.dispose();
+            this.scene.remove(prop);
+        })
+
+        room.model.traverse((node) => {
             if (node instanceof THREE.Mesh) {
                 node.geometry.dispose();
                 node.material.dispose();
             }
         });
-
-        this.scene.remove(model);
+        this.scene.remove(room.model);
     }
 }

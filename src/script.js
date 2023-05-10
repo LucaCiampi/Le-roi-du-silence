@@ -8,8 +8,8 @@ const firebaseConfig = {
 
 const isMobile = /Android|iPhone/i.test(navigator.userAgent)
 let currentSession = null
-let baseUrl = "192.168.130.19:5173"
-// let baseUrl = "brumePoc.surge.sh"
+// let baseUrl = "172.28.59.104:5173"
+let baseUrl = "brume.surge.sh"
 
 //firebase config
 const app = initializeApp(firebaseConfig);
@@ -41,7 +41,9 @@ function createSession(){
     creationDate: Date.now()
   }).key;
   push(ref(database, `sessions/${currentSession}/messages/`), {
-    msg : "bonjour"
+    msg : "bonjour",
+    foreign: true,
+    time: Date.now()
   })
   
   //DEBUG display session
@@ -63,7 +65,9 @@ function handleDesktopEvent(event){
   console.log('event', event)
   if (event === "green zone"){
     push(ref(database, `sessions/${currentSession}/messages/`), {
-      msg : "green zone message"
+      msg : "green zone message",
+      foreign: true,
+      time: Date.now()
     })
   }
 }

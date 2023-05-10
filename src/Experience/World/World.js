@@ -83,8 +83,8 @@ export default class World {
                 scene: this.scene,
                 debug: this.debug,
                 name: "zone1",
-                startPosition: new Vector2(0, 0),
-                endPosition: new Vector2(-20, -20),
+                startPosition: new Vector2(2, 2),
+                endPosition: new Vector2(4, 4),
                 zoneEvent: () => this.zoneEvent("green zone"),
 
             }),
@@ -142,7 +142,6 @@ export default class World {
      * @param {Number} zoneId - the ID of the zone to check in the array
      */
     checkNextZoneEntrance(zoneId) {
-
         // TODO: once the player has been in the zone, remove the listener and listen to the next zone (for loop)
 
         if (this.zones[zoneId].hasPlayerInZone(this.controls.playerCollider.end)) {
@@ -151,6 +150,7 @@ export default class World {
             this.zones[zoneId].startZoneActions();
         }
 
+        // TODO: uncomment and use this piece of code for zone-specific actions
         // zone.on('in', (_data) => {
         //     this.camera.angle.set(_data.cameraAngle)
         // })

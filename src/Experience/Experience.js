@@ -15,9 +15,10 @@ import Renderer from "./Renderer.js";
 // World
 import World from "./World/World.js";
 
-export function createExperience(canvas, handleDesktopEvent){
+export function createExperience(canvas, handleDesktopEvent) {
     const experience = new Experience(canvas, handleDesktopEvent)
 }
+
 export default class Experience {
     constructor(canvas, handleDesktopEvent) {
         window.experience = this;
@@ -109,6 +110,10 @@ export default class Experience {
         this.renderer.update();
 
         this.world.update(this.time.deltaTime);
+
+        if (this.debug.active) {
+            this.debug.update();
+        }
     }
 
     destroy() {

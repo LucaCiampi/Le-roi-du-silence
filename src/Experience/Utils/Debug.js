@@ -1,9 +1,11 @@
+import Stats from 'three/addons/libs/stats.module.js';
 import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 
 export default class Debug {
     constructor(_options) {
         this.active = null;
         this.gui = null;
+        this.stats = null;
 
         this.init()
     }
@@ -13,7 +15,17 @@ export default class Debug {
 
         if (this.active) {
             console.log('debug active')
+
+            this.stats = new Stats();
+            this.stats.domElement.style.position = 'absolute';
+            this.stats.domElement.style.top = '0px';
+            document.body.appendChild(this.stats.domElement);
+
             this.gui = new GUI();
         }
+    }
+
+    update() {
+        this.stats.update();
     }
 }

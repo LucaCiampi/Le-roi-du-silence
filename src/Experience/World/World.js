@@ -23,7 +23,8 @@ export default class World {
 
         this.parameter = new GlobalParameter({
             event: this.event,
-            scene: this.scene
+            scene: this.scene,
+            debug: this.debug
         });
     }
 
@@ -33,13 +34,6 @@ export default class World {
             resources: this.resources,
             parameter: this.parameter,
             event: this.event
-        })
-
-        this.room1 = new Room({
-            scene: this.scene,
-            resources: this.resources,
-            parameter: this.parameter,
-            name: 'zone-1',
         })
 
         this.floor = new Floor({
@@ -52,19 +46,21 @@ export default class World {
             scene: this.scene,
             debug: this.debug,
             event: this.event,
-            models: [this.room1, this.floor]
+            models: [this.floor]
         })
 
         this.controls = new Controls({
             camera: this.camera,
             parameter: this.parameter,
             event: this.event,
+            debug: this.debug,
             userInterface: this.userInterface,
             worldOctree: this.worldOctree,
         })
 
         this.light = new Light({
             scene: this.scene,
+            debug: this.debug,
             resources: this.resources,
             parameter: this.parameter
         })
@@ -74,7 +70,7 @@ export default class World {
         //     resources: this.resources,
         //     parameter: this.parameter
         // })
-        
+
         this.stairs = new Stairs({
             scene: this.scene,
             resources: this.resources,
@@ -84,14 +80,18 @@ export default class World {
         this.zones = [
             new Zone({
                 parameter: this.parameter,
+                scene: this.scene,
+                debug: this.debug,
                 name: "zone1",
-                startPosition: new Vector2(1, 1),
-                endPosition: new Vector2(20, 20),
+                startPosition: new Vector2(0, 0),
+                endPosition: new Vector2(-20, -20),
                 zoneEvent: () => this.zoneEvent("green zone"),
-                
+
             }),
             new Zone({
                 parameter: this.parameter,
+                scene: this.scene,
+                debug: this.debug,
                 name: "zone2",
                 startPosition: new Vector2(-20, -20),
                 endPosition: new Vector2(-1, -1),
@@ -99,6 +99,8 @@ export default class World {
             }),
             new Zone({
                 parameter: this.parameter,
+                scene: this.scene,
+                debug: this.debug,
                 name: "zone3",
                 startPosition: new Vector2(-20, -1),
                 endPosition: new Vector2(1, 20),
@@ -106,16 +108,18 @@ export default class World {
             }),
             new Zone({
                 parameter: this.parameter,
+                scene: this.scene,
+                debug: this.debug,
                 name: "zone4",
                 startPosition: new Vector2(-1, -20),
                 endPosition: new Vector2(20, 1),
                 zoneEvent: () => this.zoneEvent("zone 4"),
-                    //     actions: () => {
-                    //     const now = this.time.elapsedTime;
-                    //     console.log(now);
-                    //     this.camera.instance.fov = 40;
-                    //     this.camera.instance.updateProjectionMatrix();
-                    // }
+                //     actions: () => {
+                //     const now = this.time.elapsedTime;
+                //     console.log(now);
+                //     this.camera.instance.fov = 40;
+                //     this.camera.instance.updateProjectionMatrix();
+                // }
             }),
         ]
 

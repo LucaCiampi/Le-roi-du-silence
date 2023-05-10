@@ -33,14 +33,14 @@ export default class WorldOctree {
         });
 
         if (this.debug.active) {
-            this.addDebugOption();
+            this.addDebugOptions();
         }
     }
 
     /**
      * Adds the octree map helper visibility toggle to the debug GUI options
      */
-    addDebugOption() {
+    addDebugOptions() {
         this.setHelper();
 
         this.debug.gui.add(this.octreeHelper, 'visible')

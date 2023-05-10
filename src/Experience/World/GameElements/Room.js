@@ -6,6 +6,7 @@ export default class Room {
         this.name = _options.name;
 
         this.model = null;
+        this.props = null;
 
         this.init();
     }
@@ -15,5 +16,10 @@ export default class Room {
         this.model.position.set(0, -2, 0)
 
         this.scene.add(this.model)
+    }
+
+    destroy() {
+        console.log('Room destroy()')
+        this.props = null;
     }
 }

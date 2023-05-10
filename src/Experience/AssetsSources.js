@@ -4,7 +4,7 @@ export default
     {
         name: "floor",
         type: "gltfModel",
-        path: "./Environment/collision-world.glb"
+        path: "./Environment/total-v1.glb"
     },
     {
         name: "escalier-1",
@@ -21,11 +21,6 @@ export default
         type: "gltfModel",
         path: "./Environment/lit.glb"
     },
-    {
-        name: "zone-1",
-        type: "gltfModel",
-        path: "./Environment/zone-1.glb"
-    },
 
     // Player
     {
@@ -39,5 +34,15 @@ export default
         path: "./Player/Bucket_Foreground.webp"
     },
 
-
+    // Textures
+    {
+        name: "checker",
+        type: "texture",
+        path: "./Textures/checker-4x4.png"
+    },
+    {
+        name: "wood",
+        type: "texture",
+        path: "./Textures/wood-floor-deck/color.png"
+    },
 ]

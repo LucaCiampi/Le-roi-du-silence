@@ -7,6 +7,7 @@ export default class Controls {
         this.camera = _options.camera;
         this.parameter = _options.parameter;
         this.event = _options.event;
+        this.debug = _options.debug;
         this.userInterface = _options.userInterface;
         this.worldOctree = _options.worldOctree;
 
@@ -21,7 +22,7 @@ export default class Controls {
 
         this.PLAYER_SPEED = 15;
         this.PLAYER_SPEED_AIR = 2;
-        this.GRAVITY = 50;
+        this.GRAVITY = 70;
 
         this.init();
     }
@@ -34,6 +35,10 @@ export default class Controls {
         this.clock = new THREE.Clock();
 
         this.eventReciever();
+
+        if (this.debug.active) {
+            this.addDebugOptions();
+        }
     }
 
     // update(deltaT) {
@@ -249,5 +254,12 @@ export default class Controls {
 
         }
 
+    }
+
+    /**
+    * Adds controls options in case of debug
+    */
+    addDebugOptions() {
+        // Silence is golden...
     }
 }  

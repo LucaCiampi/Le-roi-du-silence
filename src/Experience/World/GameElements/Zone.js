@@ -4,6 +4,8 @@ export default class Zone {
     constructor(_options) {
         // Options
         this.parameter = _options.parameter;
+        this.debug = _options.debug;
+        this.scene = _options.scene;
         this.name = _options.name;
         this.startPosition = _options.startPosition;
         this.endPosition = _options.endPosition;
@@ -13,6 +15,8 @@ export default class Zone {
         // Set up
         this.isIn = false;
         this.boundingBox = null;
+        this.boundingBoxHelper = null;
+        this.boundingBoxHelperVisible = false;
 
         this.init()
     }
@@ -20,6 +24,10 @@ export default class Zone {
     init() {
         // Box
         this.boundingBox = new THREE.Box2(this.startPosition, this.endPosition);
+
+        if (this.debug.active) {
+            this.addDebugOptions();
+        }
     }
 
     /**
@@ -58,5 +66,18 @@ export default class Zone {
      */
     playZoneSound() {
         this.parameter.sounds.play('swoosh1');
+    }
+
+    /**
+    * Adds debug options on GUI
+    */
+    addDebugOptions() {
+        this.boundingBoxHelperVisible = true;
+        const geometry = new THREE.BoxGeometry(this.startPosition, 10, this.endPosition);
+        const material = new THREE.MeshBasicMaterial({ color: 0xffff00 });
+        const mesh = new THREE.Mesh(geometry, material);
+        this.boundingBoxHelper = new THREE.BoxHelper(mesh, 0xffff00);
+        this.scene.add(this.boundingBoxHelper);
+        this.debug.gui.add(this, 'boundingBoxHelperVisible');
     }
 }

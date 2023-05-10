@@ -1,6 +1,7 @@
 import * as THREE from 'three'
+import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
 
-export default class Zone {
+export default class TriggerZone {
     constructor(_options) {
         // Options
         this.parameter = _options.parameter;
@@ -75,12 +76,10 @@ export default class Zone {
         const geometry = new THREE.BoxGeometry(Math.abs(this.boundingBox.max.x - this.boundingBox.min.x), 0.2, Math.abs(this.boundingBox.max.y - this.boundingBox.min.y));
         const material = new THREE.MeshBasicMaterial({ color: 0xffffff });
         const cube = new THREE.Mesh(geometry, material);
-
         cube.position.set(this.boundingBox.min.x + (Math.abs(this.boundingBox.max.x - this.boundingBox.min.x) / 2), 0, this.boundingBox.min.y + (Math.abs(this.boundingBox.max.y - this.boundingBox.min.y) / 2))
 
         this.boundingBoxHelper = new THREE.BoxHelper(cube, 0xff0000);
 
-        if (this.name === 'zone1'){
-        this.scene.add(this.boundingBoxHelper)}
+        this.scene.add(this.boundingBoxHelper)
     }
 }

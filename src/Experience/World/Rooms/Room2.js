@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import Room from "../Room";
 
-export default class Room1 extends Room {
+export default class Room2 extends Room {
     constructor(_options) {
         super(_options)
 
@@ -9,15 +9,12 @@ export default class Room1 extends Room {
     }
 
     init() {
-        console.log('init room1')
-
-        console.log(this.props)
+        console.log('init room2')
 
         const geometry = new THREE.BoxGeometry(10, 10, 10);
         const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
         const cube = new THREE.Mesh(geometry, material);
-        cube.position.set(2, 2, -2)
-        // this.props.add(cube)
-        this.props = cube
+        cube.position.set(2, 2, -6)
+        this.props.add(cube)
     }
 }

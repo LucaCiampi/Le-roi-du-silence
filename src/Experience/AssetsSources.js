@@ -7,14 +7,29 @@ export default
         path: "./Environment/total-v1.glb"
     },
     {
-        name: "escalier-1",
+        name: "sas",
         type: "gltfModel",
-        path: "./Environment/escalier-1.glb"
+        path: "./Environment/sas.glb"
     },
     {
-        name: "escalier-2",
+        name: "room1",
         type: "gltfModel",
-        path: "./Environment/escalier-2.glb"
+        path: "./Environment/room1.glb"
+    },
+    {
+        name: "room2",
+        type: "gltfModel",
+        path: "./Environment/room2.glb"
+    },
+    {
+        name: "room3",
+        type: "gltfModel",
+        path: "./Environment/room3.glb"
+    },
+    {
+        name: "room4",
+        type: "gltfModel",
+        path: "./Environment/room4.glb"
     },
     {
         name: "lit",

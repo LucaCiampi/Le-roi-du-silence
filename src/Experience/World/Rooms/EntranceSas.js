@@ -33,31 +33,24 @@ export default class EntranceSas extends Room {
         this.model = this.resources.items['sas'].scene;
         this.model.position.set(this.position.x, this.position.y, this.position.z)
         
-        // this.props = [];
-
-        // this.entranceTriggerZone = new TriggerZone({
-
-        // })
-
-        this.model.traverse((child, key) => {
+        this.model.traverse((child) => {
             if (child.isMesh) {
                 child.material = new THREE.MeshBasicMaterial();
 
                 child.material.map = this.resources.items['wood'];
                 child.material.needsUpdate = true;
-
-                // child.material.map = sprite;
             }
         })
 
         this.scene.add(this.model)
 
-        const geometry = new THREE.BoxGeometry(10, 10, 10);
+        const geometry = new THREE.BoxGeometry(1, 1, 1);
         const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
         const cube = new THREE.Mesh(geometry, material);
-        cube.position.set(2, 2, -2)
+        cube.position.set(0, 0, 0)
         this.props.push(cube)
-        // this.props = cube
+
+        this.addPropsToScene(this.props);
     }
 
     update() {

@@ -42,6 +42,14 @@ export default class Room {
         return this.entranceTriggerZone.hasPlayerInZone(playerPosition);
     }
 
+    addPropsToScene(props) {
+        console.log('addPropsToScene')
+        
+        props.forEach(prop => {
+            this.scene.add(prop)
+        });
+    }
+
     dispose(model) {
         console.log('Room : dispose()')
 

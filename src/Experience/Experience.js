@@ -66,6 +66,7 @@ export default class Experience {
 
         this.world = new World({
             event: this.event,
+            time: this.time,
             scene: this.scene,
             debug: this.debug,
             resources: this.resources,

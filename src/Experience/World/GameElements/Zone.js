@@ -7,8 +7,8 @@ export default class Zone {
         this.name = _options.name;
         this.startPosition = _options.startPosition;
         this.endPosition = _options.endPosition;
-        this.data = _options.data;
         this.zoneEvent = _options.zoneEvent;
+        this.actions = _options.actions;
 
         // Set up
         this.isIn = false;
@@ -41,6 +41,9 @@ export default class Zone {
     startZoneActions() {
         this.sendMessageToPhone()
         this.playZoneSound()
+
+        if (this.actions) this.actions()
+        else console.log('no actions')
     }
 
     /**

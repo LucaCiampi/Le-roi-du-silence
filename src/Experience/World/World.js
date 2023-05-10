@@ -4,6 +4,7 @@ import Controls from "./Controls";
 import Floor from "./GameElements/Floor";
 import Light from "./GameElements/Light";
 import TestCube from "./GameElements/TestCube";
+import Stairs from "./GameElements/Stairs";
 import Room from "./GameElements/Room";
 import Zone from './GameElements/Zone'
 import { Vector2 } from "three";
@@ -12,14 +13,13 @@ import WorldOctree from "./WorldOctree";
 export default class World {
     constructor(_options) {
         this.event = _options.event;
+        this.time = _options.time;
         this.debug = _options.debug;
         this.scene = _options.scene;
         this.resources = _options.resources;
         this.camera = _options.camera;
         this.canvas = _options.canvas;
         this.zoneEvent = _options.zoneEvent;
-
-        this.ambientSound = null;
 
         this.parameter = new GlobalParameter({
             event: this.event,
@@ -47,7 +47,7 @@ export default class World {
             resources: this.resources,
             parameter: this.parameter,
         })
-        
+
         this.worldOctree = new WorldOctree({
             scene: this.scene,
             debug: this.debug,
@@ -74,35 +74,48 @@ export default class World {
         //     resources: this.resources,
         //     parameter: this.parameter
         // })
+        
+        this.stairs = new Stairs({
+            scene: this.scene,
+            resources: this.resources,
+            parameter: this.parameter
+        })
 
         this.zones = [
             new Zone({
+                parameter: this.parameter,
                 name: "zone1",
                 startPosition: new Vector2(1, 1),
                 endPosition: new Vector2(20, 20),
-                parameter: this.parameter,
-                zoneEvent: () => this.zoneEvent("green zone")
+                zoneEvent: () => this.zoneEvent("green zone"),
+                
             }),
             new Zone({
+                parameter: this.parameter,
                 name: "zone2",
                 startPosition: new Vector2(-20, -20),
                 endPosition: new Vector2(-1, -1),
-                parameter: this.parameter,
-                zoneEvent: () => this.zoneEvent("zone 2")
+                zoneEvent: () => this.zoneEvent("zone 2"),
             }),
             new Zone({
+                parameter: this.parameter,
                 name: "zone3",
                 startPosition: new Vector2(-20, -1),
                 endPosition: new Vector2(1, 20),
-                parameter: this.parameter,
                 zoneEvent: () => this.zoneEvent("zone 3")
             }),
             new Zone({
+                parameter: this.parameter,
                 name: "zone4",
                 startPosition: new Vector2(-1, -20),
                 endPosition: new Vector2(20, 1),
-                parameter: this.parameter,
-                zoneEvent: () => this.zoneEvent("zone 4")
+                zoneEvent: () => this.zoneEvent("zone 4"),
+                    //     actions: () => {
+                    //     const now = this.time.elapsedTime;
+                    //     console.log(now);
+                    //     this.camera.instance.fov = 40;
+                    //     this.camera.instance.updateProjectionMatrix();
+                    // }
             }),
         ]
 

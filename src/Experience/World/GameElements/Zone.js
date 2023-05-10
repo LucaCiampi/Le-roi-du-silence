@@ -72,27 +72,25 @@ export default class Zone {
     * Adds debug options on GUI
     */
     addDebugOptions() {
-        if (this.name === 'zone1') {
-            // this.boundingBoxHelperVisible = true;
-            // const geometry = new THREE.BoxGeometry(this.startPosition, 10, this.endPosition);
-            // const material = new THREE.MeshBasicMaterial({ color: 0xffff00 });
-            // const mesh = new THREE.Mesh(geometry, material);
-            // this.boundingBoxHelper = new THREE.BoxHelper(mesh, 0xffff00);
-            // console.log(geometry)
-            // this.scene.add(this.boundingBoxHelper);
-            // this.debug.gui.add(this, 'boundingBoxHelperVisible');
+        // this.boundingBoxHelperVisible = true;
+        // const geometry = new THREE.BoxGeometry(this.startPosition, 10, this.endPosition);
+        // const material = new THREE.MeshBasicMaterial({ color: 0xffff00 });
+        // const mesh = new THREE.Mesh(geometry, material);
+        // this.boundingBoxHelper = new THREE.BoxHelper(mesh, 0xffff00);
+        // console.log(geometry)
+        // this.scene.add(this.boundingBoxHelper);
+        // this.debug.gui.add(this, 'boundingBoxHelperVisible');
 
-            console.log(this.boundingBox)
+        console.log(this.boundingBox)
 
-            const geometry = new THREE.BoxGeometry(Math.abs(this.boundingBox.max.x - this.boundingBox.min.x), 0.2, Math.abs(this.boundingBox.max.y - this.boundingBox.min.y));
-            const material = new THREE.MeshBasicMaterial({ color: 0xffffff });
-            const cube = new THREE.Mesh(geometry, material);
+        const geometry = new THREE.BoxGeometry(Math.abs(this.boundingBox.max.x - this.boundingBox.min.x), 0.2, Math.abs(this.boundingBox.max.y - this.boundingBox.min.y));
+        const material = new THREE.MeshBasicMaterial({ color: 0xffffff });
+        const cube = new THREE.Mesh(geometry, material);
 
-            cube.position.set(this.boundingBox.min.x + (Math.abs(this.boundingBox.max.x - this.boundingBox.min.x)/2), 0, this.boundingBox.min.y + (Math.abs(this.boundingBox.max.y - this.boundingBox.min.y)/2))
+        cube.position.set(this.boundingBox.min.x + (Math.abs(this.boundingBox.max.x - this.boundingBox.min.x) / 2), 0, this.boundingBox.min.y + (Math.abs(this.boundingBox.max.y - this.boundingBox.min.y) / 2))
 
-            this.boundingBoxHelper = new THREE.BoxHelper(cube, 0xff0000);
+        this.boundingBoxHelper = new THREE.BoxHelper(cube, 0xff0000);
 
-            this.scene.add(this.boundingBoxHelper)
-        }
+        this.scene.add(this.boundingBoxHelper)
     }
 }

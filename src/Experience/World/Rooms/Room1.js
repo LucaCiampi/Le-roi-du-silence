@@ -52,9 +52,9 @@ export default class Room1 extends Room {
         this.additionalEntranceActions = () => { this.animateHands(); }
     }
 
-    update(deltaT) {
+    update() {
         console.log('update room 1')
-        this.handsAnimationMixer.update(deltaT);
+        this.handsAnimationMixer.update(0.01);
     }
 
     animateHands() {

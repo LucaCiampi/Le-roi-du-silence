@@ -79,7 +79,7 @@ export default class World {
             this.controls.update(deltaT)
 
             if (!this.parameter.gameEnded) {
-                this.updateCurrentRoom(deltaT);
+                this.updateCurrentRoom();
                 this.checkNextZoneEntrance();
             }
         }
@@ -103,8 +103,8 @@ export default class World {
         ]
     }
 
-    updateCurrentRoom(deltaT) {
-        this.rooms[this.parameter.currentZone].update(deltaT % 8);
+    updateCurrentRoom() {
+        this.rooms[this.parameter.currentZone].update();
     }
 
     /**

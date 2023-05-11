@@ -34,7 +34,7 @@ export default class Room3 extends Room {
         this.addPropsToScene();
     }
 
-    update() {
+    update(deltaT) {
         console.log('update room 3')
     }
 }

@@ -29,8 +29,6 @@ export default class Room2 extends Room {
             zoneEvent: () => this.zoneEvent("zone 2")
         });
 
-        this.additionalEntranceActions = () => {this.animateHands();}
-
         this.setRoomModel();
 
         // Test cube
@@ -43,13 +41,7 @@ export default class Room2 extends Room {
         this.addPropsToScene();
     }
 
-    update() {
+    update(deltaT) {
         console.log('update room 2');
-
-        this.animateHands();
-    }
-
-    animateHands() {
-        console.log('animate hands')
     }
 }

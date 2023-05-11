@@ -27,6 +27,11 @@ export default
         path: "./Environment/hands.glb"
     },
     {
+        name: "soldier",
+        type: "gltfModel",
+        path: "./Environment/soldier.glb"
+    },
+    {
         name: "room3",
         type: "gltfModel",
         path: "./Environment/room3.glb"

@@ -70,7 +70,7 @@ function handleDesktopEvent(event){
       time: Date.now()
     })
   }
-  if (event.title === "random"){
+  if (event?.title === "random"){
     push(ref(database, `sessions/${event.id}/messages/`), {
       msg : "Coucou je spam des truc random",
       foreign: false,

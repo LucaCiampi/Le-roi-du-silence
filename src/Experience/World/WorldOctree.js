@@ -25,16 +25,19 @@ export default class WorldOctree {
     }
 
     makeOctree() {
-        // Créer un Octree global et ajouter les modèles
-        this.scene.traverse(mesh => {
-            if (mesh instanceof THREE.Mesh) {
-                this.octree.fromGraphNode(mesh);
-            }
+
+        this.models.forEach(room => {
+            room.model.traverse(mesh => {
+                if (mesh instanceof THREE.Mesh) {
+                    this.octree.fromGraphNode(mesh);
+                }
+            });
         });
 
         if (this.debug.active) {
             this.addDebugOptions();
         }
+        
     }
 
     /**

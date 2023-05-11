@@ -3,9 +3,6 @@ import UserInterface from "./UserInterface";
 import Controls from "./Controls";
 import Floor from "./GameElements/Floor";
 import Light from "./GameElements/Light";
-import TestCube from "./GameElements/TestCube";
-import Stairs from "./GameElements/Stairs";
-import Room from "./Room";
 import WorldOctree from "./WorldOctree";
 import Room1 from "./Rooms/Room1";
 import Room2 from "./Rooms/Room2";
@@ -44,12 +41,13 @@ export default class World {
         //     resources: this.resources,
         //     parameter: this.parameter,
         // })
+        this.setRooms();
 
         this.worldOctree = new WorldOctree({
             scene: this.scene,
             debug: this.debug,
             event: this.event,
-            // models: [this.floor]
+            models: this.rooms,
         })
 
         this.controls = new Controls({
@@ -68,7 +66,6 @@ export default class World {
             parameter: this.parameter
         })
 
-        this.setRooms();
 
         this.isReady = true;
         this.startAmbientWorldSound();

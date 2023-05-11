@@ -99,7 +99,7 @@ export default class World {
             new Room1({ ...options }),
             new Room2({ ...options }),
             new Room3({...options}),
-            // new Room4({...options}),
+            new Room4({...options}),
         ]
     }
 
@@ -115,7 +115,8 @@ export default class World {
 
         if (this.rooms[this.parameter.currentZone + 1].hasPlayerInRoom(this.controls.playerCollider.end)) {
             this.parameter.incrementCurrentZone();
-            this.rooms[this.parameter.currentZone + 1].roomEntranceActions();
+            // TODO : the increment just above influences the function below, make this easier to understand
+            this.rooms[this.parameter.currentZone].roomEntranceActions();
             this.updatePlayerSpawnLocation();
             this.freeUpPreviousZone();
         }

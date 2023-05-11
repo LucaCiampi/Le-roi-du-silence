@@ -12,13 +12,6 @@ export default class Room2 extends Room {
         this.resources = _options.resources;
         this.zoneEvent = _options.zoneEvent;
 
-        this.name = null;
-        this.position = null;
-        this.spawnPosition = null;
-        this.entranceTriggerZone = null;
-        this.model = null;
-
-        this.monActionRoom2 = null;
         this.init();
     }
 
@@ -34,43 +27,19 @@ export default class Room2 extends Room {
             zoneEvent: () => this.zoneEvent("zone 2")
         });
 
-        this.props = [];
-        console.log('init room2')
-        this.monActionRoom2 = "action room 2";
+        this.setRoomModel();
 
-        this.model = this.resources.items['room2'].scene;
-        this.model.position.set(this.position.x, this.position.y, this.position.z)
-
-        // this.props = [];
-
-        // this.entranceTriggerZone = new TriggerZone({
-
-        // })
-
-        this.model.traverse((child, key) => {
-            if (child.isMesh) {
-                child.material = new THREE.MeshBasicMaterial();
-
-                child.material.map = this.resources.items['wood'];
-                child.material.needsUpdate = true;
-            }
-        })
-
-        this.scene.add(this.model)
-
-        const geometry = new THREE.BoxGeometry(10, 10, 10);
+        // Test cube
+        const geometry = new THREE.BoxGeometry(1, 1, 1);
         const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
         const cube = new THREE.Mesh(geometry, material);
-        cube.position.set(2, 2, -6)
-        this.props.push(cube)
+        cube.position.set(2, 2, -6);
+        // this.props.push(cube);
+        
+        this.addPropsToScene();
     }
 
     update() {
         console.log('update room 2');
-    }
-
-    destroy() {
-        this.dispose(this.model)
-        this.model = null;
     }
 }

@@ -12,12 +12,6 @@ export default class Room1 extends Room {
         this.resources = _options.resources;
         this.zoneEvent = _options.zoneEvent;
 
-        this.name = null;
-        this.position = null;
-        this.spawnPosition = null;
-        this.entranceTriggerZone = null;
-        this.model = null;
-
         this.init();
     }
 
@@ -32,45 +26,37 @@ export default class Room1 extends Room {
             endPosition: new THREE.Vector2(10, -7),
             zoneEvent: () => this.zoneEvent("green zone")
         });
-        this.props = [];
-        console.log('init room1')
-        
-        this.model = this.resources.items['room1'].scene;
-        this.model.position.set(this.position.x, this.position.y, this.position.z)
-        
-        // this.props = [];
 
-        // this.entranceTriggerZone = new TriggerZone({
+        this.setRoomModel();
 
-        // })
+        // Hands
+        const hands = this.resources.items['hands'].scene;
+        const handsAnimations = this.resources.items['hands'].animations;
+        hands.position.set(4, 2, -7);
+        // console.log(handsAnimations)
+        this.props.push(hands);
 
-        this.model.traverse((child, key) => {
-            if (child.isMesh) {
-                child.material = new THREE.MeshBasicMaterial();
+        // Soldier
+        const soldier = this.resources.items['soldier'].scene;
+        const handsClips = this.resources.items['soldier'].animations;
+        this.handsClip = THREE.AnimationClip.findByName(handsClips, 'Run');
+        soldier.position.set(4, 2, -7);
+        this.props.push(soldier);
+        this.handsAnimationMixer = new THREE.AnimationMixer(soldier);
 
-                child.material.map = this.resources.items['wood'];
-                child.material.needsUpdate = true;
+        this.addPropsToScene();
 
-                // child.material.map = sprite;
-            }
-        })
-
-        this.scene.add(this.model)
-
-        const geometry = new THREE.BoxGeometry(10, 10, 10);
-        const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-        const cube = new THREE.Mesh(geometry, material);
-        cube.position.set(2, 2, -2)
-        // this.props.add(cube)
-        this.props = cube
+        this.additionalEntranceActions = () => { this.animateHands(); }
     }
 
     update() {
         console.log('update room 1')
+        this.handsAnimationMixer.update(0.01);
     }
 
-    destroy() {
-        this.dispose(this.model)
-        this.model = null;
+    animateHands() {
+        console.log('animate hands')
+        const action = this.handsAnimationMixer.clipAction(this.handsClip);
+        action.play();
     }
 }

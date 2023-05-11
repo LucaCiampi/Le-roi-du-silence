@@ -61,9 +61,9 @@ function displayQrCode(key){
 //callback on desktop to transmit events to backend
 function handleDesktopEvent(event){
   console.log('event', event)
-  if (event === "green zone"){
+  if (event === "room1"){
     push(ref(database, `sessions/${currentSession}/messages/`), {
-      msg : "green zone message"
+      msg : "room1 message"
     })
   }
 }

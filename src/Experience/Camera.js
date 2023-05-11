@@ -6,6 +6,7 @@ export default class Camera {
         this.sizes = _options.sizes;
 
         this.instance = null;
+        this.audioListener = null;
 
         this.init();
     }
@@ -15,15 +16,14 @@ export default class Camera {
         this.instance.position.set(0, 0, 0);
         this.scene.add(this.instance);
     }
-
+    
     resize() {
         this.instance.aspect = this.sizes.width / this.sizes.height;
         this.instance.updateProjectionMatrix();
     }
-
+    
     update() {
         // silence is golden...
     }
-
 }
 

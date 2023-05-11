@@ -15,13 +15,15 @@ import Renderer from "./Renderer.js";
 // World
 import World from "./World/World.js";
 
-export function createExperience(canvas, handleDesktopEvent){
+export function createExperience(canvas, handleDesktopEvent) {
     const experience = new Experience(canvas, handleDesktopEvent)
 }
+
 export default class Experience {
     constructor(canvas, handleDesktopEvent) {
         window.experience = this;
         this.canvas = canvas;
+        this.handleDesktopEvent = handleDesktopEvent
 
         // options
         this.sizes = null;
@@ -29,7 +31,6 @@ export default class Experience {
         this.scene = null;
         this.resources = null;
         this.debug = null;
-        this.handleDesktopEvent = handleDesktopEvent
 
         // Setup
         this.event = null;
@@ -44,6 +45,7 @@ export default class Experience {
     init() {
         // options
         this.sizes = new Sizes();
+        this.debug = new Debug();
         this.time = new Time();
         this.scene = new THREE.Scene();
         this.resources = new Resources(sources);
@@ -65,6 +67,7 @@ export default class Experience {
 
         this.world = new World({
             event: this.event,
+            time: this.time,
             scene: this.scene,
             debug: this.debug,
             resources: this.resources,
@@ -95,10 +98,6 @@ export default class Experience {
     ready() {
         this.world.ready();
         this.event.ready();
-        
-        this.debug = new Debug({
-            world: this.world
-        });
     }
 
     resize() {
@@ -111,6 +110,10 @@ export default class Experience {
         this.renderer.update();
 
         this.world.update(this.time.deltaTime);
+
+        if (this.debug.active) {
+            this.debug.update();
+        }
     }
 
     destroy() {

@@ -6,9 +6,10 @@ export default class Controls {
     constructor(_options) {
         this.camera = _options.camera;
         this.parameter = _options.parameter;
-        this.userInterface = _options.userInterface;
         this.event = _options.event;
-        this.floor = _options.floor;
+        this.debug = _options.debug;
+        this.userInterface = _options.userInterface;
+        this.worldOctree = _options.worldOctree;
 
         this.controls = null;
         this.playerVelocity = null;
@@ -16,9 +17,12 @@ export default class Controls {
         this.playerCollider = null;
         this.playerOnFloor = false;
 
+
         this.keyStates = {};
 
-        this.GRAVITY = 50;
+        this.PLAYER_SPEED = 15;
+        this.PLAYER_SPEED_AIR = 2;
+        this.GRAVITY = 70;
 
         this.init();
     }
@@ -31,6 +35,10 @@ export default class Controls {
         this.clock = new THREE.Clock();
 
         this.eventReciever();
+
+        if (this.debug.active) {
+            this.addDebugOptions();
+        }
     }
 
     // update(deltaT) {
@@ -111,7 +119,7 @@ export default class Controls {
     controlsKeyBindings(deltaTime) {
 
         // gives a bit of air control
-        const speedDelta = deltaTime * (this.playerOnFloor ? 25 : 8);
+        const speedDelta = deltaTime * (this.playerOnFloor ? this.PLAYER_SPEED : this.PLAYER_SPEED_AIR);
 
         if (this.keyStates['KeyW']) {
 
@@ -210,11 +218,12 @@ export default class Controls {
      */
     playerCollisions() {
 
-        const result = this.floor.worldOctree.capsuleIntersect(this.playerCollider);
+        const result = this.worldOctree.octree.capsuleIntersect(this.playerCollider);
 
         this.playerOnFloor = false;
 
         if (result) {
+
 
             this.playerOnFloor = result.normal.y > 0;
 
@@ -237,13 +246,30 @@ export default class Controls {
 
         if (this.camera.instance.position.y <= - 25) {
 
-            this.playerCollider.start.set(0, 0.35, 0);
-            this.playerCollider.end.set(0, 1, 0);
+            this.playerCollider.start.set(
+                this.parameter.playerSpawn.x,
+                this.parameter.playerSpawn.y + 0.35,
+                this.parameter.playerSpawn.z
+            );
+            this.playerCollider.end.set(
+                this.parameter.playerSpawn.x,
+                this.parameter.playerSpawn.y + 1,
+                this.parameter.playerSpawn.z
+            );
             this.playerCollider.radius = 0.35;
             this.camera.instance.position.copy(this.playerCollider.end);
             this.camera.instance.rotation.set(0, 0, 0);
 
         }
 
+    }
+
+    /**
+    * Adds controls options in case of debug
+    */
+    addDebugOptions() {
+        // this.debug.gui.add(this.playerCollider.end, 'x');
+        // this.debug.gui.add(this.playerCollider.end, 'y');
+        // this.debug.gui.add(this.playerCollider.end, 'z');
     }
 }  

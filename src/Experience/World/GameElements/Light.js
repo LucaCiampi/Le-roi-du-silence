@@ -1,9 +1,10 @@
 import * as THREE from "three";
 
 
-export default class Floor {
+export default class Light {
     constructor(_options) {
         this.scene = _options.scene;
+        this.debug = _options.debug;
         this.resources = _options.resources;
         this.parameter = _options.parameter;
 
@@ -14,10 +15,14 @@ export default class Floor {
         this.setWorldColor();
         this.setLight();
         this.setFog();
+
+        if (this.debug.active) {
+            this.addDebugOptions();
+        }
     }
 
     setWorldColor() {
-        this.scene.background = new THREE.Color(0x88ccee);
+        this.scene.background = new THREE.Color(0x000000);
     }
 
     setLight() {
@@ -27,7 +32,15 @@ export default class Floor {
     }
 
     setFog() {
-        this.scene.fog = new THREE.Fog(0x88ccee, 0, 50);
+        this.scene.fog = new THREE.Fog(0x000000, 0, 15);
+    }
+
+    /**
+   * Adds debug options on GUI
+   */
+    addDebugOptions() {
+        this.scene.fog.far = 100;
+        this.debug.gui.add(this.scene.fog, 'far');
     }
 
 }

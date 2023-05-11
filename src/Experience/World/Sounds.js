@@ -10,17 +10,27 @@ export default class Sounds {
 
     setSounds(){
         this.sounds = {
-            sound_Starter_Number : new Howl({
-                src: ['./Starter/Sounds/Starter_Countdown_Number.mp3']
+            swoosh1 : new Howl({
+                src: ['./Sounds/swoosh1.wav']
             }),
-            sound_Starter_Go : new Howl({
-                src: ['./Starter/Sounds/Starter_Countdown_Go.mp3']
+            swoosh2 : new Howl({
+                src: ['./Sounds/swoosh2.wav']
+            }),
+            breathOfDeath : new Howl({
+                src: ['./Sounds/breathOfDeath.aiff']
+            }),
+            wind : new Howl({
+                src: ['./Sounds/wind.wav']
             }),
         }
     }
 
     play(sound_name){
         this.sounds[sound_name].play()
+    }
+
+    playLoop(sound_name){
+        this.sounds[sound_name].loop(true).play()
     }
 
 }

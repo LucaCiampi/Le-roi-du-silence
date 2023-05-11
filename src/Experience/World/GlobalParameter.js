@@ -4,12 +4,14 @@ export default class GlobalParameter {
     constructor(_options) {
         this.event = _options.event;
         this.scene = _options.scene;
+        this.debug = _options.debug;
 
         this.sounds = null;
         this.counterOn = false;
         this.canUpdate = false;
         this.currentZone = null;
         this.gameEnded = false;
+        this.playerSpawn = null;
 
         this.NUMBER_OF_ZONES = 4;
 
@@ -19,13 +21,26 @@ export default class GlobalParameter {
     init() {
         this.sounds = new Sounds();
         this.currentZone = 0;
+        this.playerSpawn = { x: 0, y: 0, z: 0 };
 
         this.eventReceiver();
         this.reset();
+
+        if (this.debug.active) {
+            this.addDebugOptions();
+        }
     }
 
     eventReceiver() {
         this.event.on('Start', () => {
+            this.counterOn = true;
+        })
+
+        this.event.on('Pause', () => {
+            this.counterOn = false;
+        })
+
+        this.event.on('Continue', () => {
             this.counterOn = true;
         })
 
@@ -71,5 +86,12 @@ export default class GlobalParameter {
             }
         }
         this.scene.remove(item)
+    }
+
+    /**
+    * Adds debug options on GUI
+    */
+    addDebugOptions() {
+        this.debug.gui.add(this, 'currentZone');
     }
 }

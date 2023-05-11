@@ -29,15 +29,15 @@ export default class EntranceSas extends Room {
         this.props = [];
 
         console.log('init sas')
-        
+
         this.model = this.resources.items['sas'].scene;
         this.model.position.set(this.position.x, this.position.y, this.position.z)
-        
+
         this.model.traverse((child) => {
             if (child.isMesh) {
-                child.material = new THREE.MeshBasicMaterial();
+                child.material = new THREE.MeshLambertMaterial();
 
-                child.material.map = this.resources.items['wood'];
+                child.material.map = this.resources.items['checker'];
                 child.material.needsUpdate = true;
             }
         })
@@ -45,8 +45,56 @@ export default class EntranceSas extends Room {
         this.scene.add(this.model)
 
         const geometry = new THREE.BoxGeometry(1, 1, 1);
-        const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-        const cube = new THREE.Mesh(geometry, material);
+        // const material = new THREE.MeshLambertMaterial({ color: 0x00ff00 });
+        const texture = new THREE.TextureLoader().load('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Red_brick_wall_texture.JPG/2560px-Red_brick_wall_texture.JPG')
+        texture.wrapS = texture.wrapT = THREE.RepeatWrapping
+        const texture2 = new THREE.TextureLoader().load('https://img.rawpixel.com/private/static/images/website/2022-05/pf-s124-ak-5423_3.jpg?w=1200&h=1200&dpr=1&fit=clip&crop=default&fm=jpg&q=75&vib=3&con=3&usm=15&cs=srgb&bg=F4F4F3&ixlib=js-2.2.1&s=cb3b9a3646d03aa5540c3e518f360e9d')
+        texture2.wrapS = texture.wrapT = THREE.RepeatWrapping
+
+        const vertexShader = `
+            precision mediump float;
+			precision mediump int;
+
+			uniform mat4 modelViewMatrix; // optional
+			uniform mat4 projectionMatrix; // optional
+
+			attribute vec3 position;
+			attribute vec3 normal;
+			attribute vec2 uv;
+
+			varying vec2 vUv;
+
+			void main()	{
+				gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+                vUv = uv;
+			}`
+
+        const fragmentShader = `
+            precision mediump float;
+			precision mediump int;
+
+			uniform sampler2D colorMap;
+			uniform sampler2D colorMap2;
+
+			varying vec2 vUv;
+
+			void main()	{
+				gl_FragColor = texture2D(colorMap, vUv) + texture2D(colorMap2, vUv);
+			}`
+
+        const shaderMaterial = new THREE.RawShaderMaterial({
+            uniforms: {
+                colorMap: {
+                    value: texture
+                },
+                colorMap2: {
+                    value: texture2
+                }
+            },
+            vertexShader: vertexShader,
+            fragmentShader: fragmentShader
+        })
+        const cube = new THREE.Mesh(geometry, shaderMaterial);
         cube.position.set(0, 0, 0)
         this.props.push(cube)
 

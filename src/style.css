@@ -41,6 +41,9 @@ body {
 .d-none {
     display: none;
 }
+canvas {
+    border-radius: 15px;
+}
 
 /* mobile */
 #mobile {
@@ -69,8 +72,7 @@ ul {
     position: absolute;
     width: 100%;
 }
-
-.topBar {
+#mobile .topBar{
     background-color: rgba(28, 28, 28, 0.784);
     color: rgb(240, 240, 240);
     position: fixed;
@@ -90,8 +92,7 @@ ul {
     width: 35px;
     height: 35px;
 }
-
-.topBar h2 {
+#mobile .topBar h2{
     margin: 0;
 }
 

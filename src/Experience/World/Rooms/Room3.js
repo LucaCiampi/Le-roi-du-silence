@@ -16,8 +16,6 @@ export default class Room3 extends Room {
     }
 
     init() {
-        console.log('init room3');
-
         this.name = "room3";
         this.position = new THREE.Vector3(-19, 2, -40);
         this.spawnPosition = new THREE.Vector3(-19, 2, -40);

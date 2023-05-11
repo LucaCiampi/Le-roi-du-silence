@@ -16,8 +16,6 @@ export default class Room1 extends Room {
     }
 
     init() {
-        console.log('init room1')
-
         this.name = "room1";
         this.position = new THREE.Vector3(1, 2, -18);
         this.spawnPosition = new THREE.Vector3(2, 2, -14);
@@ -35,7 +33,7 @@ export default class Room1 extends Room {
         const hands = this.resources.items['hands'].scene;
         const handsAnimations = this.resources.items['hands'].animations;
         hands.position.set(4, 2, -7);
-        console.log(handsAnimations)
+        // console.log(handsAnimations)
         this.props.push(hands);
 
         // Soldier
@@ -45,7 +43,6 @@ export default class Room1 extends Room {
         soldier.position.set(4, 2, -7);
         this.props.push(soldier);
         this.handsAnimationMixer = new THREE.AnimationMixer(soldier);
-        console.log(this.handsClips)
 
         this.addPropsToScene();
 
@@ -61,6 +58,5 @@ export default class Room1 extends Room {
         console.log('animate hands')
         const action = this.handsAnimationMixer.clipAction(this.handsClip);
         action.play();
-        console.log(action)
     }
 }

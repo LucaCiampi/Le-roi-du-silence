@@ -16,8 +16,6 @@ export default class EntranceSas extends Room {
     }
 
     init() {
-        console.log('init sas')
-
         this.name = "sas";
         this.position = new THREE.Vector3(0, 0, 0);
         this.spawnPosition = new THREE.Vector3(0, 0, 0);

@@ -6,12 +6,6 @@ export default class EntranceSas extends Room {
     constructor(_options) {
         super(_options)
 
-        this.parameter = _options.parameter;
-        this.debug = _options.debug;
-        this.scene = _options.scene;
-        this.resources = _options.resources;
-        this.zoneEvent = _options.zoneEvent;
-
         this.init();
     }
 

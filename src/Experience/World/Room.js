@@ -2,6 +2,12 @@ import * as THREE from 'three'
 
 export default class Room {
     constructor(_options) {
+        this.parameter = _options.parameter;
+        this.debug = _options.debug;
+        this.scene = _options.scene;
+        this.resources = _options.resources;
+        this.zoneEvent = _options.zoneEvent;
+
         this.name = null;
         this.position = null;
         this.spawnPosition = null;

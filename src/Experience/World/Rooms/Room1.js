@@ -6,12 +6,6 @@ export default class Room1 extends Room {
     constructor(_options) {
         super(_options)
 
-        this.parameter = _options.parameter;
-        this.debug = _options.debug;
-        this.scene = _options.scene;
-        this.resources = _options.resources;
-        this.zoneEvent = _options.zoneEvent;
-
         this.init();
     }
 
@@ -24,7 +18,6 @@ export default class Room1 extends Room {
             scene: this.scene,
             startPosition: new THREE.Vector2(0, -20),
             endPosition: new THREE.Vector2(10, -7),
-            zoneEvent: () => this.zoneEvent("green zone")
         });
 
         this.setRoomModel();

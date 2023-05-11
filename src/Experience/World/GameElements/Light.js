@@ -40,7 +40,9 @@ export default class Light {
    */
     addDebugOptions() {
         this.scene.fog.far = 100;
-        this.debug.gui.add(this.scene.fog, 'far');
+
+        const folder = this.debug.gui.addFolder('Light');
+        folder.add(this.scene.fog, 'far');
     }
 
 }

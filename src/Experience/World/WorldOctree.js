@@ -43,7 +43,8 @@ export default class WorldOctree {
     addDebugOptions() {
         this.setHelper();
 
-        this.debug.gui.add(this.octreeHelper, 'visible')
+        const folder = this.debug.gui.addFolder('WorldOctree');
+        folder.add(this.octreeHelper, 'visible')
             .onChange((value) => {
                 this.octreeHelper.visible = value;
             });

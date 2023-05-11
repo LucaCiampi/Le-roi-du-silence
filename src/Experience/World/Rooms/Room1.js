@@ -31,11 +31,11 @@ export default class Room1 extends Room {
 
         this.setRoomModel();
 
-        const geometry = new THREE.BoxGeometry(10, 10, 10);
-        const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-        const cube = new THREE.Mesh(geometry, material);
-        cube.position.set(2, 2, -2)
-        this.props.push(cube)
+        // Hands
+        const hands = this.resources.items['hands'].scene;
+        hands.position.set(4, 2, -7);
+        console.log(hands.animations)
+        this.props.push(hands);
 
         this.addPropsToScene();
     }

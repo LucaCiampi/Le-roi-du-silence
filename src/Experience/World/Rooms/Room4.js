@@ -31,12 +31,6 @@ export default class Room4 extends Room {
         
         this.setRoomModel();
 
-        const geometry = new THREE.BoxGeometry(10, 10, 10);
-        const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-        const cube = new THREE.Mesh(geometry, material);
-        cube.position.set(2, 2, -2);
-        this.props.push(cube);
-
         this.addPropsToScene();
     }
 

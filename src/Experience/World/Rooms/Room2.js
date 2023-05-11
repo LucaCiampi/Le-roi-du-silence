@@ -39,12 +39,6 @@ export default class Room2 extends Room {
         const cube = new THREE.Mesh(geometry, material);
         cube.position.set(2, 2, -6);
         // this.props.push(cube);
-
-        // Hands
-        const hands = this.resources.items['hands'].scene;
-        hands.position.set(4, 2, -7);
-        console.log(hands.animations)
-        this.props.push(hands);
         
         this.addPropsToScene();
     }

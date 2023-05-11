@@ -8,8 +8,8 @@ const firebaseConfig = {
 
 const isMobile = /Android|iPhone/i.test(navigator.userAgent)
 let currentSession = null
-// let baseUrl = "172.28.59.104:5173"
-let baseUrl = "brume.surge.sh"
+let baseUrl = "172.28.59.104:5173"
+// let baseUrl = "brume.surge.sh"
 
 //firebase config
 const app = initializeApp(firebaseConfig);
@@ -70,10 +70,17 @@ function handleDesktopEvent(event){
       time: Date.now()
     })
   }
+  if (event.title === "random"){
+    push(ref(database, `sessions/${event.id}/messages/`), {
+      msg : "Coucou je spam des truc random",
+      foreign: false,
+      time: Date.now()
+    })
+  }
 }
 
 if (isMobile){
-  import('./mobile').then(mobile => mobile.createMobileInterface(window.location.search))
+  import('./mobile').then(mobile => mobile.createMobileInterface(window.location.search, handleDesktopEvent))
 }else{
   import('./Experience/Experience').then(desktop => desktop.createExperience(document.querySelector('canvas.webgl'), handleDesktopEvent))
   createSession()

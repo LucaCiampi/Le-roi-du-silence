@@ -3,8 +3,10 @@ let msgs = document.getElementById("msgs");
 let topBar = document.getElementById("title");
 
 let sessionId = null;
+let backendEvent = null
 
-export function createMobileInterface(id) {
+export function createMobileInterface(id, handleBackendEvent) {
+    backendEvent = handleBackendEvent
     if (id.charAt(0) !== "?") {
         topBar.textContent = "Erreur 404";
     } else {
@@ -15,6 +17,7 @@ export function createMobileInterface(id) {
     msg.classList.add("msg", "info");
     msg.textContent = "Chargement...";
     msgs.appendChild(msg);
+    document.getElementById('send').onclick = () => sendAnything()
 }
 
 export function displayList(list) {
@@ -46,4 +49,8 @@ export function displayList(list) {
         msgs.appendChild(msg);
     }
     document.getElementById('msgsContainer').scrollTop = 999
+}
+
+function sendAnything(){
+    backendEvent({title: "random", id: sessionId})
 }

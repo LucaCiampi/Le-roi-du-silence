@@ -92,6 +92,9 @@ export default class GlobalParameter {
     * Adds debug options on GUI
     */
     addDebugOptions() {
-        this.debug.gui.add(this, 'currentZone');
+        this.debug.gui.add(this, 'currentZone')
+            .onChange((value) => {
+                this.currentZone = value;
+            });;
     }
 }

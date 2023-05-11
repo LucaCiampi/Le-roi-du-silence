@@ -1,14 +1,35 @@
 import * as THREE from 'three'
 
-export default class Room { 
+export default class Room {
     constructor(_options) {
-        this.scene = _options.scene;
+        this.name = null;
+        this.position = null;
+        this.spawnPosition = null;
+        this.entranceTriggerZone = null;
+        this.model = null;
+        this.props = [];
 
         this.initRoom();
     }
 
     initRoom() {
         console.log("Room : initRoom")
+    }
+
+    setRoomModel() {
+        this.model = this.resources.items[this.name].scene;
+        this.model.position.set(this.position.x, this.position.y, this.position.z)
+
+        this.model.traverse((child) => {
+            if (child.isMesh) {
+                child.material = new THREE.MeshBasicMaterial();
+
+                child.material.map = this.resources.items['wood'];
+                child.material.needsUpdate = true;
+            }
+        })
+
+        this.scene.add(this.model)
     }
 
     /**
@@ -42,29 +63,29 @@ export default class Room {
         return this.entranceTriggerZone.hasPlayerInZone(playerPosition);
     }
 
-    addPropsToScene(props) {
+    addPropsToScene() {
         console.log('addPropsToScene')
 
-        props.forEach(prop => {
+        this.props.forEach(prop => {
             this.scene.add(prop)
         });
     }
 
-    dispose(room) {
+    destroy() {
         console.log('Room : dispose()')
 
-        room.props.forEach((prop) => {
+        this.props.forEach((prop) => {
             prop.geometry.dispose();
             prop.material.dispose();
             this.scene.remove(prop);
         })
 
-        room.model.traverse((node) => {
+        this.model.traverse((node) => {
             if (node instanceof THREE.Mesh) {
                 node.geometry.dispose();
                 node.material.dispose();
             }
         });
-        this.scene.remove(room.model);
+        this.scene.remove(this.model);
     }
 }

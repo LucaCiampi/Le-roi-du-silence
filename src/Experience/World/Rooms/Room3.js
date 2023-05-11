@@ -12,16 +12,12 @@ export default class Room3 extends Room {
         this.resources = _options.resources;
         this.zoneEvent = _options.zoneEvent;
 
-        this.name = null;
-        this.position = null;
-        this.spawnPosition = null;
-        this.entranceTriggerZone = null;
-        this.model = null;
-
         this.init();
     }
 
     init() {
+        console.log('init room3');
+
         this.name = "room3";
         this.position = new THREE.Vector3(-19, 2, -40);
         this.spawnPosition = new THREE.Vector3(-19, 2, -40);
@@ -32,47 +28,17 @@ export default class Room3 extends Room {
             endPosition: new THREE.Vector2(-18, -30),
             zoneEvent: () => this.zoneEvent("room 3")
         });
-
-        this.props = [];
-        console.log('init room3')
-
         
-        this.model = this.resources.items['room3'].scene;
-        this.model.position.set(this.position.x, this.position.y, this.position.z)
-        
-        // this.props = [];
-
-        // this.entranceTriggerZone = new TriggerZone({
-
-        // })
-
-        this.model.traverse((child, key) => {
-            if (child.isMesh) {
-                child.material = new THREE.MeshBasicMaterial();
-
-                child.material.map = this.resources.items['wood'];
-                child.material.needsUpdate = true;
-
-                // child.material.map = sprite;
-            }
-        })
-
-        this.scene.add(this.model)
+        this.setRoomModel();
 
         const geometry = new THREE.BoxGeometry(10, 10, 10);
         const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
         const cube = new THREE.Mesh(geometry, material);
-        cube.position.set(2, 2, -2)
-        // this.props.add(cube)
-        this.props = cube
+        cube.position.set(2, 2, -2);
+        this.props.push(cube);
     }
 
     update() {
         console.log('update room 3')
-    }
-
-    destroy() {
-        this.dispose(this.model)
-        this.model = null;
     }
 }

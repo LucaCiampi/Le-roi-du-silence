@@ -26,7 +26,7 @@ export default class Room4 extends Room {
             scene: this.scene,
             startPosition: new THREE.Vector2(0, -20),
             endPosition: new THREE.Vector2(10, -7),
-            zoneEvent: () => this.zoneEvent("green zone")
+            zoneEvent: () => this.zoneEvent("room 4")
         });
         
         this.setRoomModel();
@@ -36,6 +36,8 @@ export default class Room4 extends Room {
         const cube = new THREE.Mesh(geometry, material);
         cube.position.set(2, 2, -2);
         this.props.push(cube);
+
+        this.addPropsToScene();
     }
 
     update() {

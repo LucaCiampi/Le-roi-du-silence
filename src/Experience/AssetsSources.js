@@ -22,6 +22,11 @@ export default
         path: "./Environment/room2.glb"
     },
     {
+        name: "hands",
+        type: "gltfModel",
+        path: "./Environment/hands.glb"
+    },
+    {
         name: "room3",
         type: "gltfModel",
         path: "./Environment/room3.glb"
@@ -35,18 +40,6 @@ export default
         name: "lit",
         type: "gltfModel",
         path: "./Environment/lit.glb"
-    },
-
-    // Player
-    {
-        name: "player_background",
-        type: "texture",
-        path: "./Player/Bucket_Background.webp"
-    },
-    {
-        name: "player_foreground",
-        type: "texture",
-        path: "./Player/Bucket_Foreground.webp"
     },
 
     // Textures

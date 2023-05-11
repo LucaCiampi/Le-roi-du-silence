@@ -7,6 +7,7 @@ export default class Room {
         this.spawnPosition = null;
         this.entranceTriggerZone = null;
         this.model = null;
+        this.additionalEntranceActions = () => {};
         this.props = [];
 
         this.initRoom();
@@ -16,6 +17,9 @@ export default class Room {
         console.log("Room : initRoom")
     }
 
+    /**
+     * Loads the Room .glb model and adds it to the scene
+     */
     setRoomModel() {
         this.model = this.resources.items[this.name].scene;
         this.model.position.set(this.position.x, this.position.y, this.position.z)
@@ -33,11 +37,21 @@ export default class Room {
     }
 
     /**
+     * Checks if the player has entered the Room
+     * @param {THREE.Vector2} playerPosition - player's coordinates
+     * @returns {boolean} True if the player has stepped in the room
+     */
+    hasPlayerInRoom(playerPosition) {
+        return this.entranceTriggerZone.hasPlayerInZone(playerPosition);
+    }
+
+    /**
      * Actions related to the entrance of the player in the zone
      */
     roomEntranceActions() {
         this.sendMessageToPhone();
         this.playZoneSound();
+        this.additionalEntranceActions();
     }
 
     /**
@@ -55,14 +69,8 @@ export default class Room {
     }
 
     /**
-     * 
-     * @param {THREE.Vector2} playerPosition - player's coordinates
-     * @returns {boolean} True if the player has stepped in the room
+     * Adds all Room props to the scene
      */
-    hasPlayerInRoom(playerPosition) {
-        return this.entranceTriggerZone.hasPlayerInZone(playerPosition);
-    }
-
     addPropsToScene() {
         console.log('addPropsToScene')
 
@@ -71,6 +79,9 @@ export default class Room {
         });
     }
 
+    /**
+     * Removes the room and all of its components from the scene
+     */
     destroy() {
         console.log('Room : dispose()')
 

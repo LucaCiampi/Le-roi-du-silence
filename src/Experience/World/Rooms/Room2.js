@@ -12,7 +12,6 @@ export default class Room2 extends Room {
         this.resources = _options.resources;
         this.zoneEvent = _options.zoneEvent;
 
-        this.monActionRoom2 = null;
         this.init();
     }
 
@@ -30,18 +29,33 @@ export default class Room2 extends Room {
             zoneEvent: () => this.zoneEvent("zone 2")
         });
 
-        this.monActionRoom2 = "action room 2";
+        this.additionalEntranceActions = () => {this.animateHands();}
 
         this.setRoomModel();
 
-        const geometry = new THREE.BoxGeometry(10, 10, 10);
+        // Test cube
+        const geometry = new THREE.BoxGeometry(1, 1, 1);
         const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
         const cube = new THREE.Mesh(geometry, material);
         cube.position.set(2, 2, -6);
-        this.props.push(cube);
+        // this.props.push(cube);
+
+        // Hands
+        const hands = this.resources.items['hands'].scene;
+        hands.position.set(4, 2, -7);
+        console.log(hands.animations)
+        this.props.push(hands);
+        
+        this.addPropsToScene();
     }
 
     update() {
         console.log('update room 2');
+
+        this.animateHands();
+    }
+
+    animateHands() {
+        console.log('animate hands')
     }
 }

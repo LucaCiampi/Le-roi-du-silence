@@ -55,40 +55,48 @@ export default class EntranceSas extends Room {
             precision mediump float;
 			precision mediump int;
 
-			uniform mat4 modelViewMatrix; // optional
-			uniform mat4 projectionMatrix; // optional
+			uniform mat4 modelViewMatrix;
+			uniform mat4 projectionMatrix;
 
 			attribute vec3 position;
 			attribute vec3 normal;
 			attribute vec2 uv;
 
 			varying vec2 vUv;
-
+			varying vec3 vNormal;
+            
 			void main()	{
-				gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+                gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
                 vUv = uv;
+                vNormal = normal;
 			}`
 
         const fragmentShader = `
             precision mediump float;
 			precision mediump int;
-
+            
 			uniform sampler2D colorMap;
 			uniform sampler2D colorMap2;
-
+			uniform float test;
+            
 			varying vec2 vUv;
+            varying vec3 vNormal;
 
 			void main()	{
-				gl_FragColor = texture2D(colorMap, vUv) + texture2D(colorMap2, vUv);
+				gl_FragColor = vec4(0.5, 0.5, 0.5, 1) * vec4(vNormal * vec3(texture2D(colorMap2, vUv)), 0)
+                + vec4(vec3(texture2D(colorMap, vUv)), 1);
 			}`
 
-        const shaderMaterial = new THREE.RawShaderMaterial({
-            uniforms: {
+            const shaderMaterial = new THREE.RawShaderMaterial({
+                uniforms: {
                 colorMap: {
                     value: texture
                 },
                 colorMap2: {
                     value: texture2
+                },
+                test: {
+                    value: this.scene.children[0].children[0].matrixWorld
                 }
             },
             vertexShader: vertexShader,
@@ -97,10 +105,10 @@ export default class EntranceSas extends Room {
         const cube = new THREE.Mesh(geometry, shaderMaterial);
         cube.position.set(0, 0, 0)
         this.props.push(cube)
-
+        
         this.addPropsToScene(this.props);
     }
-
+    
     update() {
         console.log('update sas')
     }

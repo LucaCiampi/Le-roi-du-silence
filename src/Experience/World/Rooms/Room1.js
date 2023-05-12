@@ -9,7 +9,7 @@ export default class Room1 extends Room {
         this.init();
     }
 
-    init() { 
+    init() {
         this.name = "room1";
         this.position = new THREE.Vector3(1, 2, -18);
         this.spawnPosition = new THREE.Vector3(2, 2, -14);

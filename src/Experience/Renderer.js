@@ -1,4 +1,5 @@
 import * as THREE from "three"
+import { OutlineEffect } from 'three/addons/effects/OutlineEffect.js';
 
 export default class Renderer 
 {
@@ -7,6 +8,8 @@ export default class Renderer
         this.scene = _options.scene;
         this.sizes = _options.sizes;
         this.camera = _options.camera;
+
+        this.outlineEffect = null;
 
         this.init();
     }
@@ -17,6 +20,10 @@ export default class Renderer
         });
         this.instance.setSize(this.sizes.width, this.sizes.height);
         this.instance.setPixelRatio(this.sizes.pixelRatio);
+
+        this.outlineEffect = new OutlineEffect( this.instance, {
+            outlineThickness: 0.1
+        });
     }
 
     resize(){
@@ -25,7 +32,7 @@ export default class Renderer
     }
 
     update(){
-        this.instance.render(this.scene, this.camera.instance)
+        this.outlineEffect.render(this.scene, this.camera.instance)
     }
 
 }

@@ -32,7 +32,7 @@ export default class Room {
 
         this.model.traverse((child) => {
             if (child.isMesh) {
-                child.material = new THREE.MeshBasicMaterial();
+                child.material = new THREE.MeshToonMaterial();
 
                 child.material.map = this.resources.items['wood'];
                 child.material.needsUpdate = true;

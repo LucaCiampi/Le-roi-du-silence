@@ -24,18 +24,11 @@ export default class Room1 extends Room {
 
         // Hands
         const hands = this.resources.items['hands'].scene;
-        const handsAnimations = this.resources.items['hands'].animations;
+        const handsClips = this.resources.items['hands'].animations;
         hands.position.set(4, 2, -7);
-        // console.log(handsAnimations)
+        this.handsClip = THREE.AnimationClip.findByName(handsClips, 'anim_bras');
+        this.handsAnimationMixer = new THREE.AnimationMixer(hands);
         this.props.push(hands);
-
-        // Soldier
-        const soldier = this.resources.items['soldier'].scene;
-        const handsClips = this.resources.items['soldier'].animations;
-        this.handsClip = THREE.AnimationClip.findByName(handsClips, 'Run');
-        soldier.position.set(4, 2, -7);
-        this.props.push(soldier);
-        this.handsAnimationMixer = new THREE.AnimationMixer(soldier);
 
         this.addPropsToScene();
 
@@ -48,7 +41,6 @@ export default class Room1 extends Room {
     }
 
     animateHands() {
-        console.log('animate hands')
         const action = this.handsAnimationMixer.clipAction(this.handsClip);
         action.play();
     }

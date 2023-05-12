@@ -22,10 +22,10 @@ export default class Room4 extends Room {
         
         this.setRoomModel();
 
-        this.addPropsToScene();
+        this.addPropsToRoom();
     }
 
     update() {
-        console.log('update room 4')
+        // Silence is golden...
     }
 }

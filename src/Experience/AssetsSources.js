@@ -2,11 +2,6 @@ export default
 [
     // Scene Layer
     {
-        name: "floor",
-        type: "gltfModel",
-        path: "./Environment/total-v1.glb"
-    },
-    {
         name: "sas",
         type: "gltfModel",
         path: "./Environment/sas.glb"
@@ -22,16 +17,6 @@ export default
         path: "./Environment/room2.glb"
     },
     {
-        name: "hands",
-        type: "gltfModel",
-        path: "./Environment/hands.glb"
-    },
-    {
-        name: "soldier",
-        type: "gltfModel",
-        path: "./Environment/soldier.glb"
-    },
-    {
         name: "room3",
         type: "gltfModel",
         path: "./Environment/room3.glb"
@@ -40,6 +25,11 @@ export default
         name: "room4",
         type: "gltfModel",
         path: "./Environment/room4.glb"
+    },
+    {
+        name: "hands",
+        type: "gltfModel",
+        path: "./Environment/hands.glb"
     },
     {
         name: "lit",

@@ -77,9 +77,9 @@ export default class Room {
     /**
      * Adds all Room props to the scene
      */
-    addPropsToScene() {
+    addPropsToRoom() {
         this.props.forEach(prop => {
-            this.scene.add(prop)
+            this.model.add(prop);
         });
     }
 

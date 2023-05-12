@@ -30,13 +30,12 @@ export default class Room1 extends Room {
         this.handsAnimationMixer = new THREE.AnimationMixer(hands);
         this.props.push(hands);
 
-        this.addPropsToScene();
+        this.addPropsToRoom();
 
         this.additionalEntranceActions = () => { this.animateHands(); }
     }
 
     update() {
-        console.log('update room 1')
         this.handsAnimationMixer.update(0.01);
     }
 

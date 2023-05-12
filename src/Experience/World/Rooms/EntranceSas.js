@@ -22,10 +22,10 @@ export default class EntranceSas extends Room {
         cube.position.set(0, 0, 0)
         this.props.push(cube)
 
-        this.addPropsToScene();
+        this.addPropsToRoom();
     }
 
     update() {
-        console.log('update sas')
+        // Silence is golden...
     }
 }

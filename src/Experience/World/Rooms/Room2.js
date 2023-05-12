@@ -29,10 +29,10 @@ export default class Room2 extends Room {
         cube.position.set(2, 2, -6);
         // this.props.push(cube);
         
-        this.addPropsToScene();
+        this.addPropsToRoom();
     }
 
     update() {
-        console.log('update room 2');
+        // Silence is golden...
     }
 }

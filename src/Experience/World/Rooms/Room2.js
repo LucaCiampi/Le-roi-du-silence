@@ -28,8 +28,6 @@ export default class Room2 extends Room {
         const cube = new THREE.Mesh(geometry, material);
         cube.position.set(2, 2, -6);
         // this.props.push(cube);
-        
-        this.addPropsToRoom();
     }
 
     update() {

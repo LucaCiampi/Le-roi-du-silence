@@ -8,6 +8,7 @@ export default class WorldOctree {
         this.debug = _options.debug;
         this.event = _options.event;
         this.models = _options.models;
+        this.onFinish = _options.onFinish;
 
         this.octree = null;
         this.octreeHelper = null;
@@ -19,12 +20,12 @@ export default class WorldOctree {
         this.octree = new Octree();
 
         this.event.on('Start', () => {
-            this.makeOctree()
+            this.makeOctree(this.onFinish)
         })
 
     }
 
-    makeOctree() {
+    makeOctree(callback) {
 
         this.models.forEach(room => {
             room.model.traverse(mesh => {
@@ -37,6 +38,8 @@ export default class WorldOctree {
         if (this.debug.active) {
             this.addDebugOptions();
         }
+
+        callback();
         
     }
 

@@ -21,8 +21,6 @@ export default class Room4 extends Room {
         });
         
         this.setRoomModel();
-
-        this.addPropsToRoom();
     }
 
     update() {

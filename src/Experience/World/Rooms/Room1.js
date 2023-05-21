@@ -25,12 +25,11 @@ export default class Room1 extends Room {
         // Hands
         const hands = this.resources.items['hands'].scene;
         const handsClips = this.resources.items['hands'].animations;
-        hands.position.set(4, 2, -7);
+        // hands.position.set(4, 2, -7);
+        hands.position.set(4, 1, 4);
         this.handsClip = THREE.AnimationClip.findByName(handsClips, 'anim_bras');
         this.handsAnimationMixer = new THREE.AnimationMixer(hands);
         this.props.push(hands);
-
-        this.addPropsToRoom();
 
         this.additionalEntranceActions = () => { this.animateHands(); }
     }

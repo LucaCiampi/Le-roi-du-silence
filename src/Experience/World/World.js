@@ -48,6 +48,7 @@ export default class World {
             debug: this.debug,
             event: this.event,
             models: this.rooms,
+            onFinish: () => this.setRoomsProps()
         })
 
         this.controls = new Controls({
@@ -65,7 +66,6 @@ export default class World {
             resources: this.resources,
             parameter: this.parameter
         })
-
 
         this.isReady = true;
         this.startAmbientWorldSound();
@@ -95,9 +95,15 @@ export default class World {
             new EntranceSas({ ...options }),
             new Room1({ ...options }),
             new Room2({ ...options }),
-            new Room3({...options}),
-            new Room4({...options}),
+            new Room3({ ...options }),
+            new Room4({ ...options }),
         ]
+    }
+
+    setRoomsProps() {
+        this.rooms.forEach((room) => {
+            room.addPropsToRoom();
+        })
     }
 
     updateCurrentRoom() {

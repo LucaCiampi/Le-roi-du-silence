@@ -44,6 +44,11 @@ export default
         path: "./Textures/checker-4x4.png"
     },
     {
+        name: "ash",
+        type: "texture",
+        path: "./Textures/ash.png"
+    },
+    {
         name: "wood",
         type: "texture",
         path: "./Textures/wood-floor-deck/color.png"

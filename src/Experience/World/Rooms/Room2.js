@@ -22,15 +22,54 @@ export default class Room2 extends Room {
 
         this.setRoomModel();
 
-        // Test cube
-        const geometry = new THREE.BoxGeometry(1, 1, 1);
-        const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-        const cube = new THREE.Mesh(geometry, material);
-        cube.position.set(2, 2, -6);
-        // this.props.push(cube);
+        this.setAshes();
     }
 
     update() {
         // Silence is golden...
+        this.animateAsh();
+    }
+
+    setAshes() {
+        // Créer un groupe pour contenir les particules de cendres
+        this.ashGroup = new THREE.Group();
+        this.props.push(this.ashGroup)
+
+        // Créer le matériau des particules de cendres
+        const ashTexture = this.resources.items['ash'];
+        const ashMaterial = new THREE.PointsMaterial({
+            map: ashTexture,
+            size: 0.5, // Taille des particules
+            transparent: true,
+        });
+
+        // Créer la géométrie des particules
+        const ashGeometry = new THREE.BufferGeometry();
+
+        // Définir les positions des particules
+        const positions = [];
+        for (let i = 0; i < 1000; i++) {
+            positions.push(
+                Math.random() * 100 - 50, // Position X aléatoire
+                Math.random() * 100 - 50, // Position Y aléatoire
+                Math.random() * 100 - 50  // Position Z aléatoire
+            );
+        }
+        ashGeometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+
+        // Créer les particules avec la géométrie et le matériau
+        this.ashes = new THREE.Points(ashGeometry, ashMaterial);
+        this.ashGroup.add(this.ashes);
+    }
+
+    animateAsh() {
+        // Mettre à jour la position des particules
+        this.ashes.rotation.y += 0.01; // Rotation des particules
+        this.ashGroup.position.y -= 0.1; // Vitesse de descente des particules
+
+        // Réinitialiser la position des particules qui sont sorties de la vue
+        if (this.ashGroup.position.y < -10) {
+            this.ashGroup.position.y = 0;
+        }
     }
 }

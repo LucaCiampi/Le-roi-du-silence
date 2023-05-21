@@ -35,7 +35,7 @@ export default class EntranceSas extends Room {
 
         this.model.traverse((child) => {
             if (child.isMesh) {
-                child.material = new THREE.MeshLambertMaterial();
+                child.material = new THREE.MeshStandardMaterial();
 
                 child.material.map = this.resources.items['checker'];
                 child.material.needsUpdate = true;

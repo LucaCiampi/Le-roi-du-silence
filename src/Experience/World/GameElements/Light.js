@@ -1,5 +1,6 @@
 import * as THREE from "three";
-
+import { RectAreaLightUniformsLib } from 'three/addons/lights/RectAreaLightUniformsLib.js';
+import { RectAreaLightHelper } from 'three/addons/helpers/RectAreaLightHelper.js';
 
 export default class Light {
     constructor(_options) {
@@ -27,15 +28,22 @@ export default class Light {
     }
 
     setLight() {
-        // Ambient light
+        RectAreaLightUniformsLib.init();
+        
         const spotLight = new THREE.SpotLight(0xffffff, 2)
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.1)
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.05)
+        const rectLight = new THREE.RectAreaLight( 0x0055ff, 150, 0.09, 0.16 );
+        rectLight.position.set( 0, 0.9, -0.7);
+        rectLight.rotateY(-Math.PI/2)
+        
         spotLight.angle = 0.3;
         spotLight.penumbra = 0.1;
         spotLight.decay = 2;
         spotLight.distance = 50;
         spotLight.position.y += 1
         
+        this.scene.add( rectLight );
+        this.scene.add( new RectAreaLightHelper( rectLight ) );
         this.scene.add(ambientLight)
         this.camera.instance.add(spotLight)
         spotLight.position.set( 0, 0, 1);

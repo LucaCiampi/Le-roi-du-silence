@@ -143,7 +143,7 @@ export default class World {
     }
 
     addRoomClosingDoorHitbox() {
-        this.rooms[this.parameter.currentZone - 1].closingDoor.traverse(mesh => {
+        this.rooms[this.parameter.currentZone].closingDoor.traverse(mesh => {
             if (mesh instanceof THREE.Mesh) {
                 this.worldOctree.octree.fromGraphNode(mesh);
             }

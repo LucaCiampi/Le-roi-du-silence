@@ -24,7 +24,7 @@ export default class Room {
         const closingDoorGeometry = new THREE.BoxGeometry(1, 2, 1);
         const closingDoorMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
         this.closingDoor = new THREE.Mesh(closingDoorGeometry, closingDoorMaterial);
-        this.closingDoor.position.set(2, 4, -6)
+        this.closingDoor.position.set(1.2, 2, 12);
     }
 
     /**
@@ -80,7 +80,7 @@ export default class Room {
     }
 
     closeDoor() {
-        this.scene.add(this.closingDoor)
+        this.model.add(this.closingDoor)
     }
 
     /**

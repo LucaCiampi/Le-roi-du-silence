@@ -22,11 +22,13 @@ export default class WorldOctree {
         this.event.on('Start', () => {
             this.makeOctree(this.onFinish)
         })
-
     }
 
+    /**
+     * Creates an octree out of each room model
+     * @param {Action} callback the callback when the octree is finished
+     */
     makeOctree(callback) {
-
         this.models.forEach(room => {
             room.model.traverse(mesh => {
                 if (mesh instanceof THREE.Mesh) {

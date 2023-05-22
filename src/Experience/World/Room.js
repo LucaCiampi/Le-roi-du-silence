@@ -20,6 +20,10 @@ export default class Room {
         this.initRoom();
     }
 
+    /**
+     * Room init that will be applied to each subclass of Room,
+     * called before the subclass init()
+     */
     initRoom() {
         const closingDoorGeometry = new THREE.BoxGeometry(1, 2, 1);
         const closingDoorMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
@@ -79,6 +83,9 @@ export default class Room {
         this.parameter.sounds.play('swoosh1');
     }
 
+    /**
+     * Adds the closing door model to the room model
+     */
     closeDoor() {
         this.model.add(this.closingDoor)
     }

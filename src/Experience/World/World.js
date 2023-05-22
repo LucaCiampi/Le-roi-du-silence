@@ -1,7 +1,7 @@
+import * as THREE from 'three'
 import GlobalParameter from "./GlobalParameter";
 import UserInterface from "./UserInterface";
 import Controls from "./Controls";
-import Floor from "./GameElements/Floor";
 import Light from "./GameElements/Light";
 import WorldOctree from "./WorldOctree";
 import Room1 from "./Rooms/Room1";
@@ -9,7 +9,6 @@ import Room2 from "./Rooms/Room2";
 import Room3 from "./Rooms/Room3";
 import Room4 from "./Rooms/Room4";
 import EntranceSas from "./Rooms/EntranceSas";
-import * as THREE from 'three'
 
 export default class World {
     constructor(_options) {
@@ -83,6 +82,9 @@ export default class World {
         }
     }
 
+    /**
+     * Initializes every room
+     */
     setRooms() {
         const options = {
             parameter: this.parameter,
@@ -101,12 +103,18 @@ export default class World {
         ]
     }
 
+    /**
+     * Sets the props of each room, these will not be counted in the octree
+     */
     setRoomsProps() {
         this.rooms.forEach((room) => {
             room.addPropsToRoom();
         })
     }
 
+    /**
+     * Updates the room the player is currently in
+     */
     updateCurrentRoom() {
         this.rooms[this.parameter.currentZone].update();
     }
@@ -136,12 +144,18 @@ export default class World {
         // })
     }
 
+    /**
+     * Updates where the player should respawn in case of oob when he enters a new room
+     */
     updatePlayerSpawnLocation() {
         this.parameter.playerSpawn.x = this.rooms[this.parameter.currentZone].spawnPosition.x;
         this.parameter.playerSpawn.y = this.rooms[this.parameter.currentZone].spawnPosition.y;
         this.parameter.playerSpawn.z = this.rooms[this.parameter.currentZone].spawnPosition.z;
     }
 
+    /**
+     * Adds the closing door of the room to the octree
+     */
     addRoomClosingDoorHitbox() {
         this.rooms[this.parameter.currentZone].closingDoor.traverse(mesh => {
             if (mesh instanceof THREE.Mesh) {

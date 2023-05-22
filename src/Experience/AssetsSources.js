@@ -36,7 +36,14 @@ export default
         type: "gltfModel",
         path: "./Environment/lit.glb"
     },
-
+    
+    //objects
+    {
+        name: "tel",
+        type: "gltfModel",
+        path: "./Environment/cellphone.glb"
+    },
+    
     // Player
     {
         name: "player_background",

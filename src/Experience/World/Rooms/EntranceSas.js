@@ -67,14 +67,14 @@ export default class EntranceSas extends Room {
                 colorMap2: {
                     value: texture2
                 },
-                test: {
-                    value: this.scene.children[0].children[0].matrixWorld
-                }
+                // test: {
+                //     value: this.scene.children[0].children[0].matrixWorld
+                // }
             },
             vertexShader: vertexShader,
             fragmentShader: fragmentShader
         })
-        
+
         const cube = new THREE.Mesh(geometry, shaderMaterial);
         cube.position.set(0, 0, 0)
         this.props.push(cube)

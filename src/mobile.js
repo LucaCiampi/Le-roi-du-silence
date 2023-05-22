@@ -1,6 +1,6 @@
-let container = document.getElementById("mobile");
 let msgs = document.getElementById("msgs");
 let topBar = document.getElementById("title");
+let responsesContainer = document.getElementById("responses");
 
 let sessionId = null;
 let backendEvent = null
@@ -17,7 +17,7 @@ export function createMobileInterface(id, handleBackendEvent) {
     msg.classList.add("msg", "info");
     msg.textContent = "Chargement...";
     msgs.appendChild(msg);
-    document.getElementById('send').onclick = () => sendAnything()
+    // document.getElementById('send').onclick = () => sendAnything()
 }
 
 export function displayList(list) {
@@ -29,28 +29,45 @@ export function displayList(list) {
     msg.textContent = "Début de la conversation avec Léa";
     msgs.appendChild(msg);
     if (list[sessionId]) {
-        let data = Object.values(list[sessionId]?.messages);
-        data.map((item, i) => {
+        let messages = Object.values(list[sessionId]?.messages);
+        messages.map((item, i) => {
             let msg = document.createElement("div");
             msg.classList.add("msg");
             if (item.foreign) {
                 msg.classList.add("foreign");
             }
-            if (i == data.length - 1) {
+            if (i == messages.length - 1) {
                 msg.classList.add("last");
             }
             msg.textContent = item.msg;
             msgs.appendChild(msg);
         });
+
+        let responses = list[sessionId]?.responses?.options;
+        if (!responses) responses = []
+        if (responses) {
+            while (responsesContainer.firstChild) {
+                responsesContainer.removeChild(responsesContainer.firstChild);
+            }
+            console.log(responses);
+            responses.map((response) => {
+                let msg = document.createElement("div");
+                msg.classList.add("response");
+                msg.onclick = () => sendAnything("response", response, responses)
+                msg.textContent = response;
+                responsesContainer.appendChild(msg);
+            })
+        }
     } else {
         let msg = document.createElement("div");
         msg.classList.add("msg", "info");
         msg.textContent = "Impossible de récupérer les messages :/";
         msgs.appendChild(msg);
     }
-    document.getElementById('msgsContainer').scrollTop = 999
+    document.getElementById('msgsContainer').scrollTop = 9999
 }
 
-function sendAnything(){
-    backendEvent({title: "random", id: sessionId})
+function sendAnything(title, content, responsesArray) {
+    responsesArray.splice(responsesArray.indexOf(content), 1)
+    backendEvent({ title: title, id: sessionId, content, responsesArray })
 }

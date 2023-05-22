@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getDatabase, ref, remove, onValue, push, get, child } from "firebase/database";
+import { getDatabase, ref, remove, onValue, push, set } from "firebase/database";
 import QRCode from 'qrcode';
 
 const firebaseConfig = {
@@ -8,7 +8,7 @@ const firebaseConfig = {
 
 const isMobile = /Android|iPhone/i.test(navigator.userAgent)
 let currentSession = null
-let baseUrl = "172.28.59.104:5173"
+let baseUrl = "192.168.1.77:5173"
 // let baseUrl = "brume.surge.sh"
 
 //firebase config
@@ -46,6 +46,10 @@ function createSession() {
     time: Date.now()
   })
 
+  set(ref(database, `sessions/${currentSession}/responses/`), {
+    options: ["salut, ça va ?", "qui es-tu ?", "tg"]
+  })
+  
   //DEBUG display session
   let p = document.createElement('p')
   p.textContent = currentSession.slice(17)
@@ -70,11 +74,14 @@ function handleDesktopEvent(event) {
       time: Date.now()
     })
   }
-  if (event?.title === "random") {
+  if (event?.title === "response"){
     push(ref(database, `sessions/${event.id}/messages/`), {
-      msg: "Coucou je spam des truc random",
+      msg : event?.content,
       foreign: false,
       time: Date.now()
+    })
+    set(ref(database, `sessions/${event.id}/responses/`), {
+      options: event.responsesArray
     })
   }
 }

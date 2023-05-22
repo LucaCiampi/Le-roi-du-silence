@@ -26,7 +26,6 @@ export default class Room2 extends Room {
     }
 
     update() {
-        // Silence is golden...
         this.animateAsh();
     }
 

@@ -30,14 +30,14 @@ export default class Room1 extends Room {
         this.handsAnimationMixer = new THREE.AnimationMixer(hands);
         this.props.push(hands);
 
-        this.additionalEntranceActions = () => { this.animateHands(); }
+        this.additionalEntranceActions = () => { this.initHandsAnimation(); }
     }
 
     update() {
         this.handsAnimationMixer.update(0.01);
     }
 
-    animateHands() {
+    initHandsAnimation() {
         // TODO: store action in object variable
         const action = this.handsAnimationMixer.clipAction(this.handsClip);
         action.play();

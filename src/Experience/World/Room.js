@@ -15,12 +15,16 @@ export default class Room {
         this.model = null;
         this.additionalEntranceActions = () => { };
         this.props = [];
+        this.closingDoor = null;
 
         this.initRoom();
     }
 
     initRoom() {
-        // Silence is golden...
+        const closingDoorGeometry = new THREE.BoxGeometry(1, 2, 1);
+        const closingDoorMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+        this.closingDoor = new THREE.Mesh(closingDoorGeometry, closingDoorMaterial);
+        this.closingDoor.position.set(2, 4, -6)
     }
 
     /**
@@ -57,6 +61,7 @@ export default class Room {
     roomEntranceActions() {
         this.sendMessageToPhone();
         this.playZoneSound();
+        this.closeDoor();
         this.additionalEntranceActions();
     }
 
@@ -72,6 +77,10 @@ export default class Room {
      */
     playZoneSound() {
         this.parameter.sounds.play('swoosh1');
+    }
+
+    closeDoor() {
+        this.scene.add(this.closingDoor)
     }
 
     /**

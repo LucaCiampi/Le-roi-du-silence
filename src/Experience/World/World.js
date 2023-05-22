@@ -9,6 +9,7 @@ import Room2 from "./Rooms/Room2";
 import Room3 from "./Rooms/Room3";
 import Room4 from "./Rooms/Room4";
 import EntranceSas from "./Rooms/EntranceSas";
+import * as THREE from 'three'
 
 export default class World {
     constructor(_options) {
@@ -121,6 +122,7 @@ export default class World {
             // TODO : the increment just above influences the function below, make this easier to understand
             this.rooms[this.parameter.currentZone].roomEntranceActions();
             this.updatePlayerSpawnLocation();
+            this.addRoomClosingDoorHitbox();
             this.freeUpPreviousZone();
         }
 
@@ -138,6 +140,14 @@ export default class World {
         this.parameter.playerSpawn.x = this.rooms[this.parameter.currentZone].spawnPosition.x;
         this.parameter.playerSpawn.y = this.rooms[this.parameter.currentZone].spawnPosition.y;
         this.parameter.playerSpawn.z = this.rooms[this.parameter.currentZone].spawnPosition.z;
+    }
+
+    addRoomClosingDoorHitbox() {
+        this.rooms[this.parameter.currentZone - 1].closingDoor.traverse(mesh => {
+            if (mesh instanceof THREE.Mesh) {
+                this.worldOctree.octree.fromGraphNode(mesh);
+            }
+        });
     }
 
     /**

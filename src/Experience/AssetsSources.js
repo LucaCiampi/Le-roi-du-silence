@@ -60,9 +60,4 @@ export default
         type: "audio",
         path: "./Sounds/kidsComplain.mp3"
     },
-    {
-        name: "testKids",
-        type: "audio",
-        path: "./Sounds/testKids.wav"
-    },
 ]

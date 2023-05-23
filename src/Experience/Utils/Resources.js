@@ -23,7 +23,7 @@ export default class Resources extends EventEmitter {
         this.loaders = {}
         this.loaders.gltfLoader = new GLTFLoader();
         this.loaders.textureLoader = new THREE.TextureLoader();
-        this.loaders.cubeTextureLoader = new THREE.CubeTextureLoader();
+        this.loaders.audioLoader = new THREE.AudioLoader();
     }
 
     startLoading() {
@@ -32,7 +32,7 @@ export default class Resources extends EventEmitter {
                 this.loaders.textureLoader.load(
                     source.path,
                     (file) => {
-                        this.sourceLoaded(source, file)
+                        this.sourceLoaded(source, file);
                     }
                 )
             }
@@ -42,30 +42,30 @@ export default class Resources extends EventEmitter {
                     (file) => {
                         // TODO: check if this is the correct 
                         // adds the native model texture
-                        if (file.isMesh){
+                        if (file.isMesh) {
                             file.material = material;
                         }
                         //
-                        this.sourceLoaded(source, file)
+                        this.sourceLoaded(source, file);
                     }
                 )
-            } else if (source.type === 'cubeTexture') {
-                this.loaders.cubeTextureLoader.load(
+            }
+            else if (source.type === 'audio') {
+                this.loaders.audioLoader.load(
                     source.path,
                     (file) => {
-                        this.sourceLoaded(source, file)
-                    }
-                )
+                        this.sourceLoaded(source, file);
+                    });
             }
         }
     }
 
     sourceLoaded(source, file) {
-        this.items[source.name] = file
+        this.items[source.name] = file;
 
-        this.loaded++
+        this.loaded++;
         if (this.loaded == this.toLoad) {
-            this.trigger('ready')
+            this.trigger('ready');
         }
     }
 }

@@ -31,12 +31,17 @@ export default class Room1 extends Room {
         this.props.push(hands);
 
         this.additionalEntranceActions = () => { this.initHandsAnimation(); }
+
+        this.model.add(this.positionalAudioTrack)
     }
 
     update() {
         this.handsAnimationMixer.update(0.01);
     }
 
+    /**
+     * Sets up the hands animation
+     */
     initHandsAnimation() {
         // TODO: store action in object variable
         const action = this.handsAnimationMixer.clipAction(this.handsClip);

@@ -7,6 +7,7 @@ export default class Room {
         this.scene = _options.scene;
         this.resources = _options.resources;
         this.zoneEvent = _options.zoneEvent;
+        this.camera = _options.camera;
 
         this.name = null;
         this.position = null;
@@ -16,6 +17,7 @@ export default class Room {
         this.additionalEntranceActions = () => { };
         this.props = [];
         this.closingDoor = null;
+        this.positionalAudioTrack;
 
         this.initRoom();
     }
@@ -29,6 +31,25 @@ export default class Room {
         const closingDoorMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
         this.closingDoor = new THREE.Mesh(closingDoorGeometry, closingDoorMaterial);
         this.closingDoor.position.set(1.2, 2, 12);
+
+        // --------- Positional audio ---------
+        this.positionalAudioTrack = new THREE.PositionalAudio(this.camera.audioListener);
+        // this.positionalAudioTrack = new THREE.Audio(this.camera.audioListener);
+        // this.positionalAudioTrack = new THREE.Audio(this.camera.instance.children[0]);
+        this.positionalAudioTrack.setBuffer(this.resources.items['eww']);
+        // this.positionalAudioTrack.setMediaElementSource(document.getElementById("test_audio"))
+        this.positionalAudioTrack.setRefDistance(20);
+        this.positionalAudioTrack.play();
+
+        // create an object for the sound to play from
+        // const audioSphere = new THREE.SphereGeometry(1, 32, 16);
+        // const audioMaterial = new THREE.MeshPhongMaterial({ color: 0xff2200 });
+        // const audioMesh = new THREE.Mesh(audioSphere, audioMaterial);
+        // audioMesh.position.set(4, 1, 4);
+        // this.scene.add(audioMesh);
+
+        // finally add the sound to the mesh
+        // audioMesh.add(this.positionalAudioTrack);
     }
 
     /**
@@ -73,7 +94,7 @@ export default class Room {
      * Sends a message to every mobile device connected to the session
      */
     sendMessageToPhone() {
-        this.zoneEvent(this.name)
+        this.zoneEvent(this.name);
     }
 
     /**

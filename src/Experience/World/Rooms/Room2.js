@@ -32,7 +32,7 @@ export default class Room2 extends Room {
     setAshes() {
         // Créer un groupe pour contenir les particules de cendres
         this.ashGroup = new THREE.Group();
-        this.ashGroup.position.set(2, 2, 6);
+        this.ashGroup.position.set(2, 8, 6);
         this.props.push(this.ashGroup)
 
         // Créer le matériau des particules de cendres
@@ -68,8 +68,8 @@ export default class Room2 extends Room {
         this.ashGroup.position.y -= 0.05; // Vitesse de descente des particules
 
         // Réinitialiser la position des particules qui sont sorties de la vue
-        if (this.ashGroup.position.y < -10) {
-            this.ashGroup.position.y = 0;
+        if (this.ashGroup.position.y < -6) {
+            this.ashGroup.position.y = 8;
         }
     }
 }

@@ -25,10 +25,18 @@ export default class Sounds {
         }
     }
 
+    /**
+     * Plays a sound once
+     * @param {String} sound_name the name of the sound file
+     */
     play(sound_name){
         this.sounds[sound_name].play()
     }
 
+    /**
+     * Plays loop a sound
+     * @param {String} sound_name the name of the sound file
+     */
     playLoop(sound_name){
         this.sounds[sound_name].loop(true).play()
     }

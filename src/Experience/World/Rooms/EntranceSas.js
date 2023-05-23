@@ -15,6 +15,8 @@ export default class EntranceSas extends Room {
         this.spawnPosition = new THREE.Vector3(0, 0, 0);
         
         this.setRoomModel();
+
+        
     }
 
     update() {

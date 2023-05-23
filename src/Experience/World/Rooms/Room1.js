@@ -23,29 +23,27 @@ export default class Room1 extends Room {
 
         this.setRoomModel();
 
-        // Hands
-        const hands = this.resources.items['hands'].scene;
-        const handsClips = this.resources.items['hands'].animations;
-        hands.position.set(4, 1, 4);
-        this.handsClip = THREE.AnimationClip.findByName(handsClips, 'anim_bras');
-        this.handsAnimationMixer = new THREE.AnimationMixer(hands);
-        this.props.push(hands);
-
-        this.additionalEntranceActions = () => { this.initHandsAnimation(); }
-
         this.model.add(this.positionalAudioTrack)
+
+        // const cmcube = this.resources.items['hands'].scene
+        // const mmcube = this.resources.items['cube_mm'].scene
+
+        // console.log(cmcube)
+
+        // cmcube.position.set(0, 2, -10)
+        // mmcube.position.set(0, 1, -10)
+
+        // this.props.push(cmcube)
+        // this.props.push(mmcube)
+
+        // const geometry = new THREE.BoxGeometry(10, 10, 10);
+        // const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+        // const cube = new THREE.Mesh(geometry, material);
+        // cube.position.set(0, 2, -10)
+        // this.props.push(cube)
     }
 
     update() {
-        this.handsAnimationMixer.update(0.01);
-    }
-
-    /**
-     * Sets up the hands animation
-     */
-    initHandsAnimation() {
-        // TODO: store action in object variable
-        const action = this.handsAnimationMixer.clipAction(this.handsClip);
-        action.play();
+        // Silence is golden...
     }
 }

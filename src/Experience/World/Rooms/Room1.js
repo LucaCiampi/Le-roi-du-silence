@@ -19,6 +19,7 @@ export default class Room1 extends Room {
             startPosition: new THREE.Vector2(0, -20),
             endPosition: new THREE.Vector2(10, -7),
         });
+        this.closingDoor.position.set(1.2, 2, 12);
 
         this.setRoomModel();
 

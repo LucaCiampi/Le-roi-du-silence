@@ -30,7 +30,6 @@ export default class Room {
         const closingDoorGeometry = new THREE.BoxGeometry(1, 2, 1);
         const closingDoorMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
         this.closingDoor = new THREE.Mesh(closingDoorGeometry, closingDoorMaterial);
-        this.closingDoor.position.set(1.2, 2, 12);
 
         // --------- Positional audio ---------
         this.positionalAudioTrack = new THREE.PositionalAudio(this.camera.audioListener);

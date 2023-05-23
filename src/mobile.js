@@ -1,33 +1,48 @@
-let msgs = document.getElementById("msgs");
-let topBar = document.getElementById("title");
-let responsesContainer = document.getElementById("responses");
+let domMsgs = document.getElementById("msgs");
+let domTopBar = document.getElementById("title");
+let domResponses = document.getElementById("responses");
 
 let sessionId = null;
 let backendEvent = null
+let formerList = ""
+let formerResponses = ""
+let sendCooldown = Date.now() - 2000
 
 export function createMobileInterface(id, handleBackendEvent) {
     backendEvent = handleBackendEvent
     if (id.charAt(0) !== "?") {
-        topBar.textContent = "Erreur 404";
+        domTopBar.textContent = "Erreur 404";
     } else {
         sessionId = id.slice(1);
-        topBar.textContent = sessionId.slice(17);
+        domTopBar.textContent = sessionId.slice(17);
     }
     let msg = document.createElement("div");
     msg.classList.add("msg", "info");
     msg.textContent = "Chargement...";
-    msgs.appendChild(msg);
-    // document.getElementById('send').onclick = () => sendAnything()
+    domMsgs.appendChild(msg);
 }
 
 export function displayList(list) {
-    while (msgs.firstChild) {
-        msgs.removeChild(msgs.firstChild);
+    //check if data is the same as last time
+    if (JSON.stringify(list[sessionId]?.messages) == formerList 
+    && JSON.stringify(list[sessionId]?.responses) == formerResponses) {
+        console.log("Same data, not refreshing");
+        return
+    }else{
+        formerList = JSON.stringify(list[sessionId]?.messages)
+        formerResponses = JSON.stringify(list[sessionId]?.responses)
     }
+    
+    //clear childs
+    while (domMsgs.firstChild) {
+        domMsgs.removeChild(domMsgs.firstChild);
+    }
+
+    //create messages and responses
     let msg = document.createElement("div");
     msg.classList.add("msg", "info");
     msg.textContent = "Début de la conversation avec Léa";
-    msgs.appendChild(msg);
+    domMsgs.appendChild(msg);
     if (list[sessionId]) {
         let messages = Object.values(list[sessionId]?.messages);
         messages.map((item, i) => {
@@ -40,34 +55,39 @@ export function displayList(list) {
                 msg.classList.add("last");
             }
             msg.textContent = item.msg;
-            msgs.appendChild(msg);
+            domMsgs.appendChild(msg);
         });
 
         let responses = list[sessionId]?.responses?.options;
+        let parent = list[sessionId]?.responses?.parent;
         if (!responses) responses = []
         if (responses) {
-            while (responsesContainer.firstChild) {
-                responsesContainer.removeChild(responsesContainer.firstChild);
+            while (domResponses.firstChild) {
+                domResponses.removeChild(domResponses.firstChild);
             }
-            console.log(responses);
             responses.map((response) => {
                 let msg = document.createElement("div");
                 msg.classList.add("response");
-                msg.onclick = () => sendAnything("response", response, responses)
+                msg.onclick = () => sendEventToBack("response", response, responses, parent)
                 msg.textContent = response;
-                responsesContainer.appendChild(msg);
+                domResponses.appendChild(msg);
             })
         }
     } else {
         let msg = document.createElement("div");
         msg.classList.add("msg", "info");
         msg.textContent = "Impossible de récupérer les messages :/";
-        msgs.appendChild(msg);
+        domMsgs.appendChild(msg);
     }
     document.getElementById('msgsContainer').scrollTop = 9999
 }
 
-function sendAnything(title, content, responsesArray) {
-    responsesArray.splice(responsesArray.indexOf(content), 1)
-    backendEvent({ title: title, id: sessionId, content, responsesArray })
+function sendEventToBack(title, content, responsesArray, parent) {
+    if (sendCooldown < Date.now() - 3000){
+        console.log("Sending...")
+        sendCooldown = Date.now()
+        backendEvent({ title: title, id: sessionId, content, responsesArray, parent })
+    }else{
+        console.warn("Send cooldown")
+    }
 }

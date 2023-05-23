@@ -2,13 +2,15 @@ import { initializeApp } from 'firebase/app';
 import { getDatabase, ref, remove, onValue, push, set } from "firebase/database";
 import QRCode from 'qrcode';
 
+import texts from "./texts.json" assert { type: "json" };
+
 const firebaseConfig = {
   databaseURL: "https://webgl-ed2ec-default-rtdb.europe-west1.firebasedatabase.app/",
 };
 
 const isMobile = /Android|iPhone/i.test(navigator.userAgent)
 let currentSession = null
-let baseUrl = "192.168.1.77:5173"
+let baseUrl = "172.28.59.104:5173"
 // let baseUrl = "brume.surge.sh"
 
 //firebase config
@@ -27,10 +29,8 @@ onValue(sessions, (snapshot) => {
       remove(ref(database, 'sessions/' + key))
     }
   })
-  // console.log('Data modified', Object.values(data))
 
   //display msgs on mobile
-  // mobile.displayList(data)
   if (isMobile) {
     import('./mobile').then(mobile => mobile.displayList(data))
   }
@@ -41,15 +41,18 @@ function createSession() {
     creationDate: Date.now()
   }).key;
   push(ref(database, `sessions/${currentSession}/messages/`), {
-    msg: "bonjour",
+    msg: texts[0].trigger,
     foreign: true,
     time: Date.now()
   })
-
-  set(ref(database, `sessions/${currentSession}/responses/`), {
-    options: ["salut, ça va ?", "qui es-tu ?", "tg"]
+  let options = texts[0].answers.map((answer) => {
+    return answer.preview
   })
-  
+  set(ref(database, `sessions/${currentSession}/responses/`), {
+    options: options,
+    parent: texts[0].trigger
+  })
+
   //DEBUG display session
   let p = document.createElement('p')
   p.textContent = currentSession.slice(17)
@@ -66,23 +69,37 @@ function displayQrCode(key) {
 
 //callback on desktop to transmit events to backend
 function handleDesktopEvent(event) {
-  console.log('event', event)
-  if (event === "room1") {
-    push(ref(database, `sessions/${currentSession}/messages/`), {
-      msg: "green zone message",
-      foreign: true,
-      time: Date.now()
-    })
-  }
-  if (event?.title === "response"){
+  console.log('event : ', event)
+  if (event?.title === "response") {
     push(ref(database, `sessions/${event.id}/messages/`), {
-      msg : event?.content,
+      msg: event?.content,
       foreign: false,
       time: Date.now()
     })
+
+    //remove the response from the choices
+    let responsesArray = event.responsesArray.splice(event.responsesArray.indexOf(event.content), 1)
     set(ref(database, `sessions/${event.id}/responses/`), {
-      options: event.responsesArray
+      options: event.responsesArray,
+      parent: event.parent
     })
+
+    //push the answers
+    let answers = texts.find(
+      ({ trigger }) => trigger === event.parent
+    ).answers.find(
+      ({ preview }) => preview === event.content
+    ).answers
+
+    answers.forEach((answer,i) => {
+      setTimeout(() => {
+        push(ref(database, `sessions/${event.id}/messages/`), {
+          msg: answer,
+          foreign: true,
+          time: Date.now()
+        })
+      }, (i+1)*1000);
+    });
   }
 }
 

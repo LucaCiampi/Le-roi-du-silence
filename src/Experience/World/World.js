@@ -35,12 +35,7 @@ export default class World {
             parameter: this.parameter,
             event: this.event
         })
-
-        // this.floor = new Floor({
-        //     scene: this.scene,
-        //     resources: this.resources,
-        //     parameter: this.parameter,
-        // })
+        
         this.setRooms();
 
         this.worldOctree = new WorldOctree({
@@ -93,6 +88,7 @@ export default class World {
             scene: this.scene,
             resources: this.resources,
             zoneEvent: this.zoneEvent,
+            camera: this.camera,
         }
 
         this.rooms = [
@@ -169,7 +165,7 @@ export default class World {
      * Starts the ambient sound that will loop throughout the experience
      */
     startAmbientWorldSound() {
-        this.parameter.sounds.playLoop('wind')
+        this.parameter.sounds.playLoop('wind');
     }
 
     /**

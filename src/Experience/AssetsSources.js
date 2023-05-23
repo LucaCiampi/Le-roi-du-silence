@@ -53,4 +53,11 @@ export default
         type: "texture",
         path: "./Textures/wood-floor-deck/color.png"
     },
+
+    // Audio
+    {
+        name: "eww",
+        type: "audio",
+        path: "./Sounds/kidsComplain.mp3"
+    },
 ]

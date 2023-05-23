@@ -14,6 +14,10 @@ export default class Camera {
     init() {
         this.instance = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.1, 1000);
         this.instance.position.set(0, 0, 0);
+
+        this.audioListener = new THREE.AudioListener();
+        this.instance.add(this.audioListener);
+
         this.scene.add(this.instance);
     }
     

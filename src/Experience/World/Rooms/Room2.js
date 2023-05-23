@@ -20,27 +20,31 @@ export default class Room2 extends Room {
             endPosition: new THREE.Vector2(-6, -14),
         });
 
+        this.closingDoor.position.set(1.2, 0, 10);
+
         this.setRoomModel();
 
         this.setAshes();
     }
 
     update() {
-        // Silence is golden...
         this.animateAsh();
     }
 
+    /**
+     * Sets up the ashes animation in the anger room
+     */
     setAshes() {
         // Créer un groupe pour contenir les particules de cendres
         this.ashGroup = new THREE.Group();
-        this.ashGroup.position.set(2, 2, 6);
+        this.ashGroup.position.set(2, 8, 6);
         this.props.push(this.ashGroup)
 
         // Créer le matériau des particules de cendres
         const ashTexture = this.resources.items['ash'];
         const ashMaterial = new THREE.PointsMaterial({
             map: ashTexture,
-            size: 0.5, // Taille des particules
+            size: 0.2, // Taille des particules
             transparent: true,
         });
 
@@ -63,14 +67,17 @@ export default class Room2 extends Room {
         this.ashGroup.add(this.ashes);
     }
 
+    /**
+     * Animates the ashes in the anger room
+     */
     animateAsh() {
         // Mettre à jour la position des particules
         this.ashes.rotation.y += 0.01; // Rotation des particules
         this.ashGroup.position.y -= 0.05; // Vitesse de descente des particules
 
         // Réinitialiser la position des particules qui sont sorties de la vue
-        if (this.ashGroup.position.y < -10) {
-            this.ashGroup.position.y = 0;
+        if (this.ashGroup.position.y < -6) {
+            this.ashGroup.position.y = 8;
         }
     }
 }

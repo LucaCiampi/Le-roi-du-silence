@@ -157,7 +157,7 @@ export default class Controls {
     }
 
     /**
-     * 
+     * Gets the forward vector
      * @returns {THREE.Vector3} player forward vector
      */
     getForwardVector() {
@@ -171,7 +171,7 @@ export default class Controls {
     }
 
     /**
-     * 
+     * Gets the side vector
      * @returns {THREE.Vector3} player side vector
      */
     getSideVector() {

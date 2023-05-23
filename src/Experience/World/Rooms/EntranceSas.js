@@ -16,6 +16,7 @@ export default class EntranceSas extends Room {
         
         this.setRoomModel();
 
+        // Shader
         const geometry = new THREE.BoxGeometry(1, 1, 1);
         // const material = new THREE.MeshLambertMaterial({ color: 0x00ff00 });
         const texture = new THREE.TextureLoader().load('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Red_brick_wall_texture.JPG/2560px-Red_brick_wall_texture.JPG')

@@ -46,5 +46,62 @@
                 ]
             }
         ]
+    },
+    {
+        "trigger": "Je te vois 👀 encore",
+        "answers": [
+            {
+                "preview": "chelou...",
+                "content": "Ah ok, chelou...",
+                "answers": [
+                    "bah nan"
+                ]
+            },
+            {
+                "preview": "Mais t'es malade ?",
+                "content": "Mais t'es malade ?",
+                "answers": [
+                    "oué"
+                ]
+            }
+        ]
+    },
+    {
+        "trigger": "hum... 👀",
+        "answers": [
+            {
+                "preview": "chelou...",
+                "content": "Ah ok, chelou...",
+                "answers": [
+                    "bah nan"
+                ]
+            },
+            {
+                "preview": "Mais t'es malade ?",
+                "content": "Mais t'es malade ?",
+                "answers": [
+                    "oué"
+                ]
+            }
+        ]
+    },
+    {
+        "trigger": "Presque fini 👀",
+        "answers": [
+            {
+                "preview": "chelou...",
+                "content": "Ah ok, chelou...",
+                "answers": [
+                    "bah nan"
+                ]
+            },
+            {
+                "preview": "Mais t'es malade ?",
+                "content": "Mais t'es malade ?",
+                "answers": [
+                    "oué"
+                ]
+            }
+        ]
     }
 ]

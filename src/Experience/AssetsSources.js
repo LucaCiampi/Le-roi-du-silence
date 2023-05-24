@@ -36,6 +36,28 @@ export default
         type: "gltfModel",
         path: "./Environment/lit.glb"
     },
+<<<<<<< HEAD
+=======
+    
+    //objects
+    {
+        name: "tel",
+        type: "gltfModel",
+        path: "./Environment/cellphone.glb"
+    },
+    
+    // Player
+    {
+        name: "player_background",
+        type: "texture",
+        path: "./Player/Bucket_Background.webp"
+    },
+    {
+        name: "player_foreground",
+        type: "texture",
+        path: "./Player/Bucket_Foreground.webp"
+    },
+>>>>>>> devMarius
 
     // Textures
     {

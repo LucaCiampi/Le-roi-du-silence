@@ -25,7 +25,7 @@ onValue(sessions, (snapshot) => {
   //delete old sessions
   Object.keys(data).map((key) => {
     let item = data[key]
-    if (item.creationDate < Date.now() - 90000) {
+    if (item.creationDate < Date.now() - 90000 || !item.creationDate) {
       remove(ref(database, 'sessions/' + key))
     }
   })
@@ -91,15 +91,31 @@ function handleDesktopEvent(event) {
       ({ preview }) => preview === event.content
     ).answers
 
-    answers.forEach((answer,i) => {
+    answers.forEach((answer, i) => {
       setTimeout(() => {
         push(ref(database, `sessions/${event.id}/messages/`), {
           msg: answer,
           foreign: true,
           time: Date.now()
         })
-      }, (i+1)*1000);
+      }, i * 1500 + Math.random() * 1000);
     });
+  }
+
+  if (event?.includes("room")) {
+    let roomId = event.slice(4, 5)
+    push(ref(database, `sessions/${currentSession}/messages/`), {
+      msg: texts[roomId].trigger,
+      foreign: true,
+      time: Date.now()
+    })
+    let options = texts[roomId].answers.map((answer) => {
+      return answer.preview
+    })
+    set(ref(database, `sessions/${currentSession}/responses/`), {
+      options: options,
+      parent: texts[roomId].trigger
+    })
   }
 }
 

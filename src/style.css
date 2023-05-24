@@ -5,6 +5,10 @@ body {
     padding: 0;
 }
 
+#introMenu, #endMenu{
+    background-color: black;
+}
+
 .webgl {
     position: fixed;
     top: 0;

@@ -31,11 +31,6 @@ export default
         type: "gltfModel",
         path: "./Environment/hands.glb"
     },
-    {
-        name: "lit",
-        type: "gltfModel",
-        path: "./Environment/lit.glb"
-    },
 
     // Textures
     {

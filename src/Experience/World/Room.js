@@ -58,14 +58,20 @@ export default class Room {
         this.model = this.resources.items[this.name].scene;
         this.model.position.set(this.position.x, this.position.y, this.position.z)
 
-        // this.model.traverse((child) => {
-        //     if (child.isMesh) {
-        //         child.material = new THREE.MeshToonMaterial();
+        if (this.name == 'room2') {
+            this.model.scale.set(0.01, 0.01, 0.01);
+        }
 
-        //         child.material.map = this.resources.items['wood'];
-        //         child.material.needsUpdate = true;
-        //     }
-        // })
+        if (this.name == 'room1' || this.name == 'room2' || this.name == 'room4') {
+            this.model.traverse((child) => {
+                if (child.isMesh) {
+                    child.material = new THREE.MeshToonMaterial();
+
+                    child.material.map = this.resources.items['wood'];
+                    child.material.needsUpdate = true;
+                }
+            })
+        }
 
         this.scene.add(this.model)
     }

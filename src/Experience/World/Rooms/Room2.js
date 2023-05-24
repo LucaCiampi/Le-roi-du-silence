@@ -11,7 +11,8 @@ export default class Room2 extends Room {
 
     init() {
         this.name = "room2";
-        this.position = new THREE.Vector3(-14, 0, -28);
+        // this.position = new THREE.Vector3(-14, 0, -28);
+        this.position = new THREE.Vector3(-7, 0, -16);
         this.spawnPosition = new THREE.Vector3(-12, 0, -26);
         this.entranceTriggerZone = new TriggerZone({
             debug: this.debug,
@@ -28,7 +29,7 @@ export default class Room2 extends Room {
         const hands = this.resources.items['hands'].scene;
         const handsClips = this.resources.items['hands'].animations;
         // hands.position.set(4, 1, 4);
-        this.handsClip = THREE.AnimationClip.findByName(handsClips, 'anim_bras');
+        this.handsClip = THREE.AnimationClip.findByName(handsClips, 'animation_0');
         this.handsAnimationMixer = new THREE.AnimationMixer(hands);
         this.props.push(hands);
 

@@ -81,22 +81,11 @@ export default class EntranceSas extends Room {
         this.props.push(cube)
         
         const tel = this.resources.items['tel'].scene;
-        tel.position.set(2, 0.9, -0.7)
+        tel.position.set(1, 0.9, -0.7)
         tel.scale.set(0.1, 0.1, 0.1)
         tel.rotateY(Math.PI/2)
-
-        // tel.traverse((child) => {
-        //     if (child.isMesh) {
-        //         child.material = new THREE.MeshBasicMaterial();
-
-        //         child.material.map = this.resources.items['d'];
-        //         child.material.needsUpdate = true;
-        //     }
-        // })
         
         this.props.push(tel)
-        
-        this.addPropsToScene(this.props);
     }
     
     update() {

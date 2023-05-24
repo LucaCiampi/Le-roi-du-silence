@@ -36,8 +36,6 @@ export default
         type: "gltfModel",
         path: "./Environment/lit.glb"
     },
-<<<<<<< HEAD
-=======
     
     //objects
     {
@@ -57,7 +55,6 @@ export default
         type: "texture",
         path: "./Player/Bucket_Foreground.webp"
     },
->>>>>>> devMarius
 
     // Textures
     {

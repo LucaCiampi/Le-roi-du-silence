@@ -46,13 +46,8 @@ export default class Renderer {
         this.instance.setSize(this.sizes.width, this.sizes.height);
         this.instance.setPixelRatio(this.sizes.pixelRatio);
     }
-<<<<<<< HEAD
 
     update() {
-=======
-    
-    update(){
->>>>>>> devMarius
         // this.instance.render(this.scene, this.camera.instance)
         // this.outlineEffect.render(this.scene, this.camera.instance)
         this.composer.render(this.scene, this.camera.instance)

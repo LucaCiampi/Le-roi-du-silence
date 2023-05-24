@@ -19,7 +19,7 @@ export default class Room3 extends Room {
             startPosition: new THREE.Vector2(-22, -44),
             endPosition: new THREE.Vector2(-18, -30),
         });
-
+        
         this.setRoomModel();
 
         this.setAshes();

@@ -16,16 +16,16 @@ export default
         type: "gltfModel",
         path: "./Environment/room2.glb"
     },
-    {
-        name: "room3",
-        type: "gltfModel",
-        path: "./Environment/room3.glb"
-    },
-    {
-        name: "room4",
-        type: "gltfModel",
-        path: "./Environment/room4.glb"
-    },
+    // {
+    //     name: "room3",
+    //     type: "gltfModel",
+    //     path: "./Environment/room3.glb"
+    // },
+    // {
+    //     name: "room4",
+    //     type: "gltfModel",
+    //     path: "./Environment/room4.glb"
+    // },
     {
         name: "hands",
         type: "gltfModel",

@@ -39,6 +39,7 @@ export default class Room {
         // this.positionalAudioTrack.setMediaElementSource(document.getElementById("test_audio"))
         this.positionalAudioTrack.setRefDistance(20);
         this.positionalAudioTrack.play();
+        console.log("this.positionalAudioTrack.play();")
 
         // create an object for the sound to play from
         // const audioSphere = new THREE.SphereGeometry(1, 32, 16);
@@ -58,12 +59,17 @@ export default class Room {
         this.model = this.resources.items[this.name].scene;
         this.model.position.set(this.position.x, this.position.y, this.position.z)
 
-        if (this.name == 'room2') {
+        if (this.name == 'sas') {
+            this.model.scale.set(0.01, 0.01, 0.01);
+        }
+        
+        else if (this.name == 'room2') {
             this.model.scale.set(0.01, 0.01, 0.01);
         }
         
         else if (this.name == 'room3') {
             this.model.scale.set(0.3, 0.3, 0.3);
+            this.model.rotation.set(0, -140, 0);
         }
 
         if (this.name == 'room1' || this.name == 'room2' || this.name == 'room4') {
@@ -97,6 +103,7 @@ export default class Room {
         this.playZoneSound();
         this.closeDoor();
         this.additionalEntranceActions();
+        this.positionalAudioTrack.play();
     }
 
     /**

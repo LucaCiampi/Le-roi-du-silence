@@ -1,5 +1,6 @@
 import * as THREE from "three";
 
+// TO DELETE
 export default class Stairs {
     constructor(_options) {
         this.scene = _options.scene;

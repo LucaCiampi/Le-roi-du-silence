@@ -10,11 +10,19 @@ export default class Room {
         this.camera = _options.camera;
 
         this.name = null;
+
+        // Position of the room in the scene
         this.position = null;
+
         this.spawnPosition = null;
+        
         this.entranceTriggerZone = null;
+        
         this.model = null;
+        
         this.additionalEntranceActions = () => { };
+        
+        // Array that contains all room 3D Objects
         this.props = [];
         this.closingDoor = null;
         this.positionalAudioTrack;
@@ -132,7 +140,8 @@ export default class Room {
     }
 
     /**
-     * Adds all Room props to the scene
+     * Adds all Room props to the room model, 
+     * allowing the props position to be relative to the room model
      */
     addPropsToRoom() {
         this.props.forEach(prop => {
@@ -147,6 +156,7 @@ export default class Room {
         this.props.forEach((prop) => {
             if (prop instanceof THREE.Mesh) {
                 prop.geometry.dispose();
+                // TODO: Disposer les textures ici
                 prop.material.dispose();
                 this.scene.remove(prop);
             }

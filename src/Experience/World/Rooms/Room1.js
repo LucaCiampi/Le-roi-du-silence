@@ -33,4 +33,10 @@ export default class Room1 extends Room {
     update() {
         // Silence is golden...
     }
+
+    destroy() {
+        // TODO
+        this.entranceTriggerZone.destroy();
+        super();
+    }
 }

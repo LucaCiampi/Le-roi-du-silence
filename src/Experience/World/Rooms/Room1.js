@@ -11,41 +11,26 @@ export default class Room1 extends Room {
 
     init() {
         this.name = "room1";
-        this.position = new THREE.Vector3(1, 2, -18);
-        this.spawnPosition = new THREE.Vector3(2, 2, -14);
+        this.position = new THREE.Vector3(-0.45, 2.45, -19.8);
+        this.spawnPosition = new THREE.Vector3(0, 2, -23);
         this.entranceTriggerZone = new TriggerZone({
             debug: this.debug,
             scene: this.scene,
-            startPosition: new THREE.Vector2(0, -20),
-            endPosition: new THREE.Vector2(10, -7),
+            startPosition: new THREE.Vector2(0, -23),
+            endPosition: new THREE.Vector2(20, -12),
         });
         this.closingDoor.position.set(1.2, 2, 12);
 
         this.setRoomModel();
 
-        // Hands
-        const hands = this.resources.items['hands'].scene;
-        const handsClips = this.resources.items['hands'].animations;
-        hands.position.set(4, 1, 4);
-        this.handsClip = THREE.AnimationClip.findByName(handsClips, 'anim_bras');
-        this.handsAnimationMixer = new THREE.AnimationMixer(hands);
-        this.props.push(hands);
-
-        this.additionalEntranceActions = () => { this.initHandsAnimation(); }
-
         this.model.add(this.positionalAudioTrack)
+
+        // this.props.push(this.resources.items['room1Props'].scene)
+     
+        this.addDebugOptions();
     }
 
     update() {
-        this.handsAnimationMixer.update(0.01);
-    }
-
-    /**
-     * Sets up the hands animation
-     */
-    initHandsAnimation() {
-        // TODO: store action in object variable
-        const action = this.handsAnimationMixer.clipAction(this.handsClip);
-        action.play();
+        // Silence is golden...
     }
 }

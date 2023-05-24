@@ -39,6 +39,7 @@ export default class Room {
         // this.positionalAudioTrack.setMediaElementSource(document.getElementById("test_audio"))
         this.positionalAudioTrack.setRefDistance(20);
         this.positionalAudioTrack.play();
+        console.log("this.positionalAudioTrack.play();")
 
         // create an object for the sound to play from
         // const audioSphere = new THREE.SphereGeometry(1, 32, 16);
@@ -58,14 +59,33 @@ export default class Room {
         this.model = this.resources.items[this.name].scene;
         this.model.position.set(this.position.x, this.position.y, this.position.z)
 
-        this.model.traverse((child) => {
-            if (child.isMesh) {
-                child.material = new THREE.MeshToonMaterial();
+        if (this.name == 'sas') {
+            this.model.scale.set(0.01, 0.01, 0.01);
+        }
 
-                child.material.map = this.resources.items['wood'];
-                child.material.needsUpdate = true;
-            }
-        })
+        else if (this.name == 'room1') {
+            this.model.scale.set(0.01, 0.01, 0.01);
+        }
+
+        else if (this.name == 'room2') {
+            this.model.scale.set(0.01, 0.01, 0.01);
+        }
+
+        else if (this.name == 'room3') {
+            this.model.scale.set(0.25, 0.25, 0.25);
+            this.model.rotation.set(0, -3.16, 0);
+        }
+
+        if (this.name == 'room2' || this.name == 'room4') {
+            this.model.traverse((child) => {
+                if (child.isMesh) {
+                    child.material = new THREE.MeshToonMaterial();
+
+                    child.material.map = this.resources.items['wood'];
+                    child.material.needsUpdate = true;
+                }
+            })
+        }
 
         this.scene.add(this.model)
     }
@@ -87,6 +107,7 @@ export default class Room {
         this.playZoneSound();
         this.closeDoor();
         this.additionalEntranceActions();
+        this.positionalAudioTrack.play();
     }
 
     /**
@@ -144,5 +165,32 @@ export default class Room {
             }
         });
         this.scene.remove(this.model);
+    }
+
+    /**
+     * Adds debug options
+     */
+    addDebugOptions() {
+        const folder = this.debug.gui.addFolder(this.name);
+
+        // Rotation
+        folder.add(this.model.rotation, 'y')
+            .onChange((value) => {
+                this.model.rotation.y = value;
+            });
+
+        // Position
+        folder.add(this.model.position, 'x')
+            .onChange((value) => {
+                this.model.position.x = value;
+            });
+        folder.add(this.model.position, 'y')
+            .onChange((value) => {
+                this.model.position.y = value;
+            });
+        folder.add(this.model.position, 'z')
+            .onChange((value) => {
+                this.model.position.z = value;
+            });
     }
 }

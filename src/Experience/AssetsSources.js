@@ -12,6 +12,11 @@ export default
         path: "./Environment/room1.glb"
     },
     {
+        name: "room1Props",
+        type: "gltfModel",
+        path: "./Environment/room1-props.glb"
+    },
+    {
         name: "room2",
         type: "gltfModel",
         path: "./Environment/room2.glb"
@@ -31,29 +36,12 @@ export default
         type: "gltfModel",
         path: "./Environment/hands.glb"
     },
-    {
-        name: "lit",
-        type: "gltfModel",
-        path: "./Environment/lit.glb"
-    },
     
-    //objects
+    // Objects
     {
         name: "tel",
         type: "gltfModel",
         path: "./Environment/cellphone.glb"
-    },
-    
-    // Player
-    {
-        name: "player_background",
-        type: "texture",
-        path: "./Player/Bucket_Background.webp"
-    },
-    {
-        name: "player_foreground",
-        type: "texture",
-        path: "./Player/Bucket_Foreground.webp"
     },
 
     // Textures

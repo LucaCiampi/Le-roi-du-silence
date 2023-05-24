@@ -19,7 +19,7 @@ export default class WorldOctree {
     init() {
         this.octree = new Octree();
 
-        this.event.on('Start', () => {
+        this.event.on('Ready', () => {
             this.makeOctree(this.onFinish)
         })
     }

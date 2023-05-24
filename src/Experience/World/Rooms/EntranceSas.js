@@ -13,7 +13,7 @@ export default class EntranceSas extends Room {
         this.name = "sas";
         this.position = new THREE.Vector3(0, 0, 0);
         this.spawnPosition = new THREE.Vector3(0, 0, 0);
-        
+
         this.setRoomModel();
 
         // Shader
@@ -60,8 +60,8 @@ export default class EntranceSas extends Room {
                 + vec4(vec3(texture2D(colorMap, vUv)), 1);
 			}`
 
-            const shaderMaterial = new THREE.RawShaderMaterial({
-                uniforms: {
+        const shaderMaterial = new THREE.RawShaderMaterial({
+            uniforms: {
                 colorMap: {
                     value: texture
                 },
@@ -79,15 +79,15 @@ export default class EntranceSas extends Room {
         const cube = new THREE.Mesh(geometry, shaderMaterial);
         cube.position.set(0, 0, 0)
         this.props.push(cube)
-        
+
         const tel = this.resources.items['tel'].scene;
         tel.position.set(1, 0.9, -0.7)
         tel.scale.set(0.1, 0.1, 0.1)
-        tel.rotateY(Math.PI/2)
-        
+        tel.rotateY(Math.PI / 2)
+
         this.props.push(tel)
     }
-    
+
     update() {
         // Silence is golden...
     }

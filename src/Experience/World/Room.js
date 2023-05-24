@@ -32,14 +32,14 @@ export default class Room {
         this.closingDoor = new THREE.Mesh(closingDoorGeometry, closingDoorMaterial);
 
         // --------- Positional audio ---------
-        this.positionalAudioTrack = new THREE.PositionalAudio(this.camera.audioListener);
+        // this.positionalAudioTrack = new THREE.PositionalAudio(this.camera.audioListener);
         // this.positionalAudioTrack = new THREE.Audio(this.camera.audioListener);
         // this.positionalAudioTrack = new THREE.Audio(this.camera.instance.children[0]);
-        this.positionalAudioTrack.setBuffer(this.resources.items['eww']);
+        // this.positionalAudioTrack.setBuffer(this.resources.items['eww']);
         // this.positionalAudioTrack.setMediaElementSource(document.getElementById("test_audio"))
-        this.positionalAudioTrack.setRefDistance(20);
-        this.positionalAudioTrack.play();
-        console.log("this.positionalAudioTrack.play();")
+        // this.positionalAudioTrack.setRefDistance(20);
+        // this.positionalAudioTrack.play();
+        // console.log("this.positionalAudioTrack.play();")
 
         // create an object for the sound to play from
         // const audioSphere = new THREE.SphereGeometry(1, 32, 16);
@@ -107,7 +107,7 @@ export default class Room {
         this.playZoneSound();
         this.closeDoor();
         this.additionalEntranceActions();
-        this.positionalAudioTrack.play();
+        // this.positionalAudioTrack.play();
     }
 
     /**

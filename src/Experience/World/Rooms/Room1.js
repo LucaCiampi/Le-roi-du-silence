@@ -23,11 +23,13 @@ export default class Room1 extends Room {
 
         this.setRoomModel();
 
-        this.model.add(this.positionalAudioTrack)
+        // this.model.add(this.positionalAudioTrack)
 
         // this.props.push(this.resources.items['room1Props'].scene)
-     
-        this.addDebugOptions();
+
+        if (this.debug.active) {
+            this.addDebugOptions();
+        }
     }
 
     update() {

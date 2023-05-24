@@ -76,7 +76,12 @@ export default class Room {
             this.model.rotation.set(0, -3.16, 0);
         }
 
-        if (this.name == 'room2' || this.name == 'room4') {
+        else if (this.name == 'room4') {
+            this.model.scale.set(0.008, 0.008, 0.008);
+        }
+
+        // if (this.name == 'room2' || this.name == 'room4') {
+        if (this.name == 'room2') {
             this.model.traverse((child) => {
                 if (child.isMesh) {
                     child.material = new THREE.MeshToonMaterial();

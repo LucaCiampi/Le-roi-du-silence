@@ -111,8 +111,12 @@ export default class EntranceSas extends Room {
         const tel = this.resources.items['tel'].scene;
         tel.position.set(1, 0.9, -0.7)
         tel.scale.set(0.1, 0.1, 0.1)
-        tel.rotateY(Math.PI / 2)
-
+        tel.rotateY(Math.PI/2)
+        
         this.props.push(tel)
+    }
+    
+    update() {
+        // Silence is golden...
     }
 }

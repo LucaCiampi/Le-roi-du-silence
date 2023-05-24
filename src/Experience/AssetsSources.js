@@ -36,6 +36,11 @@ export default
         type: "gltfModel",
         path: "./Environment/hands.glb"
     },
+    {
+        name: "lit",
+        type: "gltfModel",
+        path: "./Environment/lit.glb"
+    },
     
     // Objects
     {
@@ -47,6 +52,18 @@ export default
         name: "tel",
         type: "gltfModel",
         path: "./Environment/cellphone.glb"
+    },
+    
+    // Player
+    {
+        name: "player_background",
+        type: "texture",
+        path: "./Player/Bucket_Background.webp"
+    },
+    {
+        name: "player_foreground",
+        type: "texture",
+        path: "./Player/Bucket_Foreground.webp"
     },
 
     // Textures

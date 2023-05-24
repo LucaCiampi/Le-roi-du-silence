@@ -21,7 +21,7 @@ export default class GlobalParameter {
     init() {
         this.sounds = new Sounds();
         this.currentZone = 0;
-        this.playerSpawn = { x: 0, y: 0, z: 0 };
+        this.playerSpawn = { x: 0, y: 0, z: -2 };
 
         this.eventReceiver();
         this.reset();

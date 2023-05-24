@@ -16,7 +16,7 @@ export default class Controls {
         this.playerDirection = null;
         this.playerCollider = null;
         this.playerOnFloor = false;
-
+        this.playerPositionDebugUi = null;
 
         this.keyStates = {};
 
@@ -33,6 +33,7 @@ export default class Controls {
         this.playerDirection = new THREE.Vector3();
         this.playerCollider = new Capsule(new THREE.Vector3(0, 0.35, 0), new THREE.Vector3(0, 1, 0), 0.35);
         this.clock = new THREE.Clock();
+        this.playerPositionDebugUi = document.getElementById('playerPosition');
 
         this.eventReciever();
 
@@ -211,6 +212,10 @@ export default class Controls {
 
         this.camera.instance.position.copy(this.playerCollider.end);
 
+        this.playerPositionDebugUi.innerHTML = 
+        'x: ' + this.playerCollider.end.x + 
+        '<br />y: ' + this.playerCollider.end.y +
+        '<br />z: ' + this.playerCollider.end.z;
     }
 
     /**
@@ -271,5 +276,6 @@ export default class Controls {
         // this.debug.gui.add(this.playerCollider.end, 'x');
         // this.debug.gui.add(this.playerCollider.end, 'y');
         // this.debug.gui.add(this.playerCollider.end, 'z');
+        this.playerPositionDebugUi.classList.remove('d-none');
     }
 }  

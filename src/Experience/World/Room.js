@@ -1,5 +1,9 @@
 import * as THREE from 'three'
 
+/**
+ * Mother class of all subrooms, containing methods common to all of them
+ * and default values for all properties
+ */
 export default class Room {
     constructor(_options) {
         this.parameter = _options.parameter;
@@ -9,22 +13,31 @@ export default class Room {
         this.zoneEvent = _options.zoneEvent;
         this.camera = _options.camera;
 
+        // Name of the room used to fetch the model
         this.name = null;
 
         // Position of the room in the scene
         this.position = null;
 
+        // Where the player spawns in case of death
         this.spawnPosition = null;
         
+        // The zone determining either the player has stepped in the room
         this.entranceTriggerZone = null;
-        
+    
+        // 3DObject model of the room    
         this.model = null;
         
+        // Methods called on room entrance
         this.additionalEntranceActions = () => { };
         
         // Array that contains all room 3D Objects
         this.props = [];
+
+        // Closing door
         this.closingDoor = null;
+
+        // Positional audio
         this.positionalAudioTrack;
 
         this.initRoom();
@@ -50,14 +63,14 @@ export default class Room {
         console.log("this.positionalAudioTrack.play();")
 
         // create an object for the sound to play from
-        // const audioSphere = new THREE.SphereGeometry(1, 32, 16);
-        // const audioMaterial = new THREE.MeshPhongMaterial({ color: 0xff2200 });
-        // const audioMesh = new THREE.Mesh(audioSphere, audioMaterial);
-        // audioMesh.position.set(4, 1, 4);
-        // this.scene.add(audioMesh);
+        const audioSphere = new THREE.SphereGeometry(1, 32, 16);
+        const audioMaterial = new THREE.MeshPhongMaterial({ color: 0xff2200 });
+        const audioMesh = new THREE.Mesh(audioSphere, audioMaterial);
+        audioMesh.position.set(4, 1, 4);
+        this.scene.add(audioMesh);
 
         // finally add the sound to the mesh
-        // audioMesh.add(this.positionalAudioTrack);
+        audioMesh.add(this.positionalAudioTrack);
     }
 
     /**

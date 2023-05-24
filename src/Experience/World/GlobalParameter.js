@@ -19,8 +19,8 @@ export default class GlobalParameter {
     }
 
     init() {
-        this.sounds = new Sounds();
         this.currentZone = 0;
+        this.sounds = new Sounds();
         this.playerSpawn = { x: 0, y: 0, z: -2 };
 
         this.eventReceiver();
@@ -54,18 +54,27 @@ export default class GlobalParameter {
         })
     }
 
+    /**
+     * Resets game
+     */
     reset() {
         this.canUpdate = true;
 
         this.setStarter()
     }
 
+    /**
+     * Sets up game starter parameters
+     */
     setStarter() {
         this.counterOn = false;
         this.TimerCount = 300;
         this.timer = this.TimerCount;
     }
 
+    /**
+     * Increments zone player has reached
+     */
     incrementCurrentZone() {
         if (this.currentZone + 1 < this.NUMBER_OF_ZONES) {
             this.currentZone += 1
@@ -76,6 +85,10 @@ export default class GlobalParameter {
         }
     }
 
+    /**
+     * Destroy an item passed in param
+     * @param {any} item item to destroy
+     */
     destroy(item) {
         item.geometry.dispose();
         for (const key in item.material) {

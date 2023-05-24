@@ -15,6 +15,15 @@ export default class EntranceSas extends Room {
 
         this.setRoomModel();
 
+        this.setUpMariusShader();
+    }
+
+    update() {
+        // Silence is golden...
+    }
+
+    // TODO
+    setUpMariusShader() {
         // Shader
         const geometry = new THREE.BoxGeometry(1, 1, 1);
         // const material = new THREE.MeshLambertMaterial({ color: 0x00ff00 });
@@ -24,40 +33,40 @@ export default class EntranceSas extends Room {
         texture2.wrapS = texture.wrapT = THREE.RepeatWrapping
 
         const vertexShader = `
-            precision mediump float;
-			precision mediump int;
+    precision mediump float;
+    precision mediump int;
 
-			uniform mat4 modelViewMatrix;
-			uniform mat4 projectionMatrix;
+    uniform mat4 modelViewMatrix;
+    uniform mat4 projectionMatrix;
 
-			attribute vec3 position;
-			attribute vec3 normal;
-			attribute vec2 uv;
+    attribute vec3 position;
+    attribute vec3 normal;
+    attribute vec2 uv;
 
-			varying vec2 vUv;
-			varying vec3 vNormal;
-            
-			void main()	{
-                gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
-                vUv = uv;
-                vNormal = normal;
-			}`
+    varying vec2 vUv;
+    varying vec3 vNormal;
+    
+    void main()	{
+        gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+        vUv = uv;
+        vNormal = normal;
+    }`
 
         const fragmentShader = `
-            precision mediump float;
-			precision mediump int;
-            
-			uniform sampler2D colorMap;
-			uniform sampler2D colorMap2;
-			uniform float test;
-            
-			varying vec2 vUv;
-            varying vec3 vNormal;
+    precision mediump float;
+    precision mediump int;
+    
+    uniform sampler2D colorMap;
+    uniform sampler2D colorMap2;
+    uniform float test;
+    
+    varying vec2 vUv;
+    varying vec3 vNormal;
 
-			void main()	{
-				gl_FragColor = vec4(0.5, 0.5, 0.5, 1) * vec4(vNormal * vec3(texture2D(colorMap2, vUv)), 0)
-                + vec4(vec3(texture2D(colorMap, vUv)), 1);
-			}`
+    void main()	{
+        gl_FragColor = vec4(0.5, 0.5, 0.5, 1) * vec4(vNormal * vec3(texture2D(colorMap2, vUv)), 0)
+        + vec4(vec3(texture2D(colorMap, vUv)), 1);
+    }`
 
         const shaderMaterial = new THREE.RawShaderMaterial({
             uniforms: {
@@ -85,9 +94,5 @@ export default class EntranceSas extends Room {
         tel.rotateY(Math.PI / 2)
 
         this.props.push(tel)
-    }
-
-    update() {
-        // Silence is golden...
     }
 }

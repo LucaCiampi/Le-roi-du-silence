@@ -40,6 +40,9 @@ export default class Room {
         // Positional audio
         this.positionalAudioTrack;
 
+        // Minimum score required to open the door
+        this.minScoreRequired = null;
+
         this.initRoom();
     }
 

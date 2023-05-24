@@ -62,14 +62,14 @@ export default class Room {
         if (this.name == 'sas') {
             this.model.scale.set(0.01, 0.01, 0.01);
         }
-        
+
         else if (this.name == 'room2') {
             this.model.scale.set(0.01, 0.01, 0.01);
         }
-        
+
         else if (this.name == 'room3') {
-            this.model.scale.set(0.3, 0.3, 0.3);
-            this.model.rotation.set(0, -140, 0);
+            this.model.scale.set(0.25, 0.25, 0.25);
+            this.model.rotation.set(0, -3.16, 0);
         }
 
         if (this.name == 'room1' || this.name == 'room2' || this.name == 'room4') {
@@ -161,5 +161,32 @@ export default class Room {
             }
         });
         this.scene.remove(this.model);
+    }
+
+    /**
+     * Adds debug options
+     */
+    addDebugOptions() {
+        const folder = this.debug.gui.addFolder('Room');
+
+        // Rotation
+        folder.add(this.model.rotation, 'y')
+            .onChange((value) => {
+                this.model.rotation.y = value;
+            });
+
+        // Position
+        folder.add(this.model.position, 'x')
+            .onChange((value) => {
+                this.model.position.x = value;
+            });
+        folder.add(this.model.position, 'y')
+            .onChange((value) => {
+                this.model.position.y = value;
+            });
+        folder.add(this.model.position, 'z')
+            .onChange((value) => {
+                this.model.position.z = value;
+            });
     }
 }

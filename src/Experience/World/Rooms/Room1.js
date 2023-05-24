@@ -11,7 +11,7 @@ export default class Room1 extends Room {
 
     init() {
         this.name = "room1";
-        this.position = new THREE.Vector3(-0.45, 1.85, -22.2);
+        this.position = new THREE.Vector3(-0.45, 1.85, -22.4);
         this.spawnPosition = new THREE.Vector3(0, 2, -23);
         this.entranceTriggerZone = new TriggerZone({
             debug: this.debug,

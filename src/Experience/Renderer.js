@@ -25,7 +25,6 @@ export default class Renderer
             defaultThickness: 0.005,
             // defaultColor: [131, 33, 97]
         } );
-        console.log(this.outlineEffect)
         // this.outlineEffect.thickness = 0.1;
         // this.outlineEffect.color = [255, 0, 0];
     }

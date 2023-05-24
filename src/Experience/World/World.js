@@ -94,8 +94,8 @@ export default class World {
             new EntranceSas({ ...options }),
             new Room1({ ...options }),
             new Room2({ ...options }),
-            // new Room3({ ...options }),
-            // new Room4({ ...options }),
+            new Room3({ ...options }),
+            new Room4({ ...options }),
         ]
     }
 

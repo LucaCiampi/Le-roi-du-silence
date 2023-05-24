@@ -97,6 +97,6 @@ export default class GlobalParameter {
         folder.add(this, 'currentZone')
             .onChange((value) => {
                 this.currentZone = value;
-            });;
+            });
     }
 }

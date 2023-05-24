@@ -1,6 +1,8 @@
 import { initializeApp } from 'firebase/app';
-import { getDatabase, ref, remove, onValue, push, get, child } from "firebase/database";
+import { getDatabase, ref, remove, onValue, push, set } from "firebase/database";
 import QRCode from 'qrcode';
+
+import texts from "./texts.json" assert { type: "json" };
 
 const firebaseConfig = {
   databaseURL: "https://webgl-ed2ec-default-rtdb.europe-west1.firebasedatabase.app/",
@@ -23,14 +25,12 @@ onValue(sessions, (snapshot) => {
   //delete old sessions
   Object.keys(data).map((key) => {
     let item = data[key]
-    if (item.creationDate < Date.now() - 90000) {
+    if (item.creationDate < Date.now() - 90000 || !item.creationDate) {
       remove(ref(database, 'sessions/' + key))
     }
   })
-  // console.log('Data modified', Object.values(data))
 
   //display msgs on mobile
-  // mobile.displayList(data)
   if (isMobile) {
     import('./mobile').then(mobile => mobile.displayList(data))
   }
@@ -41,9 +41,16 @@ function createSession() {
     creationDate: Date.now()
   }).key;
   push(ref(database, `sessions/${currentSession}/messages/`), {
-    msg: "bonjour",
+    msg: texts[0].trigger,
     foreign: true,
     time: Date.now()
+  })
+  let options = texts[0].answers.map((answer) => {
+    return answer.preview
+  })
+  set(ref(database, `sessions/${currentSession}/responses/`), {
+    options: options,
+    parent: texts[0].trigger
   })
 
   //DEBUG display session
@@ -62,19 +69,52 @@ function displayQrCode(key) {
 
 //callback on desktop to transmit events to backend
 function handleDesktopEvent(event) {
-  console.log('event', event)
-  if (event === "room1") {
+  console.log('event : ', event)
+  if (event?.title === "response") {
+    push(ref(database, `sessions/${event.id}/messages/`), {
+      msg: event?.content,
+      foreign: false,
+      time: Date.now()
+    })
+
+    //remove the response from the choices
+    let responsesArray = event.responsesArray.splice(event.responsesArray.indexOf(event.content), 1)
+    set(ref(database, `sessions/${event.id}/responses/`), {
+      options: event.responsesArray,
+      parent: event.parent
+    })
+
+    //push the answers
+    let answers = texts.find(
+      ({ trigger }) => trigger === event.parent
+    ).answers.find(
+      ({ preview }) => preview === event.content
+    ).answers
+
+    answers.forEach((answer, i) => {
+      setTimeout(() => {
+        push(ref(database, `sessions/${event.id}/messages/`), {
+          msg: answer,
+          foreign: true,
+          time: Date.now()
+        })
+      }, i * 1500 + Math.random() * 1000);
+    });
+  }
+
+  if (event?.includes("room")) {
+    let roomId = event.slice(4, 5)
     push(ref(database, `sessions/${currentSession}/messages/`), {
-      msg: "green zone message",
+      msg: texts[roomId].trigger,
       foreign: true,
       time: Date.now()
     })
-  }
-  if (event?.title === "random") {
-    push(ref(database, `sessions/${event.id}/messages/`), {
-      msg: "Coucou je spam des truc random",
-      foreign: false,
-      time: Date.now()
+    let options = texts[roomId].answers.map((answer) => {
+      return answer.preview
+    })
+    set(ref(database, `sessions/${currentSession}/responses/`), {
+      options: options,
+      parent: texts[roomId].trigger
     })
   }
 }

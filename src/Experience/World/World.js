@@ -59,7 +59,8 @@ export default class World {
             scene: this.scene,
             debug: this.debug,
             resources: this.resources,
-            parameter: this.parameter
+            parameter: this.parameter,
+            camera: this.camera,
         })
 
         this.isReady = true;

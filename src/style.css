@@ -5,11 +5,16 @@ body {
     padding: 0;
 }
 
+#introMenu, #endMenu{
+    background-color: black;
+}
+
 .webgl {
     position: fixed;
     top: 0;
     left: 0;
     outline: none;
+    z-index: 2;
 }
 
 .no-select {
@@ -96,7 +101,7 @@ ul {
     top: 0;
     width: 100%;
     height: 6svh;
-    z-index: 3;
+    z-index: 1;
     display: flex;
     align-items: center;
     gap: 15px;
@@ -122,7 +127,7 @@ ul {
     min-height: fit-content;
     width: 100%;
     position: fixed;
-    bottom: 8svh;
+    bottom: 12svh;
 }
 
 #msgs {
@@ -172,6 +177,27 @@ ul {
     to {
         opacity: 1;
     }
+}
+
+#responses{
+    position: fixed;
+    bottom: calc(5svh + 25px);
+    height: fit-content;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.response{
+    width: fit-content;
+    padding: 5px 8px 5px 8px;
+    margin: 5px;
+    border-radius: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.8em;
+    background: #6eb6e240;
+    border: #6eb6e2 1px solid;
+    color: rgb(240, 240, 240);
 }
 
 #botBar {

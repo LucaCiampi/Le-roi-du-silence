@@ -17,7 +17,7 @@ export default class Floor {
 
         this.model.traverse((child, key) => {
             if (child.isMesh) {
-                child.material = new THREE.MeshBasicMaterial();
+                child.material = new THREE.MeshLambertMaterial();
 
                 child.material.map = this.resources.items['wood'];
                 child.material.needsUpdate = true;

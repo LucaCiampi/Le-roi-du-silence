@@ -36,6 +36,13 @@ export default
         type: "gltfModel",
         path: "./Environment/hands.glb"
     },
+    
+    // Objects
+    {
+        name: "tel",
+        type: "gltfModel",
+        path: "./Environment/cellphone.glb"
+    },
 
     // Textures
     {

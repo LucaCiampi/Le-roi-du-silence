@@ -1,0 +1,107 @@
+[
+    {
+        "trigger": "Bonjour",
+        "answers": [
+            {
+                "preview": "Salut, ça va ?",
+                "content": "Salut, ça va ?",
+                "answers": [
+                    "Nan ça va pas",
+                    "connard"
+                ]
+            },
+            {
+                "preview": "Qui es-tu ?",
+                "content": "Qui es-tu ?",
+                "answers": [
+                    "Léa",
+                    "on se connait pas",
+                    "jsp pas pk je te parle..."
+                ]
+            },
+            {
+                "preview": "tg",
+                "content": "tg sale merde",
+                "answers": [
+                    "..."
+                ]
+            }
+        ]
+    },
+    {
+        "trigger": "Je te vois 👀",
+        "answers": [
+            {
+                "preview": "chelou...",
+                "content": "Ah ok, chelou...",
+                "answers": [
+                    "bah nan"
+                ]
+            },
+            {
+                "preview": "Mais t'es malade ?",
+                "content": "Mais t'es malade ?",
+                "answers": [
+                    "oué"
+                ]
+            }
+        ]
+    },
+    {
+        "trigger": "Je te vois 👀 encore",
+        "answers": [
+            {
+                "preview": "chelou...",
+                "content": "Ah ok, chelou...",
+                "answers": [
+                    "bah nan"
+                ]
+            },
+            {
+                "preview": "Mais t'es malade ?",
+                "content": "Mais t'es malade ?",
+                "answers": [
+                    "oué"
+                ]
+            }
+        ]
+    },
+    {
+        "trigger": "hum... 👀",
+        "answers": [
+            {
+                "preview": "chelou...",
+                "content": "Ah ok, chelou...",
+                "answers": [
+                    "bah nan"
+                ]
+            },
+            {
+                "preview": "Mais t'es malade ?",
+                "content": "Mais t'es malade ?",
+                "answers": [
+                    "oué"
+                ]
+            }
+        ]
+    },
+    {
+        "trigger": "Presque fini 👀",
+        "answers": [
+            {
+                "preview": "chelou...",
+                "content": "Ah ok, chelou...",
+                "answers": [
+                    "bah nan"
+                ]
+            },
+            {
+                "preview": "Mais t'es malade ?",
+                "content": "Mais t'es malade ?",
+                "answers": [
+                    "oué"
+                ]
+            }
+        ]
+    }
+]

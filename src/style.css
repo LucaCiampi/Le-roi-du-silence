@@ -43,7 +43,7 @@ body {
 }
 
 canvas {
-    border-radius: 15px;
+    /* border-radius: 15px; */
 }
 
 .player-position {
@@ -56,6 +56,12 @@ canvas {
 }
 
 /* mobile */
+@media (min-width: 981px) {
+    #mobile {
+        display: none;
+    }
+}
+
 #mobile {
     background-color: rgb(33, 33, 33);
     height: 100svh;

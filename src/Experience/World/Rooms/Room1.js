@@ -12,7 +12,7 @@ export default class Room1 extends Room {
     init() {
         this.name = "room1";
         this.position = new THREE.Vector3(-0.45, 2.45, -19.8);
-        this.spawnPosition = new THREE.Vector3(-0.45, 2.45, -20);
+        this.spawnPosition = new THREE.Vector3(2.7, 3.5, -12);
         this.entranceTriggerZone = new TriggerZone({
             debug: this.debug,
             scene: this.scene,
@@ -34,10 +34,5 @@ export default class Room1 extends Room {
 
     update() {
         // Silence is golden...
-    }
-
-    destroy() {
-        // TODO
-        this.entranceTriggerZone.destroy();
     }
 }

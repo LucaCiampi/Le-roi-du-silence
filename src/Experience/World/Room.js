@@ -63,6 +63,10 @@ export default class Room {
             this.model.scale.set(0.01, 0.01, 0.01);
         }
 
+        else if (this.name == 'room1') {
+            this.model.scale.set(0.01, 0.01, 0.01);
+        }
+
         else if (this.name == 'room2') {
             this.model.scale.set(0.01, 0.01, 0.01);
         }
@@ -72,7 +76,7 @@ export default class Room {
             this.model.rotation.set(0, -3.16, 0);
         }
 
-        if (this.name == 'room1' || this.name == 'room2' || this.name == 'room4') {
+        if (this.name == 'room2' || this.name == 'room4') {
             this.model.traverse((child) => {
                 if (child.isMesh) {
                     child.material = new THREE.MeshToonMaterial();
@@ -167,7 +171,7 @@ export default class Room {
      * Adds debug options
      */
     addDebugOptions() {
-        const folder = this.debug.gui.addFolder('Room');
+        const folder = this.debug.gui.addFolder(this.name);
 
         // Rotation
         folder.add(this.model.rotation, 'y')

@@ -11,7 +11,7 @@ export default class Room1 extends Room {
 
     init() {
         this.name = "room1";
-        this.position = new THREE.Vector3(-0.45, 1.85, -22.4);
+        this.position = new THREE.Vector3(-0.45, 2.45, -19.8);
         this.spawnPosition = new THREE.Vector3(0, 2, -23);
         this.entranceTriggerZone = new TriggerZone({
             debug: this.debug,
@@ -25,22 +25,9 @@ export default class Room1 extends Room {
 
         this.model.add(this.positionalAudioTrack)
 
-        // const cmcube = this.resources.items['hands'].scene
-        // const mmcube = this.resources.items['cube_mm'].scene
-
-        // console.log(cmcube)
-
-        // cmcube.position.set(0, 2, -10)
-        // mmcube.position.set(0, 1, -10)
-
-        // this.props.push(cmcube)
-        // this.props.push(mmcube)
-
-        // const geometry = new THREE.BoxGeometry(10, 10, 10);
-        // const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-        // const cube = new THREE.Mesh(geometry, material);
-        // cube.position.set(0, 2, -10)
-        // this.props.push(cube)
+        // this.props.push(this.resources.items['room1Props'].scene)
+     
+        this.addDebugOptions();
     }
 
     update() {

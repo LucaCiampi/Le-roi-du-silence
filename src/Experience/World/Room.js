@@ -61,6 +61,10 @@ export default class Room {
         if (this.name == 'room2') {
             this.model.scale.set(0.01, 0.01, 0.01);
         }
+        
+        else if (this.name == 'room3') {
+            this.model.scale.set(0.3, 0.3, 0.3);
+        }
 
         if (this.name == 'room1' || this.name == 'room2' || this.name == 'room4') {
             this.model.traverse((child) => {

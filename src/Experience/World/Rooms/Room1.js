@@ -26,6 +26,7 @@ export default class Room1 extends Room {
         this.minScoreRequired = 0;
 
         this.triggerZones = [
+            // In the corner on the left
             new TriggerZone({
                 debug: this.debug,
                 scene: this.scene,
@@ -34,12 +35,29 @@ export default class Room1 extends Room {
                 endPosition: new THREE.Vector2(1, -16),
                 color: 0x00ffff
             }),
+            // Near the lockers on the left
             new TriggerZone({
                 debug: this.debug,
                 scene: this.scene,
                 name: 'zone 2',
-                startPosition: new THREE.Vector2(6, -23),
-                endPosition: new THREE.Vector2(2, -16),
+                startPosition: new THREE.Vector2(-3, -17),
+                endPosition: new THREE.Vector2(-2, -14),
+            }),
+            // Next to the door open on the right
+            new TriggerZone({
+                debug: this.debug,
+                scene: this.scene,
+                name: 'zone 3',
+                startPosition: new THREE.Vector2(4, -20),
+                endPosition: new THREE.Vector2(6, -18),
+            }),
+            // At the end of the corridor
+            new TriggerZone({
+                debug: this.debug,
+                scene: this.scene,
+                name: 'zone 4',
+                startPosition: new THREE.Vector2(2, -24),
+                endPosition: new THREE.Vector2(4, -22),
             })
         ]
 

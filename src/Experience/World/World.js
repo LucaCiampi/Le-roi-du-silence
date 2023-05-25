@@ -139,14 +139,23 @@ export default class World {
     }
 
     /**
-     * Increase the trust score in order to open next room
+     * Increase the trust score
+     * if it's equal to the minimum required to open the next room,
+     * then opens the exit door
      */
     increaseTrustScore() {
-        this.parameter.score++;
-        this.userInterface.updateScore(this.parameter.score);
+        if (this.parameter.score < this.rooms[this.parameter.currentZone + 1].minScoreRequired) {
+            this.parameter.score++;
+            this.userInterface.updateScore(this.parameter.score);
 
-        if (this.rooms[this.parameter.currentZone + 1].minScoreRequired == this.parameter.score) {
-            this.rooms[this.parameter.currentZone].openExitDoor();
+            if (this.parameter.score === this.rooms[this.parameter.currentZone + 1].minScoreRequired) {
+                console.log('🚪 Exit door of room ' + this.parameter.currentZone + ' open')
+                this.rooms[this.parameter.currentZone].openExitDoor();
+            }
+        }
+
+        else {
+            console.log('Max score already reached for this room');
         }
     }
 

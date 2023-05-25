@@ -16,15 +16,35 @@ export default class Room3 extends Room {
         this.entranceTriggerZone = new TriggerZone({
             debug: this.debug,
             scene: this.scene,
-            startPosition: new THREE.Vector2(-22, -44),
-            endPosition: new THREE.Vector2(-18, -30),
+            startPosition: new THREE.Vector2(-20, -41),
+            endPosition: new THREE.Vector2(-11, -37),
         });
         
         this.closingDoor.position.set(1.2, 0, 10);
         this.exitDoor.position.set(0, 2, 20);
 
         this.minScoreRequired = 8;
-        
+
+        this.triggerZones = [
+            // Corner after entrance
+            new TriggerZone({
+                debug: this.debug,
+                scene: this.scene,
+                name: 'corner',
+                startPosition: new THREE.Vector2(-17, -42),
+                endPosition: new THREE.Vector2(-15.5, -40),
+            }),
+            // Small corner near end
+            new TriggerZone({
+                debug: this.debug,
+                scene: this.scene,
+                name: 'small corner near end',
+                startPosition: new THREE.Vector2(-19, -39),
+                endPosition: new THREE.Vector2(-17, -36),
+                color: 0x00ffff
+            }),
+        ];
+
         this.setRoomModel();
 
         this.addExitDoor();

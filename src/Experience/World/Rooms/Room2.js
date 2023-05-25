@@ -17,13 +17,33 @@ export default class Room2 extends Room {
             debug: this.debug,
             scene: this.scene,
             startPosition: new THREE.Vector2(-12, -22),
-            endPosition: new THREE.Vector2(-6, -14),
+            endPosition: new THREE.Vector2(-7.5, -14),
         });
 
         // this.closingDoor.position.set(1.2, 0, 10);
         // this.exitDoor.position.set(0, 0, 20);
 
         this.minScoreRequired = 4;
+
+        this.triggerZones = [
+            // Cellphones
+            new TriggerZone({
+                debug: this.debug,
+                scene: this.scene,
+                name: 'cellphones',
+                startPosition: new THREE.Vector2(-15, -26),
+                endPosition: new THREE.Vector2(-14, -24),
+            }),
+            // The TV's
+            new TriggerZone({
+                debug: this.debug,
+                scene: this.scene,
+                name: 'tvs',
+                startPosition: new THREE.Vector2(-17, -24),
+                endPosition: new THREE.Vector2(-14, -22),
+                color: 0x00ffff
+            }),
+        ]
 
         this.setRoomModel();
 

@@ -47,7 +47,6 @@ export default class Room {
         this.minScoreRequired = null;
 
         // List of all trigger zones that will start a conversation
-        // with Leo
         this.triggerZones = [];
 
         this.initRoom();
@@ -61,7 +60,7 @@ export default class Room {
         const closingDoorGeometry = new THREE.BoxGeometry(10, 20, 10);
         const closingDoorMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 });
         this.closingDoor = new THREE.Mesh(closingDoorGeometry, closingDoorMaterial);
-        const exitDoorMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+        const exitDoorMaterial = new THREE.MeshBasicMaterial({ color: 0x0000ff });
         this.exitDoor = new THREE.Mesh(closingDoorGeometry, exitDoorMaterial);
 
         // --------- Positional audio ---------

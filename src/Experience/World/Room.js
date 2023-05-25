@@ -62,26 +62,6 @@ export default class Room {
         this.closingDoor = new THREE.Mesh(closingDoorGeometry, closingDoorMaterial);
         const exitDoorMaterial = new THREE.MeshBasicMaterial({ color: 0x0000ff });
         this.exitDoor = new THREE.Mesh(closingDoorGeometry, exitDoorMaterial);
-
-        // --------- Positional audio ---------
-        // this.positionalAudioTrack = new THREE.PositionalAudio(this.camera.audioListener);
-        // this.positionalAudioTrack = new THREE.Audio(this.camera.audioListener);
-        // this.positionalAudioTrack = new THREE.Audio(this.camera.instance.children[0]);
-        // this.positionalAudioTrack.setBuffer(this.resources.items['eww']);
-        // this.positionalAudioTrack.setMediaElementSource(document.getElementById("test_audio"))
-        // this.positionalAudioTrack.setRefDistance(20);
-        // this.positionalAudioTrack.play();
-        // console.log("this.positionalAudioTrack.play();")
-
-        // create an object for the sound to play from
-        const audioSphere = new THREE.SphereGeometry(1, 32, 16);
-        const audioMaterial = new THREE.MeshPhongMaterial({ color: 0xff2200 });
-        const audioMesh = new THREE.Mesh(audioSphere, audioMaterial);
-        audioMesh.position.set(4, 1, 4);
-        this.scene.add(audioMesh);
-
-        // finally add the sound to the mesh
-        audioMesh.add(this.positionalAudioTrack);
     }
 
     /**
@@ -157,7 +137,7 @@ export default class Room {
         this.playZoneSound();
         this.closeDoor();
         this.additionalEntranceActions();
-        // this.positionalAudioTrack.play();
+        this.positionalAudioTrack.play();
     }
 
     /**

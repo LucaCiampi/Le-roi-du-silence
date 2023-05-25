@@ -28,6 +28,9 @@ export default class Layout {
         this.eventListener();
     }
 
+    /**
+     * Listens to the events of the game
+     */
     eventReceiver() {
         this.event.on('Ready', () => {
             this.showIntroMenu();
@@ -47,6 +50,9 @@ export default class Layout {
         })
     }
 
+    /**
+     * Adds event listeners
+     */
     eventListener() {
         this.introMenuStartButton.addEventListener('click', () => {
             this.event.start();
@@ -57,41 +63,70 @@ export default class Layout {
         })
     }
 
+    /**
+     * Shows the intro menu
+     */
     showIntroMenu() {
         this.introMenu.classList.remove('d-none');
     }
 
+    /**
+     * Hides the intro menu
+     */
     hideIntroMenu() {
         this.introMenu.classList.add('d-none');
     }
 
+    /**
+     * Shows the pause menu
+     */
     showPauseMenu() {
         this.pauseMenu.classList.remove('d-none');
     }
 
+    /**
+     * Hides the pause menu
+     */
     hidePauseMenu() {
         this.pauseMenu.classList.add('d-none');
     }
 
+    /**
+     * Shows the end menu
+     */
     showEndMenu() {
         this.endMenu.classList.remove('d-none');
     }
 
+    /**
+     * Hides the end menu
+     */
     hideEndMenu() {
         this.endMenu.classList.add('d-none');
     }
 
+    /**
+     * Displays the user interface
+     */
     showUserInterface() {
         this.userInterface.classList.remove('d-none');
     }
 
+    /**
+     * Displays a heart to indicate a trust point has been earned
+     */
     showUserIndicatorTrustPointEarned() {
         this.heartIcon.classList.add('heart--popup');
+
         setTimeout(() => {
             this.heartIcon.classList.remove('heart--popup');
         }, 2000);
     }
 
+    /**
+     * Updates the current trust score
+     * @param {Number} score - the current score
+     */
     updateScore(score) {
         this.userInterfaceLife.innerHTML = score.toString() + '/20';
     }

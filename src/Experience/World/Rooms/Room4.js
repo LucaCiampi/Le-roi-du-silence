@@ -16,8 +16,9 @@ export default class Room4 extends Room {
         this.entranceTriggerZone = new TriggerZone({
             debug: this.debug,
             scene: this.scene,
-            startPosition: new THREE.Vector2(-12, -44),
-            endPosition: new THREE.Vector2(-8, -41),
+            startPosition: new THREE.Vector2(-33, -16),
+            endPosition: new THREE.Vector2(-26, -12),
+            color: 0xff00ff
         });
 
         this.closingDoor.position.set(1.2, 0, 10);

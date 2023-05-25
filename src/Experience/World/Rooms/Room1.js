@@ -22,8 +22,26 @@ export default class Room1 extends Room {
 
         this.closingDoor.position.set(1.2, 2, 12);
         this.exitDoor.position.set(0, 2, 20);
-        
+
         this.minScoreRequired = 0;
+
+        this.triggerZones = [
+            new TriggerZone({
+                debug: this.debug,
+                scene: this.scene,
+                name: 'zone 1',
+                startPosition: new THREE.Vector2(0, -18),
+                endPosition: new THREE.Vector2(1, -16),
+                color: 0x00ffff
+            }),
+            new TriggerZone({
+                debug: this.debug,
+                scene: this.scene,
+                name: 'zone 2',
+                startPosition: new THREE.Vector2(6, -23),
+                endPosition: new THREE.Vector2(2, -16),
+            })
+        ]
 
         this.setRoomModel();
 

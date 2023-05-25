@@ -119,6 +119,7 @@ export default class World {
      */
     updateCurrentRoom() {
         this.rooms[this.parameter.currentZone].update();
+        this.rooms[this.parameter.currentZone].checkForRoomZonesOfInterest(this.controls.playerCollider.end);
     }
 
     /**
@@ -143,7 +144,6 @@ export default class World {
     increaseTrustScore() {
         this.parameter.score++;
         this.userInterface.updateScore(this.parameter.score);
-        console.log('coucou')
 
         if (this.rooms[this.parameter.currentZone + 1].minScoreRequired == this.parameter.score) {
             this.rooms[this.parameter.currentZone].openExitDoor();

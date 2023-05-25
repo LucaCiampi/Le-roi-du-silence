@@ -138,6 +138,19 @@ export default class Room {
     }
 
     /**
+     * Checks if the player has entered a zone of interest in the Room
+     * @param {THREE.Vector2} playerPosition - player's coordinates
+     */
+    checkForRoomZonesOfInterest(playerPosition) {
+        this.triggerZones.forEach((zone, index) => {
+            if (zone.hasPlayerInZone(playerPosition)) {
+                console.log('player in zone : ' + zone.name);
+                this.triggerZones.splice(index, 1);
+            }
+        })
+    }
+
+    /**
      * Actions related to the entrance of the player in the zone
      */
     roomEntranceActions() {

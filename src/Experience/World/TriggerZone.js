@@ -1,5 +1,4 @@
 import * as THREE from 'three'
-import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
 
 export default class TriggerZone {
     constructor(_options) {
@@ -9,14 +8,11 @@ export default class TriggerZone {
         this.name = _options.name;
         this.startPosition = _options.startPosition;
         this.endPosition = _options.endPosition;
-        this.zoneEvent = _options.zoneEvent;
-        this.actions = _options.actions;
+        this.color = _options.color;
 
         // Set up
-        this.isIn = false;
         this.boundingBox = null;
         this.boundingBoxHelper = null;
-        this.boundingBoxHelperVisible = false;
 
         this.init()
     }
@@ -26,6 +22,7 @@ export default class TriggerZone {
         this.boundingBox = new THREE.Box2(this.startPosition, this.endPosition);
 
         if (this.debug.active) {
+            if (!this.color) this.color = 0xff0000;
             this.addDebugOptions();
         }
     }
@@ -50,9 +47,9 @@ export default class TriggerZone {
         const geometry = new THREE.BoxGeometry(Math.abs(this.boundingBox.max.x - this.boundingBox.min.x), 0.2, Math.abs(this.boundingBox.max.y - this.boundingBox.min.y));
         const material = new THREE.MeshBasicMaterial({ color: 0xffffff });
         const cube = new THREE.Mesh(geometry, material);
-        cube.position.set(this.boundingBox.min.x + (Math.abs(this.boundingBox.max.x - this.boundingBox.min.x) / 2), 0, this.boundingBox.min.y + (Math.abs(this.boundingBox.max.y - this.boundingBox.min.y) / 2))
+        cube.position.set(this.boundingBox.min.x + (Math.abs(this.boundingBox.max.x - this.boundingBox.min.x) / 2), 2, this.boundingBox.min.y + (Math.abs(this.boundingBox.max.y - this.boundingBox.min.y) / 2))
 
-        this.boundingBoxHelper = new THREE.BoxHelper(cube, 0xff0000);
+        this.boundingBoxHelper = new THREE.BoxHelper(cube, this.color);
 
         this.scene.add(this.boundingBoxHelper)
     }

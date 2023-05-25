@@ -71,6 +71,7 @@ export default class Room1 extends Room {
         }
 
         // --------- Positional audio ---------
+        // Nothing
     }
 
     update() {

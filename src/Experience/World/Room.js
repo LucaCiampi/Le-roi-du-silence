@@ -40,7 +40,7 @@ export default class Room {
         // Exit closing door
         this.exitDoor = null;
 
-        // Positional audio
+        // Array containing 0, 1 or multiple audio tracks per room
         this.positionalAudioTracks = [];
 
         // Minimum score required to open the door
@@ -187,6 +187,10 @@ export default class Room {
         });
     }
 
+    /**
+     * Starts every positional audio track of the room
+     * Does nothing if there is none
+     */
     playPositionalAudioTracks() {
         this.positionalAudioTracks.forEach((track) => {
             track.play();

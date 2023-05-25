@@ -20,8 +20,8 @@ export default class Room2 extends Room {
             endPosition: new THREE.Vector2(-7.5, -14),
         });
 
-        // this.closingDoor.position.set(1.2, 0, 10);
-        // this.exitDoor.position.set(0, 0, 20);
+        this.closingDoor.position.set(1.2, 0, 10);
+        this.exitDoor.position.set(0, 0, 20);
 
         this.minScoreRequired = 4;
 
@@ -62,14 +62,12 @@ export default class Room2 extends Room {
 
     update() {
         this.handsAnimationMixer.update(0.01);
-        // this.animateAsh();
     }
 
     /**
      * Sets up the hands animation
      */
     initHandsAnimation() {
-        // TODO: store action in object variable
         const action = this.handsAnimationMixer.clipAction(this.handsClip);
         action.play();
     }

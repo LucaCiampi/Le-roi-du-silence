@@ -126,16 +126,20 @@ export default class World {
      * Checks if the player has entered the zone
      */
     checkNextZoneEntrance() {
-        // TODO: once the player has been in the zone, remove the listener and listen to the next zone (for loop)
-
         if (this.rooms[this.parameter.currentZone + 1].hasPlayerInRoom(this.controls.playerCollider.end)) {
             this.parameter.incrementCurrentZone();
-            // TODO : the increment just above influences the function below, make this easier to understand
-            this.rooms[this.parameter.currentZone].roomEntranceActions();
-            this.updatePlayerSpawnLocation();
-            this.addRoomClosingDoorHitbox();
-            this.freeUpPreviousZone();
+            this.roomEntranceSetup();
         }
+    }
+    
+    /**
+     * Sets up everything in the entrance of a new room
+     */
+    roomEntranceSetup() {
+        this.rooms[this.parameter.currentZone].roomEntranceActions();
+        this.updatePlayerSpawnLocation();
+        this.addRoomClosingDoorHitbox();
+        this.freeUpPreviousZone();
     }
 
     /**

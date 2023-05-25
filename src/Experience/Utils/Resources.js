@@ -41,11 +41,9 @@ export default class Resources extends EventEmitter {
                     source.path,
                     (file) => {
                         // TODO: check if this is the correct 
-                        // adds the native model texture
                         if (file.isMesh) {
                             file.material = material;
                         }
-                        //
                         this.sourceLoaded(source, file);
                     }
                 )

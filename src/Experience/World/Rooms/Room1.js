@@ -33,7 +33,6 @@ export default class Room1 extends Room {
                 name: 'zone 1',
                 startPosition: new THREE.Vector2(0, -18),
                 endPosition: new THREE.Vector2(1, -16),
-                color: 0x00ffff
             }),
             // Near the lockers on the left
             new TriggerZone({

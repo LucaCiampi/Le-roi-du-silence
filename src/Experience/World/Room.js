@@ -225,10 +225,11 @@ export default class Room {
                 this.scene.remove(prop);
             }
         })
-
+        
         this.model.traverse((node) => {
             if (node instanceof THREE.Mesh) {
                 node.geometry.dispose();
+                // TODO: Disposer les textures ici
                 node.material.dispose();
             }
         });

@@ -20,9 +20,14 @@ export default class Room2 extends Room {
             endPosition: new THREE.Vector2(-6, -14),
         });
 
-        this.closingDoor.position.set(1.2, 0, 10);
+        // this.closingDoor.position.set(1.2, 0, 10);
+        // this.exitDoor.position.set(0, 0, 20);
+
+        this.minScoreRequired = 4;
 
         this.setRoomModel();
+
+        this.addExitDoor();
 
         // Hands
         const hands = this.resources.items['hands'].scene;
@@ -33,7 +38,6 @@ export default class Room2 extends Room {
         this.props.push(hands);
 
         this.additionalEntranceActions = () => { this.initHandsAnimation(); }
-
     }
 
     update() {

@@ -37,6 +37,9 @@ export default class Room {
         // Closing door
         this.closingDoor = null;
 
+        // Exit closing door
+        this.exitDoor = null;
+
         // Positional audio
         this.positionalAudioTrack;
 
@@ -51,9 +54,11 @@ export default class Room {
      * called before the subclass init()
      */
     initRoom() {
-        const closingDoorGeometry = new THREE.BoxGeometry(1, 2, 1);
-        const closingDoorMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+        const closingDoorGeometry = new THREE.BoxGeometry(10, 20, 10);
+        const closingDoorMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 });
         this.closingDoor = new THREE.Mesh(closingDoorGeometry, closingDoorMaterial);
+        const exitDoorMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+        this.exitDoor = new THREE.Mesh(closingDoorGeometry, exitDoorMaterial);
 
         // --------- Positional audio ---------
         // this.positionalAudioTrack = new THREE.PositionalAudio(this.camera.audioListener);
@@ -154,10 +159,26 @@ export default class Room {
     }
 
     /**
+     * Adds the exit door model to the room model
+     * on the room init
+     */
+    addExitDoor() {
+        this.model.add(this.exitDoor);
+    }
+
+    /**
      * Adds the closing door model to the room model
      */
     closeDoor() {
-        this.model.add(this.closingDoor)
+        this.model.add(this.closingDoor);
+    }
+
+    /**
+     * Removes the exit door from the room model
+     * in order to let the user go further
+     */
+    openExitDoor() {
+        this.model.remove(this.exitDoor);
     }
 
     /**

@@ -35,7 +35,7 @@ export default class World {
             parameter: this.parameter,
             event: this.event
         })
-        
+
         this.setRooms();
 
         this.worldOctree = new WorldOctree({
@@ -47,6 +47,7 @@ export default class World {
         })
 
         this.controls = new Controls({
+            canvas: this.canvas,
             camera: this.camera,
             parameter: this.parameter,
             event: this.event,
@@ -65,6 +66,10 @@ export default class World {
 
         this.isReady = true;
         this.startAmbientWorldSound();
+
+        if (this.debug.active) {
+            this.addDebugOptions();
+        }
     }
 
     update(deltaT) {
@@ -130,15 +135,17 @@ export default class World {
             this.addRoomClosingDoorHitbox();
             this.freeUpPreviousZone();
         }
+    }
 
-        // TODO: uncomment and use this piece of code for zone-specific actions
-        // zone.on('in', (_data) => {
-        //     this.camera.angle.set(_data.cameraAngle)
-        // })
+    /**
+     * Increase the trust score in order to open next room
+     */
+    increaseTrustScore() {
+        this.parameter.score++;
 
-        // zone.on('out', () => {
-        //     this.camera.angle.set('default')
-        // })
+        if (this.rooms[this.parameter.currentZone + 1].minScoreRequired == this.parameter.score) {
+            this.rooms[this.parameter.currentZone].openExitDoor();
+        }
     }
 
     /**
@@ -184,6 +191,12 @@ export default class World {
 
         this.light.destroy()
         this.light = null
+    }
+
+    addDebugOptions() {
+        const folder = this.debug.gui.addFolder('World');
+
+        folder.add(this, 'increaseTrustScore');
     }
 
 }

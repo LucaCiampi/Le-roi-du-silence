@@ -4,6 +4,7 @@ import { Capsule } from 'three/addons/math/Capsule.js';
 
 export default class Controls {
     constructor(_options) {
+        this.canvas = _options.canvas;
         this.camera = _options.camera;
         this.parameter = _options.parameter;
         this.event = _options.event;
@@ -91,6 +92,11 @@ export default class Controls {
      * If user presses escape, pauses the game
      */
     setPointerLockControlsEventListeners() {
+        this.canvas.addEventListener('click', () => {
+            console.log('click')
+            this.setPointerLockControlsEventListeners();
+        });
+
         this.controls.addEventListener('unlock', () => {
             if (!this.parameter.gameEnded) {
                 this.event.pause();

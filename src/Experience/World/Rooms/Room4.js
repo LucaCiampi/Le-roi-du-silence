@@ -19,6 +19,10 @@ export default class Room4 extends Room {
             startPosition: new THREE.Vector2(-12, -44),
             endPosition: new THREE.Vector2(-8, -41),
         });
+
+        this.closingDoor.position.set(1.2, 0, 10);
+
+        this.minScoreRequired = 12;
         
         this.setRoomModel();
 

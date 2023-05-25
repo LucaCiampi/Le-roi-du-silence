@@ -1,6 +1,5 @@
 import * as THREE from 'three'
 import Room from "../Room";
-import TriggerZone from '../TriggerZone'
 
 export default class EntranceSas extends Room {
     constructor(_options) {

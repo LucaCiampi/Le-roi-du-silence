@@ -19,9 +19,15 @@ export default class Room1 extends Room {
             startPosition: new THREE.Vector2(0, -23),
             endPosition: new THREE.Vector2(20, -12),
         });
+
         this.closingDoor.position.set(1.2, 2, 12);
+        this.exitDoor.position.set(0, 2, 20);
+        
+        this.minScoreRequired = 0;
 
         this.setRoomModel();
+
+        this.addExitDoor();
 
         // this.model.add(this.positionalAudioTrack)
 

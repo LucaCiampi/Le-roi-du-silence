@@ -6,12 +6,13 @@ export default class GlobalParameter {
         this.scene = _options.scene;
         this.debug = _options.debug;
 
-        this.sounds = null;
         this.counterOn = false;
         this.canUpdate = false;
         this.currentZone = null;
+        this.sounds = null;
         this.gameEnded = false;
         this.playerSpawn = null;
+        this.score = null;
 
         this.NUMBER_OF_ZONES = 4;
 
@@ -20,6 +21,7 @@ export default class GlobalParameter {
 
     init() {
         this.currentZone = 0;
+        this.score = 0;
         this.sounds = new Sounds();
         this.playerSpawn = { x: 0, y: 0, z: -2 };
 
@@ -111,5 +113,12 @@ export default class GlobalParameter {
             .onChange((value) => {
                 this.currentZone = value;
             });
+
+        folder.add(this, 'score')
+            .onChange((value) => {
+                this.score = value;
+            });
+
+        folder.add(this, 'increaseTrustScore');
     }
 }

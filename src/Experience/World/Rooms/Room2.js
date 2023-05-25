@@ -58,6 +58,41 @@ export default class Room2 extends Room {
         this.props.push(hands);
 
         this.additionalEntranceActions = () => { this.initHandsAnimation(); }
+
+        // --------- Positional audio ---------
+        // --- 1
+        const tvPositionalAudioTrack = new THREE.PositionalAudio(this.camera.audioListener);
+        tvPositionalAudioTrack.setBuffer(this.resources.items['tvbzz']);
+        tvPositionalAudioTrack.setRefDistance(2);
+        tvPositionalAudioTrack.setLoop(true);
+
+        // create an object for the sound to play from
+        const audioSphere = new THREE.SphereGeometry(1, 32, 16);
+        const audioMaterial = new THREE.MeshPhongMaterial({ color: 0xff2200 });
+        const tvAudioMesh = new THREE.Mesh(audioSphere, audioMaterial);
+        tvAudioMesh.position.set(4, 10, 4);
+
+        // finally add the sound to the mesh
+        tvAudioMesh.add(this.tvPositionalAudioTrack);
+
+        this.positionalAudioTracks.push(tvPositionalAudioTrack)
+        this.model.add(tvAudioMesh)
+
+        // --- 2
+        const ewwPositionalAudioTrack = new THREE.PositionalAudio(this.camera.audioListener);
+        ewwPositionalAudioTrack.setBuffer(this.resources.items['eww']);
+        ewwPositionalAudioTrack.setRefDistance(2);
+        ewwPositionalAudioTrack.setLoop(true);
+        
+        // create an object for the sound to play from
+        const ewwAudioMesh = new THREE.Mesh(audioSphere, audioMaterial);
+        ewwAudioMesh.position.set(4, 20, 4);
+
+        // finally add the sound to the mesh
+        ewwAudioMesh.add(this.ewwPositionalAudioTrack);
+
+        this.positionalAudioTracks.push(ewwPositionalAudioTrack)
+        this.model.add(ewwAudioMesh)
     }
 
     update() {

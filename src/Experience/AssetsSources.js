@@ -67,4 +67,9 @@ export default
         type: "audio",
         path: "./Sounds/kidsComplain.mp3"
     },
+    {
+        name: "tvbzz",
+        type: "audio",
+        path: "./Sounds/tv.mp3"
+    },
 ]

@@ -54,6 +54,25 @@ export default class Room3 extends Room {
         if (this.debug.active) {
             this.addDebugOptions();
         }
+
+        // --------- Positional audio ---------
+        const positionalAudioTrack = new THREE.PositionalAudio(this.camera.audioListener);
+        positionalAudioTrack.setBuffer(this.resources.items['eww']);
+        positionalAudioTrack.setRefDistance(2);
+        positionalAudioTrack.setLoop(true);
+
+        // create an object for the sound to play from
+        const audioSphere = new THREE.SphereGeometry(1, 32, 16);
+        const audioMaterial = new THREE.MeshPhongMaterial({ color: 0xff2200 });
+        const audioMesh = new THREE.Mesh(audioSphere, audioMaterial);
+        audioMesh.position.set(4, 10, 4);
+
+        // finally add the sound to the mesh
+        audioMesh.add(positionalAudioTrack);
+
+        this.positionalAudioTracks.push(positionalAudioTrack)
+
+        this.model.add(audioMesh)
     }
 
     update() {

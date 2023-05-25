@@ -41,7 +41,7 @@ export default class Room {
         this.exitDoor = null;
 
         // Positional audio
-        this.positionalAudioTrack;
+        this.positionalAudioTracks = [];
 
         // Minimum score required to open the door
         this.minScoreRequired = null;
@@ -137,7 +137,7 @@ export default class Room {
         this.playZoneSound();
         this.closeDoor();
         this.additionalEntranceActions();
-        this.positionalAudioTrack.play();
+        this.playPositionalAudioTracks();
     }
 
     /**
@@ -185,6 +185,12 @@ export default class Room {
         this.props.forEach(prop => {
             this.model.add(prop);
         });
+    }
+
+    playPositionalAudioTracks() {
+        this.positionalAudioTracks.forEach((track) => {
+            track.play();
+        })
     }
 
     /**

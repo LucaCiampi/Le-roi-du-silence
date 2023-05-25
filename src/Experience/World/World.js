@@ -2,13 +2,13 @@ import * as THREE from 'three'
 import GlobalParameter from "./GlobalParameter";
 import UserInterface from "./UserInterface";
 import Controls from "./Controls";
-import Light from "./GameElements/Light";
+import Light from "./Light";
 import WorldOctree from "./WorldOctree";
+import EntranceSas from "./Rooms/EntranceSas";
 import Room1 from "./Rooms/Room1";
 import Room2 from "./Rooms/Room2";
 import Room3 from "./Rooms/Room3";
 import Room4 from "./Rooms/Room4";
-import EntranceSas from "./Rooms/EntranceSas";
 
 export default class World {
     constructor(_options) {

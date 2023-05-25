@@ -1,5 +1,6 @@
 import * as THREE from "three";
 
+// TODO: delete
 export default class TestCube {
     constructor(_options) {
         this.scene = _options.scene;

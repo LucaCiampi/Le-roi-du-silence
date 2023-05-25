@@ -1,5 +1,6 @@
 import * as THREE from "three";
 
+// TODO: see if delete
 export default class Starter {
     constructor(_options, count){
         this.scene = _options.scene;

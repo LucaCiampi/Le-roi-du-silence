@@ -1,6 +1,6 @@
 import * as THREE from "three";
 
-// TO DELETE
+// TODO: DELETE
 export default class Floor {
     constructor(_options) {
         this.scene = _options.scene;

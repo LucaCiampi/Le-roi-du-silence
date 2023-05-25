@@ -10,6 +10,7 @@ export default class Layout {
         this.pauseMenu = null;
         this.userInterface = null;
         this.userInterfaceLife = null;
+        this.heartIcon = null;
 
         this.init();
     }
@@ -21,6 +22,7 @@ export default class Layout {
         this.endMenu = document.getElementById('endMenu');
         this.userInterface = document.getElementById('userInterface');
         this.userInterfaceLife = this.userInterface.querySelector('#score');
+        this.heartIcon = this.userInterface.querySelector('#heart');
 
         this.eventReceiver();
         this.eventListener();
@@ -28,19 +30,20 @@ export default class Layout {
 
     eventReceiver() {
         this.event.on('Ready', () => {
-            this.showIntroMenu()
+            this.showIntroMenu();
         })
         this.event.on('Start', () => {
-            this.hideIntroMenu()
+            this.hideIntroMenu();
+            this.showUserInterface();
         })
         this.event.on('Pause', () => {
-            this.showPauseMenu()
+            this.showPauseMenu();
         })
         this.event.on('Continue', () => {
-            this.hidePauseMenu()
+            this.hidePauseMenu();
         })
         this.event.on('End', () => {
-            this.showEndMenu()
+            this.showEndMenu();
         })
     }
 
@@ -55,27 +58,38 @@ export default class Layout {
     }
 
     showIntroMenu() {
-        this.introMenu.classList.remove('d-none')
+        this.introMenu.classList.remove('d-none');
     }
 
     hideIntroMenu() {
-        this.introMenu.classList.add('d-none')
+        this.introMenu.classList.add('d-none');
     }
-    
+
     showPauseMenu() {
-        this.pauseMenu.classList.remove('d-none')
+        this.pauseMenu.classList.remove('d-none');
     }
 
     hidePauseMenu() {
-        this.pauseMenu.classList.add('d-none')
+        this.pauseMenu.classList.add('d-none');
     }
-    
+
     showEndMenu() {
-        this.endMenu.classList.remove('d-none')
+        this.endMenu.classList.remove('d-none');
     }
 
     hideEndMenu() {
-        this.endMenu.classList.add('d-none')
+        this.endMenu.classList.add('d-none');
+    }
+
+    showUserInterface() {
+        this.userInterface.classList.remove('d-none');
+    }
+
+    showUserIndicatorTrustPointEarned() {
+        this.heartIcon.classList.add('heart--popup');
+        setTimeout(() => {
+            this.heartIcon.classList.remove('heart--popup');
+        }, 2000);
     }
 
     updateScore(score) {

@@ -200,6 +200,34 @@ ul {
     }
 }
 
+.heart {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 20px;
+    margin: auto;
+    transform: translateY(100px);
+}
+
+.heart--popup {
+    animation: popUp 2s ease-in-out;
+}
+
+@keyframes popUp {
+    0% {
+        transform: translateY(100px);
+    }
+    20% {
+        transform: translateY(0px);
+    }
+    80% {
+        transform: translateY(0px);
+    }
+    100% {
+        transform: translateY(100px);
+    }
+}
+
 #responses{
     position: fixed;
     bottom: calc(5svh + 25px);

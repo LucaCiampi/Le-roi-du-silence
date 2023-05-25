@@ -46,6 +46,10 @@ export default class Room {
         // Minimum score required to open the door
         this.minScoreRequired = null;
 
+        // List of all trigger zones that will start a conversation
+        // with Leo
+        this.triggerZones = [];
+
         this.initRoom();
     }
 

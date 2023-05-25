@@ -8,6 +8,8 @@ export default class Layout {
         this.introMenu = null;
         this.introMenuStartButton = null;
         this.pauseMenu = null;
+        this.userInterface = null;
+        this.userInterfaceLife = null;
 
         this.init();
     }
@@ -17,6 +19,8 @@ export default class Layout {
         this.introMenuStartButton = this.introMenu.querySelector('#startButton');
         this.pauseMenu = document.getElementById('pauseMenu');
         this.endMenu = document.getElementById('endMenu');
+        this.userInterface = document.getElementById('userInterface');
+        this.userInterfaceLife = this.userInterface.querySelector('#score');
 
         this.eventReceiver();
         this.eventListener();
@@ -72,6 +76,10 @@ export default class Layout {
 
     hideEndMenu() {
         this.endMenu.classList.add('d-none')
+    }
+
+    updateScore(score) {
+        this.userInterfaceLife.innerHTML = score.toString() + '/20';
     }
 
 }

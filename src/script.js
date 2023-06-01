@@ -62,6 +62,17 @@ onValue(ref(database, 'sessions/'), (snapshot) => {
       }
     }
   }
+
+  //display connected users number
+  if (!isMobile) {
+    if (data[currentSession].users != null) {
+      let currentNumber = Object.keys(data[currentSession].users).length
+      if (currentNumber != userNumber) {
+        userNumber = currentNumber
+        domUserNumber.textContent = `Nombre d'utilisateurs : ${userNumber}`
+      }
+    }
+  }
 });
 
 function createSession() {
@@ -219,5 +230,3 @@ if (isMobile) {
   import('./Experience/Experience').then(desktop => desktop.createExperience(document.querySelector('canvas.webgl'), handleDesktopEvent))
   createSession()
 }
-
-// TODO: pouvoir ban ? ou timeout sur les users

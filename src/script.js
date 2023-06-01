@@ -1,8 +1,14 @@
 import { initializeApp } from 'firebase/app';
-import { getDatabase, ref, remove, onValue, push, set } from "firebase/database";
+import { getDatabase, ref, remove, onValue, push, set, update, get } from "firebase/database";
 import QRCode from 'qrcode';
 
 import texts from "./texts.json" assert { type: "json" };
+
+const domUserNumber = document.getElementById('userNumber')
+const startButton = document.getElementById('startButton')
+let users = {}
+let interlocutors = ["prof", "bff"/*, "mom", "rand"*/]
+startButton.onclick = () => startGame()
 
 const firebaseConfig = {
   databaseURL: "https://webgl-ed2ec-default-rtdb.europe-west1.firebasedatabase.app/",
@@ -10,6 +16,7 @@ const firebaseConfig = {
 
 const isMobile = /Android|iPhone/i.test(navigator.userAgent)
 let currentSession = null
+let userNumber = 0
 let baseUrl = "172.28.59.104:5173"
 // let baseUrl = "brume.surge.sh"
 
@@ -25,7 +32,7 @@ onValue(sessions, (snapshot) => {
   //delete old sessions
   Object.keys(data).map((key) => {
     let item = data[key]
-    if (item.creationDate < Date.now() - 90000 || !item.creationDate) {
+    if (item.alive < Date.now() - 15000 || !item.alive) {
       remove(ref(database, 'sessions/' + key))
     }
   })
@@ -34,30 +41,80 @@ onValue(sessions, (snapshot) => {
   if (isMobile) {
     import('./mobile').then(mobile => mobile.displayList(data))
   }
+
+  //display connected users number
+  if (!isMobile) {
+    if (data[currentSession].users != null) {
+      let currentNumber = Object.keys(data[currentSession].users).length
+      if (currentNumber != userNumber) {
+        userNumber = currentNumber
+        domUserNumber.textContent = `Nombre d'utilisateurs : ${userNumber}`
+      }
+    }
+  }
 });
 
 function createSession() {
   currentSession = push(ref(database, 'sessions/'), {
-    creationDate: Date.now()
+    alive: Date.now()
   }).key;
-  push(ref(database, `sessions/${currentSession}/messages/`), {
-    msg: texts[0].trigger,
-    foreign: true,
-    time: Date.now()
-  })
-  let options = texts[0].answers.map((answer) => {
-    return answer.preview
-  })
-  set(ref(database, `sessions/${currentSession}/responses/`), {
-    options: options,
-    parent: texts[0].trigger
-  })
+  interlocutors.forEach(interlocutor => {
+    push(ref(database, `sessions/${currentSession}/messages/`), {
+      msg: texts[0][interlocutor].trigger,
+      foreign: true,
+      interlocutor: interlocutor,
+      time: Date.now()
+    })
+    let options = texts[0][interlocutor].answers.map((answer) => {
+      return answer.preview
+    })
+    push(ref(database, `sessions/${currentSession}/responses/`), {
+      options: options,
+      interlocutor: interlocutor,
+      parent: texts[0][interlocutor].trigger
+    })
+  });
 
   //DEBUG display session
   let p = document.createElement('p')
   p.textContent = currentSession.slice(17)
   document.getElementById('container').appendChild(p)
   displayQrCode(currentSession)
+
+  //set ping
+
+  setInterval(() => {
+    update(ref(database, `sessions/${currentSession}/`), {
+      alive: Date.now()
+    })
+  }, 5000);
+}
+
+function startGame() {
+  get(ref(database)).then((snapshot) => {
+    if (snapshot.exists()) {
+      users = snapshot.val().sessions[currentSession].users;
+      console.log('users', users)
+      for (let i = 0; i < Object.keys(users).length; i++) {
+        const userId = Object.keys(users)[i];
+        update(ref(database, `sessions/${currentSession}/users/${userId}`), {
+          assignedInterlocutor: interlocutors[i]
+        })
+      }
+    } else {
+      console.log("No data available");
+    }
+  }).catch((error) => {
+    console.error(error);
+  });
+}
+
+function createMobileSession() {
+  push(ref(database, `sessions/${window.location.search.slice(1)}/users/`), {
+    userName: "luca",
+    assignedInterlocutor: null,
+    time: Date.now()
+  })
 }
 
 function displayQrCode(key) {
@@ -85,7 +142,7 @@ function handleDesktopEvent(event) {
     })
 
     //push the answers
-    let answers = texts.find(
+    let answers = texts["prof"].find(
       ({ trigger }) => trigger === event.parent
     ).answers.find(
       ({ preview }) => preview === event.content
@@ -105,25 +162,24 @@ function handleDesktopEvent(event) {
   if (event?.includes("room")) {
     let roomId = event.slice(4, 5)
     push(ref(database, `sessions/${currentSession}/messages/`), {
-      msg: texts[roomId].trigger,
+      msg: texts[roomId]["prof"].trigger,
       foreign: true,
       time: Date.now()
     })
-    let options = texts[roomId].answers.map((answer) => {
+    let options = texts[roomId]["prof"].answers.map((answer) => {
       return answer.preview
     })
     set(ref(database, `sessions/${currentSession}/responses/`), {
       options: options,
-      parent: texts[roomId].trigger
+      parent: texts[roomId]["prof"].trigger
     })
   }
 }
 
 if (isMobile) {
   import('./mobile').then(mobile => mobile.createMobileInterface(window.location.search, handleDesktopEvent))
+  createMobileSession()
 } else {
   import('./Experience/Experience').then(desktop => desktop.createExperience(document.querySelector('canvas.webgl'), handleDesktopEvent))
   createSession()
 }
-
-

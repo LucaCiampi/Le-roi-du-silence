@@ -7,6 +7,7 @@ let backendEvent = null
 let formerList = ""
 let formerResponses = ""
 let sendCooldown = Date.now() - 2000
+let interlocutor = null
 
 export function createMobileInterface(id, handleBackendEvent) {
     backendEvent = handleBackendEvent
@@ -20,6 +21,10 @@ export function createMobileInterface(id, handleBackendEvent) {
     msg.classList.add("msg", "info");
     msg.textContent = "Chargement...";
     domMsgs.appendChild(msg);
+}
+
+export function startGame(inter) {
+    interlocutor = inter
 }
 
 export function displayList(list) {
@@ -41,7 +46,7 @@ export function displayList(list) {
     //create messages and responses
     let msg = document.createElement("div");
     msg.classList.add("msg", "info");
-    msg.textContent = "Début de la conversation avec Léa";
+    msg.textContent = "Début de la conversation avec Léo";
     domMsgs.appendChild(msg);
     if (list[sessionId]) {
         let messages = Object.values(list[sessionId]?.messages);
@@ -66,6 +71,7 @@ export function displayList(list) {
                 domResponses.removeChild(domResponses.firstChild);
             }
             responses.map((response) => {
+                if (response.interlocutor) return
                 let msg = document.createElement("div");
                 msg.classList.add("response");
                 msg.onclick = () => sendEventToBack("response", response, responses, parent)

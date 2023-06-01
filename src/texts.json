@@ -1,107 +1,96 @@
 [
     {
-        "trigger": "Bonjour",
-        "answers": [
-            {
-                "preview": "Salut, ça va ?",
-                "content": "Salut, ça va ?",
-                "answers": [
-                    "Nan ça va pas",
-                    "connard"
-                ]
-            },
-            {
-                "preview": "Qui es-tu ?",
-                "content": "Qui es-tu ?",
-                "answers": [
-                    "Léa",
-                    "on se connait pas",
-                    "jsp pas pk je te parle..."
-                ]
-            },
-            {
-                "preview": "tg",
-                "content": "tg sale merde",
-                "answers": [
-                    "..."
-                ]
-            }
-        ]
+        "prof": {
+            "trigger": "Bonjour je suis le prof de Léo...",
+            "answers": [
+                {
+                    "preview": "savez-vous où il est ?",
+                    "content": "Bonjour monsieur, savez ou est Léo ?",
+                    "answers": [
+                        "Non, je ne sais pas.",
+                        "Pourquoi, qu'est-ce qu'il se passe encore ?"
+                    ]
+                },
+                {
+                    "preview": "question prof 2",
+                    "content": "question prof 2",
+                    "answers": [
+                        "réponse",
+                        "prof",
+                        "2"
+                    ]
+                },
+                {
+                    "preview": "question prof 3",
+                    "content": "question prof 3",
+                    "answers": [
+                        "réponse prof 3"
+                    ]
+                }
+            ]
+        },
+        "bff": {
+            "trigger": "Salut, excuse moi t'a pas vu Léo ?",
+            "answers": [
+                {
+                    "preview": "non je le cherche aussi",
+                    "content": "non je le cherche aussi",
+                    "answers": [
+                        "Ah, ok",
+                        "Bah merci a toi"
+                    ]
+                },
+                {
+                    "preview": "question best friend 2",
+                    "content": "question best friend 2",
+                    "answers": [
+                        "réponse",
+                        "best friend",
+                        "2"
+                    ]
+                },
+                {
+                    "preview": "question best friend 3",
+                    "content": "question best friend 3",
+                    "answers": [
+                        "réponse best friend 3"
+                    ]
+                }
+            ]
+        }
     },
     {
-        "trigger": "Je te vois 👀",
-        "answers": [
-            {
-                "preview": "chelou...",
-                "content": "Ah ok, chelou...",
-                "answers": [
-                    "bah nan"
-                ]
-            },
-            {
-                "preview": "Mais t'es malade ?",
-                "content": "Mais t'es malade ?",
-                "answers": [
-                    "oué"
-                ]
-            }
-        ]
-    },
-    {
-        "trigger": "Je te vois 👀 encore",
-        "answers": [
-            {
-                "preview": "chelou...",
-                "content": "Ah ok, chelou...",
-                "answers": [
-                    "bah nan"
-                ]
-            },
-            {
-                "preview": "Mais t'es malade ?",
-                "content": "Mais t'es malade ?",
-                "answers": [
-                    "oué"
-                ]
-            }
-        ]
-    },
-    {
-        "trigger": "hum... 👀",
-        "answers": [
-            {
-                "preview": "chelou...",
-                "content": "Ah ok, chelou...",
-                "answers": [
-                    "bah nan"
-                ]
-            },
-            {
-                "preview": "Mais t'es malade ?",
-                "content": "Mais t'es malade ?",
-                "answers": [
-                    "oué"
-                ]
-            }
-        ]
-    },
-    {
-        "trigger": "Presque fini 👀",
-        "answers": [
-            {
-                "preview": "chelou...",
-                "content": "Ah ok, chelou...",
-                "answers": [
-                    "bah nan"
-                ]
-            },
-            {
-                "preview": "Mais t'es malade ?",
-                "content": "Mais t'es malade ?",
-                "answers": [
-                    "oué"
-                ]
-            }
-        ]
+        "prof": {
+            "trigger": "Ah, vous avez trouvé ses lunettes",
+            "answers": [
+                {
+                    "preview": "ça vous évoque qqchose ?",
+                    "content": "Cela vous évque-t-il quelque chose ?",
+                    "answers": [
+                        "Huh, non..."
+                    ]
+                },
+                {
+                    "preview": "bah ouais",
+                    "content": "bah ouais",
+                    "answers": [
+                        "👃"
+                    ]
+                }
+            ]
+        },
+        "bff": {
+            "trigger": "ho, t'a trouvé ses lunettes ?",
+            "answers": [
+                {
+                    "preview": "bizarre nan ?",
+                    "content": "ouias c'est bizarre nan ?",
+                    "answers": [
+                        "Bah ouais il vois rien sans...",
+                        "il a du encore se faire bully"
+                    ]
+                }
+            ]
+        }
     }
 ]

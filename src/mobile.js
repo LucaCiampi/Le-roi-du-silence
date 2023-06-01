@@ -1,6 +1,8 @@
 let domMsgs = document.getElementById("msgs");
 let domTopBar = document.getElementById("title");
 let domResponses = document.getElementById("responses");
+let domName = document.getElementById("nameField");
+let domSubmitName = document.getElementById("submitNameButton");
 
 let sessionId = null;
 let backendEvent = null
@@ -8,8 +10,21 @@ let formerList = ""
 let formerResponses = ""
 let sendCooldown = Date.now() - 2000
 let interlocutor = null
+let createUser = null
+let userId = null
 
-export function createMobileInterface(id, handleBackendEvent) {
+domSubmitName.onclick = () => {
+    console.log(domName.value)
+    if (domName.value != "") {
+        createUser(domName.value, (id) => {
+            userId = id
+            navigateTo("list")
+        })
+    }
+}
+
+export function createMobileInterface(id, handleBackendEvent, createMobileSession) {
+    createUser = createMobileSession
     document.getElementById('backButton').onclick = () => navigateTo("list")
     backendEvent = handleBackendEvent
     if (id.charAt(0) !== "?") {
@@ -22,12 +37,6 @@ export function createMobileInterface(id, handleBackendEvent) {
     msg.classList.add("msg", "info");
     msg.textContent = "Chargement...";
     domMsgs.appendChild(msg);
-}
-
-export function onGameStart(inter) {
-    console.log("mobileStartGame")
-    interlocutor = inter
-    navigateTo("list")
 }
 
 export function displayList(list) {

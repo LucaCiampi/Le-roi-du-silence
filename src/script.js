@@ -49,6 +49,9 @@ onValue(sessions, (snapshot) => {
       let currentNumber = Object.keys(data[currentSession].users).length
       if (currentNumber != userNumber) {
         userNumber = currentNumber
+        Object.values(data[currentSession].users).forEach(element => {
+          console.log(element.userName);
+        });
         domUserNumber.textContent = `Nombre d'utilisateurs : ${userNumber}`
       }
     }
@@ -109,12 +112,12 @@ function startGame() {
   });
 }
 
-function createMobileSession() {
-  push(ref(database, `sessions/${window.location.search.slice(1)}/users/`), {
-    userName: "luca",
+function createMobileSession(name, callback) {
+  callback(push(ref(database, `sessions/${window.location.search.slice(1)}/users/`), {
+    userName: name,
     assignedInterlocutor: null,
     time: Date.now()
-  })
+  }).key)
 }
 
 function displayQrCode(key) {
@@ -173,10 +176,9 @@ function handleDesktopEvent(event) {
 
 if (isMobile) {
   import('./mobile').then(script => {mobile = script
-    mobile?.createMobileInterface(window.location.search, handleDesktopEvent)
+    mobile?.createMobileInterface(window.location.search, handleDesktopEvent, createMobileSession)
   })
   document.querySelector('canvas.webgl').remove()
-  createMobileSession()
 } else {
   import('./Experience/Experience').then(desktop => desktop.createExperience(document.querySelector('canvas.webgl'), handleDesktopEvent))
   createSession()

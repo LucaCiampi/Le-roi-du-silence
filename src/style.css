@@ -14,7 +14,7 @@ body {
     top: 0;
     left: 0;
     outline: none;
-    z-index: 2;
+    z-index: 10;
 }
 
 .no-select {
@@ -29,7 +29,7 @@ body {
 .menu {
     position: absolute;
     inset: 0;
-    z-index: 10;
+    z-index: 11;
     background-color: rgba(0, 0, 0, 0.5);
     color: #fff;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -52,8 +52,35 @@ canvas {
 
 /* mobile */
 #mobile {
+    font-family: Arial, Helvetica, sans-serif;
     background-color: rgb(33, 33, 33);
     height: 100svh;
+}
+
+.mobilePage {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    transition: transform 0.3s ease-in-out;
+}
+
+.rightHided {
+    transform: translateX(100%);
+}
+
+#mobileHome {
+    z-index: 1;
+    background-color: red;
+}
+
+#mobileList {
+    z-index: 2;
+    background-color: #6eb6e2;
+}
+
+#mobileMessages {
+    z-index: 3;
+    background-color: rgb(33, 33, 33);
 }
 
 .button {
@@ -70,21 +97,20 @@ ul {
     margin-top: 70px;
 }
 
-#mobile>h2 {
+#mobileMessages>h2 {
     position: absolute;
     top: 0;
-    font-family: Arial, Helvetica, sans-serif;
     position: absolute;
     width: 100%;
 }
-#mobile .topBar{
+#mobileMessages .topBar{
     background-color: rgba(28, 28, 28, 0.784);
     color: rgb(240, 240, 240);
     position: fixed;
     top: 0;
     width: 100%;
     height: 6svh;
-    z-index: 1;
+    z-index: 4;
     display: flex;
     align-items: center;
     gap: 15px;
@@ -97,7 +123,7 @@ ul {
     width: 35px;
     height: 35px;
 }
-#mobile .topBar h2{
+#mobileMessages .topBar h2{
     margin: 0;
 }
 
@@ -119,7 +145,7 @@ ul {
     height: 100%;
 }
 
-#mobile>h2::before {
+#mobileMessages>h2::before {
     content: "Messages de : "
 }
 

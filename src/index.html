@@ -47,18 +47,28 @@
 
 <body>
     <div id="mobile">
-        <div class="topBar">
-            <h2 style="transform: rotate(180deg);">➜</h2>
-            <div class="pp"></div>
-            <h2 id="title"></h2>
+        <div id="mobileHome" class="mobilePage">
+            <h1>Le roi du silence</h1>
+            <input id="nameField" type="text" placeholder="Ton nom">
+            <button id="submitNameButton">Valider</button>
         </div>
-        <div id="msgsContainer">
-            <div id="msgs"></div>
+        <div id="mobileList" class="mobilePage rightHided">
+            <h1>Messages</h1>
         </div>
-        <div id="responses"></div>
-        <div id="botBar">
-            <input disabled type="text" placeholder="Message texte">
-            <button id="send">➤</button>
+        <div id="mobileMessages" class="mobilePage rightHided">
+            <div class="topBar">
+                <h2 id="backButton" style="transform: rotate(180deg);">➜</h2>
+                <div class="pp"></div>
+                <h2 id="title"></h2>
+            </div>
+            <div id="msgsContainer">
+                <div id="msgs"></div>
+            </div>
+            <div id="responses"></div>
+            <div id="botBar">
+                <input disabled type="text" placeholder="Message texte">
+                <button id="send">➤</button>
+            </div>
         </div>
     </div>
     <div id="container">

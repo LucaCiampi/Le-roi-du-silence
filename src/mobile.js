@@ -10,6 +10,7 @@ let sendCooldown = Date.now() - 2000
 let interlocutor = null
 
 export function createMobileInterface(id, handleBackendEvent) {
+    document.getElementById('backButton').onclick = () => navigateTo("list")
     backendEvent = handleBackendEvent
     if (id.charAt(0) !== "?") {
         domTopBar.textContent = "Erreur 404";
@@ -23,11 +24,14 @@ export function createMobileInterface(id, handleBackendEvent) {
     domMsgs.appendChild(msg);
 }
 
-export function startGame(inter) {
+export function onGameStart(inter) {
+    console.log("mobileStartGame")
     interlocutor = inter
+    navigateTo("list")
 }
 
 export function displayList(list) {
+    console.log(list);
     //check if data is the same as last time
     if (JSON.stringify(list[sessionId]?.messages) == formerList 
     && JSON.stringify(list[sessionId]?.responses) == formerResponses) {
@@ -42,7 +46,7 @@ export function displayList(list) {
     while (domMsgs.firstChild) {
         domMsgs.removeChild(domMsgs.firstChild);
     }
-
+    
     //create messages and responses
     let msg = document.createElement("div");
     msg.classList.add("msg", "info");
@@ -62,7 +66,7 @@ export function displayList(list) {
             msg.textContent = item.msg;
             domMsgs.appendChild(msg);
         });
-
+        
         let responses = list[sessionId]?.responses?.options;
         let parent = list[sessionId]?.responses?.parent;
         if (!responses) responses = []
@@ -95,5 +99,22 @@ function sendEventToBack(title, content, responsesArray, parent) {
         backendEvent({ title: title, id: sessionId, content, responsesArray, parent })
     }else{
         console.warn("Send cooldown")
+    }
+}
+
+function navigateTo(page) {
+    switch (page) {
+        case "messages":
+            document.getElementById("mobileMessages").classList.remove("rightHided")
+            document.getElementById("mobileList").classList.remove("rightHided")
+            break;
+        case "list":
+            document.getElementById("mobileList").classList.remove("rightHided")
+            document.getElementById("mobileMessages").classList.add("rightHided")  
+            break;
+        default://"home"
+            document.getElementById("mobileList").classList.add("rightHided")
+            document.getElementById("mobileMessages").classList.add("rightHided")
+            break;
     }
 }

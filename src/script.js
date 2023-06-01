@@ -14,10 +14,11 @@ const firebaseConfig = {
   databaseURL: "https://webgl-ed2ec-default-rtdb.europe-west1.firebasedatabase.app/",
 };
 
-const isMobile = /Android|iPhone/i.test(navigator.userAgent)
+const isMobile = window.location.search.length != 0
 let currentSession = null
+let mobile = null
 let userNumber = 0
-let baseUrl = "192.168.130.33:5173"
+let baseUrl = "192.168.130.19:5173"
 // let baseUrl = "brume.surge.sh"
 
 //firebase config
@@ -28,7 +29,7 @@ const sessions = ref(database, 'sessions/');
 //event on sessions modified
 onValue(sessions, (snapshot) => {
   const data = snapshot.val();
-
+  
   //delete old sessions
   Object.keys(data).map((key) => {
     let item = data[key]
@@ -36,12 +37,12 @@ onValue(sessions, (snapshot) => {
       remove(ref(database, 'sessions/' + key))
     }
   })
-
+  
   //display msgs on mobile
   if (isMobile) {
-    import('./mobile').then(mobile => mobile.displayList(data))
+    mobile?.displayList(data)
   }
-
+  
   //display connected users number
   if (!isMobile) {
     if (data[currentSession].users != null) {
@@ -74,15 +75,14 @@ function createSession() {
       parent: texts[0][interlocutor].trigger
     })
   });
-
+  
   //DEBUG display session
   let p = document.createElement('p')
   p.textContent = currentSession.slice(17)
   document.getElementById('container').appendChild(p)
   displayQrCode(currentSession)
-
+  
   //set ping
-
   setInterval(() => {
     update(ref(database, `sessions/${currentSession}/`), {
       alive: Date.now()
@@ -120,8 +120,8 @@ function createMobileSession() {
 function displayQrCode(key) {
   var canvas = document.getElementById('qrcode')
   QRCode.toCanvas(canvas, `http://${baseUrl}/?${key}`, function (error) {
-    if (error) console.error(error)
-  })
+  if (error) console.error(error)
+})
 }
 
 //callback on desktop to transmit events to backend
@@ -133,21 +133,16 @@ function handleDesktopEvent(event) {
       foreign: false,
       time: Date.now()
     })
-
+    
     //remove the response from the choices
     let responsesArray = event.responsesArray.splice(event.responsesArray.indexOf(event.content), 1)
     set(ref(database, `sessions/${event.id}/responses/`), {
       options: event.responsesArray,
       parent: event.parent
     })
-
+    
     //push the answers
-    let answers = texts["prof"].find(
-      ({ trigger }) => trigger === event.parent
-    ).answers.find(
-      ({ preview }) => preview === event.content
-    ).answers
-
+    let answers = texts["prof"].find(({ trigger }) => trigger === event.parent).answers
     answers.forEach((answer, i) => {
       setTimeout(() => {
         push(ref(database, `sessions/${event.id}/messages/`), {
@@ -158,7 +153,7 @@ function handleDesktopEvent(event) {
       }, i * 1500 + Math.random() * 1000);
     });
   }
-
+  
   if (event?.includes("room")) {
     let roomId = event.slice(4, 5)
     push(ref(database, `sessions/${currentSession}/messages/`), {
@@ -177,7 +172,10 @@ function handleDesktopEvent(event) {
 }
 
 if (isMobile) {
-  import('./mobile').then(mobile => mobile.createMobileInterface(window.location.search, handleDesktopEvent))
+  import('./mobile').then(script => {mobile = script
+    mobile?.createMobileInterface(window.location.search, handleDesktopEvent)
+  })
+  document.querySelector('canvas.webgl').remove()
   createMobileSession()
 } else {
   import('./Experience/Experience').then(desktop => desktop.createExperience(document.querySelector('canvas.webgl'), handleDesktopEvent))

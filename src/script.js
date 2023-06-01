@@ -17,7 +17,7 @@ const firebaseConfig = {
 const isMobile = /Android|iPhone/i.test(navigator.userAgent)
 let currentSession = null
 let userNumber = 0
-let baseUrl = "172.28.59.104:5173"
+let baseUrl = "192.168.130.33:5173"
 // let baseUrl = "brume.surge.sh"
 
 //firebase config

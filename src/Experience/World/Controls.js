@@ -128,25 +128,25 @@ export default class Controls {
         // gives a bit of air control
         const speedDelta = deltaTime * (this.playerOnFloor ? this.PLAYER_SPEED : this.PLAYER_SPEED_AIR);
 
-        if (this.keyStates['KeyW']) {
+        if (this.keyStates['KeyW'] || this.keyStates['ArrowUp']) {
 
             this.playerVelocity.add(this.getForwardVector().multiplyScalar(speedDelta));
 
         }
 
-        if (this.keyStates['KeyS']) {
+        if (this.keyStates['KeyS'] || this.keyStates['ArrowDown']) {
 
             this.playerVelocity.add(this.getForwardVector().multiplyScalar(- speedDelta));
 
         }
 
-        if (this.keyStates['KeyA']) {
+        if (this.keyStates['KeyA'] || this.keyStates['ArrowLeft']) {
 
             this.playerVelocity.add(this.getSideVector().multiplyScalar(- speedDelta));
 
         }
 
-        if (this.keyStates['KeyD']) {
+        if (this.keyStates['KeyD'] || this.keyStates['ArrowRight']) {
 
             this.playerVelocity.add(this.getSideVector().multiplyScalar(speedDelta));
 

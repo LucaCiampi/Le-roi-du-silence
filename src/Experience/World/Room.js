@@ -71,11 +71,11 @@ export default class Room {
         this.model = this.resources.items[this.name].scene;
         this.model.position.set(this.position.x, this.position.y, this.position.z)
 
-        if (this.name == 'sas') {
-            this.model.scale.set(0.01, 0.01, 0.01);
-        }
+        // if (this.name == 'sas') {
+        //     this.model.scale.set(0.01, 0.01, 0.01);
+        // }
 
-        else if (this.name == 'room1') {
+        if (this.name == 'room1') {
             this.model.scale.set(0.01, 0.01, 0.01);
         }
 

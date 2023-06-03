@@ -21,8 +21,8 @@ export default class Controls {
 
         this.keyStates = {};
 
-        this.PLAYER_SPEED = 15;
-        this.PLAYER_SPEED_AIR = 2;
+        this.playerSpeed = 15;
+        this.playerSpeedAir = 2;
         this.GRAVITY = 70;
 
         this.init();
@@ -126,7 +126,7 @@ export default class Controls {
     controlsKeyBindings(deltaTime) {
 
         // gives a bit of air control
-        const speedDelta = deltaTime * (this.playerOnFloor ? this.PLAYER_SPEED : this.PLAYER_SPEED_AIR);
+        const speedDelta = deltaTime * (this.playerOnFloor ? this.playerSpeed : this.playerSpeedAir);
 
         if (this.keyStates['KeyW'] || this.keyStates['ArrowUp']) {
 

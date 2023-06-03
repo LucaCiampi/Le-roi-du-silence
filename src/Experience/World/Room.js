@@ -12,6 +12,7 @@ export default class Room {
         this.resources = _options.resources;
         this.zoneEvent = _options.zoneEvent;
         this.camera = _options.camera;
+        this.world = _options.world;
 
         // Name of the room used to fetch the model
         this.name = null;
@@ -125,6 +126,7 @@ export default class Room {
             if (zone.hasPlayerInZone(playerPosition)) {
                 console.log('player in zone : ' + zone.name);
                 this.triggerZones.splice(index, 1);
+                this.world.zoneTriggeredEffect();
             }
         })
     }

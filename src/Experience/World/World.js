@@ -94,6 +94,7 @@ export default class World {
             resources: this.resources,
             zoneEvent: this.zoneEvent,
             camera: this.camera,
+            world: this,
         }
 
         this.rooms = [
@@ -131,7 +132,7 @@ export default class World {
             this.roomEntranceSetup();
         }
     }
-    
+
     /**
      * Sets up everything in the entrance of a new room
      */
@@ -196,6 +197,18 @@ export default class World {
      */
     freeUpPreviousZone() {
         this.rooms[this.parameter.currentZone - 1].destroy()
+    }
+
+    /**
+     * Effects triggered when the player reaches a zone
+     * that sends SMS
+     */
+    zoneTriggeredEffect() {
+        this.controls.playerSpeed = 4;
+        this.parameter.sounds.play('swoosh2');
+        setTimeout(() => {
+            this.controls.playerSpeed = 15;
+        }, 6000);
     }
 
     destroy() {

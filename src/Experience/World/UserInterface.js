@@ -26,6 +26,7 @@ export default class Layout {
         this.userInterface = document.getElementById('userInterface');
         this.userInterfaceLife = this.userInterface.querySelector('#score');
         this.heartIcon = this.userInterface.querySelector('#heart');
+        this.doorOpenLabel = this.userInterface.querySelector('#doorOpenLabel');
         this.memoriesOverlay = this.userInterface.querySelector('#memoriesOverlay');
 
         this.eventReceiver();
@@ -70,6 +71,9 @@ export default class Layout {
 
     hideLoader() {
         this.loader.classList.add('hidden');
+        setTimeout(() => {
+            this.loader.classList.add('loader--no-select');
+        }, 2000)
     }
 
     /**
@@ -125,11 +129,19 @@ export default class Layout {
      * Displays a heart to indicate a trust point has been earned
      */
     showUserIndicatorTrustPointEarned() {
-        this.heartIcon.classList.add('heart--popup');
+        this.heartIcon.classList.add('animation--popup');
 
         setTimeout(() => {
-            this.heartIcon.classList.remove('heart--popup');
+            this.heartIcon.classList.remove('animation--popup');
         }, 2000);
+    }
+    
+    showUserIndicatorDoorOpen() {
+        this.doorOpenLabel.classList.add('door-open-label--popup');
+
+        setTimeout(() => {
+            this.doorOpenLabel.classList.remove('door-open-label--popup');
+        }, 6000);
     }
 
     showMemoriesOverlay() {

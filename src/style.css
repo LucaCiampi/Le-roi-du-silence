@@ -44,14 +44,6 @@ body {
     cursor: pointer;
 }
 
-.d-none {
-    display: none;
-}
-
-canvas {
-    /* border-radius: 15px; */
-}
-
 .loader {
     position: relative;
     background-color: #000;
@@ -62,6 +54,14 @@ canvas {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.loader--no-select {
+    z-index: -1;
+}
+
+.d-none {
+    display: none;
 }
 
 .hidden {
@@ -237,17 +237,23 @@ ul {
     }
 }
 
-.heart {
+.heart,
+.door-open-label {
     position: absolute;
     left: 0;
     right: 0;
     bottom: 20px;
     margin: auto;
     transform: translateY(100px);
+    text-align: center;
 }
 
-.heart--popup {
+.animation--popup {
     animation: popUp 2s ease-in-out;
+}
+
+.door-open-label--popup {
+    animation: popUp 6s ease-in-out 6s;
 }
 
 @keyframes popUp {

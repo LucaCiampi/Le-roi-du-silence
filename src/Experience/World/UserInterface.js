@@ -5,6 +5,7 @@ export default class Layout {
         this.parameter = _options.parameter;
         this.event = _options.event;
 
+        this.loader = null;
         this.introMenu = null;
         this.introMenuStartButton = null;
         this.pauseMenu = null;
@@ -17,6 +18,7 @@ export default class Layout {
     }
 
     init() {
+        this.loader = document.getElementById('loader');
         this.introMenu = document.getElementById('introMenu');
         this.introMenuStartButton = this.introMenu.querySelector('#startButton');
         this.pauseMenu = document.getElementById('pauseMenu');
@@ -35,6 +37,7 @@ export default class Layout {
      */
     eventReceiver() {
         this.event.on('Ready', () => {
+            this.hideLoader();
             this.showIntroMenu();
         })
         this.event.on('Start', () => {
@@ -63,6 +66,10 @@ export default class Layout {
         this.pauseMenu.addEventListener('click', () => {
             this.event.continue();
         })
+    }
+
+    hideLoader() {
+        this.loader.classList.add('hidden');
     }
 
     /**

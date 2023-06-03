@@ -122,6 +122,7 @@ function handleDesktopEvent(event) {
 if (isMobile) {
   import('./mobile').then(mobile => mobile.createMobileInterface(window.location.search, handleDesktopEvent))
 } else {
+  console.log('desktop')
   import('./Experience/Experience').then(desktop => desktop.createExperience(document.querySelector('canvas.webgl'), handleDesktopEvent))
   createSession()
 }

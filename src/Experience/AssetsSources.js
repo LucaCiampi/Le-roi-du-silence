@@ -39,6 +39,11 @@ export default
     
     // Objects
     {
+        name: "door",
+        type: "gltfModel",
+        path: "./Environment/door.glb"
+    },
+    {
         name: "tel",
         type: "gltfModel",
         path: "./Environment/cellphone.glb"

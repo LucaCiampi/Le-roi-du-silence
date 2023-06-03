@@ -58,11 +58,8 @@ export default class Room {
      * called before the subclass init()
      */
     initRoom() {
-        const closingDoorGeometry = new THREE.BoxGeometry(10, 20, 10);
-        const closingDoorMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 });
-        this.closingDoor = new THREE.Mesh(closingDoorGeometry, closingDoorMaterial);
-        const exitDoorMaterial = new THREE.MeshBasicMaterial({ color: 0x0000ff });
-        this.exitDoor = new THREE.Mesh(closingDoorGeometry, exitDoorMaterial);
+        this.closingDoor = this.resources.items['door'].scene;
+        this.exitDoor = this.resources.items['door'].scene;
     }
 
     /**

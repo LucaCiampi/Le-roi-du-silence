@@ -11,6 +11,7 @@ export default class Layout {
         this.userInterface = null;
         this.userInterfaceLife = null;
         this.heartIcon = null;
+        this.memoriesOverlay = null;
 
         this.init();
     }
@@ -23,6 +24,7 @@ export default class Layout {
         this.userInterface = document.getElementById('userInterface');
         this.userInterfaceLife = this.userInterface.querySelector('#score');
         this.heartIcon = this.userInterface.querySelector('#heart');
+        this.memoriesOverlay = this.userInterface.querySelector('#memoriesOverlay');
 
         this.eventReceiver();
         this.eventListener();
@@ -121,6 +123,14 @@ export default class Layout {
         setTimeout(() => {
             this.heartIcon.classList.remove('heart--popup');
         }, 2000);
+    }
+
+    showMemoriesOverlay() {
+        this.memoriesOverlay.classList.add('memories-overlay--visible');
+    }
+
+    hideMemoriesOverlay() {
+        this.memoriesOverlay.classList.remove('memories-overlay--visible');
     }
 
     /**

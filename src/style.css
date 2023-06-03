@@ -81,6 +81,18 @@ canvas {
     color: #fff;
 }
 
+.memories-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: #6eb6e2;
+    opacity: 0;
+    transition: 200ms ease-in;
+}
+
+.memories-overlay--visible {
+    opacity: 0.6;
+}
+
 /* mobile */
 @media (min-width: 981px) {
     #mobile {

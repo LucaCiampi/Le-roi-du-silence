@@ -206,8 +206,10 @@ export default class World {
     zoneTriggeredEffect() {
         this.controls.playerSpeed = 4;
         this.parameter.sounds.play('swoosh2');
+        this.userInterface.showMemoriesOverlay();
         setTimeout(() => {
             this.controls.playerSpeed = 15;
+            this.userInterface.hideMemoriesOverlay();
         }, 6000);
     }
 

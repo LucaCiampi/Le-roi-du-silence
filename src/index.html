@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     
-    <title>WebGL</title>
+    <title>Le roi du silence</title>
     <meta name="description"
     content="Projet WebGL créé par Luca Ciampi, Mathilde Deveaux, Valentine Guillaume et Marius Proton dans le cadre d'un exercice de M1 à l'école GOBELINS" />
     
     <meta itemprop=name content="WebGL">
     <meta itemprop="description"
     content="Projet WebGL créé par Luca Ciampi, Mathilde Deveaux, Valentine Guillaume et Marius Proton dans le cadre d'un exercice de M1 à l'école GOBELINS">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👼🏼</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤫</text></svg>">
     <!-- <meta itemprop="image" content=https://lucaciampi.com/social/share-1200x630.png> -->
     
     <meta name="twitter:card" content="summary_large_image">
@@ -49,11 +49,14 @@
     <div id="mobile">
         <div id="mobileHome" class="mobilePage">
             <h1>Le roi du silence</h1>
-            <input id="nameField" type="text" placeholder="Ton nom">
-            <button id="submitNameButton">Valider</button>
+            <form onsubmit="return false">
+                <input id="nameField" type="text" placeholder="Ton nom">
+                <button id="submitNameButton">Valider</button>
+            </form>
         </div>
         <div id="mobileList" class="mobilePage rightHided">
             <h1>Messages</h1>
+            <div id="convsContainer"></div>
         </div>
         <div id="mobileMessages" class="mobilePage rightHided">
             <div class="topBar">
@@ -73,12 +76,16 @@
     </div>
     <div id="container">
         <div id="introMenu" class="menu intro-menu d-none">
-            <h1>Bienvenue</h1>
-            <h2 id="userNumber">Nombre d'utilisateurs</h2>
-            <p>Vous allez être projetés dans la tête de...</p>
-            <p>Bonne découverte.</p>
-            <button id="startButton" class="button">Commencer</button>
-            <canvas id="qrcode"></canvas>
+            <div>
+                <h1>Bienvenue</h1>
+                <p>Scannez le QR code pour vous connecter</p>
+                <canvas id="qrcode"></canvas>
+                <button id="startButton" class="button">Commencer</button>
+            </div>
+            <div>
+                <h2 id="userNumber">Utilisateurs connectés : 0/4</h2>
+                <ul id="userList"></ul>
+            </div>
         </div>
         <div id="pauseMenu" class="menu pause-menu d-none">
             <h2>PAUSE</h2>

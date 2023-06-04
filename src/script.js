@@ -5,6 +5,7 @@ import QRCode from 'qrcode';
 import texts from "./texts.json" assert { type: "json" };
 
 const domUserNumber = document.getElementById('userNumber')
+const domUserList = document.getElementById('userList')
 const startButton = document.getElementById('startButton')
 let users = {}
 let interlocutors = ["prof", "bff"/*, "mom", "rand"*/]
@@ -24,11 +25,11 @@ let baseUrl = "192.168.130.19:5173"
 //firebase config
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
-const sessions = ref(database, 'sessions/');
 
 //event on sessions modified
-onValue(sessions, (snapshot) => {
+onValue(ref(database, 'sessions/'), (snapshot) => {
   const data = snapshot.val();
+  if (!data) return 
   
   //delete old sessions
   Object.keys(data).map((key) => {
@@ -40,7 +41,7 @@ onValue(sessions, (snapshot) => {
   
   //display msgs on mobile
   if (isMobile) {
-    mobile?.displayList(data)
+    mobile?.getData(data)
   }
   
   //display connected users number
@@ -49,10 +50,15 @@ onValue(sessions, (snapshot) => {
       let currentNumber = Object.keys(data[currentSession].users).length
       if (currentNumber != userNumber) {
         userNumber = currentNumber
+        while (domUserList.firstChild) {
+          domUserList.removeChild(domUserList.firstChild);
+        }
         Object.values(data[currentSession].users).forEach(element => {
-          console.log(element.userName);
+          let li = document.createElement('li')
+          li.textContent = element.userName
+          domUserList.appendChild(li)
         });
-        domUserNumber.textContent = `Nombre d'utilisateurs : ${userNumber}`
+        domUserNumber.textContent = `Utilisateurs connectés : ${userNumber}/4`
       }
     }
   }
@@ -97,7 +103,7 @@ function startGame() {
   get(ref(database)).then((snapshot) => {
     if (snapshot.exists()) {
       users = snapshot.val().sessions[currentSession].users;
-      console.log('users', users)
+      if (!users) return
       for (let i = 0; i < Object.keys(users).length; i++) {
         const userId = Object.keys(users)[i];
         update(ref(database, `sessions/${currentSession}/users/${userId}`), {
@@ -178,8 +184,12 @@ if (isMobile) {
   import('./mobile').then(script => {mobile = script
     mobile?.createMobileInterface(window.location.search, handleDesktopEvent, createMobileSession)
   })
-  document.querySelector('canvas.webgl').remove()
+  document.getElementById('container').remove()
+  var link = document.querySelector("link[rel~='icon']");
+  link.href = "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📱</text></svg>"
 } else {
   import('./Experience/Experience').then(desktop => desktop.createExperience(document.querySelector('canvas.webgl'), handleDesktopEvent))
   createSession()
 }
+
+// TODO: pouvoir ban ? ou timeout sur les users

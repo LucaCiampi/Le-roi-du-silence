@@ -1,5 +1,6 @@
 import * as THREE from 'three'
 import Room from "../Room";
+import TriggerZone from '../TriggerZone'
 
 export default class EntranceSas extends Room {
     constructor(_options) {
@@ -11,6 +12,17 @@ export default class EntranceSas extends Room {
     init() {
         this.name = "sas";
         this.position = new THREE.Vector3(0, 0, 0);
+
+        this.triggerZones = [
+            // In the corner on the left
+            new TriggerZone({
+                debug: this.debug,
+                scene: this.scene,
+                name: 'sas',
+                startPosition: new THREE.Vector2(-2, -5),
+                endPosition: new THREE.Vector2(2, -3),
+            })
+        ]
 
         this.setRoomModel();
 

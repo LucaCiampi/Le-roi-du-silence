@@ -5,7 +5,7 @@ import QRCode from 'qrcode';
 import texts from "./texts.json" assert { type: "json" };
 
 const firebaseConfig = {
-  databaseURL: "https://webgl-ed2ec-default-rtdb.europe-west1.firebasedatabase.app/",
+  databaseURL: "https://webgl-ed0ec-default-rtdb.europe-west1.firebasedatabase.app/",
 };
 
 const isMobile = /Android|iPhone/i.test(navigator.userAgent)

@@ -23,16 +23,20 @@ export default class Sounds {
 
         this.steps = [
             new Howl({
-                src: ['./Sounds/step0.mp3']
+                src: ['./Sounds/step0.mp3'],
+                volume: 0.3
             }),
             new Howl({
-                src: ['./Sounds/step1.mp3']
+                src: ['./Sounds/step1.mp3'],
+                volume: 0.3
             }),
             new Howl({
-                src: ['./Sounds/step2.mp3']
+                src: ['./Sounds/step2.mp3'],
+                volume: 0.3
             }),
             new Howl({
-                src: ['./Sounds/step3.mp3']
+                src: ['./Sounds/step3.mp3'],
+                volume: 0.3
             }),
         ]
     }

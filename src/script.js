@@ -19,7 +19,7 @@ const isMobile = window.location.search.length != 0
 let currentSession = null
 let mobile = null
 let userNumber = 0
-let baseUrl = "192.168.130.19:5173"
+let baseUrl = "172.28.59.104:5173"
 // let baseUrl = "brume.surge.sh"
 
 //firebase config
@@ -70,18 +70,17 @@ function createSession() {
   }).key;
   interlocutors.forEach(interlocutor => {
     push(ref(database, `sessions/${currentSession}/messages/`), {
-      msg: texts[0][interlocutor].trigger,
+      msg: texts[interlocutor][0].trigger,
       foreign: true,
       interlocutor: interlocutor,
       time: Date.now()
     })
-    let options = texts[0][interlocutor].answers.map((answer) => {
+    let options = texts[interlocutor][0].answers.map((answer) => {
       return answer.preview
     })
-    push(ref(database, `sessions/${currentSession}/responses/`), {
+    set(ref(database, `sessions/${currentSession}/responses/`), {
       options: options,
-      interlocutor: interlocutor,
-      parent: texts[0][interlocutor].trigger
+      parent: texts[interlocutor][0].trigger
     })
   });
   
@@ -140,44 +139,46 @@ function handleDesktopEvent(event) {
     push(ref(database, `sessions/${event.id}/messages/`), {
       msg: event?.content,
       foreign: false,
-      time: Date.now()
+      time: Date.now(),
+      interlocutor: event.interlocutor
     })
     
     //remove the response from the choices
-    let responsesArray = event.responsesArray.splice(event.responsesArray.indexOf(event.content), 1)
+    event.responsesArray.splice(event.responsesArray.indexOf(event.content), 1)
     set(ref(database, `sessions/${event.id}/responses/`), {
       options: event.responsesArray,
       parent: event.parent
     })
     
     //push the answers
-    let answers = texts["prof"].find(({ trigger }) => trigger === event.parent).answers
+    let answers = texts[event.interlocutor].find(({ trigger }) => trigger === event.parent).answers.find(({ preview }) => preview === event.content).answers
     answers.forEach((answer, i) => {
       setTimeout(() => {
         push(ref(database, `sessions/${event.id}/messages/`), {
           msg: answer,
           foreign: true,
-          time: Date.now()
+          time: Date.now(),
+          interlocutor: event.interlocutor
         })
       }, i * 1500 + Math.random() * 1000);
     });
   }
   
-  if (event?.includes("room")) {
-    let roomId = event.slice(4, 5)
-    push(ref(database, `sessions/${currentSession}/messages/`), {
-      msg: texts[roomId]["prof"].trigger,
-      foreign: true,
-      time: Date.now()
-    })
-    let options = texts[roomId]["prof"].answers.map((answer) => {
-      return answer.preview
-    })
-    set(ref(database, `sessions/${currentSession}/responses/`), {
-      options: options,
-      parent: texts[roomId]["prof"].trigger
-    })
-  }
+  // if (event?.includes("room")) {
+  //   let roomId = event.slice(4, 5)
+  //   push(ref(database, `sessions/${currentSession}/messages/`), {
+  //     msg: texts[event.interlocutor].trigger,
+  //     foreign: true,
+  //     time: Date.now()
+  //   })
+  //   let options = texts[event.interlocutor].answers.map((answer) => {
+  //     return answer.preview
+  //   })
+  //   set(ref(database, `sessions/${currentSession}/responses/`), {
+  //     options: options,
+  //     parent: texts[event.interlocutor].trigger
+  //   })
+  // }
 }
 
 if (isMobile) {

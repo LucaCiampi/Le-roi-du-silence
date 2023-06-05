@@ -1,6 +1,6 @@
-[
-    {
-        "prof": {
+{
+    "prof": [
+        {
             "trigger": "Bonjour je suis le prof de Léo...",
             "answers": [
                 {
@@ -29,7 +29,28 @@
                 }
             ]
         },
-        "bff": {
+        {
+            "trigger": "Ah, vous avez trouvé ses lunettes",
+            "answers": [
+                {
+                    "preview": "ça vous évoque qqchose ?",
+                    "content": "Cela vous évque-t-il quelque chose ?",
+                    "answers": [
+                        "Huh, non..."
+                    ]
+                },
+                {
+                    "preview": "bah ouais",
+                    "content": "bah ouais",
+                    "answers": [
+                        "👃"
+                    ]
+                }
+            ]
+        }
+    ],
+    "bff": [
+        {
             "trigger": "Salut, excuse moi t'a pas vu Léo ?",
             "answers": [
                 {
@@ -57,29 +78,8 @@
                     ]
                 }
             ]
-        }
-    },
-    {
-        "prof": {
-            "trigger": "Ah, vous avez trouvé ses lunettes",
-            "answers": [
-                {
-                    "preview": "ça vous évoque qqchose ?",
-                    "content": "Cela vous évque-t-il quelque chose ?",
-                    "answers": [
-                        "Huh, non..."
-                    ]
-                },
-                {
-                    "preview": "bah ouais",
-                    "content": "bah ouais",
-                    "answers": [
-                        "👃"
-                    ]
-                }
-            ]
         },
-        "bff": {
+        {
             "trigger": "ho, t'a trouvé ses lunettes ?",
             "answers": [
                 {
@@ -92,5 +92,5 @@
                 }
             ]
         }
-    }
-]
+    ]
+}

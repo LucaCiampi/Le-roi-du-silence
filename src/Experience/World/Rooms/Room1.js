@@ -64,7 +64,7 @@ export default class Room1 extends Room {
 
         this.addExitDoor();
 
-        // this.props.push(this.resources.items['room1Props'].scene)
+        this.props.push(this.resources.items['room1Props'].scene)
 
         if (this.debug.active) {
             this.addDebugOptions();

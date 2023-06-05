@@ -39,13 +39,13 @@ export default class Renderer {
         this.composer = new EffectComposer(this.instance)
         this.composer.addPass(renderScene)
 
-        const bloomPass = new UnrealBloomPass(
-            new THREE.Vector2(this.sizes.width, this.sizes.height),
-            1.5,
-            0.9,
-            0.9
-        )
-        this.composer.addPass(bloomPass)
+        // const bloomPass = new UnrealBloomPass(
+        //     new THREE.Vector2(this.sizes.width, this.sizes.height),
+        //     1.5,
+        //     0.9,
+        //     0.9
+        // )
+        // this.composer.addPass(bloomPass)
     }
 
     resize() {

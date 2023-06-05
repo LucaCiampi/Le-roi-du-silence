@@ -44,6 +44,11 @@ export default
         path: "./Environment/door.glb"
     },
     {
+        name: "exitDoor",
+        type: "gltfModel",
+        path: "./Environment/exitDoor.glb"
+    },
+    {
         name: "tel",
         type: "gltfModel",
         path: "./Environment/cellphone.glb"

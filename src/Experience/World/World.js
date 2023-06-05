@@ -179,11 +179,12 @@ export default class World {
      * Adds the closing door of the room to the octree
      */
     addRoomClosingDoorHitbox() {
-        this.rooms[this.parameter.currentZone].closingDoor.traverse(mesh => {
-            if (mesh instanceof THREE.Mesh) {
-                this.worldOctree.octree.fromGraphNode(mesh);
-            }
-        });
+        //TODO
+        // this.rooms[this.parameter.currentZone].closingDoor.traverse(mesh => {
+        //     if (mesh instanceof THREE.Mesh) {
+        //         this.worldOctree.octree.fromGraphNode(mesh);
+        //     }
+        // });
     }
 
     /**

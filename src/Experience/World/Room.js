@@ -59,7 +59,7 @@ export default class Room {
      */
     initRoom() {
         this.closingDoor = this.resources.items['door'].scene;
-        this.exitDoor = this.resources.items['door'].scene;
+        this.exitDoor = this.resources.items['exitDoor'].scene;
     }
 
     /**
@@ -68,10 +68,6 @@ export default class Room {
     setRoomModel() {
         this.model = this.resources.items[this.name].scene;
         this.model.position.set(this.position.x, this.position.y, this.position.z)
-
-        // if (this.name == 'sas') {
-        //     this.model.scale.set(0.01, 0.01, 0.01);
-        // }
 
         if (this.name == 'room1') {
             this.model.scale.set(0.01, 0.01, 0.01);
@@ -86,12 +82,8 @@ export default class Room {
             this.model.rotation.set(0, -3.16, 0);
         }
 
-        // else if (this.name == 'room4') {
-        //     this.model.scale.set(0.008, 0.008, 0.008);
-        // }
-
         // if (this.name == 'room2' || this.name == 'room4') {
-        if (this.name == 'room2') {
+        if (this.name == 'room2' || this.name == 'room4') {
             this.model.traverse((child) => {
                 if (child.isMesh) {
                     child.material = new THREE.MeshToonMaterial();
@@ -158,14 +150,15 @@ export default class Room {
      * on the room init
      */
     addExitDoor() {
-        this.props.push(this.exitDoor);
+        // this.props.push(this.exitDoor);
     }
 
     /**
      * Adds the closing door model to the room model
      */
     closeDoor() {
-        this.model.add(this.closingDoor);
+        //TODO
+        // this.model.add(this.closingDoor);
     }
 
     /**

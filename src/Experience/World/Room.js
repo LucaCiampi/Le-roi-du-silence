@@ -158,7 +158,7 @@ export default class Room {
      * on the room init
      */
     addExitDoor() {
-        this.model.add(this.exitDoor);
+        this.props.push(this.exitDoor);
     }
 
     /**

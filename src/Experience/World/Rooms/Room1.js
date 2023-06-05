@@ -20,7 +20,7 @@ export default class Room1 extends Room {
             endPosition: new THREE.Vector2(20, -12),
         });
 
-        this.closingDoor.position.set(1.2, 2, 12);
+        // this.closingDoor.position.set(1.2, 2, 12);
         this.exitDoor.position.set(0, 2, 20);
 
         this.minScoreRequired = 0;

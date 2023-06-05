@@ -153,7 +153,7 @@ export default class World {
             this.parameter.score++;
             this.userInterface.updateScore(this.parameter.score);
             this.userInterface.showUserIndicatorTrustPointEarned();
-            
+
             if (this.parameter.score === this.rooms[this.parameter.currentZone + 1].minScoreRequired) {
                 this.userInterface.showUserIndicatorDoorOpen();
                 console.log('🚪 Exit door of room ' + this.parameter.currentZone + ' open')
@@ -205,11 +205,18 @@ export default class World {
      * that sends SMS
      */
     zoneTriggeredEffect() {
-        this.controls.playerSpeed = 4;
+        this.controls.playerSpeed = 3;
+        if (this.debug.active) {
+            this.controls.playerSpeed = 15;
+        }
         this.parameter.sounds.play('swoosh2');
         this.userInterface.showMemoriesOverlay();
         setTimeout(() => {
-            this.controls.playerSpeed = 15;
+            this.controls.playerSpeed = 7;
+            if (this.debug.active) {
+                this.controls.playerSpeed = 15;
+            }
+
             this.userInterface.hideMemoriesOverlay();
         }, 6000);
     }

@@ -21,7 +21,7 @@ export default class Controls {
 
         this.keyStates = {};
 
-        this.playerSpeed = 15;
+        this.playerSpeed = 7;
         this.playerSpeedAir = 2;
         this.GRAVITY = 70;
 
@@ -283,5 +283,6 @@ export default class Controls {
         // this.debug.gui.add(this.playerCollider.end, 'y');
         // this.debug.gui.add(this.playerCollider.end, 'z');
         this.playerPositionDebugUi.classList.remove('d-none');
+        this.playerSpeed = 15;
     }
 }  

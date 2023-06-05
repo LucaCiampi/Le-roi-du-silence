@@ -18,6 +18,8 @@ export default class Controls {
         this.playerCollider = null;
         this.playerOnFloor = false;
         this.playerPositionDebugUi = null;
+        this.stepSoundPlaying = false;
+        this.stepSoundIndex = null;
 
         this.keyStates = {};
 
@@ -35,6 +37,7 @@ export default class Controls {
         this.playerCollider = new Capsule(new THREE.Vector3(0, 0.35, 0), new THREE.Vector3(0, 1, 0), 0.35);
         this.clock = new THREE.Clock();
         this.playerPositionDebugUi = document.getElementById('playerPosition');
+        this.stepSoundIndex = 0;
 
         this.eventReciever();
 
@@ -131,24 +134,28 @@ export default class Controls {
         if (this.keyStates['KeyW'] || this.keyStates['ArrowUp']) {
 
             this.playerVelocity.add(this.getForwardVector().multiplyScalar(speedDelta));
+            this.makeStepNoise();
 
         }
 
         if (this.keyStates['KeyS'] || this.keyStates['ArrowDown']) {
 
             this.playerVelocity.add(this.getForwardVector().multiplyScalar(- speedDelta));
+            this.makeStepNoise();
 
         }
 
         if (this.keyStates['KeyA'] || this.keyStates['ArrowLeft']) {
 
             this.playerVelocity.add(this.getSideVector().multiplyScalar(- speedDelta));
+            this.makeStepNoise();
 
         }
 
         if (this.keyStates['KeyD'] || this.keyStates['ArrowRight']) {
 
             this.playerVelocity.add(this.getSideVector().multiplyScalar(speedDelta));
+            this.makeStepNoise();
 
         }
 
@@ -218,10 +225,10 @@ export default class Controls {
 
         this.camera.instance.position.copy(this.playerCollider.end);
 
-        this.playerPositionDebugUi.innerHTML = 
-        'x: ' + this.playerCollider.end.x + 
-        '<br />y: ' + this.playerCollider.end.y +
-        '<br />z: ' + this.playerCollider.end.z;
+        this.playerPositionDebugUi.innerHTML =
+            'x: ' + this.playerCollider.end.x +
+            '<br />y: ' + this.playerCollider.end.y +
+            '<br />z: ' + this.playerCollider.end.z;
     }
 
     /**
@@ -273,6 +280,21 @@ export default class Controls {
 
         }
 
+    }
+
+    makeStepNoise() {
+        console.log(this.stepSoundIndex)
+        if (this.stepSoundPlaying === false) {
+            this.parameter.sounds.steps[this.stepSoundIndex].play();
+            this.stepSoundPlaying = true;
+            setTimeout(() => {
+                this.stepSoundPlaying = false;
+                this.stepSoundIndex += 1;
+                if (this.stepSoundIndex >= 3) {
+                    this.stepSoundIndex = 0;
+                }
+            }, 400);
+        }
     }
 
     /**

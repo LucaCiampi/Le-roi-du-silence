@@ -13,6 +13,7 @@ export default class Layout {
         this.userInterface = null;
         this.userInterfaceLife = null;
         this.heartIcon = null;
+        this.doorOpenLabel = null;
         this.memoriesOverlay = null;
 
         this.init();
@@ -141,7 +142,7 @@ export default class Layout {
             this.heartIcon.classList.remove('animation--popup');
         }, 2000);
     }
-    
+
     showUserIndicatorDoorOpen() {
         this.doorOpenLabel.classList.add('door-open-label--popup');
 

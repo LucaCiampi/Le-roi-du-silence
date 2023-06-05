@@ -83,7 +83,7 @@ export default class Room {
         }
 
         // if (this.name == 'room2' || this.name == 'room4') {
-        if (this.name == 'room2' || this.name == 'room4') {
+        if (this.name == 'room2') {
             this.model.traverse((child) => {
                 if (child.isMesh) {
                     child.material = new THREE.MeshToonMaterial();

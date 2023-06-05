@@ -18,6 +18,12 @@ body {
     z-index: 2;
 }
 
+.motion {
+    position: absolute;
+    inset: 0;
+    z-index: 100;
+}
+
 .no-select {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -56,7 +62,7 @@ body {
     align-items: center;
 }
 
-.loader--no-select {
+.z--1 {
     z-index: -1;
 }
 

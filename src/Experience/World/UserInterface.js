@@ -69,6 +69,7 @@ export default class Layout {
 
         this.introMenuStartButton.addEventListener('click', () => {
             this.event.start();
+            this.parameter.sounds.play('uiButton');
         })
 
         this.pauseMenu.addEventListener('click', () => {

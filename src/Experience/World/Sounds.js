@@ -19,6 +19,9 @@ export default class Sounds {
             wind: new Howl({
                 src: ['./Sounds/wind.wav']
             }),
+            uiButton: new Howl({
+                src: ['./Sounds/uiButton.mp3']
+            }),
         }
 
         this.steps = [

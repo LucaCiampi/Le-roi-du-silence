@@ -96,7 +96,6 @@ export default class Controls {
      */
     setPointerLockControlsEventListeners() {
         this.canvas.addEventListener('click', () => {
-            console.log('click')
             this.setPointerLockControlsEventListeners();
         });
 
@@ -283,7 +282,6 @@ export default class Controls {
     }
 
     makeStepNoise() {
-        console.log(this.stepSoundIndex)
         if (this.stepSoundPlaying === false) {
             this.parameter.sounds.steps[this.stepSoundIndex].play();
             this.stepSoundPlaying = true;

@@ -290,7 +290,7 @@ export default class Controls {
             setTimeout(() => {
                 this.stepSoundPlaying = false;
                 this.stepSoundIndex += 1;
-                if (this.stepSoundIndex >= 3) {
+                if (this.stepSoundIndex >= 4) {
                     this.stepSoundIndex = 0;
                 }
             }, 400);

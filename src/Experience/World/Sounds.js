@@ -31,6 +31,9 @@ export default class Sounds {
             new Howl({
                 src: ['./Sounds/step2.mp3']
             }),
+            new Howl({
+                src: ['./Sounds/step3.mp3']
+            }),
         ]
     }
 

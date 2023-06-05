@@ -11,17 +11,19 @@ export default class Room1 extends Room {
 
     init() {
         this.name = "room1";
-        this.position = new THREE.Vector3(-0.45, 2.45, -19.8);
+        this.position = new THREE.Vector3(-0.45, 1.85, -22.4);
         this.spawnPosition = new THREE.Vector3(2.7, 3.5, -12);
         this.entranceTriggerZone = new TriggerZone({
             debug: this.debug,
             scene: this.scene,
             startPosition: new THREE.Vector2(0, -23),
             endPosition: new THREE.Vector2(20, -12),
+            color: 0xff0000
         });
 
-        // this.closingDoor.position.set(1.2, 2, 12);
-        this.exitDoor.position.set(0, 2, 20);
+        this.closingDoor.position.set(1.15, 0.5, 11.65);
+        this.exitDoor.position.set(0.2, 0.5, 2.5);
+        this.exitDoor.rotation.set(0, 1.6, 0);
 
         this.minScoreRequired = 0;
 
@@ -64,14 +66,11 @@ export default class Room1 extends Room {
 
         this.addExitDoor();
 
-        this.props.push(this.resources.items['room1Props'].scene)
+        this.addPositionalAudioTrack('room1Kids', 4, 4, 3, 4, true, 1);
 
         if (this.debug.active) {
             this.addDebugOptions();
         }
-
-        // --------- Positional audio ---------
-        // Nothing
     }
 
     update() {

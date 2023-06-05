@@ -22,7 +22,7 @@ export default class TriggerZone {
         this.boundingBox = new THREE.Box2(this.startPosition, this.endPosition);
 
         if (this.debug.active) {
-            if (!this.color) this.color = 0xff0000;
+            if (!this.color) this.color = 0x00ffff;
             this.addDebugOptions();
         }
     }
@@ -45,9 +45,9 @@ export default class TriggerZone {
     */
     addDebugOptions() {
         const geometry = new THREE.BoxGeometry(Math.abs(this.boundingBox.max.x - this.boundingBox.min.x), 0.2, Math.abs(this.boundingBox.max.y - this.boundingBox.min.y));
-        const material = new THREE.MeshBasicMaterial({ color: 0xffffff });
+        const material = new THREE.MeshBasicMaterial({ color: 0x00ffff });
         const cube = new THREE.Mesh(geometry, material);
-        cube.position.set(this.boundingBox.min.x + (Math.abs(this.boundingBox.max.x - this.boundingBox.min.x) / 2), 2, this.boundingBox.min.y + (Math.abs(this.boundingBox.max.y - this.boundingBox.min.y) / 2))
+        cube.position.set(this.boundingBox.min.x + (Math.abs(this.boundingBox.max.x - this.boundingBox.min.x) / 2), 3, this.boundingBox.min.y + (Math.abs(this.boundingBox.max.y - this.boundingBox.min.y) / 2))
 
         this.boundingBoxHelper = new THREE.BoxHelper(cube, this.color);
 

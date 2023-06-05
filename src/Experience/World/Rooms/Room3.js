@@ -11,17 +11,18 @@ export default class Room3 extends Room {
 
     init() {
         this.name = "room3";
-        this.position = new THREE.Vector3(-22.7, 1.22, -38.7);
+        this.position = new THREE.Vector3(-25, 1.4, -41);
         this.spawnPosition = new THREE.Vector3(-14, 2, -37);
         this.entranceTriggerZone = new TriggerZone({
             debug: this.debug,
             scene: this.scene,
             startPosition: new THREE.Vector2(-20, -41),
-            endPosition: new THREE.Vector2(-11, -37),
+            endPosition: new THREE.Vector2(-11, -38.7),
+            color: 0xff0000
         });
         
-        this.closingDoor.position.set(1.2, 0, 10);
-        this.exitDoor.position.set(0, 2, 20);
+        this.closingDoor.position.set(-9.4, 0, -2.8);
+        this.exitDoor.position.set(-0.05, 0, -0.1);
 
         this.minScoreRequired = 8;
 
@@ -31,17 +32,16 @@ export default class Room3 extends Room {
                 debug: this.debug,
                 scene: this.scene,
                 name: 'corner',
-                startPosition: new THREE.Vector2(-17, -42),
-                endPosition: new THREE.Vector2(-15.5, -40),
+                startPosition: new THREE.Vector2(-16, -43.5),
+                endPosition: new THREE.Vector2(-13.5, -41),
             }),
             // Small corner near end
             new TriggerZone({
                 debug: this.debug,
                 scene: this.scene,
                 name: 'small corner near end',
-                startPosition: new THREE.Vector2(-19, -39),
-                endPosition: new THREE.Vector2(-17, -36),
-                color: 0x00ffff
+                startPosition: new THREE.Vector2(-21, -41),
+                endPosition: new THREE.Vector2(-18, -38),
             }),
         ];
 
@@ -49,35 +49,18 @@ export default class Room3 extends Room {
 
         this.addExitDoor();
 
+        this.addPositionalAudioTrack('heavy', 2, -8, 4, 0);
+        this.addPositionalAudioTrack('heart', 2, 0, 4, 0);
+        
         this.setAshes();
         
         if (this.debug.active) {
             this.addDebugOptions();
         }
-
-        // --------- Positional audio ---------
-        const positionalAudioTrack = new THREE.PositionalAudio(this.camera.audioListener);
-        positionalAudioTrack.setBuffer(this.resources.items['eww']);
-        positionalAudioTrack.setRefDistance(2);
-        positionalAudioTrack.setLoop(true);
-
-        // create an object for the sound to play from
-        const audioSphere = new THREE.SphereGeometry(1, 32, 16);
-        const audioMaterial = new THREE.MeshPhongMaterial({ color: 0xff2200 });
-        const audioMesh = new THREE.Mesh(audioSphere, audioMaterial);
-        audioMesh.position.set(4, 10, 4);
-
-        // finally add the sound to the mesh
-        audioMesh.add(positionalAudioTrack);
-
-        this.positionalAudioTracks.push(positionalAudioTrack)
-
-        this.model.add(audioMesh)
     }
 
     update() {
         this.animateAsh();
-
     }
 
     /**
@@ -86,7 +69,7 @@ export default class Room3 extends Room {
     setAshes() {
         // Créer un groupe pour contenir les particules de cendres
         this.ashGroup = new THREE.Group();
-        this.ashGroup.position.set(2, 8, 6);
+        this.ashGroup.position.set(-6, 8, 0);
         this.props.push(this.ashGroup)
 
         // Créer le matériau des particules de cendres

@@ -11,28 +11,46 @@ export default class Room4 extends Room {
 
     init() {
         this.name = "room4";
-        this.position = new THREE.Vector3(-29, -9, -14.2);
-        this.spawnPosition = new THREE.Vector3(-22.5, 2, -41.5);
+        this.position = new THREE.Vector3(-24.8, 1, -41);
+        this.spawnPosition = new THREE.Vector3(-25, 2, -39.9);
         this.entranceTriggerZone = new TriggerZone({
             debug: this.debug,
             scene: this.scene,
-            startPosition: new THREE.Vector2(-33, -16),
-            endPosition: new THREE.Vector2(-26, -12),
+            startPosition: new THREE.Vector2(-27, -40),
+            endPosition: new THREE.Vector2(-24, -38),
             color: 0xff00ff
         });
 
-        this.closingDoor.position.set(1.2, 0, 10);
-
         this.minScoreRequired = 12;
-        
+
         this.setRoomModel();
+
+        this.additionalEntranceActions = () => { this.updateFogDistance(); }
 
         if (this.debug.active) {
             this.addDebugOptions();
         }
+
+        this.gameOverZone = new TriggerZone({
+            debug: this.debug,
+            scene: this.scene,
+            startPosition: new THREE.Vector2(-32, -29),
+            endPosition: new THREE.Vector2(-23, -27),
+            color: 0x22ff66
+        })
     }
 
     update() {
         // Silence is golden...
+    }
+
+    hasEnteredGameOverZone(playerPosition) {
+        if (this.gameOverZone.hasPlayerInZone(playerPosition)) {
+            return true;
+        }
+    }
+
+    updateFogDistance() {
+        this.scene.fog.far = 24;
     }
 }

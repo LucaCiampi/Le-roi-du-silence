@@ -22,16 +22,16 @@ export default class Room {
 
         // Where the player spawns in case of death
         this.spawnPosition = null;
-        
+
         // The zone determining either the player has stepped in the room
         this.entranceTriggerZone = null;
-    
+
         // 3DObject model of the room    
         this.model = null;
-        
+
         // Methods called on room entrance
         this.additionalEntranceActions = () => { };
-        
+
         // Array that contains all room 3D Objects
         this.props = [];
 
@@ -58,8 +58,8 @@ export default class Room {
      * called before the subclass init()
      */
     initRoom() {
-        this.closingDoor = this.resources.items['door'].scene;
-        this.exitDoor = this.resources.items['exitDoor'].scene;
+        this.closingDoor = this.resources.items['door'].scene.clone();
+        this.exitDoor = this.resources.items['door'].scene.clone();
     }
 
     /**
@@ -69,29 +69,11 @@ export default class Room {
         this.model = this.resources.items[this.name].scene;
         this.model.position.set(this.position.x, this.position.y, this.position.z)
 
-        if (this.name == 'room1') {
-            this.model.scale.set(0.01, 0.01, 0.01);
-        }
-
-        else if (this.name == 'room2') {
-            this.model.scale.set(0.01, 0.01, 0.01);
-        }
-
-        else if (this.name == 'room3') {
-            this.model.scale.set(0.25, 0.25, 0.25);
+        if (this.name == 'room3') {
             this.model.rotation.set(0, -3.16, 0);
         }
-
-        // if (this.name == 'room2' || this.name == 'room4') {
-        if (this.name == 'room2') {
-            this.model.traverse((child) => {
-                if (child.isMesh) {
-                    child.material = new THREE.MeshToonMaterial();
-
-                    child.material.map = this.resources.items['wood'];
-                    child.material.needsUpdate = true;
-                }
-            })
+        else if (this.name == 'room4') {
+            this.model.rotation.set(0, 2.9, 0);
         }
 
         this.scene.add(this.model)
@@ -126,7 +108,9 @@ export default class Room {
     roomEntranceActions() {
         this.sendMessageToPhone();
         this.playZoneSound();
-        this.closeDoor();
+        if (this.name !== 'room4') {
+            this.closeDoor();
+        }
         this.additionalEntranceActions();
         this.playPositionalAudioTracks();
     }
@@ -150,15 +134,14 @@ export default class Room {
      * on the room init
      */
     addExitDoor() {
-        // this.props.push(this.exitDoor);
+        this.props.push(this.exitDoor);
     }
 
     /**
      * Adds the closing door model to the room model
      */
     closeDoor() {
-        //TODO
-        // this.model.add(this.closingDoor);
+        this.model.add(this.closingDoor);
     }
 
     /**
@@ -180,12 +163,61 @@ export default class Room {
     }
 
     /**
+     * Adds a positional audio track to the room
+     * Does nothing if there is none
+     */
+    addPositionalAudioTrack(soundName, refDistance, x, y, z, loop = true, delay) {
+        const newPositionalAudioTrack = new THREE.PositionalAudio(this.camera.audioListener);
+        newPositionalAudioTrack.setBuffer(this.resources.items[soundName]);
+        newPositionalAudioTrack.setRefDistance(refDistance);
+        newPositionalAudioTrack.setLoop(loop);
+        if (delay) {
+            const playbackRate = 1 / delay;
+            newPositionalAudioTrack.setPlaybackRate(playbackRate);
+        }
+        // create an object for the sound to play from
+        const audioGeometry = new THREE.BoxGeometry(1, 1, 1);
+        const audioMaterial = new THREE.MeshPhongMaterial({ color: 0x00ff00 });
+        if (!this.debug.active) {
+            audioMaterial.opacity = 1;
+        }
+        const audioMesh = new THREE.Mesh(audioGeometry, audioMaterial);
+        audioMesh.position.set(x, y, z);
+
+        // finally add the sound to the mesh
+        audioMesh.add(newPositionalAudioTrack);
+
+        this.positionalAudioTracks.push(newPositionalAudioTrack)
+        this.model.add(audioMesh)
+    }
+
+    /**
      * Starts every positional audio track of the room
      * Does nothing if there is none
      */
     playPositionalAudioTracks() {
         this.positionalAudioTracks.forEach((track) => {
             track.play();
+        })
+    }
+
+    /**
+     * Stops every positional audio track of the room
+     * Does nothing if there is none
+     */
+    stopPositionalAudioTracks() {
+        this.positionalAudioTracks.forEach((track) => {
+            track.stop();
+        })
+    }
+
+    /**
+     * Pauses every positional audio track of the room
+     * Does nothing if there is none
+     */
+    pausePositionalAudioTracks() {
+        this.positionalAudioTracks.forEach((track) => {
+            track.pause();
         })
     }
 
@@ -207,7 +239,7 @@ export default class Room {
                 this.scene.remove(prop);
             }
         })
-        
+
         this.model.traverse((node) => {
             if (node instanceof THREE.Mesh) {
                 node.geometry.dispose();
@@ -215,6 +247,9 @@ export default class Room {
                 node.material.dispose();
             }
         });
+
+        this.stopPositionalAudioTracks();
+
         this.scene.remove(this.model);
     }
 
@@ -242,6 +277,42 @@ export default class Room {
         folder.add(this.model.position, 'z')
             .onChange((value) => {
                 this.model.position.z = value;
+            });
+
+        // Closing door
+        folder.add(this.closingDoor.rotation, 'y')
+            .onChange((value) => {
+                this.closingDoor.rotation.y = value;
+            });
+        folder.add(this.closingDoor.position, 'x')
+            .onChange((value) => {
+                this.closingDoor.position.x = value;
+            });
+        folder.add(this.closingDoor.position, 'y')
+            .onChange((value) => {
+                this.closingDoor.position.y = value;
+            });
+        folder.add(this.closingDoor.position, 'z')
+            .onChange((value) => {
+                this.closingDoor.position.z = value;
+            });
+
+        // Exit door
+        folder.add(this.exitDoor.rotation, 'y')
+            .onChange((value) => {
+                this.exitDoor.rotation.y = value;
+            });
+        folder.add(this.exitDoor.position, 'x')
+            .onChange((value) => {
+                this.exitDoor.position.x = value;
+            });
+        folder.add(this.exitDoor.position, 'y')
+            .onChange((value) => {
+                this.exitDoor.position.y = value;
+            });
+        folder.add(this.exitDoor.position, 'z')
+            .onChange((value) => {
+                this.exitDoor.position.z = value;
             });
     }
 }

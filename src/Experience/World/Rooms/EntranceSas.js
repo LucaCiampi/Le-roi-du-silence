@@ -11,7 +11,7 @@ export default class EntranceSas extends Room {
 
     init() {
         this.name = "sas";
-        this.position = new THREE.Vector3(0, 0, 0);
+        this.position = new THREE.Vector3(0, -0.4, 1.5);
 
         this.triggerZones = [
             // In the corner on the left
@@ -26,7 +26,11 @@ export default class EntranceSas extends Room {
 
         this.setRoomModel();
 
-        this.setUpMariusShader();
+        if (this.debug.active) {
+            this.addDebugOptions();
+        }
+
+        // this.setUpMariusShader();
     }
 
     update() {

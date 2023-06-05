@@ -78,13 +78,15 @@ export default class GlobalParameter {
      * Increments zone player has reached
      */
     incrementCurrentZone() {
-        if (this.currentZone + 1 < this.NUMBER_OF_ZONES) {
-            this.currentZone += 1
-        }
-        else {
-            this.event.end();
-            this.gameEnded = true;
-        }
+        this.currentZone += 1
+    }
+
+    /**
+     * Triggers the game over
+     */
+    endGame() {
+        this.event.end();
+        this.gameEnded = true;
     }
 
     /**

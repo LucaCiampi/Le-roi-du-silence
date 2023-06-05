@@ -11,13 +11,14 @@ export default class Sounds {
     setSounds() {
         this.sounds = {
             swoosh1: new Howl({
-                src: ['./Sounds/swoosh1.wav']
+                src: ['./Sounds/swoosh1.mp3']
             }),
             swoosh2: new Howl({
-                src: ['./Sounds/swoosh2.wav']
+                src: ['./Sounds/swoosh2.mp3']
             }),
             wind: new Howl({
-                src: ['./Sounds/wind.wav']
+                src: ['./Sounds/wind.mp3'],
+                volume: 0.2
             }),
             uiButton: new Howl({
                 src: ['./Sounds/uiButton.mp3']
@@ -58,6 +59,15 @@ export default class Sounds {
      */
     playLoop(sound_name) {
         this.sounds[sound_name].loop(true).play()
+    }
+
+
+    /**
+     * Pauses a sound
+     * @param {String} sound_name the name of the sound file
+     */
+    pause(sound_name) {
+        this.sounds[sound_name].pause()
     }
 
 }

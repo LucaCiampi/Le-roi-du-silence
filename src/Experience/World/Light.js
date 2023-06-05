@@ -34,16 +34,16 @@ export default class Light {
     setLight() {
         RectAreaLightUniformsLib.init();
 
-        this.ambientLight = new THREE.AmbientLight(0xffffff, 0.07)
+        this.ambientLight = new THREE.AmbientLight(0xffffff, 0.8)
         
         this.rectLight = new THREE.RectAreaLight(0xffffff, 25, 0.09, 0.16);
         this.rectLight.position.set(1, 1, -0.7);
         this.rectLight.rotateY(-Math.PI / 2)
         
-        this.spotLight = new THREE.SpotLight(0xffffff, 2)
-        this.spotLight.angle = 0.3;
-        this.spotLight.penumbra = 0.1;
-        this.spotLight.decay = 2;
+        this.spotLight = new THREE.SpotLight(0xffffff, 1.4)
+        this.spotLight.angle = 0.5;
+        this.spotLight.penumbra = 0.3;
+        this.spotLight.decay = 11;
         this.spotLight.distance = 50;
         this.spotLight.position.y += 1
         this.spotLight.position.set(0, 0, 1);
@@ -55,7 +55,7 @@ export default class Light {
     }
 
     setFog() {
-        this.scene.fog = new THREE.Fog(0x000000, 0, 15);
+        this.scene.fog = new THREE.Fog(0xffdccc, 0, 13);
     }
 
     /**
@@ -67,13 +67,17 @@ export default class Light {
         
         const spotLightFolder = this.debug.gui.addFolder('Spotlight');
         spotLightFolder.add(this.spotLight, 'intensity');
+        spotLightFolder.add(this.spotLight, 'angle');
+        spotLightFolder.add(this.spotLight, 'penumbra');
+        spotLightFolder.add(this.spotLight, 'decay');
+        spotLightFolder.add(this.spotLight, 'distance');
         
         const fogFolder = this.debug.gui.addFolder('Fog');
         fogFolder.add(this.scene.fog, 'far');
         
         this.scene.fog.far = 100;
-        this.ambientLight.intensity = 1;
-        this.spotLight.intensity = 0;
+        // this.ambientLight.intensity = 1;
+        // this.spotLight.intensity = 0;
     }
 
 }

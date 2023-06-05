@@ -11,11 +11,11 @@ export default
         type: "gltfModel",
         path: "./Environment/room1.glb"
     },
-    {
-        name: "room1Props",
-        type: "gltfModel",
-        path: "./Environment/room1-props.glb"
-    },
+    // {
+    //     name: "room1Props",
+    //     type: "gltfModel",
+    //     path: "./Environment/room1-props.glb"
+    // },
     {
         name: "room2",
         type: "gltfModel",
@@ -44,11 +44,6 @@ export default
         path: "./Environment/door.glb"
     },
     {
-        name: "exitDoor",
-        type: "gltfModel",
-        path: "./Environment/exitDoor.glb"
-    },
-    {
         name: "tel",
         type: "gltfModel",
         path: "./Environment/cellphone.glb"
@@ -56,30 +51,40 @@ export default
 
     // Textures
     {
-        name: "checker",
-        type: "texture",
-        path: "./Textures/checker-4x4.png"
-    },
-    {
         name: "ash",
         type: "texture",
         path: "./Textures/ash.png"
     },
-    {
-        name: "wood",
-        type: "texture",
-        path: "./Textures/wood-floor-deck/color.png"
-    },
 
     // Audio
+    {
+        name: "room1Kids",
+        type: "audio",
+        path: "./Sounds/room1Kids.mp3"
+    },
+    {
+        name: "vibration",
+        type: "audio",
+        path: "./Sounds/vibration.mp3"
+    },
+    {
+        name: "tvbzz",
+        type: "audio",
+        path: "./Sounds/tv.mp3"
+    },
     {
         name: "eww",
         type: "audio",
         path: "./Sounds/kidsComplain.mp3"
     },
     {
-        name: "tvbzz",
+        name: "heavy",
         type: "audio",
-        path: "./Sounds/tv.mp3"
+        path: "./Sounds/heavy.mp3"
+    },
+    {
+        name: "heart",
+        type: "audio",
+        path: "./Sounds/heart.mp3"
     },
 ]

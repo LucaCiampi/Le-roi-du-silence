@@ -18,10 +18,12 @@ export default class Room2 extends Room {
             scene: this.scene,
             startPosition: new THREE.Vector2(-12, -22),
             endPosition: new THREE.Vector2(-7.5, -14),
+            color: 0xff0000
         });
 
-        this.closingDoor.position.set(1.2, 0, 10);
-        this.exitDoor.position.set(0, 0, 20);
+        this.closingDoor.position.set(0, 0, -0.16);
+        this.closingDoor.rotation.set(0, 1.57, 0);
+        this.exitDoor.position.set(-8.7, 0, -12.6);
 
         this.minScoreRequired = 4;
 
@@ -31,17 +33,24 @@ export default class Room2 extends Room {
                 debug: this.debug,
                 scene: this.scene,
                 name: 'cellphones',
-                startPosition: new THREE.Vector2(-15, -26),
-                endPosition: new THREE.Vector2(-14, -24),
+                startPosition: new THREE.Vector2(-16, -27),
+                endPosition: new THREE.Vector2(-13, -24),
             }),
             // The TV's
             new TriggerZone({
                 debug: this.debug,
                 scene: this.scene,
                 name: 'tvs',
-                startPosition: new THREE.Vector2(-17, -24),
+                startPosition: new THREE.Vector2(-18, -25),
                 endPosition: new THREE.Vector2(-14, -22),
-                color: 0x00ffff
+            }),
+            // The tags
+            new TriggerZone({
+                debug: this.debug,
+                scene: this.scene,
+                name: 'tags',
+                startPosition: new THREE.Vector2(-12, -30),
+                endPosition: new THREE.Vector2(-8, -28),
             }),
         ]
 
@@ -59,40 +68,13 @@ export default class Room2 extends Room {
 
         this.additionalEntranceActions = () => { this.initHandsAnimation(); }
 
-        // --------- Positional audio ---------
-        // --- 1
-        const tvPositionalAudioTrack = new THREE.PositionalAudio(this.camera.audioListener);
-        tvPositionalAudioTrack.setBuffer(this.resources.items['tvbzz']);
-        tvPositionalAudioTrack.setRefDistance(2);
-        tvPositionalAudioTrack.setLoop(true);
+        this.addPositionalAudioTrack('vibration', 2, -9, 4, -6);
+        this.addPositionalAudioTrack('tvbzz', 2, -10, 4, -1);
+        this.addPositionalAudioTrack('eww', 2, -2, 4, -8);
 
-        // create an object for the sound to play from
-        const audioSphere = new THREE.SphereGeometry(1, 32, 16);
-        const audioMaterial = new THREE.MeshPhongMaterial({ color: 0xff2200 });
-        const tvAudioMesh = new THREE.Mesh(audioSphere, audioMaterial);
-        tvAudioMesh.position.set(4, 10, 4);
-
-        // finally add the sound to the mesh
-        tvAudioMesh.add(this.tvPositionalAudioTrack);
-
-        this.positionalAudioTracks.push(tvPositionalAudioTrack)
-        this.model.add(tvAudioMesh)
-
-        // --- 2
-        const ewwPositionalAudioTrack = new THREE.PositionalAudio(this.camera.audioListener);
-        ewwPositionalAudioTrack.setBuffer(this.resources.items['eww']);
-        ewwPositionalAudioTrack.setRefDistance(2);
-        ewwPositionalAudioTrack.setLoop(true);
-        
-        // create an object for the sound to play from
-        const ewwAudioMesh = new THREE.Mesh(audioSphere, audioMaterial);
-        ewwAudioMesh.position.set(4, 20, 4);
-
-        // finally add the sound to the mesh
-        ewwAudioMesh.add(this.ewwPositionalAudioTrack);
-
-        this.positionalAudioTracks.push(ewwPositionalAudioTrack)
-        this.model.add(ewwAudioMesh)
+        if (this.debug.active) {
+            this.addDebugOptions();
+        }
     }
 
     update() {

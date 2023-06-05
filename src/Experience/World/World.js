@@ -26,6 +26,20 @@ export default class World {
             scene: this.scene,
             debug: this.debug
         });
+
+        this.eventReceiver()
+    }
+
+    eventReceiver() {
+        this.event.on('Pause', () => {
+            this.pauseAmbientWorldSound();
+            this.rooms[this.parameter.currentZone].pausePositionalAudioTracks();
+        })
+
+        this.event.on('Continue', () => {
+            this.playAmbientWorldSound();
+            this.rooms[this.parameter.currentZone].playPositionalAudioTracks();
+        })
     }
 
     ready() {
@@ -64,8 +78,11 @@ export default class World {
             camera: this.camera,
         })
 
+        // const color = new THREE.Color(0xffdccc);
+        this.scene.background = new THREE.Color(0xffdccc);
+
         this.isReady = true;
-        this.startAmbientWorldSound();
+        this.playAmbientWorldSound();
 
         if (this.debug.active) {
             this.addDebugOptions();
@@ -78,7 +95,13 @@ export default class World {
 
             if (!this.parameter.gameEnded) {
                 this.updateCurrentRoom();
-                this.checkNextZoneEntrance();
+
+                if (this.parameter.currentZone < this.parameter.NUMBER_OF_ZONES) {
+                    this.checkNextZoneEntrance();
+                }
+                else {
+                    this.checkGameOverZone();
+                }
             }
         }
     }
@@ -134,6 +157,18 @@ export default class World {
     }
 
     /**
+     * Checks if the player has entered the game over zone
+     */
+    checkGameOverZone() {
+        if (this.rooms[this.parameter.currentZone].hasEnteredGameOverZone(this.controls.playerCollider.end)) {
+            console.log('end')
+            setTimeout(() => {
+                this.parameter.endGame();
+            }, 2000);
+        }
+    }
+
+    /**
      * Sets up everything in the entrance of a new room
      */
     roomEntranceSetup() {
@@ -179,19 +214,25 @@ export default class World {
      * Adds the closing door of the room to the octree
      */
     addRoomClosingDoorHitbox() {
-        //TODO
-        // this.rooms[this.parameter.currentZone].closingDoor.traverse(mesh => {
-        //     if (mesh instanceof THREE.Mesh) {
-        //         this.worldOctree.octree.fromGraphNode(mesh);
-        //     }
-        // });
+        this.rooms[this.parameter.currentZone].closingDoor.traverse(mesh => {
+            if (mesh instanceof THREE.Mesh) {
+                this.worldOctree.octree.fromGraphNode(mesh);
+            }
+        });
     }
 
     /**
      * Starts the ambient sound that will loop throughout the experience
      */
-    startAmbientWorldSound() {
+    playAmbientWorldSound() {
         this.parameter.sounds.playLoop('wind');
+    }
+
+    /**
+     * Pauses the ambient sound
+     */
+    pauseAmbientWorldSound() {
+        this.parameter.sounds.pause('wind');
     }
 
     /**
@@ -207,19 +248,23 @@ export default class World {
      */
     zoneTriggeredEffect() {
         this.controls.playerSpeed = 3;
+        this.controls.stepSoundTimeout = 1500;
+
         if (this.debug.active) {
             this.controls.playerSpeed = 15;
         }
         this.parameter.sounds.play('swoosh2');
         this.userInterface.showMemoriesOverlay();
+
         setTimeout(() => {
             this.controls.playerSpeed = 7;
+            this.controls.stepSoundTimeout = 600;
             if (this.debug.active) {
                 this.controls.playerSpeed = 15;
             }
 
             this.userInterface.hideMemoriesOverlay();
-        }, 6000);
+        }, 5000);
     }
 
     destroy() {

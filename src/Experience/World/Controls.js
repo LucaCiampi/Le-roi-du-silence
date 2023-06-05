@@ -20,6 +20,7 @@ export default class Controls {
         this.playerPositionDebugUi = null;
         this.stepSoundPlaying = false;
         this.stepSoundIndex = null;
+        this.stepSoundTimeout = 600;
 
         this.keyStates = {};
 
@@ -291,7 +292,7 @@ export default class Controls {
                 if (this.stepSoundIndex >= 4) {
                     this.stepSoundIndex = 0;
                 }
-            }, 400);
+            }, this.stepSoundTimeout);
         }
     }
 
@@ -299,10 +300,8 @@ export default class Controls {
     * Adds controls options in case of debug
     */
     addDebugOptions() {
-        // this.debug.gui.add(this.playerCollider.end, 'x');
-        // this.debug.gui.add(this.playerCollider.end, 'y');
-        // this.debug.gui.add(this.playerCollider.end, 'z');
         this.playerPositionDebugUi.classList.remove('d-none');
         this.playerSpeed = 15;
+        // this.GRAVITY = 0;
     }
 }  

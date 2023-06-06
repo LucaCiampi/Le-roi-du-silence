@@ -91,7 +91,6 @@ body {
     inset: 0;
     z-index: 5;
     color: #fff;
-    user-select: none;
 }
 
 .user-interface__container {
@@ -120,7 +119,8 @@ body {
 .memories-overlay {
     position: absolute;
     inset: 0;
-    background-color: #6eb6e2;
+    /* background-color: #6eb6e2; */
+    background-color: #8bb;
     opacity: 0;
     transition: 200ms ease-in;
 }

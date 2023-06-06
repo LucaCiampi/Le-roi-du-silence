@@ -78,10 +78,7 @@ export default class Layout {
     }
 
     hideLoader() {
-        this.loader.classList.add('hidden');
-        setTimeout(() => {
-            this.loader.classList.add('z--1');
-        }, 2000)
+        this.fadeOutUiPanel(this.loader);
     }
 
     /**
@@ -96,7 +93,7 @@ export default class Layout {
      */
     hideIntroMenu() {
         // this.introMenu.classList.add('d-none');
-        this.hideUiPanel(this.introMenu);
+        this.fadeOutUiPanel(this.introMenu);
     }
 
     /**
@@ -118,6 +115,7 @@ export default class Layout {
      */
     showEndMenu() {
         this.endMenu.classList.remove('d-none');
+        this.fadeInUiPanel(this.endMenu);
     }
 
     /**
@@ -145,6 +143,9 @@ export default class Layout {
         }, 2000);
     }
 
+    /**
+     * Displays a text indicating the door has been opened
+     */
     showUserIndicatorDoorOpen() {
         this.doorOpenLabel.classList.add('door-open-label--popup');
 
@@ -161,12 +162,25 @@ export default class Layout {
         this.memoriesOverlay.classList.remove('memories-overlay--visible');
     }
 
-    hideUiPanel(panel) {
+    /**
+     * Fade out effect for UI panel
+     * @param {HTMLElement} panel - the element targeted
+     */
+    fadeOutUiPanel(panel) {
         panel.classList.add('hidden');
 
         setTimeout(() => {
             panel.classList.add('z--1');
         }, 1000);
+    }
+
+    /**
+     * Fade in effect for UI panel
+     * @param {HTMLElement} panel - the element targeted
+     */
+    fadeInUiPanel(panel) {
+        panel.classList.remove('z--1');
+        panel.classList.remove('hidden');
     }
 
     /**

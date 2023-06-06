@@ -187,9 +187,10 @@ export default class Room {
         }
         else {
             audioPosition = new THREE.Object3D();
-            audioPosition.position.set(x, y, z);
         }
-
+        
+        audioPosition.position.set(x, y, z);
+        
         // finally add the sound to the mesh
         audioPosition.add(newPositionalAudioTrack);
         this.model.add(audioPosition)

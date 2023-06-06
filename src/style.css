@@ -5,9 +5,14 @@ body {
     padding: 0;
 }
 
-#introMenu,
-#endMenu {
+#introMenu, #endMenu{
     background-color: black;
+}
+
+#introMenu>div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .webgl {
@@ -15,16 +20,7 @@ body {
     top: 0;
     left: 0;
     outline: none;
-    z-index: 2;
-}
-
-.motion {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 100;
-    transition: 200ms;
+    z-index: 10;
 }
 
 .no-select {
@@ -39,104 +35,88 @@ body {
 .menu {
     position: absolute;
     inset: 0;
-    z-index: 10;
-    background-color: rgba(0, 0, 0, 0.1);
+    z-index: 11;
+    background-color: rgba(0, 0, 0, 0.5);
     color: #fff;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
+    
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-evenly;
     align-items: center;
-
+    
     text-align: center;
     cursor: pointer;
-}
-
-.loader {
-    position: relative;
-    background-color: #000;
-    height: 100vh;
-    width: 100vw;
-    transition: 2s;
-    z-index: 99;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.z--1 {
-    z-index: -1;
 }
 
 .d-none {
     display: none;
 }
-
-.hidden {
-    opacity: 0;
-}
-
-.spin {
-    animation: spin 2s ease-out 1s infinite;
-    height: 3em;
-    width: 3em;
-    background-color: #fff;
-    border-radius: 50%;
-}
-
-.user-interface {
-    position: absolute;
-    inset: 0;
-    z-index: 5;
-    color: #fff;
-}
-
-.user-interface__container {
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-
-#score {
-    position: absolute;
-    top: 10px;
-    left: 0;
-    right: 0;
-    text-align: center;
-}
-
-.player-position {
-    z-index: 20;
-    font-size: 16px;
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    color: #fff;
-}
-
-.memories-overlay {
-    position: absolute;
-    inset: 0;
-    background-color: #6eb6e2;
-    opacity: 0;
-    transition: 200ms ease-in;
-}
-
-.memories-overlay--visible {
-    opacity: 0.6;
+canvas {
+    border-radius: 15px;
 }
 
 /* mobile */
-@media (min-width: 981px) {
-    #mobile {
-        display: none;
-    }
-}
-
 #mobile {
+    font-family: Arial, Helvetica, sans-serif;
     background-color: rgb(33, 33, 33);
     height: 100svh;
+}
+
+.mobilePage {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    transition: transform 0.3s ease-in-out;
+}
+
+.rightHided {
+    transform: translateX(100%);
+}
+
+#imageFullscreen {
+    position: absolute;
+    z-index: 30;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #525252c5;
+    transition: 0.3s ease-in-out;
+    height: 100%;
+    width: 100%;
+    visibility: hidden;
+    opacity: 0;
+}
+
+#imageFullscreen > img {
+    transform: scale(0);
+    max-height: 90%;
+    max-width: 90%;
+    transition: 0.3s ease-in-out;
+}
+
+#imageFullscreen.show > img {
+    transform: scale(1);
+}
+
+#imageFullscreen.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+#mobileHome {
+    z-index: 1;
+    background-color: red;
+}
+
+#mobileList {
+    z-index: 2;
+    background-color: #6eb6e2;
+}
+
+#mobileMessages {
+    z-index: 3;
+    background-color: rgb(33, 33, 33);
 }
 
 .button {
@@ -151,24 +131,23 @@ body {
 ul {
     padding: 0;
     margin-top: 70px;
+    list-style: none;
 }
 
-#mobile>h2 {
+#mobileMessages>h2 {
     position: absolute;
     top: 0;
-    font-family: Arial, Helvetica, sans-serif;
     position: absolute;
     width: 100%;
 }
-
-#mobile .topBar {
+#mobileMessages .topBar{
     background-color: rgba(28, 28, 28, 0.784);
     color: rgb(240, 240, 240);
     position: fixed;
     top: 0;
     width: 100%;
     height: 6svh;
-    z-index: 1;
+    z-index: 4;
     display: flex;
     align-items: center;
     gap: 15px;
@@ -181,8 +160,7 @@ ul {
     width: 35px;
     height: 35px;
 }
-
-#mobile .topBar h2 {
+#mobileMessages .topBar h2{
     margin: 0;
 }
 
@@ -204,7 +182,7 @@ ul {
     height: 100%;
 }
 
-#mobile>h2::before {
+#mobileMessages>h2::before {
     content: "Messages de : "
 }
 
@@ -225,6 +203,15 @@ ul {
     align-self: start;
 }
 
+.msg.haveImg::after {
+    content: "";
+    display: block;
+    background: url("./2DAssets/word_ordi.png");
+    width: 150px;
+    height: 150px;
+    background-size: contain;
+}
+
 .msg.info {
     color: rgb(240, 240, 240);
     background-color: rgba(0, 0, 0, 0);
@@ -240,60 +227,13 @@ ul {
         transform: translateY(5px);
         opacity: 0;
     }
-
+    
     to {
         opacity: 1;
     }
 }
 
-.heart,
-.door-open-label {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 20px;
-    margin: auto;
-    transform: translateY(100px);
-    text-align: center;
-}
-
-.animation--popup {
-    animation: popUp 2s ease-in-out;
-}
-
-.door-open-label--popup {
-    animation: popUp 6s ease-in-out 6s;
-}
-
-@keyframes popUp {
-    0% {
-        transform: translateY(100px);
-    }
-
-    20% {
-        transform: translateY(0px);
-    }
-
-    80% {
-        transform: translateY(0px);
-    }
-
-    100% {
-        transform: translateY(100px);
-    }
-}
-
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(-360deg);
-    }
-}
-
-#responses {
+#responses{
     position: fixed;
     bottom: calc(5svh + 25px);
     height: fit-content;
@@ -302,7 +242,7 @@ ul {
     justify-content: center;
 }
 
-.response {
+.response{
     width: fit-content;
     padding: 5px 8px 5px 8px;
     margin: 5px;

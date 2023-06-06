@@ -3,35 +3,34 @@
 
 <head>
     <meta charset="UTF-8">
-
-    <title>WebGL</title>
+    
+    <title>Le roi du silence</title>
     <meta name="description"
-        content="Projet WebGL créé par Luca Ciampi, Mathilde Deveaux, Valentine Guillaume et Marius Proton dans le cadre d'un exercice de M1 à l'école GOBELINS" />
-
+    content="Projet WebGL créé par Luca Ciampi, Mathilde Deveaux, Valentine Guillaume et Marius Proton dans le cadre d'un exercice de M1 à l'école GOBELINS" />
+    
     <meta itemprop=name content="WebGL">
     <meta itemprop="description"
-        content="Projet WebGL créé par Luca Ciampi, Mathilde Deveaux, Valentine Guillaume et Marius Proton dans le cadre d'un exercice de M1 à l'école GOBELINS">
-    <link rel="icon"
-        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👼🏼</text></svg>">
+    content="Projet WebGL créé par Luca Ciampi, Mathilde Deveaux, Valentine Guillaume et Marius Proton dans le cadre d'un exercice de M1 à l'école GOBELINS">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤫</text></svg>">
     <!-- <meta itemprop="image" content=https://lucaciampi.com/social/share-1200x630.png> -->
-
+    
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="WebGL">
     <meta name="twitter:description"
-        content="Projet WebGL créé par Luca Ciampi, Mathilde Deveaux, Valentine Guillaume et Marius Proton dans le cadre d'un exercice de M1 à l'école GOBELINS">
+    content="Projet WebGL créé par Luca Ciampi, Mathilde Deveaux, Valentine Guillaume et Marius Proton dans le cadre d'un exercice de M1 à l'école GOBELINS">
     <!-- <meta name="twitter:image" content="https://lucaciampi.com/social/share-1200x600.png"> -->
-
+    
     <meta property="og:site_name" content="WebGL">
     <meta property="og:type" content="website">
     <!-- <meta property="og:url" content="https://lucaciampi.com"> -->
     <meta property="og:title" content="WebGL">
     <meta property="og:description"
-        content="Projet WebGL créé par Luca Ciampi, Mathilde Deveaux, Valentine Guillaume et Marius Proton dans le cadre d'un exercice de M1 à l'école GOBELINS">
+    content="Projet WebGL créé par Luca Ciampi, Mathilde Deveaux, Valentine Guillaume et Marius Proton dans le cadre d'un exercice de M1 à l'école GOBELINS">
     <!-- <meta property="og:image" content="https://lucaciampi.com/social/share-1200x630.png"> -->
-
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=5, viewport-fit=cover" />
     <meta name="robots" content="index, follow" />
-
+    
     <!-- 
         <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
@@ -48,50 +47,54 @@
 
 <body>
     <div id="mobile">
-        <div class="topBar">
-            <h2 style="transform: rotate(180deg);">➜</h2>
-            <div class="pp"></div>
-            <h2 id="title"></h2>
+        <div id="mobileHome" class="mobilePage">
+            <h1>Le roi du silence</h1>
+            <form onsubmit="return false">
+                <input id="nameField" type="text" placeholder="Ton nom">
+                <button id="submitNameButton">Valider</button>
+            </form>
         </div>
-        <div id="msgsContainer">
-            <div id="msgs"></div>
+        <div id="mobileList" class="mobilePage rightHided">
+            <h1>Messages</h1>
+            <div id="convsContainer"></div>
         </div>
-        <div id="responses"></div>
-        <div id="botBar">
-            <input disabled type="text" placeholder="Message texte">
-            <button id="send">➤</button>
+        <div id="mobileMessages" class="mobilePage rightHided">
+            <div class="topBar">
+                <h2 id="backButton" style="transform: rotate(180deg);">➜</h2>
+                <div class="pp"></div>
+                <h2 id="title"></h2>
+            </div>
+            <div id="msgsContainer">
+                <div id="msgs"></div>
+            </div>
+            <div id="responses"></div>
+            <div id="botBar">
+                <input disabled type="text" placeholder="Message texte">
+                <button id="send">➤</button>
+            </div>
+        </div>
+        <div id="imageFullscreen">
+            <img src="./2DAssets/word_ordi.png" />
         </div>
     </div>
     <div id="container">
-        <div id="loader" class="loader"><img class="spin" src="./Interface/arrow.svg" /></div>
-        <video src="./Interface/motion.mp4" id="motion" class="motion" autoplay>
-            Motion d'introduction impossible à charger
-        </video>
         <div id="introMenu" class="menu intro-menu d-none">
-            <h1>Bienvenue</h1>
-            <p>Vous allez être projetés dans la tête de...</p>
-            <p>Bonne découverte.</p>
-            <button id="startButton" class="button">Commencer</button>
-            <canvas id="qrcode"></canvas>
+            <div>
+                <h1>Bienvenue</h1>
+                <p>Scannez le QR code pour vous connecter</p>
+                <canvas id="qrcode"></canvas>
+                <button id="startButton" class="button">Commencer</button>
+            </div>
+            <div>
+                <h2 id="userNumber">Utilisateurs connectés : 0/4</h2>
+                <ul id="userList"></ul>
+            </div>
         </div>
         <div id="pauseMenu" class="menu pause-menu d-none">
             <h2>PAUSE</h2>
         </div>
         <div id="endMenu" class="menu end-menu d-none">
             <h2>FIN</h2>
-        </div>
-        <div id="userInterface" class="user-interface d-none">
-            <div class="user-interface__container">
-                <div id="score">0/20</div>
-                <img id="heart" class="heart" src="./Textures/heart.png" alt="heart">
-                <div id="doorOpenLabel" class="door-open-label">La porte vers la prochaine salle est ouverte</div>
-                <div id="memoriesOverlay" class="memories-overlay"></div>
-            </div>
-        </div>
-        <div id="playerPosition" class="player-position d-none">
-            x: 0
-            y: 0
-            z: 0
         </div>
         <canvas class="webgl"></canvas>
     </div>

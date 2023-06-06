@@ -10,11 +10,15 @@ export default class Layout {
         this.introMenu = null;
         this.introMenuStartButton = null;
         this.pauseMenu = null;
+        this.endMenu = null;
+
         this.userInterface = null;
         this.userInterfaceLife = null;
         this.heartIcon = null;
         this.doorOpenLabel = null;
         this.memoriesOverlay = null;
+        this.modal = null;
+        this.modalContent = null;
 
         this.init();
     }
@@ -26,11 +30,14 @@ export default class Layout {
         this.introMenuStartButton = this.introMenu.querySelector('#startButton');
         this.pauseMenu = document.getElementById('pauseMenu');
         this.endMenu = document.getElementById('endMenu');
+
         this.userInterface = document.getElementById('userInterface');
         this.userInterfaceLife = this.userInterface.querySelector('#score');
         this.heartIcon = this.userInterface.querySelector('#heart');
         this.doorOpenLabel = this.userInterface.querySelector('#doorOpenLabel');
         this.memoriesOverlay = this.userInterface.querySelector('#memoriesOverlay');
+        this.modal = this.userInterface.querySelector('#modal');
+        this.modalContent = this.modal.querySelector('#modalContent');
 
         this.eventReceiver();
         this.eventListener();
@@ -77,6 +84,9 @@ export default class Layout {
         })
     }
 
+    /**
+     * Hides the loader
+     */
     hideLoader() {
         this.fadeOutUiPanel(this.loader);
     }
@@ -130,6 +140,23 @@ export default class Layout {
      */
     showUserInterface() {
         this.userInterface.classList.remove('d-none');
+    }
+
+    /**
+     * Displays the modal window
+     * allowing to display images like Leo's notes
+     */
+    showUserInterfaceModal() {
+        this.modalContent.src = './Interface/lettre-intro.png';
+        this.fadeInUiPanel(this.modal);
+    }
+
+    /**
+     * Hides the modal window
+     */
+    hideUserInterfaceModal() {
+        this.modalContent.src = './Interface/lettre-intro.png';
+        this.fadeOutUiPanel(this.modal);
     }
 
     /**

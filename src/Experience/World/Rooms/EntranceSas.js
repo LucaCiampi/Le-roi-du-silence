@@ -21,6 +21,7 @@ export default class EntranceSas extends Room {
                 name: 'sas',
                 startPosition: new THREE.Vector2(-2, -5),
                 endPosition: new THREE.Vector2(2, -3),
+                callback: () => { this.showLeoIntroLetter(); }
             })
         ]
 
@@ -35,6 +36,11 @@ export default class EntranceSas extends Room {
 
     update() {
         // Silence is golden...
+    }
+
+    showLeoIntroLetter() {
+        console.log('coucou')
+        this.world.userInterface.showUserInterfaceModal();
     }
 
     // TODO

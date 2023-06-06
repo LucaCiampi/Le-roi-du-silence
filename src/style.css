@@ -24,9 +24,14 @@ body {
 }
 
 .intro-menu,
-.end-menu,
 .loader {
     background-color: #000;
+}
+
+.end-menu {
+    background-color: #fff;
+    color: #000;
+    transition: 1s ease-in;
 }
 
 .webgl {

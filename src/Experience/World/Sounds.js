@@ -23,6 +23,12 @@ export default class Sounds {
             uiButton: new Howl({
                 src: ['./Sounds/uiButton.mp3']
             }),
+            page: new Howl({
+                src: ['./Sounds/page1.wav']
+            }),
+            page2: new Howl({
+                src: ['./Sounds/page2.wav']
+            }),
         }
 
         this.steps = [

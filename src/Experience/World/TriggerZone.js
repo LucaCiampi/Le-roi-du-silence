@@ -35,8 +35,7 @@ export default class TriggerZone {
      */
     hasPlayerInZone(playerPosition) {
         if (this.boundingBox.containsPoint(new THREE.Vector2(playerPosition.x, playerPosition.z))) {
-            this.callback();
-            console.log('callback')
+            this.callback?.();
             return true
         }
 

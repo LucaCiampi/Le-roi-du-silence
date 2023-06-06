@@ -29,8 +29,8 @@ const database = getDatabase(app);
 //event on sessions modified
 onValue(ref(database, 'sessions/'), (snapshot) => {
   const data = snapshot.val();
-  if (!data) return 
-  
+  if (!data) return
+
   //delete old sessions
   Object.keys(data).map((key) => {
     let item = data[key]
@@ -38,12 +38,12 @@ onValue(ref(database, 'sessions/'), (snapshot) => {
       remove(ref(database, 'sessions/' + key))
     }
   })
-  
+
   //display msgs on mobile
   if (isMobile) {
     mobile?.getData(data)
   }
-  
+
   //display connected users number
   if (!isMobile) {
     if (data[currentSession].users != null) {
@@ -78,18 +78,19 @@ function createSession() {
     let options = texts[interlocutor][0].answers.map((answer) => {
       return answer.preview
     })
-    set(ref(database, `sessions/${currentSession}/responses/`), {
+    push(ref(database, `sessions/${currentSession}/responses/`), {
+      parent: texts[interlocutor][0].trigger,
       options: options,
-      parent: texts[interlocutor][0].trigger
+      interlocutor: interlocutor
     })
   });
-  
+
   //DEBUG display session
   let p = document.createElement('p')
   p.textContent = currentSession.slice(17)
   document.getElementById('container').appendChild(p)
   displayQrCode(currentSession)
-  
+
   //set ping
   setInterval(() => {
     update(ref(database, `sessions/${currentSession}/`), {
@@ -128,8 +129,8 @@ function createMobileSession(name, callback) {
 function displayQrCode(key) {
   var canvas = document.getElementById('qrcode')
   QRCode.toCanvas(canvas, `http://${baseUrl}/?${key}`, function (error) {
-  if (error) console.error(error)
-})
+    if (error) console.error(error)
+  })
 }
 
 //callback on desktop to transmit events to backend
@@ -142,14 +143,16 @@ function handleDesktopEvent(event) {
       time: Date.now(),
       interlocutor: event.interlocutor
     })
-    
+
     //remove the response from the choices
     event.responsesArray.splice(event.responsesArray.indexOf(event.content), 1)
-    set(ref(database, `sessions/${event.id}/responses/`), {
+    console.log('event.responsesArray', event.responsesArray)
+    set(ref(database, `sessions/${event.id}/responses/${event.responseId}`), {
       options: event.responsesArray,
-      parent: event.parent
+      parent: event.parent,
+      interlocutor: event.interlocutor
     })
-    
+
     //push the answers
     let answers = texts[event.interlocutor].find(({ trigger }) => trigger === event.parent).answers.find(({ preview }) => preview === event.content).answers
     answers.forEach((answer, i) => {
@@ -163,26 +166,42 @@ function handleDesktopEvent(event) {
       }, i * 1500 + Math.random() * 1000);
     });
   }
-  
+
   // if (event?.includes("room")) {
   //   let roomId = event.slice(4, 5)
-  //   push(ref(database, `sessions/${currentSession}/messages/`), {
-  //     msg: texts[event.interlocutor].trigger,
-  //     foreign: true,
-  //     time: Date.now()
-  //   })
-  //   let options = texts[event.interlocutor].answers.map((answer) => {
-  //     return answer.preview
-  //   })
-  //   set(ref(database, `sessions/${currentSession}/responses/`), {
-  //     options: options,
-  //     parent: texts[event.interlocutor].trigger
-  //   })
+  //   remove(ref(database, `sessions/${currentSession}/responses/`))
+  //   interlocutors.forEach(inter => {
+  //     push(ref(database, `sessions/${currentSession}/messages/`), {
+  //       msg: texts[inter][roomId].trigger,
+  //       foreign: true,
+  //       time: Date.now(),
+  //       interlocutor: inter
+  //     })
+  //     let options = texts[inter][roomId].answers.map((answer) => {
+  //       return answer.preview
+  //     })
+  //     push(ref(database, `sessions/${currentSession}/responses/`), {
+  //       options: options,
+  //       parent: texts[inter][roomId].trigger,
+  //       interlocutor: inter
+  //     })
+  //   });
   // }
+  if (event?.includes("room")) {
+    interlocutors.forEach(inter => {
+      push(ref(database, `sessions/${currentSession}/messages/`), {
+        msg: "J'ai trouvé ça :",
+        foreign: false,
+        time: Date.now(),
+        interlocutor: inter
+      })
+    });
+  }
 }
 
 if (isMobile) {
-  import('./mobile').then(script => {mobile = script
+  import('./mobile').then(script => {
+    mobile = script
     mobile?.createMobileInterface(window.location.search, handleDesktopEvent, createMobileSession)
   })
   document.getElementById('container').remove()

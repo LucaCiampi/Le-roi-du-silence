@@ -3,12 +3,15 @@ let domTopBar = document.getElementById("title");
 let domResponses = document.getElementById("responses");
 let domName = document.getElementById("nameField");
 let domSubmitName = document.getElementById("submitNameButton");
+let domImageFullscreen = document.getElementById("imageFullscreen");
+
+domImageFullscreen.onclick = () => domImageFullscreen.classList.remove('show')
 
 let sessionId = null;
 let backendEvent = null
 let formerList = ""
 let formerResponses = ""
-let currentMessages = null
+let currentData = null
 let sendCooldown = Date.now() - 2000
 let interlocutor = null
 let formerInterlocutor = null
@@ -17,7 +20,6 @@ let userId = null
 let userName = null
 
 domSubmitName.onclick = () => {
-    console.log(domName.value)
     if (domName.value != "") {
         createUser(domName.value, (id) => {
             userId = id
@@ -62,7 +64,7 @@ export function getData(data) {
         formerList = JSON.stringify(data[sessionId]?.messages)
         formerResponses = JSON.stringify(data[sessionId]?.responses)
     }
-    currentMessages = data
+    currentData = data
     displayConv()
 }
 
@@ -90,8 +92,8 @@ function displayConv() {
     msg.classList.add("msg", "info");
     msg.textContent = "Début de la conversation avec Léo";
     domMsgs.appendChild(msg);
-    if (currentMessages[sessionId]) {
-        let messages = Object.values(currentMessages[sessionId]?.messages);
+    if (currentData[sessionId]) {
+        let messages = Object.values(currentData[sessionId]?.messages);
         messages.map((item, i) => {
             if (item.interlocutor !== interlocutor) return
             let msg = document.createElement("div");
@@ -102,31 +104,41 @@ function displayConv() {
             if (i == messages.length - 1) {
                 msg.classList.add("last");
             }
+            if (item.msg == "J'ai trouvé ça :") {
+                msg.classList.add("haveImg");
+                msg.onclick = () => domImageFullscreen.classList.add('show')
+            }
             msg.textContent = item.msg;
             domMsgs.appendChild(msg);
         });
 
-        let responses = Object.values(currentMessages[sessionId]?.responses)
-        console.log(responses)
-        let response = []
+        let responses = Object.values(currentData[sessionId]?.responses)
+        let responseId = Object.keys(currentData[sessionId]?.responses)
+        let interlocutorRresponses = []
         let parent;
-        responses.forEach((item) => {
-            response = item.options
-            parent = item.parent
-        })
-        if (response) {
-            while (domResponses.firstChild) {
-                domResponses.removeChild(domResponses.firstChild);
+        responses.forEach((item, i) => {
+            if (item.interlocutor == interlocutor) {
+                interlocutorRresponses = item.options
+                parent = item.parent
+                if (interlocutorRresponses) {
+                    while (domResponses.firstChild) {
+                        domResponses.removeChild(domResponses.firstChild);
+                    }
+                    interlocutorRresponses.map((item) => {
+                        if (item.interlocutor) return
+                        let msg = document.createElement("div");
+                        msg.classList.add("response");
+                        msg.onclick = () => sendEventToBack("response", item, interlocutorRresponses, parent, responseId[i])
+                        msg.textContent = item;
+                        domResponses.appendChild(msg);
+                    })
+                } else {
+                    while (domResponses.firstChild) {
+                        domResponses.removeChild(domResponses.firstChild);
+                    }
+                }
             }
-            response.map((item) => {
-                if (item.interlocutor) return
-                let msg = document.createElement("div");
-                msg.classList.add("response");
-                msg.onclick = () => sendEventToBack("response", item, response, parent)
-                msg.textContent = item;
-                domResponses.appendChild(msg);
-            })
-        }
+        })
     } else {
         let msg = document.createElement("div");
         msg.classList.add("msg", "info");
@@ -135,11 +147,11 @@ function displayConv() {
     }
     document.getElementById('msgsContainer').scrollTop = 9999
 }
-function sendEventToBack(title, content, responsesArray, parent) {
+function sendEventToBack(title, content, responsesArray, parent, responseId) {
     if (sendCooldown < Date.now() - 3000) {
         console.log("Sending...")
         sendCooldown = Date.now()
-        backendEvent({ title: title, id: sessionId, content, responsesArray, parent, interlocutor })
+        backendEvent({ title: title, id: sessionId, content, responsesArray, parent, interlocutor, responseId })
     } else {
         console.warn("Send cooldown")
     }

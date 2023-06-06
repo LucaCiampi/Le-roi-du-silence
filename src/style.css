@@ -74,6 +74,36 @@ canvas {
     transform: translateX(100%);
 }
 
+#imageFullscreen {
+    position: absolute;
+    z-index: 30;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #525252c5;
+    transition: 0.3s ease-in-out;
+    height: 100%;
+    width: 100%;
+    visibility: hidden;
+    opacity: 0;
+}
+
+#imageFullscreen > img {
+    transform: scale(0);
+    max-height: 90%;
+    max-width: 90%;
+    transition: 0.3s ease-in-out;
+}
+
+#imageFullscreen.show > img {
+    transform: scale(1);
+}
+
+#imageFullscreen.show {
+    visibility: visible;
+    opacity: 1;
+}
+
 #mobileHome {
     z-index: 1;
     background-color: red;
@@ -171,6 +201,15 @@ ul {
     background-color: rgb(78, 78, 78);
     color: rgb(240, 240, 240);
     align-self: start;
+}
+
+.msg.haveImg::after {
+    content: "";
+    display: block;
+    background: url("./2DAssets/word_ordi.png");
+    width: 150px;
+    height: 150px;
+    background-size: contain;
 }
 
 .msg.info {

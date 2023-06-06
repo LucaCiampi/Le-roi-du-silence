@@ -11,6 +11,7 @@ export default class GlobalParameter {
         this.currentZone = null;
         this.sounds = null;
         this.gameEnded = false;
+        this.playerPosition = null;
         this.playerSpawn = null;
         this.score = null;
 

@@ -194,7 +194,7 @@ export default class Room {
         audioPosition.add(newPositionalAudioTrack);
         this.model.add(audioPosition)
 
-        this.positionalAudioTracks.push(newPositionalAudioTrack)
+        this.positionalAudioTracks.push(newPositionalAudioTrack);
     }
 
     /**
@@ -265,6 +265,12 @@ export default class Room {
     addDebugOptions() {
         const folder = this.debug.gui.addFolder(this.name);
 
+        // this.roomPositionDebug(folder);
+        // this.doorsPositionDebug(folder);
+        this.propsPositionDebug(folder);
+    }
+
+    roomPositionDebug(folder) {
         // Rotation
         folder.add(this.model.rotation, 'y')
             .onChange((value) => {
@@ -284,7 +290,9 @@ export default class Room {
             .onChange((value) => {
                 this.model.position.z = value;
             });
+    }
 
+    doorsPositionDebug(folder) {
         // Closing door
         folder.add(this.closingDoor.rotation, 'y')
             .onChange((value) => {
@@ -320,5 +328,24 @@ export default class Room {
             .onChange((value) => {
                 this.exitDoor.position.z = value;
             });
+    }
+
+    propsPositionDebug(folder) {
+        this.props.forEach((prop, index) => {
+            folder.add(prop.position, 'x')
+                .onChange((value) => {
+                    this.props[index].position.x = value;
+                });
+
+            folder.add(prop.position, 'y')
+                .onChange((value) => {
+                    this.props[index].position.y = value;
+                });
+
+            folder.add(prop.position, 'z')
+                .onChange((value) => {
+                    this.props[index].position.z = value;
+                });
+        })
     }
 }

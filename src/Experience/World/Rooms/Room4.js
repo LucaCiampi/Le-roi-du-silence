@@ -27,17 +27,21 @@ export default class Room4 extends Room {
 
         this.additionalEntranceActions = () => { this.updateFogDistance(); }
 
-        if (this.debug.active) {
-            this.addDebugOptions();
-        }
-
         this.gameOverZone = new TriggerZone({
             debug: this.debug,
             scene: this.scene,
             startPosition: new THREE.Vector2(-32, -29),
             endPosition: new THREE.Vector2(-23, -27),
             color: 0x22ff66
-        })
+        });
+
+        const note = this.resources.items['tel'].scene;
+        note.position.set(0, 1.7, -17.8);
+        this.props.push(note);
+
+        if (this.debug.active) {
+            this.addDebugOptions();
+        }
     }
 
     update() {

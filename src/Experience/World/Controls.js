@@ -224,6 +224,7 @@ export default class Controls {
         this.playerCollisions();
 
         this.camera.instance.position.copy(this.playerCollider.end);
+        this.parameter.playerPosition = this.playerCollider.end;
 
         this.playerPositionDebugUi.innerHTML =
             'x: ' + this.playerCollider.end.x +
@@ -302,6 +303,6 @@ export default class Controls {
     addDebugOptions() {
         this.playerPositionDebugUi.classList.remove('d-none');
         this.playerSpeed = 15;
-        // this.GRAVITY = 0;
+        this.GRAVITY = 0;
     }
 }  

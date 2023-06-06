@@ -171,24 +171,30 @@ export default class Room {
         newPositionalAudioTrack.setBuffer(this.resources.items[soundName]);
         newPositionalAudioTrack.setRefDistance(refDistance);
         newPositionalAudioTrack.setLoop(loop);
+
         if (delay) {
             const playbackRate = 1 / delay;
             newPositionalAudioTrack.setPlaybackRate(playbackRate);
         }
-        // create an object for the sound to play from
-        const audioGeometry = new THREE.BoxGeometry(1, 1, 1);
-        const audioMaterial = new THREE.MeshPhongMaterial({ color: 0x00ff00 });
-        if (!this.debug.active) {
-            audioMaterial.opacity = 1;
+
+        let audioPosition = null;
+
+        if (this.debug.active) {
+            // create an object for the sound to play from
+            const audioGeometry = new THREE.BoxGeometry(1, 1, 1);
+            const audioMaterial = new THREE.MeshPhongMaterial({ color: 0x00ff00 });
+            audioPosition = new THREE.Mesh(audioGeometry, audioMaterial);
         }
-        const audioMesh = new THREE.Mesh(audioGeometry, audioMaterial);
-        audioMesh.position.set(x, y, z);
+        else {
+            audioPosition = new THREE.Object3D();
+            audioPosition.position.set(x, y, z);
+        }
 
         // finally add the sound to the mesh
-        audioMesh.add(newPositionalAudioTrack);
+        audioPosition.add(newPositionalAudioTrack);
+        this.model.add(audioPosition)
 
         this.positionalAudioTracks.push(newPositionalAudioTrack)
-        this.model.add(audioMesh)
     }
 
     /**

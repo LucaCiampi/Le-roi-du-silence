@@ -260,12 +260,12 @@ body {
     font-size: 1.2rem;
 }
 
-/* 
+
 ul {
     padding: 0;
     margin-top: 70px;
     list-style: none;
-} */
+}
 
 
 #mobileMessages>h2 {
@@ -325,7 +325,7 @@ ul {
 .msg {
     width: fit-content;
     padding: 7px 10px 7px 10px;
-    margin: 5px;
+    margin: 5px 5px 5px 45px;
     border-radius: 16px;
     font-family: Arial, Helvetica, sans-serif;
     background: #6eb6e2;
@@ -334,6 +334,7 @@ ul {
 }
 
 .msg.foreign {
+    margin: 5px 45px 5px 5px;
     background-color: rgb(78, 78, 78);
     color: rgb(240, 240, 240);
     align-self: start;
@@ -343,6 +344,7 @@ ul {
     content: "";
     display: block;
     background: url("./Interface/lettre-intro.png");
+    border-radius: 10px;
     width: 150px;
     height: 150px;
     background-size: contain;

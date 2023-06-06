@@ -95,7 +95,8 @@ export default class Layout {
      * Hides the intro menu
      */
     hideIntroMenu() {
-        this.introMenu.classList.add('d-none');
+        // this.introMenu.classList.add('d-none');
+        this.hideUiPanel(this.introMenu);
     }
 
     /**
@@ -158,6 +159,14 @@ export default class Layout {
 
     hideMemoriesOverlay() {
         this.memoriesOverlay.classList.remove('memories-overlay--visible');
+    }
+
+    hideUiPanel(panel) {
+        panel.classList.add('hidden');
+
+        setTimeout(() => {
+            panel.classList.add('z--1');
+        }, 1000);
     }
 
     /**

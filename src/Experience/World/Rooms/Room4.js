@@ -34,6 +34,7 @@ export default class Room4 extends Room {
             endPosition: new THREE.Vector2(-23, -27),
             color: 0x22ff66
         });
+        this.hasEnteredGameOverZone = false;
 
         const note = this.resources.items['tel'].scene;
         note.position.set(0, 1.7, -17.8);
@@ -45,12 +46,19 @@ export default class Room4 extends Room {
     }
 
     update() {
-        // Silence is golden...
+        if (!this.hasEnteredGameOverZone) {
+            this.checkGameOverZone();
+        }
     }
 
-    hasEnteredGameOverZone(playerPosition) {
-        if (this.gameOverZone.hasPlayerInZone(playerPosition)) {
-            return true;
+    /**
+     * Checks if the player has entered the game over zone
+     */
+    checkGameOverZone() {
+        if (this.gameOverZone.hasPlayerInZone(this.parameter.playerPosition)) {
+            console.log('end')
+            this.hasEnteredGameOverZone = true;
+            this.world.userInterface.showUserInterfaceModal('./Interface/lettre-intro.png')
         }
     }
 

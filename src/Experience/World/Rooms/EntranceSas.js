@@ -39,7 +39,6 @@ export default class EntranceSas extends Room {
     }
 
     showLeoIntroLetter() {
-        console.log('coucou')
         this.world.userInterface.showUserInterfaceModal('./Interface/lettre-intro.png');
     }
 

@@ -99,9 +99,6 @@ export default class World {
                 if (this.parameter.currentZone < this.parameter.NUMBER_OF_ZONES) {
                     this.checkNextZoneEntrance();
                 }
-                else {
-                    this.checkGameOverZone();
-                }
             }
         }
     }
@@ -153,18 +150,6 @@ export default class World {
         if (this.rooms[this.parameter.currentZone + 1].hasPlayerInRoom(this.controls.playerCollider.end)) {
             this.parameter.incrementCurrentZone();
             this.roomEntranceSetup();
-        }
-    }
-
-    /**
-     * Checks if the player has entered the game over zone
-     */
-    checkGameOverZone() {
-        if (this.rooms[this.parameter.currentZone].hasEnteredGameOverZone(this.controls.playerCollider.end)) {
-            console.log('end')
-            setTimeout(() => {
-                this.parameter.endGame();
-            }, 2000);
         }
     }
 

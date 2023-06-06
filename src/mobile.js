@@ -46,10 +46,12 @@ export function createMobileInterface(id, handleBackendEvent, createMobileSessio
 }
 
 export function getData(data) {
+    document.getElementById('mobileHome').style.backgroundColor = "chartreuse"
     //get interlocutor
     userId && (interlocutor = data[sessionId]?.users[userId]?.assignedInterlocutor)
     if (formerInterlocutor !== interlocutor) {
         displayConv()
+        domTopBar.textContent = interlocutor
         formerInterlocutor = interlocutor
     }
     //display convs list
@@ -114,21 +116,21 @@ function displayConv() {
 
         let responses = Object.values(currentData[sessionId]?.responses)
         let responseId = Object.keys(currentData[sessionId]?.responses)
-        let interlocutorRresponses = []
+        let interlocutorResponses = []
         let parent;
         responses.forEach((item, i) => {
             if (item.interlocutor == interlocutor) {
-                interlocutorRresponses = item.options
+                interlocutorResponses = item.options
                 parent = item.parent
-                if (interlocutorRresponses) {
+                if (interlocutorResponses) {
                     while (domResponses.firstChild) {
                         domResponses.removeChild(domResponses.firstChild);
                     }
-                    interlocutorRresponses.map((item) => {
+                    interlocutorResponses.map((item) => {
                         if (item.interlocutor) return
                         let msg = document.createElement("div");
                         msg.classList.add("response");
-                        msg.onclick = () => sendEventToBack("response", item, interlocutorRresponses, parent, responseId[i])
+                        msg.onclick = () => sendEventToBack("response", item, interlocutorResponses, parent, responseId[i])
                         msg.textContent = item;
                         domResponses.appendChild(msg);
                     })

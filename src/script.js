@@ -8,7 +8,7 @@ const domUserNumber = document.getElementById('userNumber')
 const domUserList = document.getElementById('userList')
 const startButton = document.getElementById('startButton')
 let users = {}
-let interlocutors = ["prof", "bff"/*, "mom", "rand"*/]
+let interlocutors = ["prof", "bff", "mom", "rand"]
 startButton.onclick = () => startGame()
 
 const firebaseConfig = {
@@ -86,9 +86,14 @@ function createSession() {
   });
 
   //DEBUG display session
-  let p = document.createElement('p')
-  p.textContent = currentSession.slice(17)
-  document.getElementById('container').appendChild(p)
+  let p = document.createElement('a')
+  p.textContent = currentSession
+  p.href = "http://localhost:5173/?" + currentSession
+  p.target = "_blank"
+  p.style.position = "absolute"
+  p.style.right = 0
+  p.style.top = 0
+  document.getElementById('introMenu').appendChild(p)
   displayQrCode(currentSession)
 
   //set ping
@@ -136,9 +141,10 @@ function displayQrCode(key) {
 //callback on desktop to transmit events to backend
 function handleDesktopEvent(event) {
   console.log('event : ', event)
+  let content = texts[event.interlocutor]?.find(({ trigger }) => trigger === event.parent).answers.find(({ preview }) => preview === event.content).content
   if (event?.title === "response") {
     push(ref(database, `sessions/${event.id}/messages/`), {
-      msg: event?.content,
+      msg: content,
       foreign: false,
       time: Date.now(),
       interlocutor: event.interlocutor
@@ -155,7 +161,9 @@ function handleDesktopEvent(event) {
 
     //push the answers
     let answers = texts[event.interlocutor].find(({ trigger }) => trigger === event.parent).answers.find(({ preview }) => preview === event.content).answers
-    answers.forEach((answer, i) => {
+    let delay = 1000
+    answers.forEach((answer) => {
+      delay += answer.length * 50
       setTimeout(() => {
         push(ref(database, `sessions/${event.id}/messages/`), {
           msg: answer,
@@ -163,7 +171,7 @@ function handleDesktopEvent(event) {
           time: Date.now(),
           interlocutor: event.interlocutor
         })
-      }, i * 1500 + Math.random() * 1000);
+      }, delay);
     });
   }
 
@@ -187,7 +195,7 @@ function handleDesktopEvent(event) {
   //     })
   //   });
   // }
-  if (event?.includes("room")) {
+  if (event?.title.includes("room")) {
     interlocutors.forEach(inter => {
       push(ref(database, `sessions/${currentSession}/messages/`), {
         msg: "J'ai trouvé ça :",

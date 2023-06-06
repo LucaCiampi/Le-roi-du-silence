@@ -1,49 +1,93 @@
 {
     "prof": [
         {
-            "trigger": "Bonjour je suis le prof de Léo...",
+            "trigger": "Bonjour, je suis Mme Kakemono, la prof principale de Léo. Si tu trouve des informations a son sujet, donne-les moi au plus vite.",
             "answers": [
                 {
-                    "preview": "savez-vous où il est ?",
+                    "preview": "Quest-ce qui lui arrive ?",
                     "content": "Bonjour monsieur, savez ou est Léo ?",
                     "answers": [
-                        "Non, je ne sais pas.",
-                        "Pourquoi, qu'est-ce qu'il se passe encore ?"
+                        "Non, il a juste disparu depuis longtems",
+                        "J’ai échangé avec le CPE, ses parents sont très inquiets",
+                        "Essayez le retrouver au plus vite, cela a déjà assez duré"
                     ]
                 },
                 {
-                    "preview": "question prof 2",
-                    "content": "question prof 2",
+                    "preview": "Comme quoi ?",
+                    "content": "Des information comme quoi ?",
                     "answers": [
                         "réponse",
                         "prof",
                         "2"
                     ]
+                }
+            ]
+        },
+        {
+            "trigger": "Ah, vous avez trouvé ses lunettes ? C’est bien on se rapproche",
+            "answers": [
+                {
+                    "preview": "Il doit rien voir",
+                    "content": "Mais… Il ne doit rien voir sans !",
+                    "answers": [
+                        "Si si je crois qu’il voit très bien sans puisque qu’il ne les met plus depuis des semaines",
+                        "Je suppose qu’elles n’était pas assez bien à son goût…"
+                    ]
                 },
                 {
-                    "preview": "question prof 3",
-                    "content": "question prof 3",
+                    "preview": "On se rapproche ?",
+                    "content": "C’est a dire, on se rapproche ?",
                     "answers": [
-                        "réponse prof 3"
+                        "Eh bien si ses lunettes sont là c’est probablement qu’il se trouve pas loin",
+                        "Continuez de chercher"
+                    ]
+                },
+                {
+                    "preview": "C'est bien les siennes ?",
+                    "content": "Vous êtes sûr qu’il sagit bien des siennes ?",
+                    "answers": [
+                        "Ah oui, je m’en souvient très bien de ses lunettes",
+                        "Il faisait toujours son intéressant avec !"
                     ]
                 }
             ]
         },
         {
-            "trigger": "Ah, vous avez trouvé ses lunettes",
+            "trigger": "C’est vraiment dommage ! Léo était un très bon élève, et maintenant il a vraiment des notes médiocres.",
             "answers": [
                 {
-                    "preview": "ça vous évoque qqchose ?",
-                    "content": "Cela vous évque-t-il quelque chose ?",
+                    "preview": "Pourquoi ?",
+                    "content": "Vous savez pourquoi ?",
                     "answers": [
-                        "Huh, non..."
+                        "Je suppose que, comme beaucoup dans son genre, il s’est laissé aller",
+                        "C’est bien dommage… quel fainéant"
                     ]
                 },
                 {
-                    "preview": "bah ouais",
-                    "content": "bah ouais",
+                    "preview": "Il est pas très investi",
+                    "content": "Il ne dois pas être très investi en cours",
                     "answers": [
-                        "👃"
+                        "En effet. Il est vraiment tête en l’air pendant mes cours",
+                        "Il n’est probablement plus intéressé par le français"
+                    ]
+                },
+                {
+                    "preview": "Il en avait des meilleurs ?",
+                    "content": "Il avait des meilleurs notes avant ?",
+                    "answers": [
+                        "Oui des très bonnes notes même"
+                    ]
+                }
+            ]
+        },
+        {
+            "trigger": "Ce couloir est des plus en plus dégrédé à chaque fois.",
+            "answers": [
+                {
+                    "preview": "",
+                    "content": "",
+                    "answers": [
+                        ""
                     ]
                 }
             ]
@@ -88,6 +132,34 @@
                     "answers": [
                         "Bah ouais il vois rien sans...",
                         "il a du encore se faire bully"
+                    ]
+                }
+            ]
+        }
+    ],
+    "mom": [
+        {
+            "trigger": "",
+            "answers": [
+                {
+                    "preview": "",
+                    "content": "",
+                    "answers": [
+                        ""
+                    ]
+                }
+            ]
+        }
+    ],
+    "rand": [
+        {
+            "trigger": "Bonjour! je suis guillaume, on s’est peut-être déjà croisé au collège je suis dans la classe de Léo, je viens aussi d’apprendre sa disparition. ",
+            "answers": [
+                {
+                    "preview": "",
+                    "content": "",
+                    "answers": [
+                        ""
                     ]
                 }
             ]

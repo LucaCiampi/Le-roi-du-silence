@@ -93,7 +93,7 @@ export default class Room {
      * Sends a message to every mobile device connected to the session
      */
     sendMessageToPhone() {
-        this.zoneEvent(this.name);
+        this.zoneEvent({title: this.name});
     }
 
     /**

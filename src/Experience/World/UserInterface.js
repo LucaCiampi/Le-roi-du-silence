@@ -146,8 +146,8 @@ export default class Layout {
      * Displays the modal window
      * allowing to display images like Leo's notes
      */
-    showUserInterfaceModal() {
-        this.modalContent.src = './Interface/lettre-intro.png';
+    showUserInterfaceModal(fileSource) {
+        this.modalContent.src = fileSource;
         this.fadeInUiPanel(this.modal);
     }
 
@@ -155,7 +155,6 @@ export default class Layout {
      * Hides the modal window
      */
     hideUserInterfaceModal() {
-        this.modalContent.src = './Interface/lettre-intro.png';
         this.fadeOutUiPanel(this.modal);
     }
 

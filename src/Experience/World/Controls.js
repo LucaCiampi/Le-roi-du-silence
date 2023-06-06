@@ -159,6 +159,12 @@ export default class Controls {
 
         }
 
+        if (this.keyStates['KeyF']) {
+
+            this.userInterface.hideUserInterfaceModal();
+            
+        }
+
         if (this.playerOnFloor) {
 
             if (this.keyStates['Space']) {
@@ -287,7 +293,7 @@ export default class Controls {
         if (this.stepSoundPlaying === false) {
             this.parameter.sounds.steps[this.stepSoundIndex].play();
             this.stepSoundPlaying = true;
-            
+
             setTimeout(() => {
                 this.stepSoundPlaying = false;
                 this.stepSoundIndex += 1;

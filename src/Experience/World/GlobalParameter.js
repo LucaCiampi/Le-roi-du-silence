@@ -14,6 +14,7 @@ export default class GlobalParameter {
         this.playerPosition = null;
         this.playerSpawn = null;
         this.score = null;
+        this.modalOpen = false;
 
         this.NUMBER_OF_ZONES = 4;
 

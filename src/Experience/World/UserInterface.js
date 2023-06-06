@@ -147,6 +147,8 @@ export default class Layout {
      * allowing to display images like Leo's notes
      */
     showUserInterfaceModal(fileSource) {
+        this.parameter.modalOpen = true;
+        this.parameter.sounds.play('page2');
         this.modalContent.src = fileSource;
         this.fadeInUiPanel(this.modal);
     }
@@ -155,6 +157,8 @@ export default class Layout {
      * Hides the modal window
      */
     hideUserInterfaceModal() {
+        this.parameter.modalOpen = false;
+        this.parameter.sounds.play('page');
         this.fadeOutUiPanel(this.modal);
     }
 

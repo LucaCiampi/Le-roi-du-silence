@@ -161,8 +161,10 @@ export default class Controls {
 
         if (this.keyStates['KeyF']) {
 
-            this.userInterface.hideUserInterfaceModal();
-            
+            if (this.parameter.modalOpen) {
+                this.userInterface.hideUserInterfaceModal();
+            }
+
         }
 
         if (this.playerOnFloor) {

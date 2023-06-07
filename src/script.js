@@ -21,7 +21,7 @@ let currentSession = null
 let mobile = null
 let desktop = null
 let userNumber = 0
-let baseUrl = "dev--gobelins-webgl.netlify.app"
+let baseUrl = "gobelins-webgl.netlify.app"
 // let baseUrl = "brume.surge.sh"
 
 //firebase config

@@ -35,18 +35,13 @@ body {
     transition: 1s ease-in;
 }
 
-#introMenu,
-#endMenu {
-    background-color: black;
-}
-
-#introMenu>div {
+.intro-menu>div {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.QRcodeContainer > canvas{
+.QRcodeContainer>canvas {
     border-radius: 15px;
 }
 
@@ -154,7 +149,6 @@ body {
 .memories-overlay {
     position: absolute;
     inset: 0;
-    /* background-color: #6eb6e2; */
     background-color: #8bb;
     opacity: 0;
     transition: 200ms ease-in;
@@ -522,5 +516,5 @@ ul {
 @font-face {
     font-family: "Chalkduster";
     src:
-        url("/static/Fonts/chalkduster.woff2") format("woff2");
+        url("/Fonts/chalkduster.woff2") format("woff2");
 }

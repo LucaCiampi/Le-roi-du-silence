@@ -88,6 +88,11 @@ export default
         path: "./Sounds/heavy.mp3"
     },
     {
+        name: "fire",
+        type: "audio",
+        path: "./Sounds/fire.mp3"
+    },
+    {
         name: "heart",
         type: "audio",
         path: "./Sounds/heart.mp3"

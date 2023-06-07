@@ -30,8 +30,8 @@ export default class Room4 extends Room {
         this.gameOverZone = new TriggerZone({
             debug: this.debug,
             scene: this.scene,
-            startPosition: new THREE.Vector2(-32, -29),
-            endPosition: new THREE.Vector2(-23, -20),
+            startPosition: new THREE.Vector2(-31, -28),
+            endPosition: new THREE.Vector2(-29, -26),
             color: 0x22ff66
         });
         this.hasEnteredGameOverZone = false;

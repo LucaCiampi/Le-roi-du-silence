@@ -400,11 +400,14 @@ ul {
 }
 
 .animation--popup {
-    animation: popUp 2s ease-in-out;
+    animation-name: popUp;
+    animation-duration: 2s;
+    animation-timing-function: ease-in-out;
 }
 
-.door-open-label--popup {
-    animation: popUp 6s ease-in-out 6s;
+.door-open-label {
+    animation-delay: 2s;
+    animation-duration: 4s;
 }
 
 @keyframes fadeIn {

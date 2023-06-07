@@ -200,11 +200,11 @@ export default class Layout {
      * Displays a text indicating the door has been opened
      */
     showUserIndicatorDoorOpen() {
-        this.doorOpenLabel.classList.add('door-open-label--popup');
+        this.doorOpenLabel.classList.add('animation--popup');
 
         setTimeout(() => {
-            this.doorOpenLabel.classList.remove('door-open-label--popup');
-        }, 6000);
+            this.doorOpenLabel.classList.remove('animation--popup');
+        }, 10000);
     }
 
     showMemoriesOverlay() {

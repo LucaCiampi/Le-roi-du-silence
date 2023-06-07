@@ -22,6 +22,11 @@ export default
         path: "./Environment/room1-godrays.glb"
     },
     {
+        name: "room1Highlights",
+        type: "gltfModel",
+        path: "./Environment/room1-highlights.glb"
+    },
+    {
         name: "room2",
         type: "gltfModel",
         path: "./Environment/room2.glb"

@@ -72,18 +72,24 @@ export default class Layout {
      * Adds event listeners
      */
     eventListener() {
-        this.motion.addEventListener('ended', () => {
-            this.motion.classList.add('z--1');
-        })
-
-        this.introMenuStartButton.addEventListener('click', () => {
-            this.event.start();
-            this.parameter.sounds.play('uiButton');
-        })
-
+        this.motion.addEventListener('ended', this.handleMotionEnded.bind(this))
+        
+        this.introMenuStartButton.addEventListener('click', this.handleStartGameButtonClick.bind(this))
+        
         this.pauseMenu.addEventListener('click', () => {
             this.event.continue();
         })
+    }
+    
+    handleMotionEnded() {
+        this.motion.classList.add('z--1');
+        this.introMenuStartButton.removeEventListener('ended', this.handleStartGameButtonClick);
+    }
+    
+    handleStartGameButtonClick() {
+        this.event.start();
+        this.parameter.sounds.play('uiButton');
+        this.introMenuStartButton.removeEventListener('click', this.handleStartGameButtonClick);
     }
 
     /**

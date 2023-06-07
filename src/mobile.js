@@ -129,7 +129,7 @@ function displayConv() {
                 msg.classList.add("haveImg");
                 msg.onclick = () => domImageFullscreen.classList.add('show')
             }
-            if (item.msg == "end") {
+            if (item.msg == "Sa dernière lettre :") {
                 domImageFullscreen2.classList.add('show')
                 msg.style.display = "none"
             }

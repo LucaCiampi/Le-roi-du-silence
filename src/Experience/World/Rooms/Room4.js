@@ -36,7 +36,7 @@ export default class Room4 extends Room {
             id: 10,
             color: 0x22ff66,
             callback: () => {
-                this.sendMessageToPhone(10);
+                this.world.sendMessageToPhone(10);
             }
         });
         this.hasEnteredGameOverZone = false;

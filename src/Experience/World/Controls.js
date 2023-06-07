@@ -210,7 +210,7 @@ export default class Controls {
             this.playerVelocity.y -= this.GRAVITY * deltaTime;
 
             // small air resistance
-            damping *= 0.1;
+            damping *= 0.8;
 
         }
 

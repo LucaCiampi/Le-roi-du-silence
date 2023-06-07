@@ -51,6 +51,7 @@ export default class Layout {
     eventReceiver() {
         this.event.on('Ready', () => {
             this.hideLoader();
+            this.showMotion();
             this.showIntroMenu();
         })
         this.event.on('Start', () => {
@@ -81,7 +82,14 @@ export default class Layout {
         })
     }
 
+    showMotion() {
+        this.motion.classList.remove('z--1');
+        this.motion.play();
+        console.log('play')
+    }
+
     handleMotionEnded() {
+        console.log('handleMotionEnded')
         this.motion.classList.add('z--1');
         this.introMenuStartButton.removeEventListener('ended', this.handleStartGameButtonClick);
     }

@@ -4,7 +4,7 @@
             "trigger": "Bonjour, je suis Mme Zhu, la prof principale de Léo. Si tu trouves des informations a son sujet, donne-les moi au plus vite.",
             "answers": [
                 {
-                    "preview": "Quest-ce qui lui arrive ?",
+                    "preview": "Qu'est-ce qui lui arrive ?",
                     "content": "Vous savez ce qui lui arrive ?",
                     "score": 0,
                     "answers": [
@@ -443,7 +443,7 @@
     ],
     "Guillaume LEFEBVRE": [
         {
-            "trigger": "Bonjour! je suis guillaume, on s'est peut-être déjà croisé au collège je suis dans la classe de Léo, je viens aussi d'apprendre sa disparition. ",
+            "trigger": "Bonjour! Je suis Guillaume, on s'est peut-être déjà croisés au collège je suis dans la classe de Léo, je viens aussi d'apprendre sa disparition.",
             "answers": [
                 {
                     "preview": "Tu sais pk il a disparu ?",

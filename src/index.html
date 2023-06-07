@@ -84,14 +84,16 @@
     </div>
     <div id="container">
         <div id="loader" class="loader"><img class="spin" src="./Interface/arrow.png" /></div>
-        <video src="./Interface/motion.mp4" id="motion" class="motion" autoplay>
+        <video src="./Interface/motion.mp4" autoplay="" playsinline="" id="motion" class="motion z--1">
             Motion d'introduction impossible à charger
         </video>
         <div id="introMenu" class="menu intro-menu d-none">
             <div class="QRcodeContainer">
                 <h1>Bienvenue</h1>
-                <p>Léo, un élève de votre classe, à disparu. Aidez-nous a comprendre ce qui c'est passé.<br> Bonne
-                    découverte</p>
+                <p>
+                    Léo, un élève de votre classe, à disparu. Aidez-nous a comprendre ce qui c'est passé.<br>
+                    Bonne découverte
+                </p>
                 <div>
                     <canvas id="qrcode"></canvas>
                     <ul id="userList"></ul>
@@ -149,11 +151,11 @@
         <canvas class="webgl"></canvas>
     </div>
     <script>
-        const motion = document.getElementById('motion');
-        motion.addEventListener('ended', () => {
-            console.log('ended')
-            motion.classList.add('z--1');
-        })
+        // const motion = document.getElementById('motion');
+        // motion.addEventListener('ended', () => {
+        //     console.log('ended')
+        //     motion.classList.add('z--1');
+        // })
     </script>
     <script type="module" src="./script.js"></script>
 </body>

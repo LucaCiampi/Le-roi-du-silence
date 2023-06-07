@@ -24,7 +24,7 @@ export default class EntranceSas extends Room {
                 endPosition: new THREE.Vector2(2, -3),
                 callback: () => { this.showLeoIntroLetter(); },
                 hasIndicator: true,
-                indicatorYPosition: 0,
+                indicatorYPosition: 0.3,
             })
         ]
 

@@ -26,7 +26,7 @@ export default class TriggerZone {
         this.boundingBox = new THREE.Box2(this.startPosition, this.endPosition);
 
         if (this.hasIndicator) {
-            this.indicator = this.resources.items['tel'].scene.clone();
+            this.indicator = this.resources.items['crown'].scene.clone();
             const center = new THREE.Vector2();
             this.boundingBox.getCenter(center);
             this.indicator.position.set(center.x, this.indicatorYPosition, center.y);

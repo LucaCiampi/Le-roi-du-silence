@@ -51,17 +51,22 @@ export default
         type: "gltfModel",
         path: "./Environment/room4.glb"
     },
-    {
-        name: "hands",
-        type: "gltfModel",
-        path: "./Environment/hands.glb"
-    },
     
     // Objects
     {
         name: "door",
         type: "gltfModel",
         path: "./Environment/door.glb"
+    },
+    {
+        name: "letter",
+        type: "gltfModel",
+        path: "./Environment/letter.glb"
+    },
+    {
+        name: "crown",
+        type: "gltfModel",
+        path: "./Environment/crown.glb"
     },
     {
         name: "tel",

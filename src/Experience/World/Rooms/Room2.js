@@ -22,7 +22,8 @@ export default class Room2 extends Room {
             color: 0xff0000
         });
 
-        this.closingDoor.position.set(0, 0, -0.16);
+        // this.closingDoor.position.set(0, 0, -0.16);
+        this.closingDoor.position.set(-0.1, 0.15, 0);
         this.closingDoor.rotation.set(0, 1.57, 0);
         // this.exitDoor.position.set(-8.7, 0, -12.6);
         this.exitDoor.position.set(-8.7, 0.15, -12.48);
@@ -39,7 +40,7 @@ export default class Room2 extends Room {
                 startPosition: new THREE.Vector2(-16, -27),
                 endPosition: new THREE.Vector2(-13, -24),
                 hasIndicator: true,
-                indicatorYPosition: -0.5,
+                indicatorYPosition: 0,
             }),
             // The TV's
             new TriggerZone({
@@ -50,7 +51,7 @@ export default class Room2 extends Room {
                 startPosition: new THREE.Vector2(-18, -25),
                 endPosition: new THREE.Vector2(-14, -22),
                 hasIndicator: true,
-                indicatorYPosition: -0.5,
+                indicatorYPosition: 0,
             }),
             // The tags
             new TriggerZone({
@@ -61,7 +62,7 @@ export default class Room2 extends Room {
                 startPosition: new THREE.Vector2(-12, -30),
                 endPosition: new THREE.Vector2(-8, -28),
                 hasIndicator: true,
-                indicatorYPosition: -0.5,
+                indicatorYPosition: 0,
             }),
         ]
 
@@ -70,15 +71,15 @@ export default class Room2 extends Room {
         this.addExitDoor();
 
         // Hands
-        const hands = this.resources.items['hands'].scene;
-        const handsClips = this.resources.items['hands'].animations;
+        const hands = this.resources.items['room2Hands'].scene;
+        const handsClips = this.resources.items['room2Hands'].animations;
         // hands.position.set(4, 1, 4);
         this.handsClip = THREE.AnimationClip.findByName(handsClips, 'animation_0');
         this.handsAnimationMixer = new THREE.AnimationMixer(hands);
         this.props.push(hands);
 
         // Props
-        this.props.push(this.resources.items['room2Hands'].scene);
+        // this.props.push(this.resources.items['room2Hands'].scene);
         this.props.push(this.resources.items['room2Props'].scene);
 
         this.additionalEntranceActions = () => { this.initHandsAnimation(); }

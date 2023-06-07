@@ -9,7 +9,7 @@ const domUserList = document.getElementById('userList')
 const startButton = document.getElementById('startButton')
 startButton.onclick = () => startGame()
 let users = {}
-let interlocutors = ["Jérome CHAMBART", "Julien DUFEU", "Mélanie ROUTEL", "Guillaume LEFEBVRE"]
+let interlocutors = ["Olivia ZHU", "Paul DUFEU", "Mélanie ROUTEL", "Guillaume LEFEBVRE"]
 let score = 0
 
 const firebaseConfig = {

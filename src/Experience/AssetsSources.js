@@ -32,6 +32,16 @@ export default
         path: "./Environment/room2.glb"
     },
     {
+        name: "room2Props",
+        type: "gltfModel",
+        path: "./Environment/room2-props.glb"
+    },
+    {
+        name: "room2Hands",
+        type: "gltfModel",
+        path: "./Environment/room2-hands.glb"
+    },
+    {
         name: "room3",
         type: "gltfModel",
         path: "./Environment/room3.glb"

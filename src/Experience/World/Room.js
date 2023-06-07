@@ -255,6 +255,10 @@ export default class Room {
             }
         });
 
+        this.triggerZones.forEach((zone) => {
+            zone.destroyIndicator();
+        })
+
         this.stopPositionalAudioTracks();
 
         this.scene.remove(this.model);

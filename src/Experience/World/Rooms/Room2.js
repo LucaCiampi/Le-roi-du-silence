@@ -12,6 +12,7 @@ export default class Room2 extends Room {
     init() {
         this.name = "room2";
         this.position = new THREE.Vector3(-7, -1, -19.9);
+        // this.position = new THREE.Vector3(-7, -1.2, -19.9);
         this.spawnPosition = new THREE.Vector3(-8, 0, -21);
         this.entranceTriggerZone = new TriggerZone({
             debug: this.debug,
@@ -23,7 +24,8 @@ export default class Room2 extends Room {
 
         this.closingDoor.position.set(0, 0, -0.16);
         this.closingDoor.rotation.set(0, 1.57, 0);
-        this.exitDoor.position.set(-8.7, 0, -12.6);
+        // this.exitDoor.position.set(-8.7, 0, -12.6);
+        this.exitDoor.position.set(-8.7, 0.15, -12.48);
 
         this.minScoreRequired = 4;
 
@@ -74,6 +76,10 @@ export default class Room2 extends Room {
         this.handsClip = THREE.AnimationClip.findByName(handsClips, 'animation_0');
         this.handsAnimationMixer = new THREE.AnimationMixer(hands);
         this.props.push(hands);
+
+        // Props
+        this.props.push(this.resources.items['room2Hands'].scene);
+        this.props.push(this.resources.items['room2Props'].scene);
 
         this.additionalEntranceActions = () => { this.initHandsAnimation(); }
 

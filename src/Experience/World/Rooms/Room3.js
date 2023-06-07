@@ -12,7 +12,7 @@ export default class Room3 extends Room {
     init() {
         this.name = "room3";
         this.position = new THREE.Vector3(-25, 1.4, -41);
-        this.spawnPosition = new THREE.Vector3(-14, 2, -37);
+        this.spawnPosition = new THREE.Vector3(-15, 2.4, -39);
         this.entranceTriggerZone = new TriggerZone({
             debug: this.debug,
             scene: this.scene,
@@ -20,7 +20,7 @@ export default class Room3 extends Room {
             endPosition: new THREE.Vector2(-11, -38.7),
             color: 0xff0000
         });
-        
+
         this.closingDoor.position.set(-9.4, 0, -2.8);
         this.exitDoor.position.set(-0.05, 0, -0.1);
 
@@ -31,19 +31,25 @@ export default class Room3 extends Room {
             new TriggerZone({
                 debug: this.debug,
                 scene: this.scene,
+                resources: this.resources,
                 name: 'corner',
                 id: 8,
                 startPosition: new THREE.Vector2(-16, -43.5),
                 endPosition: new THREE.Vector2(-13.5, -41),
+                hasIndicator: true,
+                indicatorYPosition: 2,
             }),
             // Small corner near end
             new TriggerZone({
                 debug: this.debug,
                 scene: this.scene,
+                resources: this.resources,
                 name: 'small corner near end',
                 id: 9,
-                startPosition: new THREE.Vector2(-21, -41),
-                endPosition: new THREE.Vector2(-18, -38),
+                startPosition: new THREE.Vector2(-23, -43),
+                endPosition: new THREE.Vector2(-20, -41.5),
+                hasIndicator: true,
+                indicatorYPosition: 2,
             }),
         ];
 
@@ -54,9 +60,9 @@ export default class Room3 extends Room {
         this.addPositionalAudioTrack('heavy', 2, -8, 4, 0);
         this.addPositionalAudioTrack('fire', 2, -8, 4, 0);
         this.addPositionalAudioTrack('heart', 2, 0, 4, 0);
-        
+
         this.setAshes();
-        
+
         if (this.debug.active) {
             this.addDebugOptions();
         }
@@ -116,5 +122,5 @@ export default class Room3 extends Room {
         }
     }
 
-    
+
 }

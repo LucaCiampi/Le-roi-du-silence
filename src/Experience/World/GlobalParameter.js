@@ -84,11 +84,16 @@ export default class GlobalParameter {
     }
 
     /**
-     * Triggers the game over
+     * Ends the game
      */
     endGame() {
-        this.event.end();
-        this.gameEnded = true;
+        console.log('🔚 End');
+        this.sounds.play('end');
+
+        setTimeout(() => {
+            this.event.end();
+            this.gameEnded = true;
+        }, 2000);
     }
 
     /**

@@ -90,6 +90,10 @@ export default class Layout {
         this.event.start();
         this.parameter.sounds.play('uiButton');
         this.introMenuStartButton.removeEventListener('click', this.handleStartGameButtonClick);
+        setTimeout(() => {
+            this.introMenuStartButton.remove();
+            this.introMenu.remove();
+        }, 600);
     }
 
     /**
@@ -168,6 +172,10 @@ export default class Layout {
         this.parameter.modalOpen = false;
         this.parameter.sounds.play('page');
         this.fadeOutUiPanel(this.modal);
+        
+        if (this.parameter.currentZone === 4) {
+            this.parameter.endGame();
+        }
     }
 
     /**
@@ -192,11 +200,11 @@ export default class Layout {
      * Displays a text indicating the door has been opened
      */
     showUserIndicatorDoorOpen() {
-        this.doorOpenLabel.classList.add('door-open-label--popup');
+        this.doorOpenLabel.classList.add('animation--popup');
 
         setTimeout(() => {
-            this.doorOpenLabel.classList.remove('door-open-label--popup');
-        }, 6000);
+            this.doorOpenLabel.classList.remove('animation--popup');
+        }, 10000);
     }
 
     showMemoriesOverlay() {

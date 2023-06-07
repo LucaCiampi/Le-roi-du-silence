@@ -32,6 +32,21 @@ export default
         path: "./Environment/room2.glb"
     },
     {
+        name: "room2Props",
+        type: "gltfModel",
+        path: "./Environment/room2-props.glb"
+    },
+    {
+        name: "room2Hands",
+        type: "gltfModel",
+        path: "./Environment/room2-hands.glb"
+    },
+    {
+        name: "room2Tags",
+        type: "gltfModel",
+        path: "./Environment/room2-tags.glb"
+    },
+    {
         name: "room3",
         type: "gltfModel",
         path: "./Environment/room3.glb"
@@ -41,17 +56,22 @@ export default
         type: "gltfModel",
         path: "./Environment/room4.glb"
     },
-    {
-        name: "hands",
-        type: "gltfModel",
-        path: "./Environment/hands.glb"
-    },
     
     // Objects
     {
         name: "door",
         type: "gltfModel",
         path: "./Environment/door.glb"
+    },
+    {
+        name: "letter",
+        type: "gltfModel",
+        path: "./Environment/letter.glb"
+    },
+    {
+        name: "crown",
+        type: "gltfModel",
+        path: "./Environment/crown.glb"
     },
     {
         name: "tel",

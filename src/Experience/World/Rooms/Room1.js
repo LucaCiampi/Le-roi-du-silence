@@ -32,37 +32,49 @@ export default class Room1 extends Room {
             new TriggerZone({
                 debug: this.debug,
                 scene: this.scene,
+                resources: this.resources, 
                 name: 'zone 1',
                 id: 1,
                 startPosition: new THREE.Vector2(0, -18),
                 endPosition: new THREE.Vector2(1, -16),
+                hasIndicator: true,
+                indicatorYPosition: 3,
             }),
             // Near the lockers on the left
             new TriggerZone({
                 debug: this.debug,
                 scene: this.scene,
+                resources: this.resources, 
                 name: 'zone 2',
                 id: 2,
                 startPosition: new THREE.Vector2(-3, -17),
                 endPosition: new THREE.Vector2(-2, -14),
+                hasIndicator: true,
+                indicatorYPosition: 3,
             }),
             // Next to the door open on the right
             new TriggerZone({
                 debug: this.debug,
                 scene: this.scene,
+                resources: this.resources, 
                 name: 'zone 3',
                 id: 3,
                 startPosition: new THREE.Vector2(4, -20),
                 endPosition: new THREE.Vector2(6, -18),
+                hasIndicator: true,
+                indicatorYPosition: 3,
             }),
             // At the end of the corridor
             new TriggerZone({
                 debug: this.debug,
                 scene: this.scene,
+                resources: this.resources, 
                 name: 'zone 4',
                 id: 4,
                 startPosition: new THREE.Vector2(2, -24),
                 endPosition: new THREE.Vector2(4, -22),
+                hasIndicator: true,
+                indicatorYPosition: 3,
             })
         ]
 
@@ -77,14 +89,14 @@ export default class Room1 extends Room {
         godRays.children[0].children[0].material.transparent = true;
         this.props.push(godRays);
 
-        const highlights = this.resources.items['room1Highlights'].scene;
-        highlights.children.forEach(prop => {
-            prop.material = new THREE.MeshPhongMaterial({
-                color: 0xffff00
-            })
-        });
-        // this.props.push(highlights);
-        console.log(highlights);
+        // const highlights = this.resources.items['room1Highlights'].scene;
+        // highlights.children.forEach(prop => {
+        //     prop.material = new THREE.MeshPhongMaterial({
+        //         color: 0xffff00
+        //     })
+        // });
+
+        this.props.push(this.resources.items['room1Highlights'].scene);
 
         this.addPositionalAudioTrack('room1Kids', 4, 4, 3, 4, true, 1);
 

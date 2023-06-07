@@ -83,7 +83,6 @@ export default class World {
             camera: this.camera,
         })
 
-        // const color = new THREE.Color(0xffdccc);
         this.scene.background = new THREE.Color(0xffdccc);
 
         this.isReady = true;
@@ -179,9 +178,15 @@ export default class World {
             this.parameter.score++;
             this.userInterface.updateScore(this.parameter.score);
             this.userInterface.showUserIndicatorTrustPointEarned();
-
+            this.parameter.sounds.play('pointEarned');
+            
             if (this.parameter.score === this.rooms[this.parameter.currentZone + 1].minScoreRequired) {
                 this.userInterface.showUserIndicatorDoorOpen();
+                
+                setTimeout(() => {
+                    this.parameter.sounds.play('doorOpen');
+                }, 2000);
+                
                 console.log('🚪 Exit door of room ' + this.parameter.currentZone + ' open')
                 this.rooms[this.parameter.currentZone].openExitDoor();
             }

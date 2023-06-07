@@ -29,6 +29,15 @@ export default class Sounds {
             page2: new Howl({
                 src: ['./Sounds/page2.wav']
             }),
+            end: new Howl({
+                src: ['./Sounds/end.mp3']
+            }),
+            pointEarned: new Howl({
+                src: ['./Sounds/pointEarned.mp3']
+            }),
+            doorOpen: new Howl({
+                src: ['./Sounds/doorOpen.mp3']
+            }),
         }
 
         this.steps = [

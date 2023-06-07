@@ -1,12 +1,12 @@
 {
-    "Jérome CHAMBART": [
+    "Olivia ZHU": [
         {
-            "trigger": "Bonjour, je suis Mme Kakemono, la prof principale de Léo. Si tu trouve des informations a son sujet, donne-les moi au plus vite.",
+            "trigger": "Bonjour, je suis Mme Zhu, la prof principale de Léo. Si tu trouves des informations a son sujet, donne-les moi au plus vite.",
             "answers": [
                 {
                     "preview": "Quest-ce qui lui arrive ?",
                     "content": "Vous savez ce qui lui arrive ?",
-                    "score": 1,
+                    "score": 0,
                     "answers": [
                         "Non, il a juste disparu depuis longtems",
                         "J’ai échangé avec le CPE, ses parents sont très inquiets",
@@ -16,7 +16,7 @@
                 {
                     "preview": "Comme quoi ?",
                     "content": "Des information comme quoi ?",
-                    "score": 1,
+                    "score": 0,
                     "answers": [
                         "Je ne sais pas, des indices qui pourrais nous permettre de le retrouver…",
                         "Ou de comprendre ce qui lui est arrivé…",
@@ -40,7 +40,7 @@
                 {
                     "preview": "On se rapproche ?",
                     "content": "C’est a dire, on se rapproche ?",
-                    "score": 1,
+                    "score": 0,
                     "answers": [
                         "Eh bien si ses lunettes sont là c’est probablement qu’il se trouve pas loin",
                         "Continuez de chercher"
@@ -72,7 +72,7 @@
                 {
                     "preview": "Il est pas très investi",
                     "content": "Il ne dois pas être très investi en cours",
-                    "score": 1,
+                    "score": 0,
                     "answers": [
                         "En effet. Il est vraiment tête en l’air pendant mes cours",
                         "Il n’est probablement plus intéressé par le français"
@@ -81,7 +81,7 @@
                 {
                     "preview": "Il en avait des meilleurs ?",
                     "content": "Il avait des meilleurs notes avant ?",
-                    "score": 1,
+                    "score": 0,
                     "answers": [
                         "Oui des très bonnes notes même"
                     ]
@@ -89,704 +89,368 @@
             ]
         },
         {
-            "trigger": "Ce couloir est des plus en plus dégrédé à chaque fois.",
+            "trigger": "Ce couloir est des plus en plus dégrédé à chaque fois. Ah tiens, certains messages sont destinés à Léo. Rien qui puisse nous rensigner sur sa position, continuez.",
             "answers": [
                 {
-                    "preview": "Réponse par défaut",
-                    "content": "Réponse par défaut",
-                    "score": 1,
+                    "preview": "On ne l'aime pas ?",
+                    "content": "Il n’est pas très populaire ?",
+                    "score": 0,
                     "answers": [
-                        "réponse de l'interlocuteur"
+                        "Non, il n’est pas très apprécié de ses camarades"
                     ]
                 },
                 {
-                    "preview": "Réponse 2",
-                    "content": "Réponse 2",
+                    "preview": "Dû à ses mauvaises notes ?",
+                    "content": "Vous ne pensez pas que ces messages soient liés à ses mauvaises notes et à sa disparition ?",
                     "score": 1,
                     "answers": [
-                        "réponse de l'interlocuteur 2"
-                    ]
-                },
-                {
-                    "preview": "Réponse 3",
-                    "content": "Réponse 3",
-                    "score": 1,
-                    "answers": [
-                        "réponse de l'interlocuteur 3"
+                        "Non, je pense que c’est précisément l’inverse !",
+                        "Léo ne s’investit plus dans les cours et apparament pas non plus avec ses camarades"
                     ]
                 }
             ]
         },
         {
-            "trigger": "Réaction par défaut",
+            
+        },
+        {
+            "trigger": "Le nombre de fois où j’ai du lui confisquer son téléphone. Je pense que Léo détient le record…",
             "answers": [
                 {
-                    "preview": "Réponse par défaut",
-                    "content": "Réponse par défaut",
+                    "preview": "En cours ?",
+                    "content": "Il le regardait tout le temps ?",
                     "score": 1,
                     "answers": [
-                        "réponse de l'interlocuteur"
-                    ]
-                },
-                {
-                    "preview": "Réponse 2",
-                    "content": "Réponse 2",
-                    "score": 1,
-                    "answers": [
-                        "réponse de l'interlocuteur 2"
-                    ]
-                },
-                {
-                    "preview": "Réponse 3",
-                    "content": "Réponse 3",
-                    "score": 1,
-                    "answers": [
-                        "réponse de l'interlocuteur 3"
+                        "Oui, je n’ai jamais vu ça complétement addict au jeux mobiles";
+                        "Ou au réseaux sociaux je ne sais pas"
                     ]
                 }
             ]
         },
         {
-            "trigger": "Réaction par défaut",
-            "answers": [
-                {
-                    "preview": "Réponse par défaut",
-                    "content": "Réponse par défaut",
-                    "score": 1,
-                    "answers": [
-                        "réponse de l'interlocuteur"
-                    ]
-                },
-                {
-                    "preview": "Réponse 2",
-                    "content": "Réponse 2",
-                    "score": 1,
-                    "answers": [
-                        "réponse de l'interlocuteur 2"
-                    ]
-                },
-                {
-                    "preview": "Réponse 3",
-                    "content": "Réponse 3",
-                    "score": 1,
-                    "answers": [
-                        "réponse de l'interlocuteur 3"
-                    ]
-                }
-            ]
+
         },
         {
-            "trigger": "Réaction par défaut",
-            "answers": [
-                {
-                    "preview": "Réponse par défaut",
-                    "content": "Réponse par défaut",
-                    "score": 1,
-                    "answers": [
-                        "réponse de l'interlocuteur"
-                    ]
-                },
-                {
-                    "preview": "Réponse 2",
-                    "content": "Réponse 2",
-                    "score": 1,
-                    "answers": [
-                        "réponse de l'interlocuteur 2"
-                    ]
-                },
-                {
-                    "preview": "Réponse 3",
-                    "content": "Réponse 3",
-                    "score": 1,
-                    "answers": [
-                        "réponse de l'interlocuteur 3"
-                    ]
-                }
-            ]
+            
         },
         {
-            "trigger": "Réaction par défaut",
+            "trigger": "Ça fait plusieurs fois que je dois lui faire des remontrances. Il le prend de plus en plus mal. La dernière fois, j’ai du l’envoyer chez le proviseur.",
             "answers": [
                 {
-                    "preview": "Réponse par défaut",
-                    "content": "Réponse par défaut",
+                    "preview": "C’est récent ?",
+                    "content": "C’est récent ?",
                     "score": 1,
                     "answers": [
-                        "réponse de l'interlocuteur"
+                        "Oui, depuis peu, la moindre petite remarque l’irite au plus haut point"
                     ]
                 },
                 {
-                    "preview": "Réponse 2",
-                    "content": "Réponse 2",
-                    "score": 1,
+                    "preview": "Pour ça qu’il s’est caché ?",
+                    "content": "Vous croyez que c’est pour ça qu’il s’est caché ?",
+                    "score": 0,
                     "answers": [
-                        "réponse de l'interlocuteur 2"
-                    ]
-                },
-                {
-                    "preview": "Réponse 3",
-                    "content": "Réponse 3",
-                    "score": 1,
-                    "answers": [
-                        "réponse de l'interlocuteur 3"
-                    ]
-                }
-            ]
-        },
-        {
-            "trigger": "Réaction par défaut",
-            "answers": [
-                {
-                    "preview": "Réponse par défaut",
-                    "content": "Réponse par défaut",
-                    "score": 1,
-                    "answers": [
-                        "réponse de l'interlocuteur"
-                    ]
-                },
-                {
-                    "preview": "Réponse 2",
-                    "content": "Réponse 2",
-                    "score": 1,
-                    "answers": [
-                        "réponse de l'interlocuteur 2"
-                    ]
-                },
-                {
-                    "preview": "Réponse 3",
-                    "content": "Réponse 3",
-                    "score": 1,
-                    "answers": [
-                        "réponse de l'interlocuteur 3"
+                        "Je ne sais pas, peut être…"
                     ]
                 }
             ]
         }
     ],
-    "Julien DUFEU": [
+    "Paul DUFEU": [
         {
-            "trigger": "Salut, excuse moi t'a pas vu Léo ?",
+            "trigger": "Salut ! Moi c’est Paul, le meilleur ami de Léo. Merci de nous aider à le chercher…",
             "answers": [
                 {
-                    "preview": "non je le cherche aussi",
-                    "content": "non je le cherche aussi",
-                    "score": 1,
+                    "preview": "D’où le connais-tu ?",
+                    "content": "D’où le connais-tu ?",
+                    "score": 0,
                     "answers": [
-                        "Ah, ok",
-                        "Bah merci a toi"
+                        "Tous les deux on était dans la même école primaire et on se connaît depuis la maternelle."
                     ]
                 },
                 {
-                    "preview": "question best friend 2",
-                    "content": "question best friend 2",
-                    "score": 1,
+                    "preview": "Pourquoi il a disparu ?",
+                    "content": "Pourquoi Leo a disparu ?",
+                    "score": 0,
                     "answers": [
-                        "réponse",
-                        "best friend",
-                        "2"
+                        "J’ai peut-être ma petite idée…"
                     ]
                 },
                 {
-                    "preview": "question best friend 3",
-                    "content": "question best friend 3",
-                    "score": 1,
+                    "preview": "Où peut-il être ?",
+                    "content": "Où est-il ?",
+                    "score": 0,
                     "answers": [
-                        "réponse best friend 3"
+                        "J’en ai aucune idée…"
                     ]
                 }
             ]
         },
         {
-            "trigger": "Réaction par défaut",
+            "trigger": "Ce sont les lunettes de Léo. Je sais qu’il les déteste…",
             "answers": [
                 {
-                    "preview": "Réponse par défaut",
-                    "content": "Réponse par défaut",
-                    "score": 1,
+                    "preview": "C'est compréhensible…",
+                    "content": "Je comprends pourquoi il les déteste",
+                    "score": 0,
                     "answers": [
-                        "réponse de l'interlocuteur"
+                        "Les goûts et les couleurs tu sais…"
                     ]
                 },
                 {
-                    "preview": "Réponse 2",
-                    "content": "Réponse 2",
+                    "preview": "Pourquoi ?",
+                    "content": "C’est dommage, pourquoi ?",
                     "score": 1,
                     "answers": [
-                        "réponse de l'interlocuteur 2"
+                        "Il m’avait dit que dans sa classe, des garçons faisaient des blagues sur ses lunettes. Il disait que c’était pour rire, que c’était rien de bien méchant."
                     ]
                 },
                 {
-                    "preview": "Réponse 3",
-                    "content": "Réponse 3",
+                    "preview": "Elles sont cassées",
+                    "content": "Elles ont l’air cassées…",
                     "score": 1,
                     "answers": [
-                        "réponse de l'interlocuteur 3"
+                        "Je sais que des garçons s’amusaient avec… les prenaient à Léo et se les lançaient en cours. Ça énervait beaucoup la prof, elle a même puni Léo un jour, en pensant que c’était lui le fautif."
                     ]
                 }
             ]
         },
         {
-            "trigger": "Réaction par défaut",
+            "trigger": "Léo a toujours eu des bonnes notes et il me disait que ça énervait sa classe.",
             "answers": [
                 {
-                    "preview": "Réponse par défaut",
-                    "content": "Réponse par défaut",
+                    "preview": "Pourquoi ?",
+                    "content": "Explique-moi pourquoi ?",
                     "score": 1,
                     "answers": [
-                        "réponse de l'interlocuteur"
+                        "Certains lui cachaient ses affaires, déchiraient les feuilles de ses cahiers et l’insultaient.",
+                        "Au bout d’un moment il a volontairement commencé à avoir des mauvaises notes.",
+                        "Tout ça pour qu’on le laisse tranquille."
                     ]
                 },
                 {
-                    "preview": "Réponse 2",
-                    "content": "Réponse 2",
-                    "score": 1,
+                    "preview": "Il était vantard",
+                    "content": "Peut-être qu’il se vantait trop…",
+                    "score": 0,
                     "answers": [
-                        "réponse de l'interlocuteur 2"
+                        "Léo est plutôt discret, ce n’est pas son genre."
                     ]
                 },
                 {
-                    "preview": "Réponse 3",
-                    "content": "Réponse 3",
-                    "score": 1,
+                    "preview": "Il trichait",
+                    "content": "Peut-être qu'il trichait ?",
+                    "score": 0,
                     "answers": [
-                        "réponse de l'interlocuteur 3"
+                        "Ce n’est pas son genre."
                     ]
                 }
             ]
         },
         {
-            "trigger": "Réaction par défaut",
+            "trigger": "Léo se faisaient insulter et bousculer en permanence. C’était des insultes du matin au soir.",
             "answers": [
                 {
-                    "preview": "Réponse par défaut",
-                    "content": "Réponse par défaut",
-                    "score": 1,
+                    "preview": "Il avait fait quelque chose de mal ?",
+                    "content": "Il avait fait quelque chose de mal ?",
+                    "score": 0,
                     "answers": [
-                        "réponse de l'interlocuteur"
+                        "Absolument pas.",
+                        "Mais ça ne s’arrêtait jamais. Il allait au collège avec la boule au ventre.",
+                        "Je le voyais en ligne même la nuit parce qu’il ne dormait plus"
                     ]
                 },
                 {
-                    "preview": "Réponse 2",
-                    "content": "Réponse 2",
-                    "score": 1,
+                    "preview": "J’espère qu’il s’est vengé",
+                    "content": "J’espère qu’il s’est vengé en retour.",
+                    "score": 0,
                     "answers": [
-                        "réponse de l'interlocuteur 2"
+                        "Il avait trop peur des représailles si il osait se rebeller."
                     ]
                 },
                 {
-                    "preview": "Réponse 3",
-                    "content": "Réponse 3",
+                    "preview": "Il en parlé à quelqu’un ?",
+                    "content": "En a-t-il parlé à quelqu’un ?",
                     "score": 1,
                     "answers": [
-                        "réponse de l'interlocuteur 3"
+                        "Oui il a essayé…",
+                        "Il est allé voir le CPE, mais il lui disait de s’endurcir, qu’il était trop sensible aux petites moqueries. Que c’était que des taquineries."
                     ]
                 }
             ]
         },
         {
-            "trigger": "Réaction par défaut",
+            
+        },
+        {
+            "trigger": "Quand j’allais chez lui, son téléphone n’arrêtait pas de vibrer. Il avait l’air inquiet à chaque notif.",
             "answers": [
                 {
-                    "preview": "Réponse par défaut",
-                    "content": "Réponse par défaut",
-                    "score": 1,
+                    "preview": "De qui ?",
+                    "content": "De qui venaient ces notifications ?",
+                    "score": 0,
                     "answers": [
-                        "réponse de l'interlocuteur"
-                    ]
-                },
-                {
-                    "preview": "Réponse 2",
-                    "content": "Réponse 2",
-                    "score": 1,
-                    "answers": [
-                        "réponse de l'interlocuteur 2"
-                    ]
-                },
-                {
-                    "preview": "Réponse 3",
-                    "content": "Réponse 3",
-                    "score": 1,
-                    "answers": [
-                        "réponse de l'interlocuteur 3"
+                        "De mecs de sa classe encore. Ils lui envoyaient des photos de lui qu’ils avaient prises à son insu à la cantine, en cours de sport… Les photos tournaient partout."
                     ]
                 }
             ]
         },
         {
-            "trigger": "Réaction par défaut",
+            "trigger": "Les menaces continuaient en dehors de l’école. Sur Instagram et Snapchat je voyais des insultes et des photos circulaient de lui. On le ridiculisait. Il a fini par désinstaller tous ses réseaux sociaux.",
             "answers": [
                 {
-                    "preview": "Réponse par défaut",
-                    "content": "Réponse par défaut",
+                    "preview": "Par peur ?",
+                    "content": "Par peur que les insultes continuent ?",
                     "score": 1,
                     "answers": [
-                        "réponse de l'interlocuteur"
+                        "Oui. Les garçons de sa classe avaient créé un faux compte ou ils se faisaient passer pour Léo.",
+                        "Avec le compte ils ont menacé des grands du collège.",
+                        "Et c’est allé jusqu’aux menaces de blesser Léo."
                     ]
                 },
                 {
-                    "preview": "Réponse 2",
-                    "content": "Réponse 2",
-                    "score": 1,
+                    "preview": "Il a eu raison",
+                    "content": "Il a eu raison…",
+                    "score": 0,
                     "answers": [
-                        "réponse de l'interlocuteur 2"
-                    ]
-                },
-                {
-                    "preview": "Réponse 3",
-                    "content": "Réponse 3",
-                    "score": 1,
-                    "answers": [
-                        "réponse de l'interlocuteur 3"
+                        "Je ne sais pas trop… C’est pas juste que ce soit à lui de désinstaller ses réseaux sociaux."
                     ]
                 }
             ]
         },
         {
-            "trigger": "Réaction par défaut",
+            "trigger": "ça doit faire une semaine qu’il a pas répondu à mes messages. Alors que normalement on parle tous les jours.",
             "answers": [
                 {
-                    "preview": "Réponse par défaut",
-                    "content": "Réponse par défaut",
+                    "preview": "Quels sont les derniers messages ?",
+                    "content": "Quels ont été vos derniers messages ?",
                     "score": 1,
                     "answers": [
-                        "réponse de l'interlocuteur"
-                    ]
-                },
-                {
-                    "preview": "Réponse 2",
-                    "content": "Réponse 2",
-                    "score": 1,
-                    "answers": [
-                        "réponse de l'interlocuteur 2"
-                    ]
-                },
-                {
-                    "preview": "Réponse 3",
-                    "content": "Réponse 3",
-                    "score": 1,
-                    "answers": [
-                        "réponse de l'interlocuteur 3"
+                        "Et bien… Il disait qu’il en pouvait plus, qu’il voulait arrêter de souffrir. Mais que les mecs de sa classe ne s’arrêteraient jamais. Que les humiliations allaient continuer."
                     ]
                 }
             ]
         },
         {
-            "trigger": "Réaction par défaut",
-            "answers": [
-                {
-                    "preview": "Réponse par défaut",
-                    "content": "Réponse par défaut",
-                    "score": 1,
-                    "answers": [
-                        "réponse de l'interlocuteur"
-                    ]
-                },
-                {
-                    "preview": "Réponse 2",
-                    "content": "Réponse 2",
-                    "score": 1,
-                    "answers": [
-                        "réponse de l'interlocuteur 2"
-                    ]
-                },
-                {
-                    "preview": "Réponse 3",
-                    "content": "Réponse 3",
-                    "score": 1,
-                    "answers": [
-                        "réponse de l'interlocuteur 3"
-                    ]
-                }
-            ]
-        },
-        {
-            "trigger": "Réaction par défaut",
-            "answers": [
-                {
-                    "preview": "Réponse par défaut",
-                    "content": "Réponse par défaut",
-                    "score": 1,
-                    "answers": [
-                        "réponse de l'interlocuteur"
-                    ]
-                },
-                {
-                    "preview": "Réponse 2",
-                    "content": "Réponse 2",
-                    "score": 1,
-                    "answers": [
-                        "réponse de l'interlocuteur 2"
-                    ]
-                },
-                {
-                    "preview": "Réponse 3",
-                    "content": "Réponse 3",
-                    "score": 1,
-                    "answers": [
-                        "réponse de l'interlocuteur 3"
-                    ]
-                }
-            ]
+
         }
     ],
     "Mélanie ROUTEL": [
         {
-            "trigger": "Réaction par défaut",
+            "trigger": "Bonjour, je suis Madame Routel, la maman de Léo. Depuis quelques temps mon fils s’enferme dans sa chambre et ne donne plus de nouvelles. Au début je pensais que ce n’était qu’une tristesse passagère mais de plus en plus son état m’inquiète.",
             "answers": [
                 {
-                    "preview": "Réponse par défaut",
-                    "content": "Réponse par défaut",
-                    "score": 1,
+                    "preview": "Allons enquêter",
+                    "content": "Allons voir ce qui lui est arrivé.",
+                    "score": 0,
                     "answers": [
-                        "réponse de l'interlocuteur"
-                    ]
-                },
-                {
-                    "preview": "Réponse 2",
-                    "content": "Réponse 2",
-                    "score": 1,
-                    "answers": [
-                        "réponse de l'interlocuteur 2"
-                    ]
-                },
-                {
-                    "preview": "Réponse 3",
-                    "content": "Réponse 3",
-                    "score": 1,
-                    "answers": [
-                        "réponse de l'interlocuteur 3"
+                        "Merci de nous aider."
                     ]
                 }
             ]
         },
         {
-            "trigger": "Réaction par défaut",
+            
+        },
+        {
+            "trigger": "Nous étions mécontents de voir avec son père que ses notes avaient baissées. La maîtresse disait de lui qu’il n’était pas concentré en classe !",
             "answers": [
                 {
-                    "preview": "Réponse par défaut",
-                    "content": "Réponse par défaut",
-                    "score": 1,
+                    "preview": "Il joue la nuit",
+                    "content": "Il ne dort pas assez à cause des écrans certainement. S’il se couchaît plus tôt il serait moins fatigué.",
+                    "score": 0,
                     "answers": [
-                        "réponse de l'interlocuteur"
+                        "C'est ce que je pense également."
                     ]
                 },
                 {
-                    "preview": "Réponse 2",
-                    "content": "Réponse 2",
+                    "preview": "Que fait-il en cours ?",
+                    "content": "Que fait-il en cours ?",
                     "score": 1,
                     "answers": [
-                        "réponse de l'interlocuteur 2"
+                        "D’après la maîtresse, il regarde par la fenêtre ou dessine au lieu de recopier les cours."
                     ]
                 },
                 {
-                    "preview": "Réponse 3",
-                    "content": "Réponse 3",
+                    "preview": "Que dit-il ?",
+                    "content": "Que dit-il pour expliquer cette réaction ?",
                     "score": 1,
                     "answers": [
-                        "réponse de l'interlocuteur 3"
+                        "Comme d’habitude il n’a pas grand chose à dire. Il estime que depuis récemment, les cours ne l’intéressent plus, qu’ils ne lui sont pas utiles."
                     ]
                 }
             ]
         },
         {
-            "trigger": "Réaction par défaut",
+            
+        },
+        {
+            
+        },
+        {
+            "trigger": "Comme d’habitude il n’a pas grand chose à dire. Il estime que depuis récemment, les cours ne l’intéressent plus, qu’ils ne lui sont pas utiles.",
             "answers": [
                 {
-                    "preview": "Réponse par défaut",
-                    "content": "Réponse par défaut",
+                    "preview": "Depuis quand l'a-t'il ?",
+                    "content": "Depuis quand a-t'il un téléphone ?",
                     "score": 1,
                     "answers": [
-                        "réponse de l'interlocuteur"
+                        "Nous lui avons acheté un pour ses 13 ans.",
+                        "Il avait tellement insisté pour en avoir un que nous nous sommes dit que ça lui ferait plaisir."
                     ]
                 },
                 {
-                    "preview": "Réponse 2",
-                    "content": "Réponse 2",
-                    "score": 1,
+                    "preview": "Il parlait avec ses amis ?",
+                    "content": "Peut-être qu’il parlait avec ses amis",
+                    "score": 0,
                     "answers": [
-                        "réponse de l'interlocuteur 2"
-                    ]
-                },
-                {
-                    "preview": "Réponse 3",
-                    "content": "Réponse 3",
-                    "score": 1,
-                    "answers": [
-                        "réponse de l'interlocuteur 3"
+                        "Je ne sais pas. On aurait dit qu’il passait son temps à discuter avec je-ne-sais qui.",
+                        "Et parfois, sans aucune raison, il se mettait à faire la grimace et quittait la table."
                     ]
                 }
             ]
         },
         {
-            "trigger": "Réaction par défaut",
+            
+        },
+        {
+            "trigger": "Avec son père nous nous sommes dit que s’il continuait sur cette voie nous allions lui confisquer son téléphone.",
             "answers": [
                 {
-                    "preview": "Réponse par défaut",
-                    "content": "Réponse par défaut",
+                    "preview": "C’est une mauvaise idée.",
+                    "content": "C’est une mauvaise idée. Il ne faudrait pas qu’il s’isole encore plus, il a besoin d’être en contact avec ses amis.",
                     "score": 1,
                     "answers": [
-                        "réponse de l'interlocuteur"
+                        "Je n’en suis pas persuadée. S’il veut partager du temps avec ses amis il peut aussi bien sortir prendre l’air avec eux !"
                     ]
                 },
                 {
-                    "preview": "Réponse 2",
-                    "content": "Réponse 2",
+                    "preview": "C’est une bonne idée",
+                    "content": "C’est une bonne idée, il ne faut pas qu’il s’enferme encore plus.",
                     "score": 1,
                     "answers": [
-                        "réponse de l'interlocuteur 2"
-                    ]
-                },
-                {
-                    "preview": "Réponse 3",
-                    "content": "Réponse 3",
-                    "score": 1,
-                    "answers": [
-                        "réponse de l'interlocuteur 3"
+                        "Absolument, d’autant que nous l’avons déjà prévenu. La prochaine fois sera de trop."
                     ]
                 }
             ]
         },
         {
-            "trigger": "Réaction par défaut",
+            "trigger": "Depuis quelques temps je n’arrive même plus à lui parler. Dès que j’essaie d’engager la conversation avec lui il s’énerve.",
             "answers": [
                 {
-                    "preview": "Réponse par défaut",
-                    "content": "Réponse par défaut",
+                    "preview": "Il vous a dit pourquoi ?",
+                    "content": "Il vous a dit pourquoi ?",
                     "score": 1,
                     "answers": [
-                        "réponse de l'interlocuteur"
+                        "Non il refuse de me parler de quoique ce soit.",
+                        "Sa chambre est en bazar en permanence et toutes mes réflexions ne changent rien."
                     ]
                 },
                 {
-                    "preview": "Réponse 2",
-                    "content": "Réponse 2",
-                    "score": 1,
+                    "preview": "Il a besoin d’être seul",
+                    "content": "Il a probablement besoin d’être seul",
+                    "score": 0,
                     "answers": [
-                        "réponse de l'interlocuteur 2"
-                    ]
-                },
-                {
-                    "preview": "Réponse 3",
-                    "content": "Réponse 3",
-                    "score": 1,
-                    "answers": [
-                        "réponse de l'interlocuteur 3"
-                    ]
-                }
-            ]
-        },
-        {
-            "trigger": "Réaction par défaut",
-            "answers": [
-                {
-                    "preview": "Réponse par défaut",
-                    "content": "Réponse par défaut",
-                    "score": 1,
-                    "answers": [
-                        "réponse de l'interlocuteur"
-                    ]
-                },
-                {
-                    "preview": "Réponse 2",
-                    "content": "Réponse 2",
-                    "score": 1,
-                    "answers": [
-                        "réponse de l'interlocuteur 2"
-                    ]
-                },
-                {
-                    "preview": "Réponse 3",
-                    "content": "Réponse 3",
-                    "score": 1,
-                    "answers": [
-                        "réponse de l'interlocuteur 3"
-                    ]
-                }
-            ]
-        },
-        {
-            "trigger": "Réaction par défaut",
-            "answers": [
-                {
-                    "preview": "Réponse par défaut",
-                    "content": "Réponse par défaut",
-                    "score": 1,
-                    "answers": [
-                        "réponse de l'interlocuteur"
-                    ]
-                },
-                {
-                    "preview": "Réponse 2",
-                    "content": "Réponse 2",
-                    "score": 1,
-                    "answers": [
-                        "réponse de l'interlocuteur 2"
-                    ]
-                },
-                {
-                    "preview": "Réponse 3",
-                    "content": "Réponse 3",
-                    "score": 1,
-                    "answers": [
-                        "réponse de l'interlocuteur 3"
-                    ]
-                }
-            ]
-        },
-        {
-            "trigger": "Réaction par défaut",
-            "answers": [
-                {
-                    "preview": "Réponse par défaut",
-                    "content": "Réponse par défaut",
-                    "score": 1,
-                    "answers": [
-                        "réponse de l'interlocuteur"
-                    ]
-                },
-                {
-                    "preview": "Réponse 2",
-                    "content": "Réponse 2",
-                    "score": 1,
-                    "answers": [
-                        "réponse de l'interlocuteur 2"
-                    ]
-                },
-                {
-                    "preview": "Réponse 3",
-                    "content": "Réponse 3",
-                    "score": 1,
-                    "answers": [
-                        "réponse de l'interlocuteur 3"
-                    ]
-                }
-            ]
-        },
-        {
-            "trigger": "Réaction par défaut",
-            "answers": [
-                {
-                    "preview": "Réponse par défaut",
-                    "content": "Réponse par défaut",
-                    "score": 1,
-                    "answers": [
-                        "réponse de l'interlocuteur"
-                    ]
-                },
-                {
-                    "preview": "Réponse 2",
-                    "content": "Réponse 2",
-                    "score": 1,
-                    "answers": [
-                        "réponse de l'interlocuteur 2"
-                    ]
-                },
-                {
-                    "preview": "Réponse 3",
-                    "content": "Réponse 3",
-                    "score": 1,
-                    "answers": [
-                        "réponse de l'interlocuteur 3"
+                        "Mais il est seul en permanence.",
+                        "On ne lui demande pas de passer des soirées dans le salon mais au moins passer un peu de temps avec nous !"
                     ]
                 }
             ]

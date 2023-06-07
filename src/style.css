@@ -79,7 +79,7 @@ li::before {
     display: inline-block;
     width: 25px;
     height: 25px;
-    background: url("./Interface/dot.png");
+    background: url("/Interface/dot.png");
     background-size: cover;
     position: relative;
     left: -40px;
@@ -171,7 +171,7 @@ li::before {
 
 .life {
     position: relative;
-    background-image: url('./Interface/life-empty.png');
+    background-image: url('/Interface/life-empty.png');
     background-repeat: no-repeat;
     background-position: center;
     height: 60px;
@@ -523,7 +523,7 @@ li::before {
 .msg.haveImg::after {
     content: "";
     display: block;
-    background: url("./Interface/lettre-intro.png");
+    background: url("/Interface/lettre-intro.png");
     border-radius: 10px;
     width: 150px;
     height: 150px;

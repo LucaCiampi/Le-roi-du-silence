@@ -131,7 +131,7 @@ function displayConv() {
             }
             if (item.msg == "end") {
                 domImageFullscreen2.classList.add('show')
-                msg.style.display = none
+                msg.style.display = "none"
             }
             msg.textContent = item.msg;
             domMsgs.appendChild(msg);

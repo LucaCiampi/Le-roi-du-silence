@@ -135,7 +135,7 @@ body {
 
 .life {
     position: relative;
-    background-image: url('./Interface/life-empty.png');
+    background-image: url('/Interface/life-empty.png');
     background-repeat: no-repeat;
     background-position: center;
     height: 60px;

@@ -50,6 +50,7 @@ export default class Room3 extends Room {
         this.addExitDoor();
 
         this.addPositionalAudioTrack('heavy', 2, -8, 4, 0);
+        this.addPositionalAudioTrack('fire', 2, -8, 4, 0);
         this.addPositionalAudioTrack('heart', 2, 0, 4, 0);
         
         this.setAshes();

@@ -21,8 +21,8 @@ export default class Room1 extends Room {
             color: 0xff0000
         });
 
-        this.closingDoor.position.set(1.15, 0.5, 11.65);
-        this.exitDoor.position.set(0.2, 0.5, 2.5);
+        this.closingDoor.position.set(1.18, 0.55, 11.65);
+        this.exitDoor.position.set(0.2, 0.55, 2.65);
         this.exitDoor.rotation.set(0, 1.6, 0);
 
         this.minScoreRequired = 0;
@@ -66,6 +66,11 @@ export default class Room1 extends Room {
 
         this.addExitDoor();
 
+        this.props.push(this.resources.items['room1Props'].scene);
+        const godRays = this.resources.items['room1Godrays'].scene;
+        godRays.children[0].children[0].material.opacity = 0.3;
+        godRays.children[0].children[0].material.transparent = true;
+        this.props.push(godRays);
         this.addPositionalAudioTrack('room1Kids', 4, 4, 3, 4, true, 1);
 
         if (this.debug.active) {

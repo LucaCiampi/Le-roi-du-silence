@@ -31,7 +31,7 @@ export default class Room4 extends Room {
             debug: this.debug,
             scene: this.scene,
             startPosition: new THREE.Vector2(-32, -29),
-            endPosition: new THREE.Vector2(-23, -27),
+            endPosition: new THREE.Vector2(-23, -20),
             color: 0x22ff66
         });
         this.hasEnteredGameOverZone = false;
@@ -48,6 +48,12 @@ export default class Room4 extends Room {
     update() {
         if (!this.hasEnteredGameOverZone) {
             this.checkGameOverZone();
+        }
+        else if (!this.parameter.modalOpen) {
+            setTimeout(() => {
+                console.log('end');
+                this.parameter.endGame();
+            }, 2000);
         }
     }
 

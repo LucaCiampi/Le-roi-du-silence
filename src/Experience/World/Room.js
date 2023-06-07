@@ -267,8 +267,8 @@ export default class Room {
         const folder = this.debug.gui.addFolder(this.name);
 
         // this.roomPositionDebug(folder);
-        // this.doorsPositionDebug(folder);
-        this.propsPositionDebug(folder);
+        this.doorsPositionDebug(folder);
+        // this.propsPositionDebug(folder);
     }
 
     roomPositionDebug(folder) {

@@ -11,11 +11,16 @@ export default
         type: "gltfModel",
         path: "./Environment/room1.glb"
     },
-    // {
-    //     name: "room1Props",
-    //     type: "gltfModel",
-    //     path: "./Environment/room1-props.glb"
-    // },
+    {
+        name: "room1Props",
+        type: "gltfModel",
+        path: "./Environment/room1-props.glb"
+    },
+    {
+        name: "room1Godrays",
+        type: "gltfModel",
+        path: "./Environment/room1-godrays.glb"
+    },
     {
         name: "room2",
         type: "gltfModel",

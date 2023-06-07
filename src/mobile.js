@@ -4,8 +4,10 @@ let domResponses = document.getElementById("responses");
 let domName = document.getElementById("nameField");
 let domSubmitName = document.getElementById("submitNameButton");
 let domImageFullscreen = document.getElementById("imageFullscreen");
+let domImageFullscreen2 = document.getElementById("imageFullscreen2");
 
 domImageFullscreen.onclick = () => domImageFullscreen.classList.remove('show')
+domImageFullscreen2.onclick = () => domImageFullscreen2.classList.remove('show')
 
 let sessionId = null;
 let backendEvent = null
@@ -17,9 +19,10 @@ let interlocutor = null
 let formerInterlocutor = null
 let createUser = null
 let userId = null
+let isReadyToSubmit = false
 
 domSubmitName.onclick = () => {
-    if (domName.value != "") {
+    if (domName.value != "" && isReadyToSubmit) {
         createUser(domName.value, (id) => {
             userId = id
             console.log(id)
@@ -46,6 +49,7 @@ export function createMobileInterface(id, handleBackendEvent, createMobileSessio
 
 export function getData(data) {
     domSubmitName.classList.remove('notReady')
+    isReadyToSubmit = true
     domSubmitName.disabled = false
     //get interlocutor
     userId && (interlocutor = data[sessionId]?.users[userId]?.assignedInterlocutor)
@@ -56,10 +60,10 @@ export function getData(data) {
     }
     //display convs list
     displayList()
-
+    
     //check if data is the same as last time
     if (JSON.stringify(data[sessionId]?.messages) == formerList
-        && JSON.stringify(data[sessionId]?.responses) == formerResponses) {
+    && JSON.stringify(data[sessionId]?.responses) == formerResponses) {
         console.log("Same data, not refreshing");
         return
     } else {
@@ -98,7 +102,7 @@ function displayConv() {
     while (domMsgs.firstChild) {
         domMsgs.removeChild(domMsgs.firstChild);
     }
-
+    
     //create messages and responses
     let msg = document.createElement("div");
     msg.classList.add("msg", "info");
@@ -113,12 +117,21 @@ function displayConv() {
             if (item.foreign) {
                 msg.classList.add("foreign");
             }
+            if (i == messages.length-1 && item.foreign){
+                var audio = new Audio('/Sounds/notifApple.mp3');
+                audio.play();
+
+            }
             if (i == messages.length - 1) {
                 msg.classList.add("last");
             }
             if (item.msg == "J'ai trouvé ça :") {
                 msg.classList.add("haveImg");
                 msg.onclick = () => domImageFullscreen.classList.add('show')
+            }
+            if (item.msg == "J'ai trouvé ça :") {
+                domImageFullscreen2.classList.add('show')
+                msg.style.display = none
             }
             msg.textContent = item.msg;
             domMsgs.appendChild(msg);

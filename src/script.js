@@ -9,7 +9,7 @@ const domUserList = document.getElementById('userList')
 const startButton = document.getElementById('startButton')
 startButton.onclick = () => startGame()
 let users = {}
-let interlocutors = ["prof", "bff", "mom", "rand"]
+let interlocutors = ["Jérome CHAMBART", "bff", "mom", "rand"]
 let score = 0
 
 const firebaseConfig = {
@@ -21,7 +21,7 @@ let currentSession = null
 let mobile = null
 let desktop = null
 let userNumber = 0
-let baseUrl = "172.28.59.104:5173"
+let baseUrl = "gobelins-webgl.netlify.app"
 // let baseUrl = "brume.surge.sh"
 
 //firebase config

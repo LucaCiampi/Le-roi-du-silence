@@ -17,7 +17,6 @@ let interlocutor = null
 let formerInterlocutor = null
 let createUser = null
 let userId = null
-let userName = null
 
 domSubmitName.onclick = () => {
     if (domName.value != "") {
@@ -46,7 +45,8 @@ export function createMobileInterface(id, handleBackendEvent, createMobileSessio
 }
 
 export function getData(data) {
-    document.getElementById('mobileHome').style.backgroundColor = "chartreuse"
+    domSubmitName.classList.remove('notReady')
+    domSubmitName.disabled = false
     //get interlocutor
     userId && (interlocutor = data[sessionId]?.users[userId]?.assignedInterlocutor)
     if (formerInterlocutor !== interlocutor) {
@@ -71,14 +71,24 @@ export function getData(data) {
 }
 
 function displayList() {
-    let container = document.getElementById('convsContainer')
     //clear childs
+    let container = document.getElementById('convsContainer')
     while (container.firstChild) {
         container.removeChild(container.firstChild);
     }
-
     let conv = document.createElement('div')
-    conv.textContent = interlocutor
+    let name = document.createElement('p')
+    name.textContent = interlocutor ? interlocutor : "Rien a afficher"
+    if (interlocutor) {
+        conv.classList.add('contact')
+        let pp = document.createElement('img')
+        pp.src = `./Interface/pp.png`
+        let time = document.createElement('span')
+        time.textContent = "Aujourd'hui"
+        conv.appendChild(time)
+        conv.appendChild(pp)
+    }
+    conv.appendChild(name)
     conv.onclick = () => navigateTo("messages")
     container.appendChild(conv)
 }
@@ -92,7 +102,7 @@ function displayConv() {
     //create messages and responses
     let msg = document.createElement("div");
     msg.classList.add("msg", "info");
-    msg.textContent = "Début de la conversation avec Léo";
+    msg.textContent = "Début de la conversation";
     domMsgs.appendChild(msg);
     if (currentData[sessionId]) {
         let messages = Object.values(currentData[sessionId]?.messages);

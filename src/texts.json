@@ -92,17 +92,178 @@
             "trigger": "Ce couloir est des plus en plus dégrédé à chaque fois.",
             "answers": [
                 {
-                    "preview": "",
-                    "content": "",
+                    "preview": "Réponse par défaut",
+                    "content": "Réponse par défaut",
                     "score": 1,
                     "answers": [
-                        ""
+                        "réponse de l'interlocuteur"
+                    ]
+                },
+                {
+                    "preview": "Réponse 2",
+                    "content": "Réponse 2",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 2"
+                    ]
+                },
+                {
+                    "preview": "Réponse 3",
+                    "content": "Réponse 3",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 3"
+                    ]
+                }
+            ]
+        },
+        {
+            "trigger": "Réaction par défaut",
+            "answers": [
+                {
+                    "preview": "Réponse par défaut",
+                    "content": "Réponse par défaut",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur"
+                    ]
+                },
+                {
+                    "preview": "Réponse 2",
+                    "content": "Réponse 2",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 2"
+                    ]
+                },
+                {
+                    "preview": "Réponse 3",
+                    "content": "Réponse 3",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 3"
+                    ]
+                }
+            ]
+        },
+        {
+            "trigger": "Réaction par défaut",
+            "answers": [
+                {
+                    "preview": "Réponse par défaut",
+                    "content": "Réponse par défaut",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur"
+                    ]
+                },
+                {
+                    "preview": "Réponse 2",
+                    "content": "Réponse 2",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 2"
+                    ]
+                },
+                {
+                    "preview": "Réponse 3",
+                    "content": "Réponse 3",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 3"
+                    ]
+                }
+            ]
+        },
+        {
+            "trigger": "Réaction par défaut",
+            "answers": [
+                {
+                    "preview": "Réponse par défaut",
+                    "content": "Réponse par défaut",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur"
+                    ]
+                },
+                {
+                    "preview": "Réponse 2",
+                    "content": "Réponse 2",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 2"
+                    ]
+                },
+                {
+                    "preview": "Réponse 3",
+                    "content": "Réponse 3",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 3"
+                    ]
+                }
+            ]
+        },
+        {
+            "trigger": "Réaction par défaut",
+            "answers": [
+                {
+                    "preview": "Réponse par défaut",
+                    "content": "Réponse par défaut",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur"
+                    ]
+                },
+                {
+                    "preview": "Réponse 2",
+                    "content": "Réponse 2",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 2"
+                    ]
+                },
+                {
+                    "preview": "Réponse 3",
+                    "content": "Réponse 3",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 3"
+                    ]
+                }
+            ]
+        },
+        {
+            "trigger": "Réaction par défaut",
+            "answers": [
+                {
+                    "preview": "Réponse par défaut",
+                    "content": "Réponse par défaut",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur"
+                    ]
+                },
+                {
+                    "preview": "Réponse 2",
+                    "content": "Réponse 2",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 2"
+                    ]
+                },
+                {
+                    "preview": "Réponse 3",
+                    "content": "Réponse 3",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 3"
                     ]
                 }
             ]
         }
     ],
-    "bff": [
+    "Julien DUFEU": [
         {
             "trigger": "Salut, excuse moi t'a pas vu Léo ?",
             "answers": [
@@ -136,149 +297,759 @@
             ]
         },
         {
-            "trigger": "ho, t'a trouvé ses lunettes ?",
+            "trigger": "Réaction par défaut",
             "answers": [
                 {
-                    "preview": "bizarre nan ?",
-                    "content": "ouias c'est bizarre nan ?",
+                    "preview": "Réponse par défaut",
+                    "content": "Réponse par défaut",
                     "score": 1,
                     "answers": [
-                        "Bah ouais il vois rien sans...",
-                        "il a du encore se faire bully"
+                        "réponse de l'interlocuteur"
+                    ]
+                },
+                {
+                    "preview": "Réponse 2",
+                    "content": "Réponse 2",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 2"
+                    ]
+                },
+                {
+                    "preview": "Réponse 3",
+                    "content": "Réponse 3",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 3"
+                    ]
+                }
+            ]
+        },
+        {
+            "trigger": "Réaction par défaut",
+            "answers": [
+                {
+                    "preview": "Réponse par défaut",
+                    "content": "Réponse par défaut",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur"
+                    ]
+                },
+                {
+                    "preview": "Réponse 2",
+                    "content": "Réponse 2",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 2"
+                    ]
+                },
+                {
+                    "preview": "Réponse 3",
+                    "content": "Réponse 3",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 3"
+                    ]
+                }
+            ]
+        },
+        {
+            "trigger": "Réaction par défaut",
+            "answers": [
+                {
+                    "preview": "Réponse par défaut",
+                    "content": "Réponse par défaut",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur"
+                    ]
+                },
+                {
+                    "preview": "Réponse 2",
+                    "content": "Réponse 2",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 2"
+                    ]
+                },
+                {
+                    "preview": "Réponse 3",
+                    "content": "Réponse 3",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 3"
+                    ]
+                }
+            ]
+        },
+        {
+            "trigger": "Réaction par défaut",
+            "answers": [
+                {
+                    "preview": "Réponse par défaut",
+                    "content": "Réponse par défaut",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur"
+                    ]
+                },
+                {
+                    "preview": "Réponse 2",
+                    "content": "Réponse 2",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 2"
+                    ]
+                },
+                {
+                    "preview": "Réponse 3",
+                    "content": "Réponse 3",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 3"
+                    ]
+                }
+            ]
+        },
+        {
+            "trigger": "Réaction par défaut",
+            "answers": [
+                {
+                    "preview": "Réponse par défaut",
+                    "content": "Réponse par défaut",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur"
+                    ]
+                },
+                {
+                    "preview": "Réponse 2",
+                    "content": "Réponse 2",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 2"
+                    ]
+                },
+                {
+                    "preview": "Réponse 3",
+                    "content": "Réponse 3",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 3"
+                    ]
+                }
+            ]
+        },
+        {
+            "trigger": "Réaction par défaut",
+            "answers": [
+                {
+                    "preview": "Réponse par défaut",
+                    "content": "Réponse par défaut",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur"
+                    ]
+                },
+                {
+                    "preview": "Réponse 2",
+                    "content": "Réponse 2",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 2"
+                    ]
+                },
+                {
+                    "preview": "Réponse 3",
+                    "content": "Réponse 3",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 3"
+                    ]
+                }
+            ]
+        },
+        {
+            "trigger": "Réaction par défaut",
+            "answers": [
+                {
+                    "preview": "Réponse par défaut",
+                    "content": "Réponse par défaut",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur"
+                    ]
+                },
+                {
+                    "preview": "Réponse 2",
+                    "content": "Réponse 2",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 2"
+                    ]
+                },
+                {
+                    "preview": "Réponse 3",
+                    "content": "Réponse 3",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 3"
+                    ]
+                }
+            ]
+        },
+        {
+            "trigger": "Réaction par défaut",
+            "answers": [
+                {
+                    "preview": "Réponse par défaut",
+                    "content": "Réponse par défaut",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur"
+                    ]
+                },
+                {
+                    "preview": "Réponse 2",
+                    "content": "Réponse 2",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 2"
+                    ]
+                },
+                {
+                    "preview": "Réponse 3",
+                    "content": "Réponse 3",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 3"
                     ]
                 }
             ]
         }
     ],
-    "mom": [
+    "Mélanie ROUTEL": [
         {
-            "trigger": "",
+            "trigger": "Réaction par défaut",
             "answers": [
                 {
-                    "preview": "",
-                    "content": "",
+                    "preview": "Réponse par défaut",
+                    "content": "Réponse par défaut",
                     "score": 1,
                     "answers": [
-                        ""
+                        "réponse de l'interlocuteur"
+                    ]
+                },
+                {
+                    "preview": "Réponse 2",
+                    "content": "Réponse 2",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 2"
+                    ]
+                },
+                {
+                    "preview": "Réponse 3",
+                    "content": "Réponse 3",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 3"
                     ]
                 }
             ]
         },
         {
-            "trigger": "",
+            "trigger": "Réaction par défaut",
             "answers": [
                 {
-                    "preview": "",
-                    "content": "",
+                    "preview": "Réponse par défaut",
+                    "content": "Réponse par défaut",
                     "score": 1,
                     "answers": [
-                        ""
+                        "réponse de l'interlocuteur"
+                    ]
+                },
+                {
+                    "preview": "Réponse 2",
+                    "content": "Réponse 2",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 2"
+                    ]
+                },
+                {
+                    "preview": "Réponse 3",
+                    "content": "Réponse 3",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 3"
                     ]
                 }
             ]
         },
         {
-            "trigger": "",
+            "trigger": "Réaction par défaut",
             "answers": [
                 {
-                    "preview": "",
-                    "content": "",
+                    "preview": "Réponse par défaut",
+                    "content": "Réponse par défaut",
                     "score": 1,
                     "answers": [
-                        ""
+                        "réponse de l'interlocuteur"
+                    ]
+                },
+                {
+                    "preview": "Réponse 2",
+                    "content": "Réponse 2",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 2"
+                    ]
+                },
+                {
+                    "preview": "Réponse 3",
+                    "content": "Réponse 3",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 3"
                     ]
                 }
             ]
         },
         {
-            "trigger": "",
+            "trigger": "Réaction par défaut",
             "answers": [
                 {
-                    "preview": "",
-                    "content": "",
+                    "preview": "Réponse par défaut",
+                    "content": "Réponse par défaut",
                     "score": 1,
                     "answers": [
-                        ""
+                        "réponse de l'interlocuteur"
+                    ]
+                },
+                {
+                    "preview": "Réponse 2",
+                    "content": "Réponse 2",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 2"
+                    ]
+                },
+                {
+                    "preview": "Réponse 3",
+                    "content": "Réponse 3",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 3"
                     ]
                 }
             ]
         },
         {
-            "trigger": "",
+            "trigger": "Réaction par défaut",
             "answers": [
                 {
-                    "preview": "",
-                    "content": "",
+                    "preview": "Réponse par défaut",
+                    "content": "Réponse par défaut",
                     "score": 1,
                     "answers": [
-                        ""
+                        "réponse de l'interlocuteur"
+                    ]
+                },
+                {
+                    "preview": "Réponse 2",
+                    "content": "Réponse 2",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 2"
+                    ]
+                },
+                {
+                    "preview": "Réponse 3",
+                    "content": "Réponse 3",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 3"
                     ]
                 }
             ]
         },
         {
-            "trigger": "",
+            "trigger": "Réaction par défaut",
             "answers": [
                 {
-                    "preview": "",
-                    "content": "",
+                    "preview": "Réponse par défaut",
+                    "content": "Réponse par défaut",
                     "score": 1,
                     "answers": [
-                        ""
+                        "réponse de l'interlocuteur"
+                    ]
+                },
+                {
+                    "preview": "Réponse 2",
+                    "content": "Réponse 2",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 2"
+                    ]
+                },
+                {
+                    "preview": "Réponse 3",
+                    "content": "Réponse 3",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 3"
                     ]
                 }
             ]
         },
         {
-            "trigger": "",
+            "trigger": "Réaction par défaut",
             "answers": [
                 {
-                    "preview": "",
-                    "content": "",
+                    "preview": "Réponse par défaut",
+                    "content": "Réponse par défaut",
                     "score": 1,
                     "answers": [
-                        ""
+                        "réponse de l'interlocuteur"
+                    ]
+                },
+                {
+                    "preview": "Réponse 2",
+                    "content": "Réponse 2",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 2"
+                    ]
+                },
+                {
+                    "preview": "Réponse 3",
+                    "content": "Réponse 3",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 3"
                     ]
                 }
             ]
         },
         {
-            "trigger": "",
+            "trigger": "Réaction par défaut",
             "answers": [
                 {
-                    "preview": "",
-                    "content": "",
+                    "preview": "Réponse par défaut",
+                    "content": "Réponse par défaut",
                     "score": 1,
                     "answers": [
-                        ""
+                        "réponse de l'interlocuteur"
+                    ]
+                },
+                {
+                    "preview": "Réponse 2",
+                    "content": "Réponse 2",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 2"
+                    ]
+                },
+                {
+                    "preview": "Réponse 3",
+                    "content": "Réponse 3",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 3"
                     ]
                 }
             ]
         },
         {
-            "trigger": "",
+            "trigger": "Réaction par défaut",
             "answers": [
                 {
-                    "preview": "",
-                    "content": "",
+                    "preview": "Réponse par défaut",
+                    "content": "Réponse par défaut",
                     "score": 1,
                     "answers": [
-                        ""
+                        "réponse de l'interlocuteur"
+                    ]
+                },
+                {
+                    "preview": "Réponse 2",
+                    "content": "Réponse 2",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 2"
+                    ]
+                },
+                {
+                    "preview": "Réponse 3",
+                    "content": "Réponse 3",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 3"
                     ]
                 }
             ]
         }
     ],
-    "rand": [
+    "Guillaume LEFEBVRE": [
         {
             "trigger": "Bonjour! je suis guillaume, on s’est peut-être déjà croisé au collège je suis dans la classe de Léo, je viens aussi d’apprendre sa disparition. ",
             "answers": [
                 {
-                    "preview": "",
-                    "content": "",
+                    "preview": "Réponse par défaut",
+                    "content": "Réponse par défaut",
                     "score": 1,
                     "answers": [
-                        ""
+                        "réponse de l'interlocuteur"
+                    ]
+                },
+                {
+                    "preview": "Réponse 2",
+                    "content": "Réponse 2",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 2"
+                    ]
+                },
+                {
+                    "preview": "Réponse 3",
+                    "content": "Réponse 3",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 3"
+                    ]
+                }
+            ]
+        },
+        {
+            "trigger": "Réaction par défaut",
+            "answers": [
+                {
+                    "preview": "Réponse par défaut",
+                    "content": "Réponse par défaut",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur"
+                    ]
+                },
+                {
+                    "preview": "Réponse 2",
+                    "content": "Réponse 2",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 2"
+                    ]
+                },
+                {
+                    "preview": "Réponse 3",
+                    "content": "Réponse 3",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 3"
+                    ]
+                }
+            ]
+        },
+        {
+            "trigger": "Réaction par défaut",
+            "answers": [
+                {
+                    "preview": "Réponse par défaut",
+                    "content": "Réponse par défaut",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur"
+                    ]
+                },
+                {
+                    "preview": "Réponse 2",
+                    "content": "Réponse 2",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 2"
+                    ]
+                },
+                {
+                    "preview": "Réponse 3",
+                    "content": "Réponse 3",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 3"
+                    ]
+                }
+            ]
+        },
+        {
+            "trigger": "Réaction par défaut",
+            "answers": [
+                {
+                    "preview": "Réponse par défaut",
+                    "content": "Réponse par défaut",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur"
+                    ]
+                },
+                {
+                    "preview": "Réponse 2",
+                    "content": "Réponse 2",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 2"
+                    ]
+                },
+                {
+                    "preview": "Réponse 3",
+                    "content": "Réponse 3",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 3"
+                    ]
+                }
+            ]
+        },
+        {
+            "trigger": "Réaction par défaut",
+            "answers": [
+                {
+                    "preview": "Réponse par défaut",
+                    "content": "Réponse par défaut",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur"
+                    ]
+                },
+                {
+                    "preview": "Réponse 2",
+                    "content": "Réponse 2",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 2"
+                    ]
+                },
+                {
+                    "preview": "Réponse 3",
+                    "content": "Réponse 3",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 3"
+                    ]
+                }
+            ]
+        },
+        {
+            "trigger": "Réaction par défaut",
+            "answers": [
+                {
+                    "preview": "Réponse par défaut",
+                    "content": "Réponse par défaut",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur"
+                    ]
+                },
+                {
+                    "preview": "Réponse 2",
+                    "content": "Réponse 2",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 2"
+                    ]
+                },
+                {
+                    "preview": "Réponse 3",
+                    "content": "Réponse 3",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 3"
+                    ]
+                }
+            ]
+        },
+        {
+            "trigger": "Réaction par défaut",
+            "answers": [
+                {
+                    "preview": "Réponse par défaut",
+                    "content": "Réponse par défaut",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur"
+                    ]
+                },
+                {
+                    "preview": "Réponse 2",
+                    "content": "Réponse 2",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 2"
+                    ]
+                },
+                {
+                    "preview": "Réponse 3",
+                    "content": "Réponse 3",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 3"
+                    ]
+                }
+            ]
+        },
+        {
+            "trigger": "Réaction par défaut",
+            "answers": [
+                {
+                    "preview": "Réponse par défaut",
+                    "content": "Réponse par défaut",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur"
+                    ]
+                },
+                {
+                    "preview": "Réponse 2",
+                    "content": "Réponse 2",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 2"
+                    ]
+                },
+                {
+                    "preview": "Réponse 3",
+                    "content": "Réponse 3",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 3"
+                    ]
+                }
+            ]
+        },
+        {
+            "trigger": "Réaction par défaut",
+            "answers": [
+                {
+                    "preview": "Réponse par défaut",
+                    "content": "Réponse par défaut",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur"
+                    ]
+                },
+                {
+                    "preview": "Réponse 2",
+                    "content": "Réponse 2",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 2"
+                    ]
+                },
+                {
+                    "preview": "Réponse 3",
+                    "content": "Réponse 3",
+                    "score": 1,
+                    "answers": [
+                        "réponse de l'interlocuteur 3"
                     ]
                 }
             ]

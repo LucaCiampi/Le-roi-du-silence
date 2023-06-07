@@ -9,7 +9,7 @@ const domUserList = document.getElementById('userList')
 const startButton = document.getElementById('startButton')
 startButton.onclick = () => startGame()
 let users = {}
-let interlocutors = ["Jérome CHAMBART", "bff", "mom", "rand"]
+let interlocutors = ["Jérome CHAMBART", "Julien DUFEU", "Mélanie ROUTEL", "Guillaume LEFEBVRE"]
 let score = 0
 
 const firebaseConfig = {
@@ -21,7 +21,7 @@ let currentSession = null
 let mobile = null
 let desktop = null
 let userNumber = 0
-let baseUrl = "gobelins-webgl.netlify.app"
+let baseUrl = "dev--gobelins-webgl.netlify.app"
 // let baseUrl = "brume.surge.sh"
 
 //firebase config
@@ -60,18 +60,7 @@ onValue(ref(database, 'sessions/'), (snapshot) => {
           li.textContent = element.userName
           domUserList.appendChild(li)
         });
-        domUserNumber.textContent = `Utilisateurs connectés : ${userNumber}/4`
-      }
-    }
-  }
-
-  //display connected users number
-  if (!isMobile) {
-    if (data[currentSession].users != null) {
-      let currentNumber = Object.keys(data[currentSession].users).length
-      if (currentNumber != userNumber) {
-        userNumber = currentNumber
-        domUserNumber.textContent = `Nombre d'utilisateurs : ${userNumber}`
+        // domUserNumber.textContent = `Utilisateurs connectés : ${userNumber}/4`
       }
     }
   }

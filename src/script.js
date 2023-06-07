@@ -227,7 +227,7 @@ function handleDesktopEvent(event) {
     } else if (event.id == 10) {
       interlocutors.forEach(inter => {
         push(ref(database, `sessions/${currentSession}/messages/`), {
-          msg: "",
+          msg: "Sa dernière lettre :",
           foreign: false,
           time: Date.now(),
           interlocutor: inter

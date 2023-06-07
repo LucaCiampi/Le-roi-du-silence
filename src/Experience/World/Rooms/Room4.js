@@ -33,8 +33,9 @@ export default class Room4 extends Room {
             startPosition: new THREE.Vector2(-31, -26),
             endPosition: new THREE.Vector2(-26, -21),
             name: 'end',
+            callback: () => { this.sendMessageToPhone(10); },
             id: 10,
-            color: 0x22ff66
+            color: 0x22ff66,
         });
         this.hasEnteredGameOverZone = false;
 

@@ -18,7 +18,7 @@ export default class Sounds {
             }),
             wind: new Howl({
                 src: ['./Sounds/wind.mp3'],
-                volume: 0.2
+                volume: 0.4
             }),
             uiButton: new Howl({
                 src: ['./Sounds/uiButton.mp3']

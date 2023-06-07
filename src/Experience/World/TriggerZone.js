@@ -5,11 +5,13 @@ export default class TriggerZone {
         // Options
         this.debug = _options.debug;
         this.scene = _options.scene;
+        this.resources = _options.resources;
         this.name = _options.name;
         this.startPosition = _options.startPosition;
         this.endPosition = _options.endPosition;
         this.color = _options.color;
         this.callback = _options.callback;
+        this.hasIndicator = _options.hasIndicator;
 
         // Set up
         this.boundingBox = null;
@@ -21,6 +23,14 @@ export default class TriggerZone {
     init() {
         // Box
         this.boundingBox = new THREE.Box2(this.startPosition, this.endPosition);
+
+        if (this.hasIndicator) {
+            this.indicator = this.resources.items['tel'].scene.clone();
+            const center = new THREE.Vector2();
+            this.boundingBox.getCenter(center);
+            this.indicator.position.set(center.x, 3, center.y);
+            this.scene.add(this.indicator);
+        }
 
         if (this.debug.active) {
             if (!this.color) this.color = 0x00ffff;
@@ -36,10 +46,26 @@ export default class TriggerZone {
     hasPlayerInZone(playerPosition) {
         if (this.boundingBox.containsPoint(new THREE.Vector2(playerPosition.x, playerPosition.z))) {
             this.callback?.();
+            this.hasIndicator && this.destroyIndicator();
             return true
         }
 
         return false
+    }
+
+    /**
+     * Removes the indicator from memory and from the scene
+     */
+    destroyIndicator() {
+        this.indicator.traverse((node) => {
+            if (node instanceof THREE.Mesh) {
+                node.geometry.dispose();
+                // TODO: Disposer les textures ici
+                node.material.dispose();
+            }
+        });
+
+        this.scene.remove(this.indicator);
     }
 
     /**

@@ -49,20 +49,22 @@
 <body>
     <div id="mobile">
         <div id="mobileHome" class="mobilePage">
-            <h1>Le roi du silence</h1>
+            <img src="./Interface/logo.png" alt="Le roi du silence">
             <form onsubmit="return false">
                 <input id="nameField" type="text" placeholder="Ton nom">
-                <button id="submitNameButton">Valider</button>
+                <button id="submitNameButton" class="notReady" disabled>Valider</button>
             </form>
         </div>
         <div id="mobileList" class="mobilePage rightHided">
             <h1>Messages</h1>
-            <div id="convsContainer"></div>
+            <div class="fakeInput">Rechercher des conversations</div>
+            <div id="convsContainer">
+            </div>
         </div>
         <div id="mobileMessages" class="mobilePage rightHided">
             <div class="topBar">
                 <h2 id="backButton" style="transform: rotate(180deg);">➜</h2>
-                <div class="pp"></div>
+                <img class="pp" src="./Interface/pp.png"/>
                 <h2 id="title"></h2>
             </div>
             <div id="msgsContainer">
@@ -70,7 +72,6 @@
             </div>
             <div id="responses"></div>
             <div id="botBar">
-                <input disabled type="text" placeholder="Message texte">
                 <button id="send">➤</button>
             </div>
         </div>

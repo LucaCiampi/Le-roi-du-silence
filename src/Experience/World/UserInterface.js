@@ -90,6 +90,10 @@ export default class Layout {
         this.event.start();
         this.parameter.sounds.play('uiButton');
         this.introMenuStartButton.removeEventListener('click', this.handleStartGameButtonClick);
+        setTimeout(() => {
+            this.introMenuStartButton.remove();
+            this.introMenu.remove();
+        }, 600);
     }
 
     /**
@@ -168,6 +172,10 @@ export default class Layout {
         this.parameter.modalOpen = false;
         this.parameter.sounds.play('page');
         this.fadeOutUiPanel(this.modal);
+        
+        if (this.parameter.currentZone === 4) {
+            this.parameter.endGame();
+        }
     }
 
     /**

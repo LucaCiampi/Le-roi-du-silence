@@ -83,7 +83,6 @@ export default class World {
             camera: this.camera,
         })
 
-        // const color = new THREE.Color(0xffdccc);
         this.scene.background = new THREE.Color(0xffdccc);
 
         this.isReady = true;

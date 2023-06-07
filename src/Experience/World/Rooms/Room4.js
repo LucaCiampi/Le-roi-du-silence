@@ -49,12 +49,6 @@ export default class Room4 extends Room {
         if (!this.hasEnteredGameOverZone) {
             this.checkGameOverZone();
         }
-        else if (!this.parameter.modalOpen) {
-            setTimeout(() => {
-                console.log('end');
-                this.parameter.endGame();
-            }, 2000);
-        }
     }
 
     /**

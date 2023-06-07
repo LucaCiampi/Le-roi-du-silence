@@ -522,5 +522,5 @@ ul {
 @font-face {
     font-family: "Chalkduster";
     src:
-        url("./Fonts/chalkduster.woff2") format("woff2");
+        url("/static/Fonts/chalkduster.woff2") format("woff2");
 }

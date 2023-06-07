@@ -12,8 +12,7 @@ body {
     position: absolute;
     inset: 0;
     z-index: 10;
-    background-color: rgba(0, 0, 0, 0.1);
-    color: #fff;
+    background-color: white;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     transition: 400ms ease-in;
 
@@ -30,7 +29,8 @@ body {
 
 .intro-menu,
 .loader {
-    background-color: #000;
+    background: url("./Interface/bg.jpg");
+    background-size: cover;
 }
 
 .end-menu {
@@ -42,16 +42,52 @@ body {
 .intro-menu>div {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
+    gap: 15px;
+
+    background-color: rgba(255, 255, 255, 0.952);
+    padding: 50px;
+    border-radius: 25px;
+}
+.intro-menu>div>div {
+    display: flex;
+    align-items: center;
+    height: 200px;
+    gap: 60px;
 }
 
-.QRcodeContainer>canvas {
+.intro-menu button {
+    border: none;
+    background: url(/Interface/input.png) no-repeat center;
+    background-size: contain;
+    padding: 50px 50px 60px 50px;
+    color: white;
+    margin: 0;
+}
+
+ul {
+    padding: 0 0 19px 0;;
+    list-style: none;
+    height: 200px;
+    width: 10%;
+    margin: 60px;
+}
+
+li::before {
+    content: "";
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    background: url("./Interface/dot.png");
+    background-size: cover;
+    position: relative;
+    left: -40px;
+    top: 25px;
+}
+.QRcodeContainer canvas {
     border-radius: 15px;
-}
-
-.intro-menu,
-.loader {
-    background-color: #000;
+    transform: scale(1.3);
 }
 
 .end-menu {
@@ -330,7 +366,7 @@ body {
 #mobileHome input,
 #mobileHome button {
     border: none;
-    background: url(./Interface/input.png) no-repeat center;
+    background: url(/Interface/input.png) no-repeat center;
     background-size: contain;
     padding: 45px;
     color: white;
@@ -408,13 +444,6 @@ body {
     border: solid 1px #000;
     margin: 1em;
     font-size: 1.2rem;
-}
-
-
-ul {
-    padding: 0;
-    margin-top: 70px;
-    list-style: none;
 }
 
 

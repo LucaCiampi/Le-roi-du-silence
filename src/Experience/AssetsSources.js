@@ -78,9 +78,9 @@ export default
         path: "./Sounds/tv.mp3"
     },
     {
-        name: "eww",
+        name: "radio",
         type: "audio",
-        path: "./Sounds/kidsComplain.mp3"
+        path: "./Sounds/radio.mp3"
     },
     {
         name: "heavy",

@@ -224,6 +224,15 @@ function handleDesktopEvent(event) {
           interlocutor: inter
         })
       });
+    } else if (event.id == 10) {
+      interlocutors.forEach(inter => {
+        push(ref(database, `sessions/${currentSession}/messages/`), {
+          msg: "",
+          foreign: false,
+          time: Date.now(),
+          interlocutor: inter
+        })
+      });
     } else {
       interlocutors.forEach(inter => {
         if (texts[inter][event.id]?.trigger) {

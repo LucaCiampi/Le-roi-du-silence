@@ -166,16 +166,6 @@ export default class Controls {
             }
 
         }
-
-        if (this.playerOnFloor) {
-
-            if (this.keyStates['Space']) {
-
-                this.playerVelocity.y = 15;
-
-            }
-
-        }
     }
 
     /**
@@ -234,6 +224,7 @@ export default class Controls {
         this.camera.instance.position.copy(this.playerCollider.end);
         this.parameter.playerPosition = this.playerCollider.end;
 
+        // TODO: remove
         this.playerPositionDebugUi.innerHTML =
             'x: ' + this.playerCollider.end.x +
             '<br />y: ' + this.playerCollider.end.y +

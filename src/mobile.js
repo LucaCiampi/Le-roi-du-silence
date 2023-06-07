@@ -129,7 +129,7 @@ function displayConv() {
                 msg.classList.add("haveImg");
                 msg.onclick = () => domImageFullscreen.classList.add('show')
             }
-            if (item.msg == "J'ai trouvé ça :") {
+            if (item.msg == "end") {
                 domImageFullscreen2.classList.add('show')
                 msg.style.display = none
             }

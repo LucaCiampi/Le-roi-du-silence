@@ -7,9 +7,10 @@ import texts from "./texts.json" assert { type: "json" };
 const domUserNumber = document.getElementById('userNumber')
 const domUserList = document.getElementById('userList')
 const startButton = document.getElementById('startButton')
+startButton.onclick = () => startGame()
 let users = {}
 let interlocutors = ["prof", "bff", "mom", "rand"]
-startButton.onclick = () => startGame()
+let score = 0
 
 const firebaseConfig = {
   databaseURL: "https://webgl-ed2ec-default-rtdb.europe-west1.firebasedatabase.app/",
@@ -18,6 +19,7 @@ const firebaseConfig = {
 const isMobile = window.location.search.length != 0
 let currentSession = null
 let mobile = null
+let desktop = null
 let userNumber = 0
 let baseUrl = "192.168.130.33:5173"
 // let baseUrl = "brume.surge.sh"
@@ -71,6 +73,15 @@ onValue(ref(database, 'sessions/'), (snapshot) => {
         userNumber = currentNumber
         domUserNumber.textContent = `Nombre d'utilisateurs : ${userNumber}`
       }
+    }
+  }
+
+  //update score
+  if (!mobile && data[currentSession].score) {
+    let newScore = Object.keys(data[currentSession].score)?.length
+    if (newScore != score){
+      score = newScore
+      desktop.increaseScore()
     }
   }
 });
@@ -152,8 +163,16 @@ function displayQrCode(key) {
 //callback on desktop to transmit events to backend
 function handleDesktopEvent(event) {
   console.log('event : ', event)
-  let content = texts[event.interlocutor]?.find(({ trigger }) => trigger === event.parent).answers.find(({ preview }) => preview === event.content).content
   if (event?.title === "response") {
+    let JSONcontent = texts[event.interlocutor]?.find(({ trigger }) => trigger === event.parent).answers.find(({ preview }) => preview === event.content)
+  
+    if (JSONcontent.score == 1) {
+      push(ref(database, `sessions/${event.id}/score`), {
+        score: 1
+      })
+    }
+  
+    let content = JSONcontent.content
     push(ref(database, `sessions/${event.id}/messages/`), {
       msg: content,
       foreign: false,
@@ -171,7 +190,7 @@ function handleDesktopEvent(event) {
     })
 
     //push the answers
-    let answers = texts[event.interlocutor].find(({ trigger }) => trigger === event.parent).answers.find(({ preview }) => preview === event.content).answers
+    let answers = JSONcontent.answers
     let delay = 1000
     answers.forEach((answer) => {
       delay += answer.length * 50
@@ -186,7 +205,7 @@ function handleDesktopEvent(event) {
     });
   }
 
-  // if (event?.includes("room")) {
+  // if (event?.title.includes("room")) {
   //   let roomId = event.slice(4, 5)
   //   remove(ref(database, `sessions/${currentSession}/responses/`))
   //   interlocutors.forEach(inter => {
@@ -227,6 +246,9 @@ if (isMobile) {
   var link = document.querySelector("link[rel~='icon']");
   link.href = "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📱</text></svg>"
 } else {
-  import('./Experience/Experience').then(desktop => desktop.createExperience(document.querySelector('canvas.webgl'), handleDesktopEvent))
+  import('./Experience/Experience').then(script => {
+    desktop = script
+    desktop.createExperience(document.querySelector('canvas.webgl'), handleDesktopEvent)
+  })
   createSession()
 }

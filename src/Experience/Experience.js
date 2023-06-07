@@ -14,11 +14,14 @@ import Renderer from "./Renderer.js";
 
 // World
 import World from "./World/World.js";
-
+let experience
 export function createExperience(canvas, handleDesktopEvent) {
-    const experience = new Experience(canvas, handleDesktopEvent)
+    experience = new Experience(canvas, handleDesktopEvent)
 }
 
+export function increaseScore(){
+    experience.increaseScore()
+}
 export default class Experience {
     constructor(canvas, handleDesktopEvent) {
         window.experience = this;
@@ -93,6 +96,10 @@ export default class Experience {
         this.time.on('update', () => {
             this.update();
         })
+    }
+
+    increaseScore(){
+        this.world.increaseTrustScore()
     }
 
     ready() {

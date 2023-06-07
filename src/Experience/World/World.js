@@ -169,6 +169,7 @@ export default class World {
      * then opens the exit door
      */
     increaseTrustScore() {
+        console.log("score++");
         if (this.parameter.score < this.rooms[this.parameter.currentZone + 1].minScoreRequired) {
             this.parameter.score++;
             this.userInterface.updateScore(this.parameter.score);

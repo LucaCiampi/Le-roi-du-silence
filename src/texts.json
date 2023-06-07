@@ -5,7 +5,8 @@
             "answers": [
                 {
                     "preview": "Quest-ce qui lui arrive ?",
-                    "content": "Bonjour monsieur, savez ou est Léo ?",
+                    "content": "Vous savez ce qui lui arrive ?",
+                    "score": 1,
                     "answers": [
                         "Non, il a juste disparu depuis longtems",
                         "J’ai échangé avec le CPE, ses parents sont très inquiets",
@@ -15,10 +16,11 @@
                 {
                     "preview": "Comme quoi ?",
                     "content": "Des information comme quoi ?",
+                    "score": 1,
                     "answers": [
-                        "réponse",
-                        "prof",
-                        "2"
+                        "Je ne sais pas, des indices qui pourrais nous permettre de le retrouver…",
+                        "Ou de comprendre ce qui lui est arrivé…",
+                        "Essayez le retrouver au plus vite, cela a déjà assez duré"
                     ]
                 }
             ]
@@ -29,6 +31,7 @@
                 {
                     "preview": "Il doit rien voir",
                     "content": "Mais… Il ne doit rien voir sans !",
+                    "score": 1,
                     "answers": [
                         "Si si je crois qu’il voit très bien sans puisque qu’il ne les met plus depuis des semaines",
                         "Je suppose qu’elles n’était pas assez bien à son goût…"
@@ -37,6 +40,7 @@
                 {
                     "preview": "On se rapproche ?",
                     "content": "C’est a dire, on se rapproche ?",
+                    "score": 1,
                     "answers": [
                         "Eh bien si ses lunettes sont là c’est probablement qu’il se trouve pas loin",
                         "Continuez de chercher"
@@ -45,6 +49,7 @@
                 {
                     "preview": "C'est bien les siennes ?",
                     "content": "Vous êtes sûr qu’il sagit bien des siennes ?",
+                    "score": 1,
                     "answers": [
                         "Ah oui, je m’en souvient très bien de ses lunettes",
                         "Il faisait toujours son intéressant avec !"
@@ -58,6 +63,7 @@
                 {
                     "preview": "Pourquoi ?",
                     "content": "Vous savez pourquoi ?",
+                    "score": 1,
                     "answers": [
                         "Je suppose que, comme beaucoup dans son genre, il s’est laissé aller",
                         "C’est bien dommage… quel fainéant"
@@ -66,6 +72,7 @@
                 {
                     "preview": "Il est pas très investi",
                     "content": "Il ne dois pas être très investi en cours",
+                    "score": 1,
                     "answers": [
                         "En effet. Il est vraiment tête en l’air pendant mes cours",
                         "Il n’est probablement plus intéressé par le français"
@@ -74,6 +81,7 @@
                 {
                     "preview": "Il en avait des meilleurs ?",
                     "content": "Il avait des meilleurs notes avant ?",
+                    "score": 1,
                     "answers": [
                         "Oui des très bonnes notes même"
                     ]
@@ -86,6 +94,7 @@
                 {
                     "preview": "",
                     "content": "",
+                    "score": 1,
                     "answers": [
                         ""
                     ]
@@ -100,6 +109,7 @@
                 {
                     "preview": "non je le cherche aussi",
                     "content": "non je le cherche aussi",
+                    "score": 1,
                     "answers": [
                         "Ah, ok",
                         "Bah merci a toi"
@@ -108,6 +118,7 @@
                 {
                     "preview": "question best friend 2",
                     "content": "question best friend 2",
+                    "score": 1,
                     "answers": [
                         "réponse",
                         "best friend",
@@ -117,6 +128,7 @@
                 {
                     "preview": "question best friend 3",
                     "content": "question best friend 3",
+                    "score": 1,
                     "answers": [
                         "réponse best friend 3"
                     ]
@@ -129,6 +141,7 @@
                 {
                     "preview": "bizarre nan ?",
                     "content": "ouias c'est bizarre nan ?",
+                    "score": 1,
                     "answers": [
                         "Bah ouais il vois rien sans...",
                         "il a du encore se faire bully"
@@ -144,6 +157,7 @@
                 {
                     "preview": "",
                     "content": "",
+                    "score": 1,
                     "answers": [
                         ""
                     ]
@@ -158,6 +172,7 @@
                 {
                     "preview": "",
                     "content": "",
+                    "score": 1,
                     "answers": [
                         ""
                     ]

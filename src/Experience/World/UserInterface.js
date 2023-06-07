@@ -174,6 +174,7 @@ export default class Layout {
         this.fadeOutUiPanel(this.modal);
 
         if (this.parameter.currentZone === 4) {
+            this.updateScore(13);
             this.parameter.endGame();
         }
     }

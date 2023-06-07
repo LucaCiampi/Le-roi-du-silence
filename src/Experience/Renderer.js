@@ -26,13 +26,13 @@ export default class Renderer {
         this.instance.setSize(this.sizes.width, this.sizes.height);
         this.instance.setPixelRatio(this.sizes.pixelRatio);
 
-        // this.outlineEffect = new OutlineEffect( this.instance, {
-        //     defaultThickness: 0.005,
-        //     // defaultColor: [131, 33, 97]
-        // } );
+        this.outlineEffect = new OutlineEffect( this.instance, {
+            defaultThickness: 0.005,
+            // defaultColor: [255, 255, 255]
+        } );
 
         // this.outlineEffect.thickness = 0.1;
-        // this.outlineEffect.color = [255, 0, 0];
+        // this.outlineEffect.color = [255, 255, 255];
 
         // Bloom
         const renderScene = new RenderPass(this.scene, this.camera.instance)
@@ -55,8 +55,8 @@ export default class Renderer {
 
     update() {
         // this.instance.render(this.scene, this.camera.instance)
-        // this.outlineEffect.render(this.scene, this.camera.instance)
-        this.composer.render(this.scene, this.camera.instance)
+        this.outlineEffect.render(this.scene, this.camera.instance)
+        // this.composer.render(this.scene, this.camera.instance)
     }
 
 }

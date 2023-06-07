@@ -74,7 +74,12 @@ export default class Room1 extends Room {
         this.props.push(godRays);
 
         const highlights = this.resources.items['room1Highlights'].scene;
-        this.props.push(highlights);
+        highlights.children.forEach(prop => {
+            prop.material = new THREE.MeshPhongMaterial({
+                color: 0xffff00
+            })
+        });
+        // this.props.push(highlights);
         console.log(highlights);
 
         this.addPositionalAudioTrack('room1Kids', 4, 4, 3, 4, true, 1);

@@ -147,7 +147,8 @@
                     ]
                 }
             ]
-        }
+        },
+        {}
     ],
     "Paul DUFEU": [
         {
@@ -285,6 +286,7 @@
                 }
             ]
         },
+        {},
         {
             "trigger": "Les menaces continuaient en dehors de l'école. Sur Instagram et Snapchat je voyais des insultes et des photos circulaient de lui. On le ridiculisait. Il a fini par désinstaller tous ses réseaux sociaux.",
             "answers": [
@@ -370,11 +372,11 @@
         {},
         {},
         {
-            "trigger": "Comme d'habitude il n'a pas grand chose à dire. Il estime que depuis récemment, les cours ne l'intéressent plus, qu'ils ne lui sont pas utiles.",
+            "trigger": "Il ne lâchait jamais son téléphone. Même pendant les repas il l’avait sur lui.",
             "answers": [
                 {
-                    "preview": "Depuis quand l'a-t'il ?",
-                    "content": "Depuis quand a-t'il un téléphone ?",
+                    "preview": "Depuis quand l'a-t-il ?",
+                    "content": "Depuis quand a-t-il un téléphone ?",
                     "score": 1,
                     "answers": [
                         "Nous lui avons acheté un pour ses 13 ans.",
@@ -436,7 +438,8 @@
                     ]
                 }
             ]
-        }
+        },
+        {}
     ],
     "Guillaume LEFEBVRE": [
         {
@@ -482,6 +485,7 @@
                 }
             ]
         },
+        {},
         {},
         {},
         {},

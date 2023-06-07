@@ -73,6 +73,8 @@ export default class Room1 extends Room {
         this.props.push(godRays);
         this.addPositionalAudioTrack('room1Kids', 4, 4, 3, 4, true, 1);
 
+        this.additionalEntranceActions = () => { this.world.userInterface.hideOnboarding(); }
+
         if (this.debug.active) {
             this.addDebugOptions();
         }

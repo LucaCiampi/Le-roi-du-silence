@@ -137,6 +137,25 @@ body {
     opacity: 0.5;
 }
 
+.onboarding {
+    transition: 1s ease-out;
+}
+
+.onboarding__movement,
+.onboarding__escape {
+    position: absolute;
+}
+
+.onboarding__escape {
+    top: 2em;
+    left: 2em;
+}
+
+.onboarding__movement {
+    bottom: 2em;
+    right: 2em;
+}
+
 .modal {
     width: 100%;
     height: 100%;

@@ -66,6 +66,14 @@ body {
     margin: 0;
 }
 
+.intro-menu a {
+    color: rgba(0, 0, 0, 0);
+}
+
+.intro__logo {
+    max-height: 15vh;
+}
+
 ul {
     padding: 0 0 19px 0;;
     list-style: none;

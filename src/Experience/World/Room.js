@@ -271,8 +271,9 @@ export default class Room {
         const folder = this.debug.gui.addFolder(this.name);
 
         // this.roomPositionDebug(folder);
-        this.doorsPositionDebug(folder);
+        // this.doorsPositionDebug(folder);
         // this.propsPositionDebug(folder);
+        this.propsRotationDebug(folder);
     }
 
     roomPositionDebug(folder) {
@@ -350,6 +351,25 @@ export default class Room {
             folder.add(prop.position, 'z')
                 .onChange((value) => {
                     this.props[index].position.z = value;
+                });
+        })
+    }
+
+    propsRotationDebug(folder) {
+        this.props.forEach((prop, index) => {
+            folder.add(prop.rotation, 'x')
+                .onChange((value) => {
+                    this.props[index].rotation.x = value;
+                });
+
+            folder.add(prop.rotation, 'y')
+                .onChange((value) => {
+                    this.props[index].rotation.y = value;
+                });
+
+            folder.add(prop.rotation, 'z')
+                .onChange((value) => {
+                    this.props[index].rotation.z = value;
                 });
         })
     }

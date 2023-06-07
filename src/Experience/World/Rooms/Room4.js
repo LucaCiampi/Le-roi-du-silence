@@ -38,6 +38,7 @@ export default class Room4 extends Room {
 
         const note = this.resources.items['letter'].scene;
         note.position.set(0, 1.7, -17.8);
+        note.rotation.set(-0.1, -1.6, -1.6);
         this.props.push(note);
 
         if (this.debug.active) {

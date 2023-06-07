@@ -303,6 +303,6 @@ export default class Controls {
     addDebugOptions() {
         this.playerPositionDebugUi.classList.remove('d-none');
         this.playerSpeed = 15;
-        // this.GRAVITY = 0;
+        this.GRAVITY = 0;
     }
 }  

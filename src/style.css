@@ -313,7 +313,7 @@ li::before {
     transform: translateX(100%);
 }
 
-#imageFullscreen {
+.imageFullscreen {
     position: absolute;
     z-index: 30;
     display: flex;
@@ -327,18 +327,18 @@ li::before {
     opacity: 0;
 }
 
-#imageFullscreen>img {
+.imageFullscreen>img {
     transform: scale(0);
     max-height: 90%;
     max-width: 90%;
     transition: 0.3s ease-in-out;
 }
 
-#imageFullscreen.show>img {
+.imageFullscreen.show>img {
     transform: scale(1);
 }
 
-#imageFullscreen.show {
+.imageFullscreen.show {
     visibility: visible;
     opacity: 1;
 }
@@ -498,10 +498,6 @@ li::before {
     height: 100%;
 }
 
-#mobileMessages>h2::before {
-    content: "Messages de : "
-}
-
 .msg {
     width: fit-content;
     padding: 7px 10px 7px 10px;
@@ -603,7 +599,7 @@ li::before {
     height: 5svh;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: end;
 
     background: #FFFFFF;
     box-shadow: 0px 6px 12px -2px rgba(0, 0, 0, 0.2);

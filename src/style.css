@@ -133,12 +133,45 @@ body {
     height: 100%;
 }
 
-.score {
-    position: absolute;
+.life {
+    position: relative;
+    background-image: url('./Interface/life-empty.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 60px;
+    width: 790px;
+    margin: auto;
     top: 10px;
-    left: 0;
+}
+
+.life__line {
+    position: absolute;
+    top: 0;
+}
+
+.life__score {
+    position: absolute;
+    top: 12px;
+    left: 20px;
     right: 0;
-    text-align: center;
+}
+
+.life__score > img:nth-of-type(4),
+.life__score > img:nth-of-type(8),
+.life__score > img:nth-of-type(12) {
+    margin-right: 2em;
+}
+
+.life__line--1 {
+    left: 27%;
+}
+
+.life__line--2 {
+    left: 56%;
+}
+
+.life__line--3 {
+    left: 86%;
 }
 
 .player-position {
@@ -196,10 +229,17 @@ body {
 }
 
 .modal {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modalWrap {
     width: 100%;
     height: 100%;
     position: relative;
-    background-color: rgba(0, 0, 0, 0.4);
 }
 
 .modal__content {
@@ -601,6 +641,7 @@ ul {
         url("/Fonts/chalkduster.woff2") format("woff2"),
         url("Fonts/chalkduster.woff2") format("woff2");
 }
+
 @font-face {
     font-family: "Boris";
     src:

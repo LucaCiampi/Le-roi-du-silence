@@ -17,7 +17,7 @@ export default class Room1 extends Room {
             debug: this.debug,
             scene: this.scene,
             startPosition: new THREE.Vector2(0, -23),
-            endPosition: new THREE.Vector2(20, -12),
+            endPosition: new THREE.Vector2(20, -11.3),
             color: 0xff0000
         });
 

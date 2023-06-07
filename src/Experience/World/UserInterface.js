@@ -13,7 +13,7 @@ export default class Layout {
         this.endMenu = null;
 
         this.userInterface = null;
-        this.userInterfaceLife = null;
+        this.userInterfaceScore = null;
         this.userInterfaceOnboarding = null;
         this.heartIcon = null;
         this.doorOpenLabel = null;
@@ -33,7 +33,7 @@ export default class Layout {
         this.endMenu = document.getElementById('endMenu');
 
         this.userInterface = document.getElementById('userInterface');
-        this.userInterfaceLife = this.userInterface.querySelector('#score');
+        this.userInterfaceScore = this.userInterface.querySelector('#score');
         this.userInterfaceOnboarding = this.userInterface.querySelector('#onboarding');
         this.heartIcon = this.userInterface.querySelector('#heart');
         this.doorOpenLabel = this.userInterface.querySelector('#doorOpenLabel');
@@ -73,19 +73,19 @@ export default class Layout {
      */
     eventListener() {
         this.motion.addEventListener('ended', this.handleMotionEnded.bind(this))
-        
+
         this.introMenuStartButton.addEventListener('click', this.handleStartGameButtonClick.bind(this))
-        
+
         this.pauseMenu.addEventListener('click', () => {
             this.event.continue();
         })
     }
-    
+
     handleMotionEnded() {
         this.motion.classList.add('z--1');
         this.introMenuStartButton.removeEventListener('ended', this.handleStartGameButtonClick);
     }
-    
+
     handleStartGameButtonClick() {
         this.event.start();
         this.parameter.sounds.play('uiButton');
@@ -172,7 +172,7 @@ export default class Layout {
         this.parameter.modalOpen = false;
         this.parameter.sounds.play('page');
         this.fadeOutUiPanel(this.modal);
-        
+
         if (this.parameter.currentZone === 4) {
             this.parameter.endGame();
         }
@@ -241,7 +241,13 @@ export default class Layout {
      * @param {Number} score - the current score
      */
     updateScore(score) {
-        this.userInterfaceLife.innerHTML = score.toString() + '/20';
+        this.userInterfaceScore.innerHTML = '';
+
+        for (let i = 1; i <= score; i++) {
+            const img = document.createElement('img');
+            img.src = './Interface/life-point.png';
+            this.userInterfaceScore.appendChild(img);
+        }
     }
 
 }

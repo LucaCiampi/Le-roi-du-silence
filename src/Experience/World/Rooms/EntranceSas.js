@@ -21,7 +21,7 @@ export default class EntranceSas extends Room {
                 resources: this.resources,
                 name: 'sas',
                 id: 0,
-                startPosition: new THREE.Vector2(-2, -5),
+                startPosition: new THREE.Vector2(-1.2, -5),
                 endPosition: new THREE.Vector2(2, -3),
                 callback: () => { this.showLeoIntroLetter(); },
                 hasIndicator: true,

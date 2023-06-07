@@ -64,7 +64,7 @@
         <div id="mobileMessages" class="mobilePage rightHided">
             <div class="topBar">
                 <h2 id="backButton" style="transform: rotate(180deg);">➜</h2>
-                <img class="pp" src="./Interface/pp.png"/>
+                <img class="pp" src="./Interface/pp.png" />
                 <h2 id="title"></h2>
             </div>
             <div id="msgsContainer">
@@ -106,25 +106,35 @@
             <div class="user-interface__container">
                 <div id="onboarding" class="onboarding">
                     <div class="onboarding__child onboarding--escape">
-                        <img src="./Onboarding/escape.png" alt="escape"/>
+                        <img src="./Onboarding/escape.png" alt="escape" />
                         <span>Pause</span>
                     </div>
                     <div class="onboarding__child onboarding--movement">
-                        <img src="./Onboarding/movement.png" alt="movement"/>
+                        <img src="./Onboarding/movement.png" alt="movement" />
                         <span>Déplacements</span>
                     </div>
                     <div class="onboarding__child onboarding--close">
-                        <img src="./Onboarding/f.png" alt="close"/>
+                        <img src="./Onboarding/f.png" alt="close" />
                         <span>Fermer</span>
                     </div>
                 </div>
-                <div id="score" class="score">0/20</div>
+                <div class="life">
+                    <img src="./Interface/line.png" alt="line" class="life__line life__line--1" />
+                    <img src="./Interface/line.png" alt="line" class="life__line life__line--2" />
+                    <img src="./Interface/line.png" alt="line" class="life__line life__line--3" />
+                    <!-- 0/20 -->
+                    <div id="score" class="life__score">
+
+                    </div>
+                </div>
                 <img id="heart" class="heart" src="./Textures/heart.png" alt="heart">
                 <div id="doorOpenLabel" class="door-open-label">La porte vers la prochaine salle est ouverte</div>
                 <div id="memoriesOverlay" class="memories-overlay"></div>
                 <div id="modal" class="modal z--1 hidden">
-                    <img id="modalContent" class="modal__content" alt="modal image" />
-                    <div class="modal__text">F pour fermer</div>
+                    <div class="modalWrap">
+                        <img id="modalContent" class="modal__content" alt="modal image" />
+                        <div class="modal__text">F pour fermer</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -135,6 +145,13 @@
         </div>
         <canvas class="webgl"></canvas>
     </div>
+    <script>
+        const motion = document.getElementById('motion');
+        motion.addEventListener('ended', () => {
+            console.log('ended')
+            motion.classList.add('z--1');
+        })
+    </script>
     <script type="module" src="./script.js"></script>
 </body>
 

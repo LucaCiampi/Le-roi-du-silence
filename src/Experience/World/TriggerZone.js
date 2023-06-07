@@ -12,6 +12,7 @@ export default class TriggerZone {
         this.color = _options.color;
         this.callback = _options.callback;
         this.hasIndicator = _options.hasIndicator;
+        this.indicatorYPosition = _options.indicatorYPosition;
 
         // Set up
         this.boundingBox = null;
@@ -28,7 +29,7 @@ export default class TriggerZone {
             this.indicator = this.resources.items['tel'].scene.clone();
             const center = new THREE.Vector2();
             this.boundingBox.getCenter(center);
-            this.indicator.position.set(center.x, 3, center.y);
+            this.indicator.position.set(center.x, this.indicatorYPosition, center.y);
             this.scene.add(this.indicator);
         }
 
@@ -75,7 +76,7 @@ export default class TriggerZone {
         const geometry = new THREE.BoxGeometry(Math.abs(this.boundingBox.max.x - this.boundingBox.min.x), 0.2, Math.abs(this.boundingBox.max.y - this.boundingBox.min.y));
         const material = new THREE.MeshBasicMaterial({ color: 0x00ffff });
         const cube = new THREE.Mesh(geometry, material);
-        cube.position.set(this.boundingBox.min.x + (Math.abs(this.boundingBox.max.x - this.boundingBox.min.x) / 2), 3, this.boundingBox.min.y + (Math.abs(this.boundingBox.max.y - this.boundingBox.min.y) / 2))
+        cube.position.set(this.boundingBox.min.x + (Math.abs(this.boundingBox.max.x - this.boundingBox.min.x) / 2), this.indicatorYPosition || 3, this.boundingBox.min.y + (Math.abs(this.boundingBox.max.y - this.boundingBox.min.y) / 2))
 
         this.boundingBoxHelper = new THREE.BoxHelper(cube, this.color);
 

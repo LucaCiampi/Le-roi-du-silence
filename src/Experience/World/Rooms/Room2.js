@@ -32,25 +32,34 @@ export default class Room2 extends Room {
             new TriggerZone({
                 debug: this.debug,
                 scene: this.scene,
+                resources: this.resources,
                 name: 'cellphones',
                 startPosition: new THREE.Vector2(-16, -27),
                 endPosition: new THREE.Vector2(-13, -24),
+                hasIndicator: true,
+                indicatorYPosition: -0.5,
             }),
             // The TV's
             new TriggerZone({
                 debug: this.debug,
                 scene: this.scene,
+                resources: this.resources,
                 name: 'tvs',
                 startPosition: new THREE.Vector2(-18, -25),
                 endPosition: new THREE.Vector2(-14, -22),
+                hasIndicator: true,
+                indicatorYPosition: -0.5,
             }),
             // The tags
             new TriggerZone({
                 debug: this.debug,
                 scene: this.scene,
+                resources: this.resources,
                 name: 'tags',
                 startPosition: new THREE.Vector2(-12, -30),
                 endPosition: new THREE.Vector2(-8, -28),
+                hasIndicator: true,
+                indicatorYPosition: -0.5,
             }),
         ]
 

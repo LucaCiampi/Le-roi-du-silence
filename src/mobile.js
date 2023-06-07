@@ -86,7 +86,7 @@ function displayList() {
     if (interlocutor) {
         conv.classList.add('contact')
         let pp = document.createElement('img')
-        pp.src = `./Interface/pp.png`
+        pp.src = `./Interface/pp.jpeg`
         let time = document.createElement('span')
         time.textContent = "Aujourd'hui"
         conv.appendChild(time)

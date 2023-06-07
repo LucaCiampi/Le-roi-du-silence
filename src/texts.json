@@ -372,7 +372,7 @@
         {},
         {},
         {
-            "trigger": "Il ne lâchait jamais son téléphone. Même pendant les repas il l’avait sur lui.",
+            "trigger": "Il ne lâchait jamais son téléphone. Même pendant les repas il l'avait sur lui.",
             "answers": [
                 {
                     "preview": "Depuis quand l'a-t-il ?",
@@ -486,11 +486,92 @@
             ]
         },
         {},
+        {
+            "trigger": "Il avait toujours les meilleures notes de la classe avant que celles-ci ne baissent.",
+            "answers": [
+                {
+                    "preview": "Il était une « tête » ?",
+                    "content": "Il faisait parti des « têtes » de la classe ?",
+                    "score": 0,
+                    "answers": [
+                        "Oui, mais son comportement en classe était parfois énervant, il faisait un peu trop l'intello"
+                    ]
+                },
+                {
+                    "preview": "Ça explique sa baisse de notes ?",
+                    "content": "Et tu penses pas que ça puisse être la cause de ses baisses de note ?",
+                    "score": 1,
+                    "answers": [
+                        "Il ne voulait même plus nous aider pour les cours alors qu'il avait l'habitude de le faire",
+                        "C'est égoïste de sa part de ne pas vouloir aider ses camarades"
+                    ]
+                }
+            ]
+        },
         {},
+        {
+            "trigger": "J'ai entendu dire qu'il y avait des vidéos qui circulaient",
+            "answers": [
+                {
+                    "preview": "Tu en sais plus ?",
+                    "content": "Mais Tu en sais plus sur cette situation ?",
+                    "score": 1,
+                    "answers": [
+                        "Les garçons de la classe m'ont déjà montrer des vidéos de ce style, mais jamais de Léo"
+                    ]
+                },
+                {
+                    "preview": "Comment tu as réagi ?",
+                    "content": "Et comment tu as réagi face à tout ça ?",
+                    "score": 0,
+                    "answers": [
+                        "Je ne connais pas forcément les personnes concernées alors ça ne me touche pas !"
+                    ]
+                }
+            ]
+        },
         {},
-        {},
-        {},
-        {},
-        {}
+        {
+            "trigger": "La seule fois ou j'ai vrm échangé avec lui, il s'est énervé et m'a insulté ! Qu'on me dise pas que c'était lui la victime",
+            "answers": [
+                {
+                    "preview": "Tu l'as vexé",
+                    "content": "Tu avais du faire un truc qui ne lui a pas plu !",
+                    "score": 1,
+                    "answers": [
+                        "Je ne vois pas, on était pas proche et je faisait pas partie de ceux qui l'embêtait !"
+                    ]
+                },
+                {
+                    "preview": "Tu savais qui le harcelait ?",
+                    "content": "Tu savais donc que des gens étaient malveillants avec lui ?",
+                    "score": 0,
+                    "answers": [
+                        "Oui, enfin non, on rigole ensemble il est juste un peu plus susceptible"
+                    ]
+                }
+            ]
+        },
+        {
+            "trigger": "Je ne me considère pas comme un harceleur, JE LUI AI JAMAIS RIEN FAIT OU RIEN DIT",
+            "answers": [
+                {
+                    "preview": "Tu as fais qqchose pour l'aider ?",
+                    "content": "Mais tu as fais qqchose pour l'aider ?",
+                    "score": 1,
+                    "answers": [
+                        "Nan c'est vrai…"
+                    ]
+                },
+                {
+                    "preview": "Tu penses quoi de tout ça ?",
+                    "content": "Tu penses quoi de tout ça mtn ?",
+                    "score": 1,
+                    "answers": [
+                        "Je comprends peut-être que j'aurais pu aider Léo. J'espère qu'il n'est pas trop tard."
+                    ]
+                }
+            ]
+        }
     ]
 }

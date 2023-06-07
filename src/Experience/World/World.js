@@ -35,6 +35,11 @@ export default class World {
             this.pauseAmbientWorldSound();
             this.rooms[this.parameter.currentZone].pausePositionalAudioTracks();
         })
+        
+        this.event.on('End', () => {
+            this.pauseAmbientWorldSound();
+            this.rooms[this.parameter.currentZone].pausePositionalAudioTracks();
+        })
 
         this.event.on('Continue', () => {
             this.playAmbientWorldSound();

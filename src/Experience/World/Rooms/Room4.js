@@ -32,6 +32,8 @@ export default class Room4 extends Room {
             scene: this.scene,
             startPosition: new THREE.Vector2(-31, -26),
             endPosition: new THREE.Vector2(-26, -21),
+            name: 'end',
+            id: 10,
             color: 0x22ff66
         });
         this.hasEnteredGameOverZone = false;

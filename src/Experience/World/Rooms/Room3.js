@@ -50,6 +50,7 @@ export default class Room3 extends Room {
         this.addExitDoor();
 
         this.addPositionalAudioTrack('heavy', 2, -8, 4, 0);
+        this.addPositionalAudioTrack('fire', 2, -8, 4, 0);
         this.addPositionalAudioTrack('heart', 2, 0, 4, 0);
         
         this.setAshes();
@@ -69,7 +70,7 @@ export default class Room3 extends Room {
     setAshes() {
         // Créer un groupe pour contenir les particules de cendres
         this.ashGroup = new THREE.Group();
-        this.ashGroup.position.set(-6, 8, 0);
+        this.ashGroup.position.set(-6, 10, 0);
         this.props.push(this.ashGroup)
 
         // Créer le matériau des particules de cendres
@@ -105,11 +106,11 @@ export default class Room3 extends Room {
     animateAsh() {
         // Mettre à jour la position des particules
         this.ashes.rotation.y += 0.01; // Rotation des particules
-        this.ashGroup.position.y -= 0.05; // Vitesse de descente des particules
+        this.ashGroup.position.y -= 0.03; // Vitesse de descente des particules
 
         // Réinitialiser la position des particules qui sont sorties de la vue
-        if (this.ashGroup.position.y < -6) {
-            this.ashGroup.position.y = 8;
+        if (this.ashGroup.position.y < -5) {
+            this.ashGroup.position.y = 10;
         }
     }
 

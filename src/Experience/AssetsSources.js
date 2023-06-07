@@ -11,11 +11,16 @@ export default
         type: "gltfModel",
         path: "./Environment/room1.glb"
     },
-    // {
-    //     name: "room1Props",
-    //     type: "gltfModel",
-    //     path: "./Environment/room1-props.glb"
-    // },
+    {
+        name: "room1Props",
+        type: "gltfModel",
+        path: "./Environment/room1-props.glb"
+    },
+    {
+        name: "room1Godrays",
+        type: "gltfModel",
+        path: "./Environment/room1-godrays.glb"
+    },
     {
         name: "room2",
         type: "gltfModel",
@@ -85,14 +90,19 @@ export default
         path: "./Sounds/tv.mp3"
     },
     {
-        name: "eww",
+        name: "radio",
         type: "audio",
-        path: "./Sounds/kidsComplain.mp3"
+        path: "./Sounds/radio.mp3"
     },
     {
         name: "heavy",
         type: "audio",
         path: "./Sounds/heavy.mp3"
+    },
+    {
+        name: "fire",
+        type: "audio",
+        path: "./Sounds/fire.mp3"
     },
     {
         name: "heart",

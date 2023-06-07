@@ -70,7 +70,7 @@ export default class Room2 extends Room {
 
         this.addPositionalAudioTrack('vibration', 2, -9, 4, -6);
         this.addPositionalAudioTrack('tvbzz', 2, -10, 4, -1);
-        this.addPositionalAudioTrack('eww', 2, -2, 4, -8);
+        this.addPositionalAudioTrack('radio', 2, -2, 4, -8);
 
         if (this.debug.active) {
             this.addDebugOptions();

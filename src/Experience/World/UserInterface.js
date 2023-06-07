@@ -14,6 +14,7 @@ export default class Layout {
 
         this.userInterface = null;
         this.userInterfaceLife = null;
+        this.userInterfaceOnboarding = null;
         this.heartIcon = null;
         this.doorOpenLabel = null;
         this.memoriesOverlay = null;
@@ -33,6 +34,7 @@ export default class Layout {
 
         this.userInterface = document.getElementById('userInterface');
         this.userInterfaceLife = this.userInterface.querySelector('#score');
+        this.userInterfaceOnboarding = this.userInterface.querySelector('#onboarding');
         this.heartIcon = this.userInterface.querySelector('#heart');
         this.doorOpenLabel = this.userInterface.querySelector('#doorOpenLabel');
         this.memoriesOverlay = this.userInterface.querySelector('#memoriesOverlay');
@@ -160,6 +162,13 @@ export default class Layout {
         this.parameter.modalOpen = false;
         this.parameter.sounds.play('page');
         this.fadeOutUiPanel(this.modal);
+    }
+
+    /**
+     * Hides the onboarding
+     */
+    hideOnboarding() {
+        this.fadeOutUiPanel(this.userInterfaceOnboarding);
     }
 
     /**

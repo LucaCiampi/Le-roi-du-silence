@@ -42,6 +42,11 @@ export default
         path: "./Environment/room2-hands.glb"
     },
     {
+        name: "room2Tags",
+        type: "gltfModel",
+        path: "./Environment/room2-tags.glb"
+    },
+    {
         name: "room3",
         type: "gltfModel",
         path: "./Environment/room3.glb"

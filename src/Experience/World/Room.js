@@ -272,8 +272,8 @@ export default class Room {
 
         // this.roomPositionDebug(folder);
         // this.doorsPositionDebug(folder);
-        // this.propsPositionDebug(folder);
-        this.propsRotationDebug(folder);
+        this.propsPositionDebug(folder);
+        // this.propsRotationDebug(folder);
     }
 
     roomPositionDebug(folder) {

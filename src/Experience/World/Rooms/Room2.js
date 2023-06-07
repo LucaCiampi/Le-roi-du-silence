@@ -82,6 +82,10 @@ export default class Room2 extends Room {
         // this.props.push(this.resources.items['room2Hands'].scene);
         this.props.push(this.resources.items['room2Props'].scene);
 
+        const tags = this.resources.items['room2Tags'].scene;
+        tags.position.set(-4.68, 0, -5.56);
+        this.props.push(tags);
+
         this.additionalEntranceActions = () => { this.initHandsAnimation(); }
 
         this.addPositionalAudioTrack('vibration', 2, -9, 4, -6);

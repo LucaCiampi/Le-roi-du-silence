@@ -19,7 +19,8 @@ body {
     justify-content: space-evenly;
     align-items: center;
 
-    font-family: 'Chalkduster', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* font-family: 'Chalkduster', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+    font-family: 'Boris', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;
     cursor: pointer;
 }
@@ -518,4 +519,10 @@ ul {
     src:
         url("/Fonts/chalkduster.woff2") format("woff2"),
         url("Fonts/chalkduster.woff2") format("woff2");
+}
+@font-face {
+    font-family: "Boris";
+    src:
+        url("/Fonts/boris.woff2") format("woff2"),
+        url("Fonts/boris.woff2") format("woff2");
 }

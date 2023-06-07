@@ -25,7 +25,7 @@ export default class Room4 extends Room {
 
         this.setRoomModel();
 
-        this.additionalEntranceActions = () => { this.updateFogDistance(); }
+        // this.additionalEntranceActions = () => { this.updateFogDistance(); }
 
         this.gameOverZone = new TriggerZone({
             debug: this.debug,
@@ -36,7 +36,7 @@ export default class Room4 extends Room {
         });
         this.hasEnteredGameOverZone = false;
 
-        const note = this.resources.items['tel'].scene;
+        const note = this.resources.items['letter'].scene;
         note.position.set(0, 1.7, -17.8);
         this.props.push(note);
 
@@ -64,7 +64,7 @@ export default class Room4 extends Room {
         if (this.gameOverZone.hasPlayerInZone(this.parameter.playerPosition)) {
             console.log('end')
             this.hasEnteredGameOverZone = true;
-            this.world.userInterface.showUserInterfaceModal('./Interface/lettre-intro.png')
+            this.world.userInterface.showUserInterfaceModal('./Interface/lettre-fin.png')
         }
     }
 

@@ -67,10 +67,21 @@ export default class Room1 extends Room {
         this.addExitDoor();
 
         this.props.push(this.resources.items['room1Props'].scene);
+
         const godRays = this.resources.items['room1Godrays'].scene;
         godRays.children[0].children[0].material.opacity = 0.3;
         godRays.children[0].children[0].material.transparent = true;
         this.props.push(godRays);
+
+        const highlights = this.resources.items['room1Highlights'].scene;
+        highlights.children.forEach(prop => {
+            prop.material = new THREE.MeshPhongMaterial({
+                color: 0xffff00
+            })
+        });
+        // this.props.push(highlights);
+        console.log(highlights);
+
         this.addPositionalAudioTrack('room1Kids', 4, 4, 3, 4, true, 1);
 
         this.additionalEntranceActions = () => { this.world.userInterface.hideOnboarding(); }

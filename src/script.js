@@ -21,7 +21,7 @@ let currentSession = null
 let mobile = null
 let desktop = null
 let userNumber = 0
-let baseUrl = "192.168.130.33:5173"
+let baseUrl = "172.28.59.104:5173"
 // let baseUrl = "brume.surge.sh"
 
 //firebase config
@@ -79,7 +79,7 @@ onValue(ref(database, 'sessions/'), (snapshot) => {
   //update score
   if (!mobile && data[currentSession].score) {
     let newScore = Object.keys(data[currentSession].score)?.length
-    if (newScore != score){
+    if (newScore != score) {
       score = newScore
       desktop.increaseScore()
     }
@@ -165,13 +165,13 @@ function handleDesktopEvent(event) {
   console.log('event : ', event)
   if (event?.title === "response") {
     let JSONcontent = texts[event.interlocutor]?.find(({ trigger }) => trigger === event.parent).answers.find(({ preview }) => preview === event.content)
-  
+
     if (JSONcontent.score == 1) {
       push(ref(database, `sessions/${event.id}/score`), {
         score: 1
       })
     }
-  
+
     let content = JSONcontent.content
     push(ref(database, `sessions/${event.id}/messages/`), {
       msg: content,
@@ -225,15 +225,37 @@ function handleDesktopEvent(event) {
   //     })
   //   });
   // }
-  if (event?.title.includes("room")) {
-    interlocutors.forEach(inter => {
-      push(ref(database, `sessions/${currentSession}/messages/`), {
-        msg: "J'ai trouvé ça :",
-        foreign: false,
-        time: Date.now(),
-        interlocutor: inter
+  if (event?.title == "zone") {
+    if (event.id == 0) {
+      interlocutors.forEach(inter => {
+        push(ref(database, `sessions/${currentSession}/messages/`), {
+          msg: "J'ai trouvé ça :",
+          foreign: false,
+          time: Date.now(),
+          interlocutor: inter
+        })
+      });
+    } else {
+      interlocutors.forEach(inter => {
+        if (texts[inter][event.id]?.trigger) {
+          remove(ref(database, `sessions/${currentSession}/responses/`))
+          push(ref(database, `sessions/${currentSession}/messages/`), {
+            msg: texts[inter][event.id].trigger,
+            foreign: true,
+            time: Date.now(),
+            interlocutor: inter
+          })
+          let options = texts[inter][event.id].answers.map((answer) => {
+            return answer.preview
+          })
+          push(ref(database, `sessions/${currentSession}/responses/`), {
+            options: options,
+            parent: texts[inter][event.id].trigger,
+            interlocutor: inter
+          })
+        }
       })
-    });
+    }
   }
 }
 

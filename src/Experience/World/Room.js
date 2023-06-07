@@ -98,6 +98,7 @@ export default class Room {
                 console.log('player in zone : ' + zone.name);
                 this.triggerZones.splice(index, 1);
                 this.world.zoneTriggeredEffect();
+                this.sendMessageToPhone(zone.id);
             }
         })
     }
@@ -106,7 +107,6 @@ export default class Room {
      * Actions related to the entrance of the player in the zone
      */
     roomEntranceActions() {
-        this.sendMessageToPhone();
         this.playZoneSound();
         if (this.name !== 'room4') {
             this.closeDoor();
@@ -118,8 +118,8 @@ export default class Room {
     /**
      * Sends a message to every mobile device connected to the session
      */
-    sendMessageToPhone() {
-        this.zoneEvent({title: this.name});
+    sendMessageToPhone(id) {
+        this.zoneEvent({title: "zone", id});
     }
 
     /**

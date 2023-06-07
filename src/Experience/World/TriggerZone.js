@@ -6,6 +6,7 @@ export default class TriggerZone {
         this.debug = _options.debug;
         this.scene = _options.scene;
         this.name = _options.name;
+        this.id = _options.id;
         this.startPosition = _options.startPosition;
         this.endPosition = _options.endPosition;
         this.color = _options.color;

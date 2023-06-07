@@ -19,6 +19,7 @@ export default class EntranceSas extends Room {
                 debug: this.debug,
                 scene: this.scene,
                 name: 'sas',
+                id: 0,
                 startPosition: new THREE.Vector2(-2, -5),
                 endPosition: new THREE.Vector2(2, -3),
                 callback: () => { this.showLeoIntroLetter(); }

@@ -180,7 +180,7 @@ function handleDesktopEvent(event) {
 
     //push the answers
     let answers = JSONcontent.answers
-    let delay = 1000
+    let delay = 300
     answers.forEach((answer) => {
       delay += answer.length * 50
       setTimeout(() => {
@@ -194,26 +194,6 @@ function handleDesktopEvent(event) {
     });
   }
 
-  // if (event?.title.includes("room")) {
-  //   let roomId = event.slice(4, 5)
-  //   remove(ref(database, `sessions/${currentSession}/responses/`))
-  //   interlocutors.forEach(inter => {
-  //     push(ref(database, `sessions/${currentSession}/messages/`), {
-  //       msg: texts[inter][roomId].trigger,
-  //       foreign: true,
-  //       time: Date.now(),
-  //       interlocutor: inter
-  //     })
-  //     let options = texts[inter][roomId].answers.map((answer) => {
-  //       return answer.preview
-  //     })
-  //     push(ref(database, `sessions/${currentSession}/responses/`), {
-  //       options: options,
-  //       parent: texts[inter][roomId].trigger,
-  //       interlocutor: inter
-  //     })
-  //   });
-  // }
   if (event?.title == "zone") {
     if (event.id == 0) {
       interlocutors.forEach(inter => {

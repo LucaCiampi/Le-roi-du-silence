@@ -25,38 +25,7 @@
                 }
             ]
         },
-        {
-            "trigger": "Ah, vous avez trouvé ses lunettes ? C'est bien on se rapproche",
-            "answers": [
-                {
-                    "preview": "Il doit rien voir",
-                    "content": "Mais… Il ne doit rien voir sans !",
-                    "score": 1,
-                    "answers": [
-                        "Si si je crois qu'il voit très bien sans puisque qu'il ne les met plus depuis des semaines",
-                        "Je suppose qu'elles n'était pas assez bien à son goût…"
-                    ]
-                },
-                {
-                    "preview": "On se rapproche ?",
-                    "content": "C'est a dire, on se rapproche ?",
-                    "score": 0,
-                    "answers": [
-                        "Eh bien si ses lunettes sont là c'est probablement qu'il se trouve pas loin",
-                        "Continuez de chercher"
-                    ]
-                },
-                {
-                    "preview": "C'est bien les siennes ?",
-                    "content": "Vous êtes sûr qu'il sagit bien des siennes ?",
-                    "score": 1,
-                    "answers": [
-                        "Ah oui, je m'en souvient très bien de ses lunettes",
-                        "Il faisait toujours son intéressant avec !"
-                    ]
-                }
-            ]
-        },
+        {},
         {
             "trigger": "C'est vraiment dommage ! Léo était un très bon élève, et maintenant il a vraiment des notes médiocres.",
             "answers": [
@@ -89,7 +58,7 @@
             ]
         },
         {
-            "trigger": "Ce couloir est des plus en plus dégrédé à chaque fois. Ah tiens, certains messages sont destinés à Léo. Rien qui puisse nous rensigner sur sa position, continuez.",
+            "trigger": "Ce couloir est des plus en plus dégradé à chaque fois. Ah tiens, certains messages sont destinés à Léo. Rien qui puisse nous rensigner sur sa position, continuez.",
             "answers": [
                 {
                     "preview": "On ne l'aime pas ?",
@@ -110,7 +79,38 @@
                 }
             ]
         },
-        {},
+        {
+            "trigger": "Ah, vous avez trouvé ses lunettes ? C'est bien on se rapproche",
+            "answers": [
+                {
+                    "preview": "Il doit rien voir",
+                    "content": "Mais… Il ne doit rien voir sans !",
+                    "score": 1,
+                    "answers": [
+                        "Si si je crois qu'il voit très bien sans puisque qu'il ne les met plus depuis des semaines",
+                        "Je suppose qu'elles n'était pas assez bien à son goût…"
+                    ]
+                },
+                {
+                    "preview": "On se rapproche ?",
+                    "content": "C'est a dire, on se rapproche ?",
+                    "score": 0,
+                    "answers": [
+                        "Eh bien si ses lunettes sont là c'est probablement qu'il se trouve pas loin",
+                        "Continuez de chercher"
+                    ]
+                },
+                {
+                    "preview": "C'est bien les siennes ?",
+                    "content": "Vous êtes sûr qu'il sagit bien des siennes ?",
+                    "score": 1,
+                    "answers": [
+                        "Ah oui, je m'en souvient très bien de ses lunettes",
+                        "Il faisait toujours son intéressant avec !"
+                    ]
+                }
+            ]
+        },
         {
             "trigger": "Le nombre de fois où j'ai du lui confisquer son téléphone. Je pense que Léo détient le record…",
             "answers": [
@@ -180,35 +180,7 @@
                 }
             ]
         },
-        {
-            "trigger": "Ce sont les lunettes de Léo. Je sais qu'il les déteste…",
-            "answers": [
-                {
-                    "preview": "C'est compréhensible…",
-                    "content": "Je comprends pourquoi il les déteste",
-                    "score": 0,
-                    "answers": [
-                        "Les goûts et les couleurs tu sais…"
-                    ]
-                },
-                {
-                    "preview": "Pourquoi ?",
-                    "content": "C'est dommage, pourquoi ?",
-                    "score": 1,
-                    "answers": [
-                        "Il m'avait dit que dans sa classe, des garçons faisaient des blagues sur ses lunettes. Il disait que c'était pour rire, que c'était rien de bien méchant."
-                    ]
-                },
-                {
-                    "preview": "Elles sont cassées",
-                    "content": "Elles ont l'air cassées…",
-                    "score": 1,
-                    "answers": [
-                        "Je sais que des garçons s'amusaient avec… les prenaient à Léo et se les lançaient en cours. Ça énervait beaucoup la prof, elle a même puni Léo un jour, en pensant que c'était lui le fautif."
-                    ]
-                }
-            ]
-        },
+        {},
         {
             "trigger": "Léo a toujours eu des bonnes notes et il me disait que ça énervait sa classe.",
             "answers": [
@@ -272,7 +244,35 @@
                 }
             ]
         },
-        {},
+        {
+            "trigger": "Ce sont les lunettes de Léo. Je sais qu'il les déteste…",
+            "answers": [
+                {
+                    "preview": "C'est compréhensible…",
+                    "content": "Je comprends pourquoi il les déteste",
+                    "score": 0,
+                    "answers": [
+                        "Les goûts et les couleurs tu sais…"
+                    ]
+                },
+                {
+                    "preview": "Pourquoi ?",
+                    "content": "C'est dommage, pourquoi ?",
+                    "score": 1,
+                    "answers": [
+                        "Il m'avait dit que dans sa classe, des garçons faisaient des blagues sur ses lunettes. Il disait que c'était pour rire, que c'était rien de bien méchant."
+                    ]
+                },
+                {
+                    "preview": "Elles sont cassées",
+                    "content": "Elles ont l'air cassées…",
+                    "score": 1,
+                    "answers": [
+                        "Je sais que des garçons s'amusaient avec… les prenaient à Léo et se les lançaient en cours. Ça énervait beaucoup la prof, elle a même puni Léo un jour, en pensant que c'était lui le fautif."
+                    ]
+                }
+            ]
+        },
         {
             "trigger": "Quand j'allais chez lui, son téléphone n'arrêtait pas de vibrer. Il avait l'air inquiet à chaque notif.",
             "answers": [

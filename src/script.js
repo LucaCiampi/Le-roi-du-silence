@@ -21,8 +21,7 @@ let currentSession = null
 let mobile = null
 let desktop = null
 let userNumber = 0
-let baseUrl = "gobelins-webgl.netlify.app"
-// let baseUrl = "brume.surge.sh"
+let baseUrl = "roi-du-silence.netlify.app"
 
 //firebase config
 const app = initializeApp(firebaseConfig);

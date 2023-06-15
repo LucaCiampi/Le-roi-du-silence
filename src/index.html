@@ -5,40 +5,37 @@
     <meta charset="UTF-8">
 
     <title>Le roi du silence</title>
-    <meta name="description"
+
+    <meta itemprop="name" content="Le roi du silence">
+    <link rel="canonical" href="https://roi-du-silence.netlify.app/" />
+    <link rel="icon"
+        href="./Interface/pp.jpeg">
+
+    <!-- Descrition -->
+    <meta name='description'
+        content="Projet WebGL créé par Luca Ciampi, Mathilde Deveaux, Valentine Guillaume et Marius Proton dans le cadre d'un exercice de M1 à l'école GOBELINS" />
+    <meta property="og:description"
+        content="Projet WebGL créé par Luca Ciampi, Mathilde Deveaux, Valentine Guillaume et Marius Proton dans le cadre d'un exercice de M1 à l'école GOBELINS" />
+    <meta name="twitter:description"
         content="Projet WebGL créé par Luca Ciampi, Mathilde Deveaux, Valentine Guillaume et Marius Proton dans le cadre d'un exercice de M1 à l'école GOBELINS" />
 
-    <meta itemprop=name content="WebGL">
-    <meta itemprop="description"
-        content="Projet WebGL créé par Luca Ciampi, Mathilde Deveaux, Valentine Guillaume et Marius Proton dans le cadre d'un exercice de M1 à l'école GOBELINS">
-    <link rel="icon"
-        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤫</text></svg>">
-    <!-- <meta itemprop="image" content=https://lucaciampi.com/social/share-1200x630.png> -->
+    <!-- Image -->
+    <meta property="og:image" content="./Interface/logo.png" />
+    <meta name="twitter:image" content="./Interface/logo.png" />
 
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="WebGL">
-    <meta name="twitter:description"
-        content="Projet WebGL créé par Luca Ciampi, Mathilde Deveaux, Valentine Guillaume et Marius Proton dans le cadre d'un exercice de M1 à l'école GOBELINS">
-    <!-- <meta name="twitter:image" content="https://lucaciampi.com/social/share-1200x600.png"> -->
+    <!-- OpenGraph -->
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Le roi du silence" />
+    <meta property="og:url" content="https://roi-du-silence.netlify.app/" />
 
-    <meta property="og:site_name" content="WebGL">
-    <meta property="og:type" content="website">
-    <!-- <meta property="og:url" content="https://lucaciampi.com"> -->
-    <meta property="og:title" content="WebGL">
-    <meta property="og:description"
-        content="Projet WebGL créé par Luca Ciampi, Mathilde Deveaux, Valentine Guillaume et Marius Proton dans le cadre d'un exercice de M1 à l'école GOBELINS">
-    <!-- <meta property="og:image" content="https://lucaciampi.com/social/share-1200x630.png"> -->
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="twitter:domain" content="roi-du-silence.netlify.app" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="robots" content="index, follow" />
 
-    <!-- 
-        <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png"> 
-        <link rel="manifest" href="/favicon/site.webmanifest">
-        <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#ff8908">
-    -->
     <meta name="apple-mobile-web-app-title" content="WebGL">
     <meta name="application-name" content="WebGL">
     <meta name="msapplication-TileColor" content="#da532c">
@@ -91,7 +88,8 @@
             <div class="QRcodeContainer">
                 <img src="./Interface/logo.png" class="intro__logo" alt="Le roi du silence">
                 <p>
-                    Léo, un élève de votre classe, a disparu. Aidez-nous a comprendre ce qu'il s'est passé.<br> Bonne découverte...
+                    Léo, un élève de votre classe, a disparu. Aidez-nous a comprendre ce qu'il s'est passé.<br> Bonne
+                    découverte...
                 </p>
                 <div>
                     <canvas id="qrcode"></canvas>
